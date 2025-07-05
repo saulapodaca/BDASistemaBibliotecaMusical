@@ -4,16 +4,21 @@
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
+import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.UsuarioRegistradoDTO;
+import itson.sistemabibliotecamusicalpresentacion.utilidades.SesionUsuario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author saula
  */
-public class FormInicioSesion extends javax.swing.JFrame {
+public class InicioSesionFrm extends javax.swing.JFrame {
 
     /**
      * Creates new form FrameInicioSesion
      */
-    public FormInicioSesion() {
+    public InicioSesionFrm() {
         initComponents();
     }
 
@@ -66,12 +71,12 @@ public class FormInicioSesion extends javax.swing.JFrame {
         lblContraseña.setBackground(new java.awt.Color(255, 255, 255));
         lblContraseña.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         lblContraseña.setForeground(new java.awt.Color(75, 28, 113));
-        lblContraseña.setText("CONTRASEÑA:");
+        lblContraseña.setText("Contraseña:");
 
         lblUsuario.setBackground(new java.awt.Color(255, 255, 255));
         lblUsuario.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(75, 28, 113));
-        lblUsuario.setText("USUARIO:");
+        lblUsuario.setText("Usuario:");
 
         txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
         txtUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -80,11 +85,6 @@ public class FormInicioSesion extends javax.swing.JFrame {
         passwordContraseña.setBackground(new java.awt.Color(255, 255, 255));
         passwordContraseña.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         passwordContraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        passwordContraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordContraseñaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelInformacionLayout = new javax.swing.GroupLayout(panelInformacion);
         panelInformacion.setLayout(panelInformacionLayout);
@@ -118,6 +118,11 @@ public class FormInicioSesion extends javax.swing.JFrame {
         btnRegistrarse.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnRegistrarse.setForeground(new java.awt.Color(75, 28, 113));
         btnRegistrarse.setText("Registrarse");
+        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelContenedorLayout = new javax.swing.GroupLayout(panelContenedor);
         panelContenedor.setLayout(panelContenedorLayout);
@@ -186,12 +191,31 @@ public class FormInicioSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-
+        UsuarioRegistradoDTO usuario = new UsuarioRegistradoDTO
+        (txtUsuario.getText(), passwordContraseña.getPassword());
+        
+        //UsuarioDominio usuario = usuarioFachada.iniciarSesion(usuario);
+        UsuarioDominio usuarioSesion = new UsuarioDominio();
+        //solo adecuarlo cuando se tenga fachada
+        try{
+            if (usuarioSesion != null){
+                SesionUsuario.iniciarSesion(usuarioSesion);
+                
+                JOptionPane.showMessageDialog(this, "¡Bienvenido, " + usuarioSesion.getNombreUsuario() + "!");
+                new MenuPrincipalFrm().setVisible(true);
+                this.dispose();
+            }
+            
+        }catch(Exception ex){
+            
+        }
+        
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
-    private void passwordContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordContraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordContraseñaActionPerformed
+    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
+        new RegistrarUsuarioFrm().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,13 +234,13 @@ public class FormInicioSesion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioSesionFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioSesionFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioSesionFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormInicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioSesionFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -224,7 +248,7 @@ public class FormInicioSesion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormInicioSesion().setVisible(true);
+                new InicioSesionFrm().setVisible(true);
             }
         });
     }

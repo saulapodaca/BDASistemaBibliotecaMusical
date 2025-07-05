@@ -8,6 +8,13 @@
     </parent>
     <artifactId>SistemaBibliotecaMusicalPresentacion</artifactId>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>SistemaBibliotecaMusicalDominio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
     <properties>
         <maven.compiler.release>22</maven.compiler.release>
         <exec.mainClass>itson.sistemabibliotecamusicalpresentacion.SistemaBibliotecaMusicalPresentacion</exec.mainClass>

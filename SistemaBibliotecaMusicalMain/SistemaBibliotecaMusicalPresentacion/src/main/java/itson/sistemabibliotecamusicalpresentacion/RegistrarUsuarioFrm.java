@@ -8,12 +8,12 @@ package itson.sistemabibliotecamusicalpresentacion;
  *
  * @author saula
  */
-public class FormRegistrarUsuario extends javax.swing.JFrame {
+public class RegistrarUsuarioFrm extends javax.swing.JFrame {
 
     /**
      * Creates new form FormRegistrarUsuario
      */
-    public FormRegistrarUsuario() {
+    public RegistrarUsuarioFrm() {
         initComponents();
     }
 

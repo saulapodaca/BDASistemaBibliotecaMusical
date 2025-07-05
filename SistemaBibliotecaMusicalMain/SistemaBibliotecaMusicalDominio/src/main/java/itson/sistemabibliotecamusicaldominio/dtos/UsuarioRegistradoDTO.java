@@ -11,9 +11,9 @@ public class UsuarioRegistradoDTO {
     public UsuarioRegistradoDTO() {
     }
 
-    public UsuarioRegistradoDTO(String usuario, String contraseniaHasheada) {
+    public UsuarioRegistradoDTO(String usuario, char[] contrasenia) {
         this.usuario = usuario;
-        this.contraseniaHasheada = contraseniaHasheada;
+        this.contrasenia = contrasenia;
     }
 
     public String getUsuario() {

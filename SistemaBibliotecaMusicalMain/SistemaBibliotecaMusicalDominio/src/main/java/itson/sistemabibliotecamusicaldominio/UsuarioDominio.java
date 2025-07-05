@@ -2,15 +2,15 @@ package itson.sistemabibliotecamusicaldominio;
 
 //@author SAUL ISAAC APODACA BALDENEGRO 00000252020
 
-public class Usuario {
+public class UsuarioDominio {
 
     private String nombreUsuario;
     private String contrasenia;
 
-    public Usuario() {
+    public UsuarioDominio() {
     }
 
-    public Usuario(String nombreUsuario, String contrasenia) {
+    public UsuarioDominio(String nombreUsuario, String contrasenia) {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
     }
