@@ -8,12 +8,12 @@ package itson.sistemabibliotecamusicalpresentacion;
  *
  * @author adell
  */
-public class ArtistaFrm extends javax.swing.JFrame {
+public class CatalogoAlbumesFrm extends javax.swing.JFrame {
 
     /**
-     * Creates new form ArtistaFrm
+     * Creates new form CatalogoAlbumesFrm
      */
-    public ArtistaFrm() {
+    public CatalogoAlbumesFrm() {
         initComponents();
     }
 
@@ -32,12 +32,9 @@ public class ArtistaFrm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         infoAlbumesPnl = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        imgPnl = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1080, 648));
-        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(75, 28, 113));
 
@@ -45,63 +42,43 @@ public class ArtistaFrm extends javax.swing.JFrame {
         contenedorPnl.setPreferredSize(new java.awt.Dimension(980, 548));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel2.setText("INFO ARTISTA");
+        jLabel2.setText("ALBUMES");
 
         javax.swing.GroupLayout infoArtistaPnlLayout = new javax.swing.GroupLayout(infoArtistaPnl);
         infoArtistaPnl.setLayout(infoArtistaPnlLayout);
         infoArtistaPnlLayout.setHorizontalGroup(
             infoArtistaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoArtistaPnlLayout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addGap(323, 323, 323)
+                .addComponent(jLabel2)
+                .addContainerGap(323, Short.MAX_VALUE))
         );
         infoArtistaPnlLayout.setVerticalGroup(
             infoArtistaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoArtistaPnlLayout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                .addContainerGap())
         );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel1.setText("ALBUMES");
+        jLabel1.setText("CATALOGO ALBUMES");
 
         javax.swing.GroupLayout infoAlbumesPnlLayout = new javax.swing.GroupLayout(infoAlbumesPnl);
         infoAlbumesPnl.setLayout(infoAlbumesPnlLayout);
         infoAlbumesPnlLayout.setHorizontalGroup(
             infoAlbumesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoAlbumesPnlLayout.createSequentialGroup()
-                .addGap(225, 225, 225)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addGap(171, 171, 171)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         infoAlbumesPnlLayout.setVerticalGroup(
             infoAlbumesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoAlbumesPnlLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(118, 118, 118)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(136, Short.MAX_VALUE))
-        );
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel3.setText("IMG");
-
-        javax.swing.GroupLayout imgPnlLayout = new javax.swing.GroupLayout(imgPnl);
-        imgPnl.setLayout(imgPnlLayout);
-        imgPnlLayout.setHorizontalGroup(
-            imgPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, imgPnlLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
-        );
-        imgPnlLayout.setVerticalGroup(
-            imgPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(imgPnlLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout contenedorPnlLayout = new javax.swing.GroupLayout(contenedorPnl);
@@ -110,24 +87,21 @@ public class ArtistaFrm extends javax.swing.JFrame {
             contenedorPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorPnlLayout.createSequentialGroup()
                 .addContainerGap(64, Short.MAX_VALUE)
-                .addGroup(contenedorPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(contenedorPnlLayout.createSequentialGroup()
-                        .addComponent(imgPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(infoArtistaPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(infoAlbumesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(infoArtistaPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(64, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorPnlLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(infoAlbumesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
         contenedorPnlLayout.setVerticalGroup(
             contenedorPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorPnlLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(contenedorPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(infoArtistaPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(imgPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
+                .addComponent(infoArtistaPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(infoAlbumesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -178,32 +152,30 @@ public class ArtistaFrm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ArtistaFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CatalogoAlbumesFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ArtistaFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CatalogoAlbumesFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ArtistaFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CatalogoAlbumesFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ArtistaFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CatalogoAlbumesFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ArtistaFrm().setVisible(true);
+                new CatalogoAlbumesFrm().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenedorPnl;
-    private javax.swing.JPanel imgPnl;
     private javax.swing.JPanel infoAlbumesPnl;
     private javax.swing.JPanel infoArtistaPnl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

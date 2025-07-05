@@ -159,16 +159,16 @@ public class FormInicioSesion extends javax.swing.JFrame {
         panelFondoLayout.setHorizontalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFondoLayout.createSequentialGroup()
-                .addContainerGap(201, Short.MAX_VALUE)
+                .addContainerGap(122, Short.MAX_VALUE)
                 .addComponent(panelContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(198, 198, 198))
+                .addGap(77, 77, 77))
         );
         panelFondoLayout.setVerticalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFondoLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addGap(64, 64, 64)
                 .addComponent(panelContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
