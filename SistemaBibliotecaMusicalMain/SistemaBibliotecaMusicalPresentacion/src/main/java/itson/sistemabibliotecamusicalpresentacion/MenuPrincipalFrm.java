@@ -41,9 +41,7 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
         jMenuItemCerrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1080, 648));
         setMinimumSize(new java.awt.Dimension(1080, 648));
-        setPreferredSize(new java.awt.Dimension(1080, 648));
         setResizable(false);
         setSize(new java.awt.Dimension(1080, 648));
 
@@ -130,7 +128,7 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
                 .addGap(148, 148, 148))
             .addGroup(PanelFondoLayout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 938, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(81, Short.MAX_VALUE))
         );
         PanelFondoLayout.setVerticalGroup(
@@ -141,7 +139,7 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
                     .addComponent(txtFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
                 .addGap(37, 37, 37)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(93, Short.MAX_VALUE))
         );
 
