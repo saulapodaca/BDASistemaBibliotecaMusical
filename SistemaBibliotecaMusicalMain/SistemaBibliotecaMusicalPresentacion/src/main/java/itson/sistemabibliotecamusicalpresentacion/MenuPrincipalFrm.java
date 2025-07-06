@@ -4,6 +4,9 @@
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author saula
@@ -15,6 +18,7 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
      */
     public MenuPrincipalFrm() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -31,6 +35,12 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        pnlCanciones = new javax.swing.JPanel();
+        pnlAlbumes = new javax.swing.JPanel();
+        pnlArtistas = new javax.swing.JPanel();
+        btnCanciones = new javax.swing.JButton();
+        btnAlbumes = new javax.swing.JButton();
+        btnArtistas = new javax.swing.JButton();
         txtFieldBuscar = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -72,15 +82,116 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(219, 182, 238));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        pnlCanciones.setBackground(new java.awt.Color(219, 182, 238));
+        pnlCanciones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout pnlCancionesLayout = new javax.swing.GroupLayout(pnlCanciones);
+        pnlCanciones.setLayout(pnlCancionesLayout);
+        pnlCancionesLayout.setHorizontalGroup(
+            pnlCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        pnlCancionesLayout.setVerticalGroup(
+            pnlCancionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        pnlAlbumes.setBackground(new java.awt.Color(219, 182, 238));
+        pnlAlbumes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout pnlAlbumesLayout = new javax.swing.GroupLayout(pnlAlbumes);
+        pnlAlbumes.setLayout(pnlAlbumesLayout);
+        pnlAlbumesLayout.setHorizontalGroup(
+            pnlAlbumesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        pnlAlbumesLayout.setVerticalGroup(
+            pnlAlbumesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        pnlArtistas.setBackground(new java.awt.Color(219, 182, 238));
+        pnlArtistas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout pnlArtistasLayout = new javax.swing.GroupLayout(pnlArtistas);
+        pnlArtistas.setLayout(pnlArtistasLayout);
+        pnlArtistasLayout.setHorizontalGroup(
+            pnlArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        pnlArtistasLayout.setVerticalGroup(
+            pnlArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        btnCanciones.setBackground(new java.awt.Color(219, 182, 238));
+        btnCanciones.setForeground(new java.awt.Color(0, 0, 0));
+        btnCanciones.setText("Mis canciones");
+        btnCanciones.setBorder(null);
+        btnCanciones.setBorderPainted(false);
+        btnCanciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancionesActionPerformed(evt);
+            }
+        });
+
+        btnAlbumes.setBackground(new java.awt.Color(219, 182, 238));
+        btnAlbumes.setForeground(new java.awt.Color(0, 0, 0));
+        btnAlbumes.setText("Mis albumes");
+        btnAlbumes.setBorder(null);
+        btnAlbumes.setBorderPainted(false);
+        btnAlbumes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlbumesActionPerformed(evt);
+            }
+        });
+
+        btnArtistas.setBackground(new java.awt.Color(219, 182, 238));
+        btnArtistas.setForeground(new java.awt.Color(0, 0, 0));
+        btnArtistas.setText("Mis artistas");
+        btnArtistas.setBorder(null);
+        btnArtistas.setBorderPainted(false);
+        btnArtistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnArtistasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 723, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addComponent(pnlCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(124, 124, 124)
+                .addComponent(pnlAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addComponent(pnlArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(btnCanciones)
+                .addGap(153, 153, 153)
+                .addComponent(btnAlbumes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnArtistas)
+                .addGap(102, 102, 102))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 298, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlCanciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCanciones)
+                    .addComponent(btnAlbumes)
+                    .addComponent(btnArtistas))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -121,15 +232,16 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
         PanelFondoLayout.setHorizontalGroup(
             PanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelFondoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBuscar)
-                .addGap(18, 18, 18)
-                .addComponent(txtFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(148, 148, 148))
-            .addGroup(PanelFondoLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE)
+                .addGroup(PanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelFondoLayout.createSequentialGroup()
+                        .addComponent(btnBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(181, 181, 181))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelFondoLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(118, 118, 118))))
         );
         PanelFondoLayout.setVerticalGroup(
             PanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,9 +250,9 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
                 .addGroup(PanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
-                .addGap(37, 37, 37)
+                .addGap(63, 63, 63)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         jMenu1.setText("OPCIONES");
@@ -198,38 +310,38 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(PanelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 98, Short.MAX_VALUE))
+            .addComponent(PanelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 1178, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(PanelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 34, Short.MAX_VALUE))
+            .addComponent(PanelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPerfilActionPerformed
-        // TODO add your handling code here:
+        PanelPerfil panel = new PanelPerfil();
+        configurarPanel(panel);
     }//GEN-LAST:event_jMenuItemPerfilActionPerformed
 
     private void jMenuItemFavoritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFavoritosActionPerformed
-        // TODO add your handling code here:
+        PanelFavoritos panel = new PanelFavoritos();
+        configurarPanel(panel);
     }//GEN-LAST:event_jMenuItemFavoritosActionPerformed
 
     private void jMenuItemGenerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGenerosActionPerformed
-        // TODO add your handling code here:
+        PanelGestionarGenerosNoDeseados panel = new PanelGestionarGenerosNoDeseados();
+        configurarPanel(panel);
     }//GEN-LAST:event_jMenuItemGenerosActionPerformed
 
     private void jMenuItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMenuActionPerformed
-        // TODO add your handling code here:
+        configurarPanel(PanelFondo);
     }//GEN-LAST:event_jMenuItemMenuActionPerformed
 
     private void jMenuItemCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCerrarActionPerformed
-        // TODO add your handling code here:
+         new InicioSesionFrm().setVisible(true);
+         this.dispose();
     }//GEN-LAST:event_jMenuItemCerrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -237,13 +349,40 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldBuscarActionPerformed
-        // TODO add your handling code here:
+        PanelBuscar panel = new PanelBuscar();
+        configurarPanel(panel);
     }//GEN-LAST:event_txtFieldBuscarActionPerformed
 
+    private void btnAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumesActionPerformed
+        new CatalogoAlbumesFrm().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAlbumesActionPerformed
+
+    private void btnArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArtistasActionPerformed
+        new CatalogoArtistasFrm().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnArtistasActionPerformed
+
+    private void btnCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancionesActionPerformed
+        new CatalogoCancionesFrm().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCancionesActionPerformed
+
+    private void configurarPanel(JPanel panel) {
+        getContentPane().removeAll();
+        getContentPane().setLayout(new BorderLayout());
+        getContentPane().add(panel, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelFondo;
+    private javax.swing.JButton btnAlbumes;
+    private javax.swing.JButton btnArtistas;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCanciones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -254,6 +393,9 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemPerfil;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel pnlAlbumes;
+    private javax.swing.JPanel pnlArtistas;
+    private javax.swing.JPanel pnlCanciones;
     private javax.swing.JTextField txtFieldBuscar;
     // End of variables declaration//GEN-END:variables
 }

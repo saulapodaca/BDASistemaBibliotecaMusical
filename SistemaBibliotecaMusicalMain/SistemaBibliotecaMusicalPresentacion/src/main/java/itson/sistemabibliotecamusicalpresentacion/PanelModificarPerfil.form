@@ -127,7 +127,7 @@
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtFieldCorreo1" min="-2" pref="351" max="-2" attributes="0"/>
+                                          <Component id="txtFieldImagen" min="-2" pref="351" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -162,7 +162,7 @@
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblCorreo1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtFieldCorreo1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="txtFieldImagen" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="115" max="32767" attributes="0"/>
                   <Component id="btnModificarPerfil" min="-2" pref="64" max="-2" attributes="0"/>
@@ -243,6 +243,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldNombreUsuarioActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtFieldCorreo">
           <Properties>
@@ -258,6 +261,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldCorreoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCorreo1">
           <Properties>
@@ -270,7 +276,7 @@
             <Property name="text" type="java.lang.String" value="Imagen de perfil:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtFieldCorreo1">
+        <Component class="javax.swing.JTextField" name="txtFieldImagen">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -284,6 +290,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldImagenActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

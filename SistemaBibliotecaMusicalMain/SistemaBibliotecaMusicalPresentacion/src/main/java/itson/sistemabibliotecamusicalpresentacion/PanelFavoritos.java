@@ -4,6 +4,9 @@
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
+import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Camila Zubía
@@ -255,30 +258,68 @@ public class PanelFavoritos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodoActionPerformed
-
+        try {
+            //FiltroDTO filtro = new FiltroDTO;
+            //filtro.getFiltro.clear();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
+        }
     }//GEN-LAST:event_btnTodoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
+        try {
+            cargarFavoritos();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo realizar la busqueda");
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldBuscarActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtFieldBuscarActionPerformed
 
     private void btnCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancionesActionPerformed
-        // TODO add your handling code here:
+        try {
+            //FiltroDTO filtro = new FiltroDTO;
+            //filtro.setFiltro("canciones");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
+        }
     }//GEN-LAST:event_btnCancionesActionPerformed
 
     private void btnAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumesActionPerformed
-        // TODO add your handling code here:
+        try {
+            //FiltroDTO filtro = new FiltroDTO;
+            //filtro.setFiltro("albumes");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo filtrar por albumes");
+        }
     }//GEN-LAST:event_btnAlbumesActionPerformed
 
     private void btnArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArtistasActionPerformed
-        // TODO add your handling code here:
+        try {
+            //FiltroDTO filtro = new FiltroDTO;
+            //filtro.setFiltro("artistas");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo filtrar por artistas");
+        }
     }//GEN-LAST:event_btnArtistasActionPerformed
 
+    private void cargarFavoritos() {
+        try {
+            String busqueda = txtFieldBuscar.getText().trim();
+            //List<ArtistaDTO> favoritos = usuarioFachada.listarFavoritos();
+            panelListar.removeAll();
+            panelListar.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+            //for(ArtistaDTO a : artistas) 
+            {
 
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de tus favoritos");
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelFondo;
     private javax.swing.JButton btnAlbumes;

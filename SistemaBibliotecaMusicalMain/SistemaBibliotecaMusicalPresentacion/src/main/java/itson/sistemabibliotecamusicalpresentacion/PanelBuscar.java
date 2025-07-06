@@ -4,6 +4,10 @@
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
+import java.awt.List;
+import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Camila Zubía
@@ -29,8 +33,6 @@ public class PanelBuscar extends javax.swing.JPanel {
         PanelFondo = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         btnTodo = new javax.swing.JButton();
-        txtFieldNombreUsuario = new javax.swing.JTextField();
-        txtFieldCorreo = new javax.swing.JTextField();
         btnCanciones = new javax.swing.JButton();
         btnAlbumes = new javax.swing.JButton();
         btnArtistas = new javax.swing.JButton();
@@ -64,16 +66,6 @@ public class PanelBuscar extends javax.swing.JPanel {
                 btnTodoActionPerformed(evt);
             }
         });
-
-        txtFieldNombreUsuario.setEditable(false);
-        txtFieldNombreUsuario.setBackground(new java.awt.Color(219, 182, 238));
-        txtFieldNombreUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        txtFieldNombreUsuario.setBorder(null);
-
-        txtFieldCorreo.setEditable(false);
-        txtFieldCorreo.setBackground(new java.awt.Color(219, 182, 238));
-        txtFieldCorreo.setForeground(new java.awt.Color(0, 0, 0));
-        txtFieldCorreo.setBorder(null);
 
         btnCanciones.setBackground(new java.awt.Color(127, 76, 165));
         btnCanciones.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
@@ -149,31 +141,20 @@ public class PanelBuscar extends javax.swing.JPanel {
                         .addComponent(btnAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(425, 425, 425)
-                        .addComponent(txtFieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
-                        .addComponent(txtFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnTodo)
-                            .addComponent(btnCanciones)
-                            .addComponent(btnAlbumes)
-                            .addComponent(btnArtistas))
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTodo)
+                    .addComponent(btnCanciones)
+                    .addComponent(btnAlbumes)
+                    .addComponent(btnArtistas))
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         btnBuscar.setBackground(new java.awt.Color(127, 76, 165));
@@ -209,7 +190,7 @@ public class PanelBuscar extends javax.swing.JPanel {
                         .addComponent(txtFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelFondoLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 972, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
         PanelFondoLayout.setVerticalGroup(
@@ -220,7 +201,7 @@ public class PanelBuscar extends javax.swing.JPanel {
                     .addComponent(btnBuscar)
                     .addComponent(txtFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -241,29 +222,67 @@ public class PanelBuscar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodoActionPerformed
-
+        try {
+            //FiltroDTO filtro = new FiltroDTO;
+            //filtro.getFiltro.clear();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
+        }
     }//GEN-LAST:event_btnTodoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
+        try {
+            cargarBiblioteca();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo realizar la busqueda");
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldBuscarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtFieldBuscarActionPerformed
 
     private void btnCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancionesActionPerformed
-        // TODO add your handling code here:
+        try {
+            //FiltroDTO filtro = new FiltroDTO;
+            //filtro.setFiltro("canciones");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
+        }
     }//GEN-LAST:event_btnCancionesActionPerformed
 
     private void btnAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumesActionPerformed
-        // TODO add your handling code here:
+        try {
+            //FiltroDTO filtro = new FiltroDTO;
+            //filtro.setFiltro("albumes");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo filtrar por albumes");
+        }
     }//GEN-LAST:event_btnAlbumesActionPerformed
 
     private void btnArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArtistasActionPerformed
-        // TODO add your handling code here:
+        try {
+            //FiltroDTO filtro = new FiltroDTO;
+            //filtro.setFiltro("artistas");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo filtrar por artistas");
+        }
     }//GEN-LAST:event_btnArtistasActionPerformed
 
+    private void cargarBiblioteca(){
+        try {
+            String busqueda = txtFieldBuscar.getText().trim();
+            //List<ArtistasDTO> artistas = artistaFachada.listarArtistas();
+            panelListar.removeAll();
+            panelListar.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+            //for(ArtistaDTO a : artistas) 
+            {
+                    
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de la biblioteca musical");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelFondo;
@@ -276,7 +295,5 @@ public class PanelBuscar extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelListar;
     private javax.swing.JTextField txtFieldBuscar;
-    private javax.swing.JTextField txtFieldCorreo;
-    private javax.swing.JTextField txtFieldNombreUsuario;
     // End of variables declaration//GEN-END:variables
 }

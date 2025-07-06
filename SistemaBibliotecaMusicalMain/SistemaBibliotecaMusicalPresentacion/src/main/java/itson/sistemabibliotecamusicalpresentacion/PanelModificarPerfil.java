@@ -35,7 +35,7 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
         txtFieldNombreUsuario = new javax.swing.JTextField();
         txtFieldCorreo = new javax.swing.JTextField();
         lblCorreo1 = new javax.swing.JLabel();
-        txtFieldCorreo1 = new javax.swing.JTextField();
+        txtFieldImagen = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(75, 28, 113));
         setMaximumSize(new java.awt.Dimension(1080, 648));
@@ -89,18 +89,33 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
         txtFieldNombreUsuario.setBackground(new java.awt.Color(255, 255, 255));
         txtFieldNombreUsuario.setForeground(new java.awt.Color(0, 0, 0));
         txtFieldNombreUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtFieldNombreUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldNombreUsuarioActionPerformed(evt);
+            }
+        });
 
         txtFieldCorreo.setBackground(new java.awt.Color(255, 255, 255));
         txtFieldCorreo.setForeground(new java.awt.Color(0, 0, 0));
         txtFieldCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldCorreoActionPerformed(evt);
+            }
+        });
 
         lblCorreo1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblCorreo1.setForeground(new java.awt.Color(0, 0, 0));
         lblCorreo1.setText("Imagen de perfil:");
 
-        txtFieldCorreo1.setBackground(new java.awt.Color(255, 255, 255));
-        txtFieldCorreo1.setForeground(new java.awt.Color(0, 0, 0));
-        txtFieldCorreo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtFieldImagen.setBackground(new java.awt.Color(255, 255, 255));
+        txtFieldImagen.setForeground(new java.awt.Color(0, 0, 0));
+        txtFieldImagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtFieldImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldImagenActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,7 +144,7 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
                                         .addComponent(txtFieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtFieldCorreo1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(txtFieldImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(190, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -152,7 +167,7 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
                         .addGap(37, 37, 37)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCorreo1)
-                    .addComponent(txtFieldCorreo1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFieldImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(btnModificarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(91, 91, 91))
@@ -181,8 +196,33 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModificarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPerfilActionPerformed
-
+        //ModificarUsuarioDTO usuarioModificado = new ModificarUsuarioDTO();
+        String nombre = txtFieldNombreUsuario.getText().trim();
+        String correo = txtFieldCorreo.getText().trim();
+        String imagen = txtFieldImagen.getText().trim();
+        if (!nombre.isEmpty()) {
+            //modificar.setNombre(nombre);
+        } 
+        if (!correo.isEmpty()) {
+            //modificar.setCorreo(correo);
+        } 
+        if (!imagen.isEmpty()) {
+            //imagen.setImagen(imagen);
+        }
+        //fachadaUsuario.modificar(usuarioModificado);
     }//GEN-LAST:event_btnModificarPerfilActionPerformed
+
+    private void txtFieldNombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldNombreUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFieldNombreUsuarioActionPerformed
+
+    private void txtFieldCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFieldCorreoActionPerformed
+
+    private void txtFieldImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldImagenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFieldImagenActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -194,7 +234,7 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
     private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtFieldCorreo;
-    private javax.swing.JTextField txtFieldCorreo1;
+    private javax.swing.JTextField txtFieldImagen;
     private javax.swing.JTextField txtFieldNombreUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,17 +4,25 @@
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author Camila Zubía
  */
 public class PanelPerfil extends javax.swing.JPanel {
+    
+    
 
     /**
      * Creates new form PanelPerfil
      */
     public PanelPerfil() {
         initComponents();
+        cargarUsuario();
     }
 
     /**
@@ -184,10 +192,27 @@ public class PanelPerfil extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModificarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPerfilActionPerformed
-
+        abrirPanelModificar();
     }//GEN-LAST:event_btnModificarPerfilActionPerformed
 
+    private void cargarUsuario(){
+        
+    }
+    
+    public void abrirPanelModificar() {
+        try {
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            PanelModificarPerfil panel = new PanelModificarPerfil();
 
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(panel, BorderLayout.CENTER);
+            frame.revalidate();
+            frame.repaint();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al cargar la siguiente ventana: " + ex.getMessage());
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelFondo;
     private javax.swing.JButton btnModificarPerfil;
