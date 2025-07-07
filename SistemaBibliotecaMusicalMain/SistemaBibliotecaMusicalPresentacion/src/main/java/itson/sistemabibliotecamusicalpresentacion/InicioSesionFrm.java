@@ -6,7 +6,11 @@ package itson.sistemabibliotecamusicalpresentacion;
 
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioRegistradoDTO;
+import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
+import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.UsuarioFachada;
 import itson.sistemabibliotecamusicalpresentacion.utilidades.SesionUsuario;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,11 +19,13 @@ import javax.swing.JOptionPane;
  */
 public class InicioSesionFrm extends javax.swing.JFrame {
 
+    private final IUsuarioFachada usuarioFachada;
     /**
      * Creates new form FrameInicioSesion
      */
     public InicioSesionFrm() {
         initComponents();
+        this.usuarioFachada = new UsuarioFachada();
     }
 
     /**
@@ -191,25 +197,22 @@ public class InicioSesionFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        UsuarioRegistradoDTO usuario = new UsuarioRegistradoDTO
-        (txtUsuario.getText(), passwordContraseña.getPassword());
-        
-        //UsuarioDominio usuario = usuarioFachada.iniciarSesion(usuario);
-        UsuarioDominio usuarioSesion = new UsuarioDominio();
-        //solo adecuarlo cuando se tenga fachada
-        try{
-            if (usuarioSesion != null){
+        UsuarioRegistradoDTO usuario = new UsuarioRegistradoDTO(txtUsuario.getText(), passwordContraseña.getPassword());
+
+        try {
+            UsuarioDominio usuarioSesion = usuarioFachada.obtenerUsuarioPorNombre(usuario);
+            if (usuarioSesion != null) {
                 SesionUsuario.iniciarSesion(usuarioSesion);
-                
+
                 JOptionPane.showMessageDialog(this, "¡Bienvenido, " + usuarioSesion.getNombreUsuario() + "!");
                 new MenuPrincipalFrm().setVisible(true);
                 this.dispose();
             }
-            
-        }catch(Exception ex){
-            
+
+        } catch (NegocioException | HeadlessException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
