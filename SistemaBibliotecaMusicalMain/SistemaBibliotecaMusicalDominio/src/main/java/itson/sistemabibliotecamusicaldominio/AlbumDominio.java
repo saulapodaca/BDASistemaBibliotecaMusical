@@ -18,9 +18,9 @@ public class AlbumDominio {
     private LocalDate fechaLanzamiento;
     private String generoMusical;
     private String imagenPortada;
-    private List<String> canciones;
+    private List<CancionDominio> canciones;
 
-    public AlbumDominio(String nombre, LocalDate fechaLanzamiento, String generoMusical, String imagenPortada, List<String> canciones) {
+    public AlbumDominio(String nombre, LocalDate fechaLanzamiento, String generoMusical, String imagenPortada, List<CancionDominio> canciones) {
         this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
         this.generoMusical = generoMusical;
@@ -60,11 +60,11 @@ public class AlbumDominio {
         this.imagenPortada = imagenPortada;
     }
 
-    public List<String> getCanciones() {
+    public List<CancionDominio> getCanciones() {
         return canciones;
     }
 
-    public void setCanciones(List<String> canciones) {
+    public void setCanciones(List<CancionDominio> canciones) {
         this.canciones = canciones;
     }
 

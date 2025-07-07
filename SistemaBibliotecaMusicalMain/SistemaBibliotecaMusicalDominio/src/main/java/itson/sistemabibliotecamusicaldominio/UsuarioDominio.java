@@ -2,6 +2,9 @@ package itson.sistemabibliotecamusicaldominio;
 
 //@author SAUL ISAAC APODACA BALDENEGRO 00000252020
 
+import java.util.List;
+
+
 public class UsuarioDominio {
 
     //private ObjectId id;
@@ -9,6 +12,10 @@ public class UsuarioDominio {
     private String contrasenia;
     private String correo;
     private String imagen;
+    private List<ArtistaDominio> artistasFavoritos;
+    private List<AlbumDominio> albumesFavoritos;
+    private List<CancionDominio> cancionesFavoritos;
+    private List<String> generosNoDeseados;
 
     public UsuarioDominio() {
     }
