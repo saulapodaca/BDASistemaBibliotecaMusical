@@ -108,6 +108,7 @@ public class PanelBuscar extends javax.swing.JPanel {
 
         jScrollPane1.setBackground(new java.awt.Color(219, 182, 238));
         jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         panelListar.setBackground(new java.awt.Color(219, 182, 238));
         panelListar.setForeground(new java.awt.Color(0, 0, 0));
