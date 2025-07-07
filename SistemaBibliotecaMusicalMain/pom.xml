@@ -8,6 +8,7 @@
     <modules>
         <module>SistemaBibliotecaMusicalPresentacion</module>
         <module>SistemaBibliotecaMusicalDominio</module>
+        <module>SistemaBibliotecaMusicalNegocio</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
