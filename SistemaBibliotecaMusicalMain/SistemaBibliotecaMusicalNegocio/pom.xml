@@ -8,6 +8,24 @@
     </parent>
     <artifactId>SistemaBibliotecaMusicalNegocio</artifactId>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>SistemaBibliotecaMusicalDominio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>SistemaBibliotecaMusicalPersistencia</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
     <properties>
         <maven.compiler.release>24</maven.compiler.release>
         <exec.mainClass>itson.sistemabibliotecamusicalnegocio.SistemaBibliotecaMusicalNegocio</exec.mainClass>

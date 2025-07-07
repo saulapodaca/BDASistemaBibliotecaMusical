@@ -4,6 +4,10 @@
  */
 package itson.sistemabibliotecamusicalnegocio.fachada;
 
+import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.UsuarioRegistradoDTO;
+import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
+
 /**
  *
  * @author Camila Zubía
@@ -11,5 +15,6 @@ package itson.sistemabibliotecamusicalnegocio.fachada;
 public interface IUsuarioFachada {
     
     //void guardarEnFavoritos(String idUsuario, Object favorito ) throws NegocioException;
+    public UsuarioDominio obtenerUsuarioPorNombre(UsuarioRegistradoDTO usuario) throws NegocioException;
     
 }

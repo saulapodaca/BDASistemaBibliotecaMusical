@@ -4,10 +4,15 @@
  */
 package itson.sistemabibliotecamusicalnegocio;
 
+import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.UsuarioRegistradoDTO;
+import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
+
 /**
  *
  * @author Camila Zubía
  */
 public interface IUsuarioNegocio {
     
+    public UsuarioDominio obtenerUsuarioPorNombre(UsuarioRegistradoDTO usuario) throws NegocioException;
 }
