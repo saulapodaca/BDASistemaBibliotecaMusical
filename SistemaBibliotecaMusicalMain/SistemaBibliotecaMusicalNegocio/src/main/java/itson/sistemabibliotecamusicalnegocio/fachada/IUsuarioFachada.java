@@ -10,6 +10,10 @@ package itson.sistemabibliotecamusicalnegocio.fachada;
  */
 public interface IUsuarioFachada {
     
-    //void guardarEnFavoritos(String idUsuario, Object favorito ) throws NegocioException;
+    //UsuarioDominio registrar(UsuarioRegistradoDTO registrado) throws NegocioException;
+    
+    //UsuarioRegistradoDTO buscarPor
+    
+    //void guardarEnFavoritos(String idUsuario, Object favorito) throws NegocioException;
     
 }

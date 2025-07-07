@@ -1,23 +1,22 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package itson.sistemabibliotecamusicaldominio.dtos;
 
-//@author SAUL ISAAC APODACA BALDENEGRO 00000252020
-
-public class UsuarioRegistradoDTO {
-
+/**
+ *
+ * @author Camila Zubía
+ */
+public class UsuarioInicioSesionDTO {
+    
     private String usuario;
     private String contraseniaHasheada;
     private char[] contrasenia;
-    private String correo;
-    private String imagen;
-    
-    public UsuarioRegistradoDTO() {
-    }
 
-    public UsuarioRegistradoDTO(String usuario, char[] contrasenia, String correo, String imagen) {
+    public UsuarioInicioSesionDTO(String usuario, char[] contrasenia) {
         this.usuario = usuario;
         this.contrasenia = contrasenia;
-        this.correo = correo;
-        this.imagen = imagen;
     }
 
     public String getUsuario() {
@@ -42,21 +41,5 @@ public class UsuarioRegistradoDTO {
 
     public void setContrasenia(char[] contrasenia) {
         this.contrasenia = contrasenia;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
     }
 }
