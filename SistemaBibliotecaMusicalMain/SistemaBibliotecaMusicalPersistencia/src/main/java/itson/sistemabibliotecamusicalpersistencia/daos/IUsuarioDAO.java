@@ -3,7 +3,7 @@ package itson.sistemabibliotecamusicalpersistencia.daos;
 //@author SAUL ISAAC APODACA BALDENEGRO 00000252020
 
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
-import itson.sistemabibliotecamusicaldominio.dtos.UsuarioRegistradoDTO;
+import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 
 
@@ -11,5 +11,5 @@ import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaExcept
 
 public interface IUsuarioDAO {
 
-    public UsuarioDominio obtenerUsuarioPorNombre(UsuarioRegistradoDTO usuario) throws PersistenciaException;
+    public UsuarioDominio obtenerUsuarioPorNombre(UsuarioInicioSesionDTO usuario) throws PersistenciaException;
 }

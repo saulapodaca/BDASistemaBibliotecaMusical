@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicalpresentacion;
 
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioRegistradoDTO;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
@@ -197,7 +198,7 @@ public class InicioSesionFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        UsuarioRegistradoDTO usuario = new UsuarioRegistradoDTO(txtUsuario.getText(), passwordContraseña.getPassword());
+        UsuarioInicioSesionDTO usuario = new UsuarioInicioSesionDTO(txtUsuario.getText(), passwordContraseña.getPassword());
 
         try {
             UsuarioDominio usuarioSesion = usuarioFachada.obtenerUsuarioPorNombre(usuario);

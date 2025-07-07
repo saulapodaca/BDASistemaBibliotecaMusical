@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicalnegocio.implementaciones;
 
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioRegistradoDTO;
 import itson.sistemabibliotecamusicalnegocio.IUsuarioNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
@@ -26,7 +27,7 @@ public class UsuarioNegocio implements IUsuarioNegocio{
     }
 
     @Override
-    public UsuarioDominio obtenerUsuarioPorNombre(UsuarioRegistradoDTO usuario) throws NegocioException{
+    public UsuarioDominio obtenerUsuarioPorNombre(UsuarioInicioSesionDTO usuario) throws NegocioException{
          try{
             UsuarioDominio usuarioRegistrado =  usuarioDAO.obtenerUsuarioPorNombre(usuario);
             if (usuarioRegistrado == null)
@@ -41,7 +42,7 @@ public class UsuarioNegocio implements IUsuarioNegocio{
         
     }
 
-    private String encriptarContrasena(UsuarioRegistradoDTO usuarioInicioSesionDTO) throws NegocioException{
+    private String encriptarContrasena(UsuarioInicioSesionDTO usuarioInicioSesionDTO) throws NegocioException{
         try {
             String textoPlano = new String(usuarioInicioSesionDTO.getContrasenia());
             String hash = BCrypt.hashpw(textoPlano, BCrypt.gensalt());
