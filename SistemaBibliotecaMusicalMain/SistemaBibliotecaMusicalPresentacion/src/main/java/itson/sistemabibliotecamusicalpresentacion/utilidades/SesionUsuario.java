@@ -13,7 +13,7 @@ public class SesionUsuario {
         SesionUsuario.usuarioActual = usuario;
     }
 
-    public static UsuarioDominio getAdministradorActual() {
+    public static UsuarioDominio getUsuario() {
         return usuarioActual;
     }
 

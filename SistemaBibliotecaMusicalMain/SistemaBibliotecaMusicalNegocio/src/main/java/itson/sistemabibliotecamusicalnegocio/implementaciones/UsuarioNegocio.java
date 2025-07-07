@@ -6,7 +6,6 @@ package itson.sistemabibliotecamusicalnegocio.implementaciones;
 
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
-import itson.sistemabibliotecamusicaldominio.dtos.UsuarioRegistradoDTO;
 import itson.sistemabibliotecamusicalnegocio.IUsuarioNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalpersistencia.daos.IUsuarioDAO;
