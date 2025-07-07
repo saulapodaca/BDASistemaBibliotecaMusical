@@ -2,6 +2,7 @@ package itson.sistemabibliotecamusicaldominio;
 
 //@author SAUL ISAAC APODACA BALDENEGRO 00000252020
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,6 +26,9 @@ public class UsuarioDominio {
         this.contrasenia = contrasenia;
         this.correo = correo;
         this.imagen = imagen;
+        this.artistasFavoritos = new ArrayList<>();
+        this.albumesFavoritos = new ArrayList<>();
+        this.cancionesFavoritos = new ArrayList<>();
     }
 
     public String getNombreUsuario() {
@@ -58,4 +62,38 @@ public class UsuarioDominio {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+
+    public List<ArtistaDominio> getArtistasFavoritos() {
+        return artistasFavoritos;
+    }
+
+    public void setArtistasFavoritos(List<ArtistaDominio> artistasFavoritos) {
+        this.artistasFavoritos = artistasFavoritos;
+    }
+
+    public List<AlbumDominio> getAlbumesFavoritos() {
+        return albumesFavoritos;
+    }
+
+    public void setAlbumesFavoritos(List<AlbumDominio> albumesFavoritos) {
+        this.albumesFavoritos = albumesFavoritos;
+    }
+
+    public List<CancionDominio> getCancionesFavoritos() {
+        return cancionesFavoritos;
+    }
+
+    public void setCancionesFavoritos(List<CancionDominio> cancionesFavoritos) {
+        this.cancionesFavoritos = cancionesFavoritos;
+    }
+
+    public List<String> getGenerosNoDeseados() {
+        return generosNoDeseados;
+    }
+
+    public void setGenerosNoDeseados(List<String> generosNoDeseados) {
+        this.generosNoDeseados = generosNoDeseados;
+    }
+    
+    
 }
