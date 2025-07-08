@@ -232,8 +232,8 @@ public class PanelBuscar extends javax.swing.JPanel {
 
     private void btnTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodoActionPerformed
         try {
-            //FiltroDTO filtro = new FiltroDTO;
-            //filtro.getFiltro.clear();
+            List<ResultadosDTO> todo = artistaFachada.listarTodo();
+            cargarBiblioteca(todo);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
         }
@@ -241,7 +241,7 @@ public class PanelBuscar extends javax.swing.JPanel {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
-            cargarBiblioteca();
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No se pudo realizar la busqueda");
         }
@@ -253,8 +253,8 @@ public class PanelBuscar extends javax.swing.JPanel {
 
     private void btnCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancionesActionPerformed
         try {
-            //FiltroDTO filtro = new FiltroDTO;
-            //filtro.setFiltro("canciones");
+            //List<CancionDominio> canciones = cancionFachada.listarCanciones();
+            //cargarBiblioteca(canciones);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
         }
@@ -262,8 +262,8 @@ public class PanelBuscar extends javax.swing.JPanel {
 
     private void btnAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumesActionPerformed
         try {
-            //FiltroDTO filtro = new FiltroDTO;
-            //filtro.setFiltro("albumes");
+            //List<AlbumDominio> albumes = albumFachada.listarAlbumes();
+            //cargarBiblioteca(albumes);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por albumes");
         }
@@ -271,18 +271,18 @@ public class PanelBuscar extends javax.swing.JPanel {
 
     private void btnArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArtistasActionPerformed
         try {
-            //FiltroDTO filtro = new FiltroDTO;
-            //filtro.setFiltro("artistas");
+            List<ArtistaDominio> artistas = artistaFachada.listarTodosLosArtistas();
+            cargarBiblioteca(artistas);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por artistas");
         }
     }//GEN-LAST:event_btnArtistasActionPerformed
 
-    private void cargarBiblioteca(){
+    private void cargarBiblioteca(List<?> registros){
         try {
             String busqueda = txtFieldBuscar.getText().trim();
             if (!busqueda.isEmpty()) {
-                List<ResultadosDTO> artistas = artistaFachada.listarTodoPorFiltro(busqueda);
+                
             }else{
                 List<ResultadosDTO> artistas = artistaFachada.listarTodo();
             }
