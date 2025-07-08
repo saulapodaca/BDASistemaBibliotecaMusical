@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package itson.sistemabibliotecamusicalnegocio.implementaciones;
+package itson.sistemabibliotecamusicalnegocio.bos.implementaciones;
 
 import itson.sistemabibliotecamusicaldominio.CancionDominio;
-import itson.sistemabibliotecamusicalnegocio.ICancionNegocio;
+import itson.sistemabibliotecamusicalnegocio.bos.ICancionNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalpersistencia.daos.ICancionDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;

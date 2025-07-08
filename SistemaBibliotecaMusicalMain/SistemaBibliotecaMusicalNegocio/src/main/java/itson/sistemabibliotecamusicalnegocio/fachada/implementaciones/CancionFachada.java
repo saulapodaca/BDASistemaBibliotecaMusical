@@ -5,10 +5,10 @@
 package itson.sistemabibliotecamusicalnegocio.fachada.implementaciones;
 
 import itson.sistemabibliotecamusicaldominio.CancionDominio;
-import itson.sistemabibliotecamusicalnegocio.ICancionNegocio;
+import itson.sistemabibliotecamusicalnegocio.bos.ICancionNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.ICancionFachada;
-import itson.sistemabibliotecamusicalnegocio.implementaciones.CancionNegocio;
+import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.CancionNegocio;
 import itson.sistemabibliotecamusicalpersistencia.daos.ICancionDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.CancionDAO;
 import java.util.List;
