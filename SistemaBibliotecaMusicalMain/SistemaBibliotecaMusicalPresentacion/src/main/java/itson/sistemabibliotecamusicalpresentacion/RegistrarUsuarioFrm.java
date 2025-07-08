@@ -334,11 +334,11 @@ public class RegistrarUsuarioFrm extends javax.swing.JFrame {
         }
         return true;
     }
-    
-        private void mostrarError(String mensaje){
+ 
+    private void mostrarError(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Validacion", JOptionPane.WARNING_MESSAGE);
     }
-        
+
     private RegistrarUsuarioDTO construirNuevoUsuario(){
         RegistrarUsuarioDTO nuevoUsuario = new RegistrarUsuarioDTO();
         nuevoUsuario.setUsuario(txtNombreUsuario.getText());

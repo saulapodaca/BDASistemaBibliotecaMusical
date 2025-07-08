@@ -4,17 +4,35 @@
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
+import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.ModificarUsuarioDTO;
+import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
+import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.UsuarioFachada;
+import itson.sistemabibliotecamusicalpresentacion.utilidades.SesionUsuario;
+import java.awt.BorderLayout;
+import java.awt.HeadlessException;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Camila Zubía
  */
 public class PanelModificarPerfil extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelPerfil
-     */
+    
+    private final String PATRON_CORREO = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+    private IUsuarioFachada usuarioFachada;
+            
     public PanelModificarPerfil() {
         initComponents();
+        cargarUsuario();
+        this.usuarioFachada = new UsuarioFachada();
     }
 
     /**
@@ -36,6 +54,7 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
         txtFieldCorreo = new javax.swing.JTextField();
         lblCorreo1 = new javax.swing.JLabel();
         txtFieldImagen = new javax.swing.JTextField();
+        btnBuscarArchivo = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(75, 28, 113));
         setMaximumSize(new java.awt.Dimension(1080, 648));
@@ -80,7 +99,7 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
 
         lblNombreUsuario.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblNombreUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombreUsuario.setText("Nombre de ususario:");
+        lblNombreUsuario.setText("Nombre de usuario:");
 
         lblCorreo.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblCorreo.setForeground(new java.awt.Color(0, 0, 0));
@@ -89,31 +108,25 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
         txtFieldNombreUsuario.setBackground(new java.awt.Color(255, 255, 255));
         txtFieldNombreUsuario.setForeground(new java.awt.Color(0, 0, 0));
         txtFieldNombreUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtFieldNombreUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldNombreUsuarioActionPerformed(evt);
-            }
-        });
 
         txtFieldCorreo.setBackground(new java.awt.Color(255, 255, 255));
         txtFieldCorreo.setForeground(new java.awt.Color(0, 0, 0));
         txtFieldCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtFieldCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldCorreoActionPerformed(evt);
-            }
-        });
 
         lblCorreo1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblCorreo1.setForeground(new java.awt.Color(0, 0, 0));
         lblCorreo1.setText("Imagen de perfil:");
 
         txtFieldImagen.setBackground(new java.awt.Color(255, 255, 255));
-        txtFieldImagen.setForeground(new java.awt.Color(0, 0, 0));
+        txtFieldImagen.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txtFieldImagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtFieldImagen.addActionListener(new java.awt.event.ActionListener() {
+
+        btnBuscarArchivo.setBackground(new java.awt.Color(75, 28, 113));
+        btnBuscarArchivo.setText("Buscar...");
+        btnBuscarArchivo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnBuscarArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldImagenActionPerformed(evt);
+                btnBuscarArchivoActionPerformed(evt);
             }
         });
 
@@ -135,7 +148,7 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
                                     .addComponent(lblNombreUsuario)
                                     .addComponent(lblCorreo)
                                     .addComponent(lblCorreo1))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(44, 44, 44)
                                         .addComponent(btnModificarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -143,8 +156,10 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
                                         .addGap(98, 98, 98)
                                         .addComponent(txtFieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(98, 98, 98)
+                                        .addComponent(txtFieldImagen)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtFieldImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(btnBuscarArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(190, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -167,8 +182,9 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
                         .addGap(37, 37, 37)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCorreo1)
-                    .addComponent(txtFieldImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                    .addComponent(txtFieldImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarArchivo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(btnModificarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(91, 91, 91))
         );
@@ -178,7 +194,7 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(48, 48, 48)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PanelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -188,45 +204,125 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 98, Short.MAX_VALUE)
                 .addComponent(PanelFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModificarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPerfilActionPerformed
-        //ModificarUsuarioDTO usuarioModificado = new ModificarUsuarioDTO();
-        String nombre = txtFieldNombreUsuario.getText().trim();
-        String correo = txtFieldCorreo.getText().trim();
-        String imagen = txtFieldImagen.getText().trim();
-        if (!nombre.isEmpty()) {
-            //modificar.setNombre(nombre);
-        } 
-        if (!correo.isEmpty()) {
-            //modificar.setCorreo(correo);
-        } 
-        if (!imagen.isEmpty()) {
-            //imagen.setImagen(imagen);
+        try{
+            if(!validarCampos()) return;
+            
+            ModificarUsuarioDTO usuarioModificado = construirModificarUsuarioDTO();
+            UsuarioDominio usuario = usuarioFachada.modificarUsuario(usuarioModificado);
+            
+            SesionUsuario.iniciarSesion(usuario);
+            JOptionPane.showMessageDialog(this, "Usuario modificado con éxito.");
+            
+            abrirPanelPerfil();
+        }catch(NegocioException | HeadlessException ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);            
         }
-        //fachadaUsuario.modificar(usuarioModificado);
     }//GEN-LAST:event_btnModificarPerfilActionPerformed
 
-    private void txtFieldNombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldNombreUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFieldNombreUsuarioActionPerformed
+    private void btnBuscarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArchivoActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Selecciona una imagen");
 
-    private void txtFieldCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFieldCorreoActionPerformed
+        // Filtro para que solo muestre imágenes
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter(
+            "Imágenes (JPG, PNG, GIF)", "jpg", "jpeg", "png", "gif"
+        );
+        fileChooser.setFileFilter(filtro);
 
-    private void txtFieldImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldImagenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFieldImagenActionPerformed
+        int resultado = fileChooser.showOpenDialog(null);
 
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            File archivoSeleccionado = fileChooser.getSelectedFile();
+            String ruta = archivoSeleccionado.getAbsolutePath();
+            txtFieldImagen.setText(ruta); // Copia la ruta al textfield
+        }
+    }//GEN-LAST:event_btnBuscarArchivoActionPerformed
+
+    private void cargarUsuario(){
+        UsuarioDominio usuario = SesionUsuario.getUsuario();
+        if(usuario != null){
+            txtFieldNombreUsuario.setText(usuario.getNombreUsuario());
+            txtFieldCorreo.setText(usuario.getCorreo());
+            txtFieldImagen.setText(usuario.getImagen());
+        }
+    }
+    
+    private ModificarUsuarioDTO construirModificarUsuarioDTO (){
+        ModificarUsuarioDTO usuarioModificado = new ModificarUsuarioDTO();
+        usuarioModificado.setId(SesionUsuario.getUsuario().getId());
+        usuarioModificado.setNombre(txtFieldNombreUsuario.getText());
+        usuarioModificado.setCorreo(txtFieldCorreo.getText());
+        usuarioModificado.setImagen(txtFieldImagen.getText());
+        return usuarioModificado;
+    }
+    
+    private void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Validacion", JOptionPane.WARNING_MESSAGE);
+    }
+    
+    private boolean validarCampos() throws NegocioException{
+        if (!validarNombreUsuario()){
+            return false;
+        }
+        if (!validarCorreo()){
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean validarNombreUsuario() throws NegocioException{
+        if (txtFieldNombreUsuario.getText().trim().isEmpty()) {
+            mostrarError("El nombre del usuario es obligatorio.");
+            return false;
+        }
+        if(txtFieldNombreUsuario.getText().contains(" ")){
+            mostrarError("El nombre de usuario no puede contener espacios");
+            return false;
+        }
+        if(txtFieldNombreUsuario.getText().length() > 30){
+            mostrarError("El nombre de usuario no debe superar los 30 caracteres.");
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean validarCorreo(){
+        if(txtFieldCorreo.getText().trim().isEmpty()){
+            mostrarError("El correo es obligatorio.");
+            return false;
+        }
+        if(txtFieldCorreo.getText().contains(" ")){
+            mostrarError("El correo no puede contener espacios.");
+            return false;
+        }
+        if (!txtFieldCorreo.getText().matches(PATRON_CORREO)){
+            mostrarError("El correo es inválido.");
+            return false;
+        }
+        return true;
+    }
+
+    private void abrirPanelPerfil() {
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        PanelPerfil panelAnterior = new PanelPerfil();
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(panelAnterior, BorderLayout.CENTER);
+        frame.revalidate();
+        frame.repaint();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelFondo;
+    private javax.swing.JButton btnBuscarArchivo;
     private javax.swing.JButton btnModificarPerfil;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCorreo;

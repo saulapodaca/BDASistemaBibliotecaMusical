@@ -4,8 +4,14 @@
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
+import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicalpresentacion.utilidades.SesionUsuario;
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -90,7 +96,7 @@ public class PanelPerfil extends javax.swing.JPanel {
 
         lblNombreUsuario.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblNombreUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombreUsuario.setText("Nombre de ususario:");
+        lblNombreUsuario.setText("Nombre de usuario:");
 
         lblCorreo.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         lblCorreo.setForeground(new java.awt.Color(0, 0, 0));
@@ -98,11 +104,13 @@ public class PanelPerfil extends javax.swing.JPanel {
 
         txtFieldNombreUsuario.setEditable(false);
         txtFieldNombreUsuario.setBackground(new java.awt.Color(219, 182, 238));
+        txtFieldNombreUsuario.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         txtFieldNombreUsuario.setForeground(new java.awt.Color(0, 0, 0));
         txtFieldNombreUsuario.setBorder(null);
 
         txtFieldCorreo.setEditable(false);
         txtFieldCorreo.setBackground(new java.awt.Color(219, 182, 238));
+        txtFieldCorreo.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         txtFieldCorreo.setForeground(new java.awt.Color(0, 0, 0));
         txtFieldCorreo.setBorder(null);
 
@@ -165,7 +173,7 @@ public class PanelPerfil extends javax.swing.JPanel {
             .addGroup(PanelFondoLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         PanelFondoLayout.setVerticalGroup(
             PanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +204,25 @@ public class PanelPerfil extends javax.swing.JPanel {
     }//GEN-LAST:event_btnModificarPerfilActionPerformed
 
     private void cargarUsuario(){
-        
+        UsuarioDominio usuario = SesionUsuario.getUsuario();
+        if(usuario != null){
+            txtFieldNombreUsuario.setText(usuario.getNombreUsuario());
+            txtFieldCorreo.setText(usuario.getCorreo());
+            if (usuario.getImagen() != null && !usuario.getImagen().isBlank()) {
+                File imagen = new File(usuario.getImagen().trim());
+                if (imagen.exists()) {
+                    ImageIcon icono = new ImageIcon(imagen.getAbsolutePath());
+                    Image imagenEscalada = icono.getImage().getScaledInstance(
+                            panelFotoPerfil.getWidth(), panelFotoPerfil.getHeight(), Image.SCALE_SMOOTH
+                    );
+                    panelFotoPerfil.setLayout(new BorderLayout());
+                    panelFotoPerfil.removeAll();
+                    panelFotoPerfil.add(new JLabel(new ImageIcon(imagenEscalada)), BorderLayout.CENTER);
+                    panelFotoPerfil.revalidate();
+                    panelFotoPerfil.repaint();
+                }
+            }
+        }
     }
     
     public void abrirPanelModificar() {

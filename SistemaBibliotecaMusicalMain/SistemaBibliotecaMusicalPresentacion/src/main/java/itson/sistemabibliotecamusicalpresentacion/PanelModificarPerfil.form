@@ -31,7 +31,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="PanelFondo" max="32767" attributes="0"/>
@@ -44,10 +44,10 @@
               <EmptySpace min="0" pref="98" max="32767" attributes="0"/>
               <Component id="PanelFondo" min="-2" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -116,7 +116,7 @@
                                       <Component id="lblCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblCorreo1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                                           <Component id="btnModificarPerfil" min="-2" pref="239" max="-2" attributes="0"/>
@@ -126,8 +126,10 @@
                                           <Component id="txtFieldNombreUsuario" min="-2" pref="351" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+                                          <Component id="txtFieldImagen" max="32767" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtFieldImagen" min="-2" pref="351" max="-2" attributes="0"/>
+                                          <Component id="btnBuscarArchivo" min="-2" pref="65" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -162,9 +164,10 @@
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblCorreo1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtFieldImagen" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="txtFieldImagen" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="btnBuscarArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="115" max="32767" attributes="0"/>
+                  <EmptySpace pref="120" max="32767" attributes="0"/>
                   <Component id="btnModificarPerfil" min="-2" pref="64" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
               </Group>
@@ -215,7 +218,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nombre de ususario:"/>
+            <Property name="text" type="java.lang.String" value="Nombre de usuario:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCorreo">
@@ -243,9 +246,6 @@
               </Border>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldNombreUsuarioActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtFieldCorreo">
           <Properties>
@@ -261,9 +261,6 @@
               </Border>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldCorreoActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCorreo1">
           <Properties>
@@ -281,8 +278,8 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="14" style="1"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -290,8 +287,21 @@
               </Border>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnBuscarArchivo">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="71" green="1c" red="4b" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Buscar..."/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
+          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldImagenActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarArchivoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
