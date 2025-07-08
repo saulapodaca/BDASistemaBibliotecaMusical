@@ -83,7 +83,7 @@
                       <EmptySpace pref="174" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnRegistrarse" min="-2" pref="239" max="-2" attributes="0"/>
+                              <Component id="btnRegistrar" min="-2" pref="239" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="352" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -106,14 +106,14 @@
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="panelnformacion" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="48" max="32767" attributes="0"/>
-                      <Component id="btnRegistrarse" min="-2" pref="64" max="-2" attributes="0"/>
+                      <Component id="btnRegistrar" min="-2" pref="64" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btnRegistrarse">
+            <Component class="javax.swing.JButton" name="btnRegistrar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="a5" green="4c" red="7f" type="rgb"/>
@@ -131,7 +131,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarseActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblRegistrarse">
@@ -274,9 +274,6 @@
                       </Border>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreUsuarioActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JPasswordField" name="passwordConfirmarContrase&#xf1;a">
                   <Properties>
@@ -292,9 +289,6 @@
                       </Border>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordConfirmarContrase&#xf1;aActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtCorreo">
                   <Properties>
@@ -310,9 +304,6 @@
                       </Border>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCorreoActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JPasswordField" name="passwordContrase&#xf1;a">
                   <Properties>
@@ -328,9 +319,6 @@
                       </Border>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordContrase&#xf1;aActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblConfirmarContrase&#xf1;a">
                   <Properties>
@@ -401,6 +389,9 @@
                       </Border>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarArchivoActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

@@ -4,17 +4,30 @@
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
+import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
+import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
+import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.UsuarioFachada;
+import java.awt.HeadlessException;
+import java.io.File;
+import java.util.Arrays;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author saula
  */
 public class RegistrarUsuarioFrm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormRegistrarUsuario
-     */
+    private final String PATRON_CORREO = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+    private final IUsuarioFachada usuarioFachada;
+    
     public RegistrarUsuarioFrm() {
         initComponents();
+        this.usuarioFachada = new UsuarioFachada();
     }
 
     /**
@@ -28,7 +41,7 @@ public class RegistrarUsuarioFrm extends javax.swing.JFrame {
 
         panelFondo = new javax.swing.JPanel();
         panelContenedor = new javax.swing.JPanel();
-        btnRegistrarse = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
         lblRegistrarse = new javax.swing.JLabel();
         panelnformacion = new javax.swing.JPanel();
         lblCorreo = new javax.swing.JLabel();
@@ -50,15 +63,15 @@ public class RegistrarUsuarioFrm extends javax.swing.JFrame {
         panelContenedor.setBackground(new java.awt.Color(219, 182, 238));
         panelContenedor.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, java.awt.Color.darkGray));
 
-        btnRegistrarse.setBackground(new java.awt.Color(127, 76, 165));
-        btnRegistrarse.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        btnRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrarse.setText("Registrar");
-        btnRegistrarse.setBorderPainted(false);
-        btnRegistrarse.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setBackground(new java.awt.Color(127, 76, 165));
+        btnRegistrar.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.setBorderPainted(false);
+        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarseActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
 
@@ -82,38 +95,18 @@ public class RegistrarUsuarioFrm extends javax.swing.JFrame {
         txtNombreUsuario.setBackground(new java.awt.Color(255, 255, 255));
         txtNombreUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txtNombreUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtNombreUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreUsuarioActionPerformed(evt);
-            }
-        });
 
         passwordConfirmarContraseña.setBackground(new java.awt.Color(255, 255, 255));
         passwordConfirmarContraseña.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         passwordConfirmarContraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        passwordConfirmarContraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordConfirmarContraseñaActionPerformed(evt);
-            }
-        });
 
         txtCorreo.setBackground(new java.awt.Color(255, 255, 255));
         txtCorreo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txtCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
-            }
-        });
 
         passwordContraseña.setBackground(new java.awt.Color(255, 255, 255));
         passwordContraseña.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         passwordContraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        passwordContraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordContraseñaActionPerformed(evt);
-            }
-        });
 
         lblConfirmarContraseña.setBackground(new java.awt.Color(255, 255, 255));
         lblConfirmarContraseña.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
@@ -137,6 +130,11 @@ public class RegistrarUsuarioFrm extends javax.swing.JFrame {
         btnBuscarArchivo.setBackground(new java.awt.Color(75, 28, 113));
         btnBuscarArchivo.setText("Buscar...");
         btnBuscarArchivo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnBuscarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarArchivoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelnformacionLayout = new javax.swing.GroupLayout(panelnformacion);
         panelnformacion.setLayout(panelnformacionLayout);
@@ -206,7 +204,7 @@ public class RegistrarUsuarioFrm extends javax.swing.JFrame {
                 .addContainerGap(174, Short.MAX_VALUE)
                 .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
-                        .addComponent(btnRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(352, 352, 352))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
                         .addComponent(lblRegistrarse)
@@ -223,7 +221,7 @@ public class RegistrarUsuarioFrm extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(panelnformacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(btnRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -258,30 +256,125 @@ public class RegistrarUsuarioFrm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        try{
+            if (!validarCampos()) return;
+            
+            RegistrarUsuarioDTO usuarioRegistrar = construirNuevoUsuario();
+            UsuarioDominio nuevoUsuario = usuarioFachada.registrarUsuario(usuarioRegistrar);
+            
+            JOptionPane.showMessageDialog(this, "Usuario creado con éxito.");
+            
+            limpiarCampos();
+            new InicioSesionFrm().setVisible(true);
+            this.dispose();
+            
+        }catch(NegocioException | HeadlessException ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    }//GEN-LAST:event_btnRegistrarseActionPerformed
+    private void btnBuscarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArchivoActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Selecciona una imagen");
 
-    private void passwordConfirmarContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordConfirmarContraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordConfirmarContraseñaActionPerformed
+        // Filtro para que solo muestre imágenes
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter(
+            "Imágenes (JPG, PNG, GIF)", "jpg", "jpeg", "png", "gif"
+        );
+        fileChooser.setFileFilter(filtro);
 
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
+        int resultado = fileChooser.showOpenDialog(null);
 
-    private void passwordContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordContraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordContraseñaActionPerformed
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            File archivoSeleccionado = fileChooser.getSelectedFile();
+            String ruta = archivoSeleccionado.getAbsolutePath();
+            txtUrlImagen.setText(ruta); // Copia la ruta al textfield
+        }
+    }//GEN-LAST:event_btnBuscarArchivoActionPerformed
 
-    private void txtNombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreUsuarioActionPerformed
+    private boolean validarCampos() throws NegocioException {
+        if (!validarNombreUsuario())
+            return false;
+        if (!validarCorreo())
+            return false;
+        if (!verificarCoincidenciaContrasenas()) {
+            return false;
+        }
+        char[] contrasenia = passwordContraseña.getPassword();
+        if (contrasenia.length < 6) {
+            mostrarError("La contraseña debe tener al menos 6 caracteres.");
+            return false;
+        }
+        return true;
+    }
 
+    private boolean verificarCoincidenciaContrasenas(){
+        char[] contrasena1 = passwordContraseña.getPassword();
+        char[] contrasena2 = passwordConfirmarContraseña.getPassword();
+        if(!Arrays.equals(contrasena1, contrasena2)){
+            mostrarError("Las contraseñas no coinciden.");
+            return false;
+        } 
+        return true;
+    }
 
+    private boolean validarCorreo(){
+        if(txtCorreo.getText().trim().isEmpty()){
+            mostrarError("El correo es obligatorio.");
+            return false;
+        }
+        if(txtCorreo.getText().contains(" ")){
+            mostrarError("El correo no puede contener espacios.");
+            return false;
+        }
+        if (!txtCorreo.getText().matches(PATRON_CORREO)){
+            mostrarError("El correo es inválido.");
+            return false;
+        }
+        return true;
+    }
+    
+        private void mostrarError(String mensaje){
+        JOptionPane.showMessageDialog(this, mensaje, "Validacion", JOptionPane.WARNING_MESSAGE);
+    }
+        
+    private RegistrarUsuarioDTO construirNuevoUsuario(){
+        RegistrarUsuarioDTO nuevoUsuario = new RegistrarUsuarioDTO();
+        nuevoUsuario.setUsuario(txtNombreUsuario.getText());
+        nuevoUsuario.setCorreo(txtCorreo.getText());
+        nuevoUsuario.setContrasenia(passwordContraseña.getPassword());
+        nuevoUsuario.setImagen(txtUrlImagen.getText());
+        return nuevoUsuario;
+    }
+    
+    private void limpiarCampos(){
+        txtNombreUsuario.setText("");
+        txtCorreo.setText("");
+        txtUrlImagen.setText("");
+        passwordContraseña.setText("");
+        passwordConfirmarContraseña.setText("");
+    }
+    
+    private boolean validarNombreUsuario() throws NegocioException{
+        if (txtNombreUsuario.getText().trim().isEmpty()) {
+            mostrarError("El nombre del usuario es obligatorio.");
+            return false;
+        }
+        if(txtNombreUsuario.getText().contains(" ")){
+            mostrarError("El nombre de usuario no puede contener espacios");
+            return false;
+        }
+        if(txtNombreUsuario.getText().length() > 30){
+            mostrarError("El nombre de usuario no debe superar los 30 caracteres.");
+            return false;
+        }
+        return true;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarArchivo;
-    private javax.swing.JButton btnRegistrarse;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel lblConfirmarContraseña;
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblCorreo;

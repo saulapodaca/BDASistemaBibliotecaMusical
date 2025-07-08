@@ -6,7 +6,6 @@ package itson.sistemabibliotecamusicalpresentacion;
 
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
-import itson.sistemabibliotecamusicaldominio.dtos.UsuarioRegistradoDTO;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.UsuarioFachada;
@@ -198,9 +197,9 @@ public class InicioSesionFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        UsuarioInicioSesionDTO usuario = new UsuarioInicioSesionDTO(txtUsuario.getText(), passwordContraseña.getPassword());
-
         try {
+            validarCampos();
+            UsuarioInicioSesionDTO usuario = new UsuarioInicioSesionDTO(txtUsuario.getText(), passwordContraseña.getPassword());
             UsuarioDominio usuarioSesion = usuarioFachada.obtenerUsuarioPorNombre(usuario);
             if (usuarioSesion != null) {
                 SesionUsuario.iniciarSesion(usuarioSesion);
@@ -213,7 +212,6 @@ public class InicioSesionFrm extends javax.swing.JFrame {
         } catch (NegocioException | HeadlessException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
@@ -250,13 +248,19 @@ public class InicioSesionFrm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InicioSesionFrm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new InicioSesionFrm().setVisible(true);
         });
     }
 
+    private void validarCampos() throws NegocioException{
+        if(txtUsuario.getText().trim().isEmpty()
+                || txtUsuario.getText().trim().isBlank())
+            throw new NegocioException("Ingrese el usuario.");
+        if(passwordContraseña.getPassword().length<1)
+            throw new NegocioException("Ingrese la contraseña.");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnRegistrarse;
