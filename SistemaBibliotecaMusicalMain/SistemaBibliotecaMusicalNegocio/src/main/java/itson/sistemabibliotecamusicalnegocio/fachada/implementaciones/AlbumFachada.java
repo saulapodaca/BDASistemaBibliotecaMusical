@@ -21,7 +21,7 @@ public class AlbumFachada implements IAlbumFachada{
     
     private IAlbumNegocio albumNegocio;
 
-    public AlbumFachada(IAlbumNegocio albumNegocio) {
+    public AlbumFachada() {
         IAlbumDAO albumDAO = new AlbumDAO();
         this.albumNegocio = new AlbumNegocio(albumDAO);
     }

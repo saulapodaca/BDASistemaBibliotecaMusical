@@ -28,7 +28,7 @@ public class ArtistaDAO implements IArtistaDAO{
     public List<ResultadosDTO> listarTodo() throws PersistenciaException {
         MongoDatabase baseDatos = new ConexionBD().conexion();
         MongoCollection<ArtistaDominio> coleccion
-                = baseDatos.getCollection("personas", ArtistaDominio.class);
+                = baseDatos.getCollection("artistas", ArtistaDominio.class);
         List<ResultadosDTO> todo = new ArrayList<>();
         FindIterable<ArtistaDominio> artistas = coleccion.find();
         for (ArtistaDominio a : artistas) {

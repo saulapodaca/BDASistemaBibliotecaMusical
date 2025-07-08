@@ -4,13 +4,27 @@
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
+import itson.sistemabibliotecamusicaldominio.AlbumDominio;
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
+import itson.sistemabibliotecamusicaldominio.CancionDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
+import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
+import itson.sistemabibliotecamusicalnegocio.fachada.IAlbumFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.IArtistaFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.ICancionFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.AlbumFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.ArtistaFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.CancionFachada;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.util.List;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -19,12 +33,16 @@ import javax.swing.JOptionPane;
 public class PanelBuscar extends javax.swing.JPanel {
 
     IArtistaFachada artistaFachada;
+    IAlbumFachada albumFachada;
+    ICancionFachada cancionFachada;
     
     /**
      * Creates new form PanelPerfil
      */
     public PanelBuscar() {
         this.artistaFachada = new ArtistaFachada();
+        this.albumFachada = new AlbumFachada();
+        this.cancionFachada = new CancionFachada();
         initComponents();
     }
     
@@ -185,6 +203,11 @@ public class PanelBuscar extends javax.swing.JPanel {
                 txtFieldBuscarActionPerformed(evt);
             }
         });
+        txtFieldBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFieldBuscarKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelFondoLayout = new javax.swing.GroupLayout(PanelFondo);
         PanelFondo.setLayout(PanelFondoLayout);
@@ -253,18 +276,18 @@ public class PanelBuscar extends javax.swing.JPanel {
 
     private void btnCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancionesActionPerformed
         try {
-            //List<CancionDominio> canciones = cancionFachada.listarCanciones();
-            //cargarBiblioteca(canciones);
-        } catch (Exception ex) {
+            List<CancionDominio> canciones = cancionFachada.listarTodasLasCanciones();
+            cargarBiblioteca(canciones);
+        } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
         }
     }//GEN-LAST:event_btnCancionesActionPerformed
 
     private void btnAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumesActionPerformed
         try {
-            //List<AlbumDominio> albumes = albumFachada.listarAlbumes();
-            //cargarBiblioteca(albumes);
-        } catch (Exception ex) {
+            List<AlbumDominio> albumes = albumFachada.listarTodosLosAlbumes();
+            cargarBiblioteca(albumes);
+        } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por albumes");
         }
     }//GEN-LAST:event_btnAlbumesActionPerformed
@@ -273,25 +296,63 @@ public class PanelBuscar extends javax.swing.JPanel {
         try {
             List<ArtistaDominio> artistas = artistaFachada.listarTodosLosArtistas();
             cargarBiblioteca(artistas);
-        } catch (Exception ex) {
+        } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por artistas");
         }
     }//GEN-LAST:event_btnArtistasActionPerformed
 
+    private void txtFieldBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFieldBuscarKeyReleased
+        
+    }//GEN-LAST:event_txtFieldBuscarKeyReleased
+
     private void cargarBiblioteca(List<?> registros){
         try {
-            String busqueda = txtFieldBuscar.getText().trim();
-            if (!busqueda.isEmpty()) {
-                
-            }else{
-                List<ResultadosDTO> artistas = artistaFachada.listarTodo();
-            }
             panelListar.removeAll();
             panelListar.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-            //for(ArtistaDTO a : artistas) 
-            {
-                    
+            for(Object o : registros){
+                JPanel panelElemento = new JPanel(new BorderLayout());
+                panelElemento.setMaximumSize(new Dimension(700, 40));
+                panelElemento.setBackground(Color.getHSBColor(219,182,238));
+
+                JLabel lblInfo = new JLabel();
+                JButton btnFavorito = new JButton("☆");
+                
+                if (o instanceof ArtistaDominio artista) {
+                    lblInfo.setText(artista.getImagen() + artista.getNombre() + " - " + artista.getGenero());
+                } else if (o instanceof AlbumDominio album) {
+                    lblInfo.setText(album.getImagenPortada() + album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
+                } else if (o instanceof CancionDominio cancion) {
+                    lblInfo.setText(cancion.getNombre());
+                } else {
+                    continue;
+                }
+
+                lblInfo.setFont(new Font("Arial", Font.PLAIN, 14));
+                panelElemento.add(lblInfo, BorderLayout.WEST);
+                
+                btnFavorito.setFocusPainted(false);
+                btnFavorito.setForeground(Color.GRAY);
+
+                btnFavorito.addActionListener(e -> {
+                    /**
+                    if (favoritos.contains(obj)) {
+                        favoritos.remove(obj);
+                        btnFavorito.setText("☆");
+                        btnFavorito.setForeground(Color.GRAY);
+                    } else {
+                        favoritos.add(obj);
+                        btnFavorito.setText("★️");
+                        btnFavorito.setForeground(Color.);
+                    }
+                    **/
+                });
+
+                panelElemento.add(btnFavorito, BorderLayout.EAST);
+                panelListar.add(panelElemento);
             }
+
+            panelListar.revalidate();
+            panelListar.repaint();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de la biblioteca musical");
         }

@@ -23,9 +23,6 @@ public class ArtistaFachada implements IArtistaFachada{
     private IArtistaNegocio artistaNegocio;
 
     public ArtistaFachada() {
-    }
-
-    public ArtistaFachada(IArtistaNegocio artistaNegocio) {
         IArtistaDAO artistaDAO = new ArtistaDAO();
         this.artistaNegocio = new ArtistaNegocio(artistaDAO);
     }
