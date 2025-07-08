@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicalnegocio.fachada.implementaciones;
 
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
 import itson.sistemabibliotecamusicalnegocio.IArtistaNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IArtistaFachada;
@@ -21,13 +22,16 @@ public class ArtistaFachada implements IArtistaFachada{
     
     private IArtistaNegocio artistaNegocio;
 
+    public ArtistaFachada() {
+    }
+
     public ArtistaFachada(IArtistaNegocio artistaNegocio) {
         IArtistaDAO artistaDAO = new ArtistaDAO();
         this.artistaNegocio = new ArtistaNegocio(artistaDAO);
     }
 
     @Override
-    public List<ArtistaDominio> listarTodo() throws NegocioException {
+    public List<ResultadosDTO> listarTodo() throws NegocioException {
         try {
             return artistaNegocio.listarTodo();
         } catch (NegocioException ex) {
@@ -45,9 +49,18 @@ public class ArtistaFachada implements IArtistaFachada{
     }
 
     @Override
-    public List<ArtistaDominio> listarPorFiltro(String filtro) throws NegocioException {
+    public List<ResultadosDTO> listarTodoPorFiltro(String filtro) throws NegocioException {
         try {
-            return artistaNegocio.listarPorFiltro(filtro);
+            return artistaNegocio.listarTodoPorFiltro(filtro);
+        } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<ArtistaDominio> listarArtistasPorFiltro(String filtro) throws NegocioException {
+        try {
+            return artistaNegocio.listarArtistasPorFiltro(filtro);
         } catch (NegocioException ex) {
             throw new NegocioException(ex.getMessage());
         }

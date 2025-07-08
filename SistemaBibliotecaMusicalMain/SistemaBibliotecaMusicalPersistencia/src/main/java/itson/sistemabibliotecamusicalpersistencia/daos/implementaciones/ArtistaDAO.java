@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicalpersistencia.daos.implementaciones;
 
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.List;
@@ -16,18 +17,31 @@ import java.util.List;
 public class ArtistaDAO implements IArtistaDAO{
 
     @Override
-    public List<ArtistaDominio> listarTodo() throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<ResultadosDTO> listarTodo() throws PersistenciaException {
+        
+        System.out.println("listar todo");
+        return null;
+        
     }
 
     @Override
     public List<ArtistaDominio> listarTodosLosArtistas() throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        System.out.println("listar todos los artistas");
+        return null;
+        
     }
-    
+
     @Override
-    public List<ArtistaDominio> listarPorFiltro(String filtro) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<ResultadosDTO> listarTodoPorFiltro(String filtro) throws PersistenciaException {
+        System.out.println("listar todo con filtro");
+        return null;
+    }
+
+    @Override
+    public List<ArtistaDominio> listarArtistasPorFiltro(String filtro) throws PersistenciaException {
+        System.out.println("listar todos los artistas con filtro");
+        return null;
     }
     
 }

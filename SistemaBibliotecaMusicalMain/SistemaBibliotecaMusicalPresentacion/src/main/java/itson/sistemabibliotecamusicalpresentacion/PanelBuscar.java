@@ -4,7 +4,11 @@
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
-import java.awt.List;
+import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
+import itson.sistemabibliotecamusicalnegocio.fachada.IArtistaFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.ArtistaFachada;
+import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 
@@ -14,12 +18,16 @@ import javax.swing.JOptionPane;
  */
 public class PanelBuscar extends javax.swing.JPanel {
 
+    IArtistaFachada artistaFachada;
+    
     /**
      * Creates new form PanelPerfil
      */
     public PanelBuscar() {
+        this.artistaFachada = new ArtistaFachada();
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -273,7 +281,11 @@ public class PanelBuscar extends javax.swing.JPanel {
     private void cargarBiblioteca(){
         try {
             String busqueda = txtFieldBuscar.getText().trim();
-            //List<ArtistasDTO> artistas = artistaFachada.listarArtistas();
+            if (!busqueda.isEmpty()) {
+                List<ResultadosDTO> artistas = artistaFachada.listarTodoPorFiltro(busqueda);
+            }else{
+                List<ResultadosDTO> artistas = artistaFachada.listarTodo();
+            }
             panelListar.removeAll();
             panelListar.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
             //for(ArtistaDTO a : artistas) 

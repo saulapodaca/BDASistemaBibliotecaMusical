@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicalnegocio.fachada;
 
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import java.util.List;
 
@@ -14,11 +15,13 @@ import java.util.List;
  */
 public interface IArtistaFachada {
     
-    List<ArtistaDominio> listarTodo() throws NegocioException;
+    List<ResultadosDTO> listarTodo() throws NegocioException;
+
+    List<ResultadosDTO> listarTodoPorFiltro(String filtro) throws NegocioException;
 
     List<ArtistaDominio> listarTodosLosArtistas() throws NegocioException;
 
-    List<ArtistaDominio> listarPorFiltro(String filtro) throws NegocioException;
+    List<ArtistaDominio> listarArtistasPorFiltro(String filtro) throws NegocioException;
 
     
 }

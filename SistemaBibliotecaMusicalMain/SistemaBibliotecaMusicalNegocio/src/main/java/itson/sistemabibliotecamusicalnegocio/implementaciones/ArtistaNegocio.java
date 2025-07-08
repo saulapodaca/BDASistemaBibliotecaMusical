@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicalnegocio.implementaciones;
 
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
 import itson.sistemabibliotecamusicalnegocio.IArtistaNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
@@ -24,7 +25,7 @@ public class ArtistaNegocio implements IArtistaNegocio{
     }
 
     @Override
-    public List<ArtistaDominio> listarTodo() throws NegocioException {
+    public List<ResultadosDTO> listarTodo() throws NegocioException {
         try {
             return artistaDAO.listarTodo();
         } catch (PersistenciaException ex) {
@@ -42,12 +43,22 @@ public class ArtistaNegocio implements IArtistaNegocio{
     }
 
     @Override
-    public List<ArtistaDominio> listarPorFiltro(String filtro) throws NegocioException {
+    public List<ResultadosDTO> listarTodoPorFiltro(String filtro) throws NegocioException {
         try {
-            filtroValido(filtro);
-            return artistaDAO.listarPorFiltro(filtro);
+            this.filtroValido(filtro);
+            return artistaDAO.listarTodoPorFiltro(filtro);
         } catch (PersistenciaException ex) {
-            throw new NegocioException("Ha ocurrido un error al listar por filtro");
+            throw new NegocioException("Ha ocurrido un error al listar todos los artistas");
+        }
+    }
+
+    @Override
+    public List<ArtistaDominio> listarArtistasPorFiltro(String filtro) throws NegocioException {
+        try {
+            this.filtroValido(filtro);
+            return artistaDAO.listarArtistasPorFiltro(filtro);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Ha ocurrido un error al listar todos los artistas");
         }
     }
     
@@ -56,5 +67,5 @@ public class ArtistaNegocio implements IArtistaNegocio{
             throw new NegocioException("El filtro no puede estar vacio");
         }
     }
-
+    
 }

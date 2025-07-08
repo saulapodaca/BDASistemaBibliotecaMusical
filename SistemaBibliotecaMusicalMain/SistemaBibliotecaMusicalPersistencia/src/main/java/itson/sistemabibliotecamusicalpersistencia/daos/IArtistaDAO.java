@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicalpersistencia.daos;
 
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.List;
 
@@ -14,10 +15,12 @@ import java.util.List;
  */
 public interface IArtistaDAO {
     
-    List<ArtistaDominio> listarTodo() throws PersistenciaException;
+    List<ResultadosDTO> listarTodo() throws PersistenciaException;
     
     List<ArtistaDominio> listarTodosLosArtistas() throws PersistenciaException;
     
-    List<ArtistaDominio> listarPorFiltro(String filtro) throws PersistenciaException;
+    List<ResultadosDTO> listarTodoPorFiltro(String filtro) throws PersistenciaException;
+    
+    List<ArtistaDominio> listarArtistasPorFiltro(String filtro) throws PersistenciaException;
     
 }
