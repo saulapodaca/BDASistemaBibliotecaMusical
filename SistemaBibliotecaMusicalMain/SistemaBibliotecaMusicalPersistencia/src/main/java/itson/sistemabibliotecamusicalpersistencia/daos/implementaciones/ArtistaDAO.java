@@ -31,7 +31,7 @@ public class ArtistaDAO implements IArtistaDAO{
                 = baseDatos.getCollection("personas", ArtistaDominio.class);
         List<ResultadosDTO> todo = new ArrayList<>();
         FindIterable<ArtistaDominio> artistas = coleccion.find();
-        for (ArtistaDominio a : artistas) {
+         for (ArtistaDominio a : artistas) {
             ResultadosDTO registro = new ResultadosDTO(Tipo.ARTISTA, a);
             todo.add(registro);
             List<AlbumDominio> albumes = a.getAlbumes();
@@ -51,9 +51,12 @@ public class ArtistaDAO implements IArtistaDAO{
     @Override
     public List<ArtistaDominio> listarTodosLosArtistas() throws PersistenciaException {
         MongoDatabase baseDatos = new ConexionBD().conexion();
+        
         MongoCollection<ArtistaDominio> coleccion
                 = baseDatos.getCollection("personas", ArtistaDominio.class);
+        
         List<ArtistaDominio> artistas = new ArrayList<>();
+        
         for (ArtistaDominio a : coleccion.find()) {
             artistas.add(a);
         }
