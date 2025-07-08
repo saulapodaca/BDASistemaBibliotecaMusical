@@ -7,6 +7,7 @@ package itson.sistemabibliotecamusicalpresentacion;
 import itson.sistemabibliotecamusicaldominio.AlbumDominio;
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
 import itson.sistemabibliotecamusicaldominio.CancionDominio;
+import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IAlbumFachada;
@@ -15,6 +16,7 @@ import itson.sistemabibliotecamusicalnegocio.fachada.ICancionFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.AlbumFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.ArtistaFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.CancionFachada;
+import itson.sistemabibliotecamusicalpresentacion.utilidades.SesionUsuario;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -35,6 +37,8 @@ public class PanelBuscar extends javax.swing.JPanel {
     IArtistaFachada artistaFachada;
     IAlbumFachada albumFachada;
     ICancionFachada cancionFachada;
+    UsuarioDominio usuario = SesionUsuario.getUsuario();
+    private String tipoFiltroSeleccionado = "todo";
     
     /**
      * Creates new form PanelPerfil
@@ -133,11 +137,9 @@ public class PanelBuscar extends javax.swing.JPanel {
         });
 
         jScrollPane1.setBackground(new java.awt.Color(219, 182, 238));
-        jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         panelListar.setBackground(new java.awt.Color(219, 182, 238));
-        panelListar.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout panelListarLayout = new javax.swing.GroupLayout(panelListar);
         panelListar.setLayout(panelListarLayout);
@@ -179,9 +181,9 @@ public class PanelBuscar extends javax.swing.JPanel {
                     .addComponent(btnCanciones)
                     .addComponent(btnAlbumes)
                     .addComponent(btnArtistas))
-                .addGap(33, 33, 33)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         btnBuscar.setBackground(new java.awt.Color(127, 76, 165));
@@ -195,8 +197,6 @@ public class PanelBuscar extends javax.swing.JPanel {
             }
         });
 
-        txtFieldBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        txtFieldBuscar.setForeground(new java.awt.Color(0, 0, 0));
         txtFieldBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtFieldBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,10 +255,13 @@ public class PanelBuscar extends javax.swing.JPanel {
 
     private void btnTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodoActionPerformed
         try {
-            List<ResultadosDTO> todo = artistaFachada.listarTodo();
+            tipoFiltroSeleccionado = "todo";
+            actualizarBotonesFiltro(btnTodo);
+
+            List<ResultadosDTO> todo = artistaFachada.listarTodo(usuario.getGenerosNoDeseados());
             cargarBiblioteca(todo);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo filtrar por todo");
         }
     }//GEN-LAST:event_btnTodoActionPerformed
 
@@ -271,12 +274,15 @@ public class PanelBuscar extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldBuscarActionPerformed
-        
+        buscarConParametros();
     }//GEN-LAST:event_txtFieldBuscarActionPerformed
 
     private void btnCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancionesActionPerformed
         try {
-            List<CancionDominio> canciones = cancionFachada.listarTodasLasCanciones();
+            tipoFiltroSeleccionado = "canciones";
+            actualizarBotonesFiltro(btnCanciones);
+
+            List<CancionDominio> canciones = cancionFachada.listarTodasLasCanciones(usuario.getGenerosNoDeseados());
             cargarBiblioteca(canciones);
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
@@ -285,7 +291,10 @@ public class PanelBuscar extends javax.swing.JPanel {
 
     private void btnAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumesActionPerformed
         try {
-            List<AlbumDominio> albumes = albumFachada.listarTodosLosAlbumes();
+            tipoFiltroSeleccionado = "albumes";
+            actualizarBotonesFiltro(btnAlbumes);
+
+            List<AlbumDominio> albumes = albumFachada.listarTodosLosAlbumes(usuario.getGenerosNoDeseados());
             cargarBiblioteca(albumes);
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por albumes");
@@ -294,7 +303,10 @@ public class PanelBuscar extends javax.swing.JPanel {
 
     private void btnArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArtistasActionPerformed
         try {
-            List<ArtistaDominio> artistas = artistaFachada.listarTodosLosArtistas();
+            tipoFiltroSeleccionado = "artistas";
+            actualizarBotonesFiltro(btnArtistas);
+
+            List<ArtistaDominio> artistas = artistaFachada.listarTodosLosArtistas(usuario.getGenerosNoDeseados());
             cargarBiblioteca(artistas);
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por artistas");
@@ -302,9 +314,55 @@ public class PanelBuscar extends javax.swing.JPanel {
     }//GEN-LAST:event_btnArtistasActionPerformed
 
     private void txtFieldBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFieldBuscarKeyReleased
-        
+        buscarConParametros();
     }//GEN-LAST:event_txtFieldBuscarKeyReleased
 
+    private void buscarConParametros() {
+        String texto = txtFieldBuscar.getText().trim();
+
+        if (texto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor introduce un texto para buscar.");
+            return;
+        }
+
+        try {
+            switch (tipoFiltroSeleccionado) {
+                case "artistas" -> {
+                    List<ArtistaDominio> artistas = artistaFachada.listarArtistasPorFiltro(texto, usuario.getGenerosNoDeseados());
+                    cargarBiblioteca(artistas);
+                }
+                case "albumes" -> {
+                    List<AlbumDominio> albumes = albumFachada.listarAlbumesPorFiltro(texto, usuario.getGenerosNoDeseados());
+                    cargarBiblioteca(albumes);
+                }
+                case "canciones" -> {
+                    List<CancionDominio> canciones = cancionFachada.listarCancionesPorFiltro(texto, usuario.getGenerosNoDeseados());
+                    cargarBiblioteca(canciones);
+                }
+                default -> {
+                    List<ResultadosDTO> todo = artistaFachada.listarTodoPorFiltro(texto, usuario.getGenerosNoDeseados());
+                    cargarBiblioteca(todo);
+                }
+            }
+        } catch (NegocioException e) {
+            JOptionPane.showMessageDialog(this, "No se pudo realizar la busqueda");
+        }
+    }
+    
+    private void actualizarBotonesFiltro(javax.swing.JButton botonSeleccionado) {
+        JButton[] botones = {btnTodo, btnArtistas, btnAlbumes, btnCanciones};
+
+        for (JButton boton : botones) {
+            if (boton == botonSeleccionado) {
+                boton.setBackground(new Color(75,28,113));
+                boton.setForeground(Color.WHITE);
+            } else {
+                boton.setBackground(new Color(127,76,165));
+                boton.setForeground(Color.WHITE);
+            }
+        }
+    }
+    
     private void cargarBiblioteca(List<?> registros){
         try {
             panelListar.removeAll();
@@ -317,14 +375,13 @@ public class PanelBuscar extends javax.swing.JPanel {
                 JLabel lblInfo = new JLabel();
                 JButton btnFavorito = new JButton("☆");
                 
-                if (o instanceof ArtistaDominio artista) {
-                    lblInfo.setText(artista.getImagen() + artista.getNombre() + " - " + artista.getGenero());
-                } else if (o instanceof AlbumDominio album) {
-                    lblInfo.setText(album.getImagenPortada() + album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
-                } else if (o instanceof CancionDominio cancion) {
-                    lblInfo.setText(cancion.getNombre());
-                } else {
-                    continue;
+                switch (o) {
+                    case ArtistaDominio artista -> lblInfo.setText(artista.getImagen() + artista.getNombre() + " - " + artista.getGenero());
+                    case AlbumDominio album -> lblInfo.setText(album.getImagenPortada() + album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
+                    case CancionDominio cancion -> lblInfo.setText(cancion.getNombre());
+                    default -> {
+                        continue;
+                    }
                 }
 
                 lblInfo.setFont(new Font("Arial", Font.PLAIN, 14));

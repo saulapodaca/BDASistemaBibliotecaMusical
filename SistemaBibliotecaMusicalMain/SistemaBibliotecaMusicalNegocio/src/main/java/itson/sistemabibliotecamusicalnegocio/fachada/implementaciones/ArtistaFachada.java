@@ -13,6 +13,7 @@ import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.ArtistaNegocio
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.ArtistaDAO;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -28,36 +29,36 @@ public class ArtistaFachada implements IArtistaFachada{
     }
 
     @Override
-    public List<ResultadosDTO> listarTodo() throws NegocioException {
+    public List<ResultadosDTO> listarTodo(List<String> generosNoDeseados) throws NegocioException {
         try {
-            return artistaNegocio.listarTodo();
+            return artistaNegocio.listarTodo(generosNoDeseados);
         } catch (NegocioException ex) {
             throw new NegocioException(ex.getMessage());
         }
     }
 
     @Override
-    public List<ArtistaDominio> listarTodosLosArtistas() throws NegocioException {
+    public List<ArtistaDominio> listarTodosLosArtistas(List<String> generosNoDeseados) throws NegocioException {
         try {
-            return artistaNegocio.listarTodosLosArtistas();
+            return artistaNegocio.listarTodosLosArtistas(generosNoDeseados);
         } catch (NegocioException ex) {
             throw new NegocioException(ex.getMessage());
         }
     }
 
     @Override
-    public List<ResultadosDTO> listarTodoPorFiltro(String filtro) throws NegocioException {
+    public List<ResultadosDTO> listarTodoPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
-            return artistaNegocio.listarTodoPorFiltro(filtro);
+            return artistaNegocio.listarTodoPorFiltro(filtro, generosNoDeseados);
         } catch (NegocioException ex) {
             throw new NegocioException(ex.getMessage());
         }
     }
 
     @Override
-    public List<ArtistaDominio> listarArtistasPorFiltro(String filtro) throws NegocioException {
+    public List<ArtistaDominio> listarArtistasPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
-            return artistaNegocio.listarArtistasPorFiltro(filtro);
+            return artistaNegocio.listarArtistasPorFiltro(filtro, generosNoDeseados);
         } catch (NegocioException ex) {
             throw new NegocioException(ex.getMessage());
         }
@@ -68,6 +69,15 @@ public class ArtistaFachada implements IArtistaFachada{
         try{
             return artistaNegocio.obtenerTodosLosGeneros();
         }catch(NegocioException ex){
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public ArtistaDominio buscarPorId(ObjectId id) throws NegocioException {
+        try {
+            return artistaNegocio.buscarPorId(id);
+        } catch (NegocioException ex) {
             throw new NegocioException(ex.getMessage());
         }
     }

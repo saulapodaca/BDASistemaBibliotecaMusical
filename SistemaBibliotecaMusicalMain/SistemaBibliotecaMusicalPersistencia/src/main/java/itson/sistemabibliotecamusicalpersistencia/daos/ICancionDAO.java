@@ -7,6 +7,7 @@ package itson.sistemabibliotecamusicalpersistencia.daos;
 import itson.sistemabibliotecamusicaldominio.CancionDominio;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -14,8 +15,9 @@ import java.util.List;
  */
 public interface ICancionDAO {
     
-    List<CancionDominio> listarTodasLasCanciones() throws PersistenciaException;
+    List<CancionDominio> listarTodasLasCanciones(List<String> generosNoDeseados) throws PersistenciaException;
     
-    List<CancionDominio> listarCancionesPorFiltro(String filtro) throws PersistenciaException; 
+    List<CancionDominio> listarCancionesPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException; 
        
+    CancionDominio buscarPorId(ObjectId id) throws PersistenciaException;
 }

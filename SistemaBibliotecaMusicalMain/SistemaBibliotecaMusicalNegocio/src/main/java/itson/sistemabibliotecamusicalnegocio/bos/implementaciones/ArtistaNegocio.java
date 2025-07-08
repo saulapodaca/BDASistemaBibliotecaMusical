@@ -11,6 +11,7 @@ import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -25,40 +26,40 @@ public class ArtistaNegocio implements IArtistaNegocio{
     }
 
     @Override
-    public List<ResultadosDTO> listarTodo() throws NegocioException {
+    public List<ResultadosDTO> listarTodo(List<String> generosNoDeseados) throws NegocioException {
         try {
-            return artistaDAO.listarTodo();
+            return artistaDAO.listarTodo(generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException("Ha ocurrido un error al listar todo");
         }
     }
 
     @Override
-    public List<ArtistaDominio> listarTodosLosArtistas() throws NegocioException {
+    public List<ArtistaDominio> listarTodosLosArtistas(List<String> generosNoDeseados) throws NegocioException {
         try {
-            return artistaDAO.listarTodosLosArtistas();
+            return artistaDAO.listarTodosLosArtistas(generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException("Ha ocurrido un error al listar todos los artistas");
         }
     }
 
     @Override
-    public List<ResultadosDTO> listarTodoPorFiltro(String filtro) throws NegocioException {
+    public List<ResultadosDTO> listarTodoPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
             this.filtroValido(filtro);
-            return artistaDAO.listarTodoPorFiltro(filtro);
+            return artistaDAO.listarTodoPorFiltro(filtro, generosNoDeseados);
         } catch (PersistenciaException ex) {
-            throw new NegocioException("Ha ocurrido un error al listar todos los artistas");
+            throw new NegocioException("Ha ocurrido un error al listar todo por filtro");
         }
     }
 
     @Override
-    public List<ArtistaDominio> listarArtistasPorFiltro(String filtro) throws NegocioException {
+    public List<ArtistaDominio> listarArtistasPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
             this.filtroValido(filtro);
-            return artistaDAO.listarArtistasPorFiltro(filtro);
+            return artistaDAO.listarArtistasPorFiltro(filtro, generosNoDeseados);
         } catch (PersistenciaException ex) {
-            throw new NegocioException("Ha ocurrido un error al listar todos los artistas");
+            throw new NegocioException("Ha ocurrido un error al listar todos los artistas por filtro");
         }
     }
     
@@ -74,6 +75,15 @@ public class ArtistaNegocio implements IArtistaNegocio{
             return artistaDAO.obtenerTodosLosGeneros();
         }catch(PersistenciaException ex){
             throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public ArtistaDominio buscarPorId(ObjectId id) throws NegocioException {
+        try {
+            return artistaDAO.buscarPorId(id);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Ha ocurrido un error al buscar por id");
         }
     }
     

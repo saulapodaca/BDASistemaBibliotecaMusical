@@ -7,15 +7,17 @@ package itson.sistemabibliotecamusicalnegocio.bos;
 import itson.sistemabibliotecamusicaldominio.CancionDominio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author adell
  */
 public interface ICancionNegocio {
+    CancionDominio buscarPorId(ObjectId id) throws NegocioException;
 
-    List<CancionDominio> listarTodasLasCanciones() throws NegocioException;
+    List<CancionDominio> listarTodasLasCanciones(List<String> generosNoDeseados) throws NegocioException;
 
-    List<CancionDominio> listarCancionesPorFiltro(String filtro) throws NegocioException;
+    List<CancionDominio> listarCancionesPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException;
 
 }
