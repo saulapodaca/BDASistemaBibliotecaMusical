@@ -9,8 +9,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import itson.sistemabibliotecamusicaldominio.AlbumDominio;
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
-import itson.sistemabibliotecamusicaldominio.CancionDominio;
-import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
 import itson.sistemabibliotecamusicalpersistencia.ConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IAlbumDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
@@ -24,21 +22,22 @@ import java.util.List;
 public class AlbumDAO implements IAlbumDAO {
 
     @Override
-    public List<AlbumDominio> listarTodosLosAlbumes() throws PersistenciaException {
+    public List<AlbumDominio> listarTodosLosAlbumes(List<String> generosNoDeseados) throws PersistenciaException {
 
         MongoDatabase baseDatos = new ConexionBD().conexion();
 
         MongoCollection<ArtistaDominio> coleccion
-                = baseDatos.getCollection("personas", ArtistaDominio.class);
+                = baseDatos.getCollection("artistas", ArtistaDominio.class);
 
         List<AlbumDominio> todo = new ArrayList<>();
         FindIterable<ArtistaDominio> artistas = coleccion.find();
 
         for (ArtistaDominio a : artistas) {
-
+            if(generosNoDeseados.contains(a.getGenero())) continue;
             List<AlbumDominio> albumes = a.getAlbumes();
 
             for (AlbumDominio album : albumes) {
+                if(generosNoDeseados.contains(album.getGeneroMusical())) continue;
                 todo.add(album);
             }
 
@@ -47,10 +46,10 @@ public class AlbumDAO implements IAlbumDAO {
     }
 
     @Override
-    public List<AlbumDominio> listarAlbumesPorFiltro(String filtro) throws PersistenciaException {
+    public List<AlbumDominio> listarAlbumesPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException {
         filtro = filtro.toLowerCase();
         List<AlbumDominio> resultados = new ArrayList<>();
-        for (AlbumDominio album : listarTodosLosAlbumes()) {
+        for (AlbumDominio album : listarTodosLosAlbumes(generosNoDeseados)) {
             if (album.getNombre().toLowerCase().contains(filtro)
                     || album.getGeneroMusical().toLowerCase().contains(filtro)
                     || album.getFechaLanzamiento().toString().contains(filtro)) {

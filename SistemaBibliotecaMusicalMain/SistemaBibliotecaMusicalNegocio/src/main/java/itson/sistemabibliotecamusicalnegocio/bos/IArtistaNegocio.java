@@ -15,13 +15,13 @@ import java.util.List;
  */
 public interface IArtistaNegocio {
     
-    List<ResultadosDTO> listarTodo() throws NegocioException;
+    List<ResultadosDTO> listarTodo(List<String> generosNoDeseados) throws NegocioException;
     
-    List<ResultadosDTO> listarTodoPorFiltro(String filtro) throws NegocioException;
+    List<ResultadosDTO> listarTodoPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException;
 
-    List<ArtistaDominio> listarTodosLosArtistas() throws NegocioException;
+    List<ArtistaDominio> listarTodosLosArtistas(List<String> generosNoDeseados) throws NegocioException;
 
-    List<ArtistaDominio> listarArtistasPorFiltro(String filtro) throws NegocioException;
+    List<ArtistaDominio> listarArtistasPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException;
     
     public List<String> obtenerTodosLosGeneros() throws NegocioException;
 }

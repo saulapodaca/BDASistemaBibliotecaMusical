@@ -24,19 +24,19 @@ public class AlbumNegocio implements IAlbumNegocio {
     }
 
     @Override
-    public List<AlbumDominio> listarTodosLosAlbumes() throws NegocioException {
+    public List<AlbumDominio> listarTodosLosAlbumes(List<String> generosNoDeseados) throws NegocioException {
         try {
-            return albumDAO.listarTodosLosAlbumes();
+            return albumDAO.listarTodosLosAlbumes(generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException("Ha ocurrido un error al listar todos los albumes");
         }
     }
 
     @Override
-    public List<AlbumDominio> listarAlbumesPorFiltro(String filtro) throws NegocioException {
+    public List<AlbumDominio> listarAlbumesPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
             filtroValido(filtro);
-            return albumDAO.listarAlbumesPorFiltro(filtro);
+            return albumDAO.listarAlbumesPorFiltro(filtro,generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException("Ha ocurrido un error al listar todos los albumes por filtro");
         }

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface IAlbumDAO {
     
-    List<AlbumDominio> listarTodosLosAlbumes() throws PersistenciaException;
+    List<AlbumDominio> listarTodosLosAlbumes(List<String> generosNoDeseados) throws PersistenciaException;
     
-    List<AlbumDominio> listarAlbumesPorFiltro(String filtro) throws PersistenciaException; 
+    List<AlbumDominio> listarAlbumesPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException; 
 }

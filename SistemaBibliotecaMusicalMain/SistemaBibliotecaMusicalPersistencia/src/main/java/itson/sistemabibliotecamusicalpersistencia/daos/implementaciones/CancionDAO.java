@@ -23,21 +23,21 @@ import java.util.List;
 public class CancionDAO implements ICancionDAO {
 
     @Override
-    public List<CancionDominio> listarTodasLasCanciones() throws PersistenciaException {
+    public List<CancionDominio> listarTodasLasCanciones(List<String> generosNoDeseados) throws PersistenciaException {
         MongoDatabase baseDatos = new ConexionBD().conexion();
 
         MongoCollection<ArtistaDominio> coleccion
-                = baseDatos.getCollection("personas", ArtistaDominio.class);
+                = baseDatos.getCollection("artistas", ArtistaDominio.class);
 
         List<CancionDominio> todo = new ArrayList<>();
 
         FindIterable<ArtistaDominio> artistas = coleccion.find();
 
         for (ArtistaDominio a : artistas) {
-
+            if(generosNoDeseados.contains(a.getGenero())) continue;
             List<AlbumDominio> albumes = a.getAlbumes();
             for (AlbumDominio album : albumes) {
-
+                if(generosNoDeseados.contains(album.getGeneroMusical())) continue;
                 List<CancionDominio> canciones = album.getCanciones();
                 for (CancionDominio c : canciones) {
                     todo.add(c);
@@ -48,12 +48,12 @@ public class CancionDAO implements ICancionDAO {
     }
 
     @Override
-    public List<CancionDominio> listarCancionesPorFiltro(String filtro) throws PersistenciaException {
+    public List<CancionDominio> listarCancionesPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException {
         filtro = filtro.toLowerCase();
 
         List<CancionDominio> resultados = new ArrayList<>();
 
-        for (CancionDominio cancion : listarTodasLasCanciones()) {
+        for (CancionDominio cancion : listarTodasLasCanciones(generosNoDeseados)) {
 
             if (cancion.getNombre().toLowerCase().contains(filtro)) {
                 resultados.add(cancion);

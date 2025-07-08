@@ -14,8 +14,8 @@ import java.util.List;
  */
 public interface ICancionDAO {
     
-    List<CancionDominio> listarTodasLasCanciones() throws PersistenciaException;
+    List<CancionDominio> listarTodasLasCanciones(List<String> generosNoDeseados) throws PersistenciaException;
     
-    List<CancionDominio> listarCancionesPorFiltro(String filtro) throws PersistenciaException; 
+    List<CancionDominio> listarCancionesPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException; 
        
 }

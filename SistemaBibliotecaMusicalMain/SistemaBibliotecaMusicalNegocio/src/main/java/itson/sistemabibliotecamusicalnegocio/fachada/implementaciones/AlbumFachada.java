@@ -27,18 +27,18 @@ public class AlbumFachada implements IAlbumFachada{
     }
 
     @Override
-    public List<AlbumDominio> listarTodosLosAlbumes() throws NegocioException {
+    public List<AlbumDominio> listarTodosLosAlbumes(List<String> generosNoDeseados) throws NegocioException {
         try {
-            return albumNegocio.listarTodosLosAlbumes();
+            return albumNegocio.listarTodosLosAlbumes(generosNoDeseados);
         } catch (NegocioException ex) {
             throw new NegocioException(ex.getMessage());
         }
     }
 
     @Override
-    public List<AlbumDominio> listarAlbumesPorFiltro(String filtro) throws NegocioException {
+    public List<AlbumDominio> listarAlbumesPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
-            return albumNegocio.listarAlbumesPorFiltro(filtro);
+            return albumNegocio.listarAlbumesPorFiltro(filtro, generosNoDeseados);
         } catch (NegocioException ex) {
             throw new NegocioException(ex.getMessage());
         }

@@ -25,38 +25,38 @@ public class ArtistaNegocio implements IArtistaNegocio{
     }
 
     @Override
-    public List<ResultadosDTO> listarTodo() throws NegocioException {
+    public List<ResultadosDTO> listarTodo(List<String> generosNoDeseados) throws NegocioException {
         try {
-            return artistaDAO.listarTodo();
+            return artistaDAO.listarTodo(generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException("Ha ocurrido un error al listar todo");
         }
     }
 
     @Override
-    public List<ArtistaDominio> listarTodosLosArtistas() throws NegocioException {
+    public List<ArtistaDominio> listarTodosLosArtistas(List<String> generosNoDeseados) throws NegocioException {
         try {
-            return artistaDAO.listarTodosLosArtistas();
+            return artistaDAO.listarTodosLosArtistas(generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException("Ha ocurrido un error al listar todos los artistas");
         }
     }
 
     @Override
-    public List<ResultadosDTO> listarTodoPorFiltro(String filtro) throws NegocioException {
+    public List<ResultadosDTO> listarTodoPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
             this.filtroValido(filtro);
-            return artistaDAO.listarTodoPorFiltro(filtro);
+            return artistaDAO.listarTodoPorFiltro(filtro, generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException("Ha ocurrido un error al listar todos los artistas");
         }
     }
 
     @Override
-    public List<ArtistaDominio> listarArtistasPorFiltro(String filtro) throws NegocioException {
+    public List<ArtistaDominio> listarArtistasPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
             this.filtroValido(filtro);
-            return artistaDAO.listarArtistasPorFiltro(filtro);
+            return artistaDAO.listarArtistasPorFiltro(filtro, generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException("Ha ocurrido un error al listar todos los artistas");
         }

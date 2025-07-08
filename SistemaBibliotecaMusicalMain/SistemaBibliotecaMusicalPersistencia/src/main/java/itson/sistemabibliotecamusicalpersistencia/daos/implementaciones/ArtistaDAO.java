@@ -25,17 +25,19 @@ import java.util.List;
 public class ArtistaDAO implements IArtistaDAO{
 
     @Override
-    public List<ResultadosDTO> listarTodo() throws PersistenciaException {
+    public List<ResultadosDTO> listarTodo(List<String> generosNoDeseados) throws PersistenciaException {
         MongoDatabase baseDatos = new ConexionBD().conexion();
         MongoCollection<ArtistaDominio> coleccion
                 = baseDatos.getCollection("artistas", ArtistaDominio.class);
         List<ResultadosDTO> todo = new ArrayList<>();
         FindIterable<ArtistaDominio> artistas = coleccion.find();
          for (ArtistaDominio a : artistas) {
+            if (generosNoDeseados.contains(a.getGenero())) continue;
             ResultadosDTO registro = new ResultadosDTO(Tipo.ARTISTA, a);
             todo.add(registro);
             List<AlbumDominio> albumes = a.getAlbumes();
             for (AlbumDominio album : albumes) {
+                if (generosNoDeseados.contains(album.getGeneroMusical())) continue;
                 ResultadosDTO registro2 = new ResultadosDTO(Tipo.ALBUM, album);
                 todo.add(registro2);
                 List<CancionDominio> canciones = album.getCanciones();
@@ -49,7 +51,7 @@ public class ArtistaDAO implements IArtistaDAO{
     }
 
     @Override
-    public List<ArtistaDominio> listarTodosLosArtistas() throws PersistenciaException {
+    public List<ArtistaDominio> listarTodosLosArtistas(List<String> generosNoDeseados) throws PersistenciaException {
         MongoDatabase baseDatos = new ConexionBD().conexion();
         
         MongoCollection<ArtistaDominio> coleccion
@@ -58,16 +60,17 @@ public class ArtistaDAO implements IArtistaDAO{
         List<ArtistaDominio> artistas = new ArrayList<>();
         
         for (ArtistaDominio a : coleccion.find()) {
+            if (generosNoDeseados.contains(a.getGenero())) continue;
             artistas.add(a);
         }
         return artistas;
     }
 
     @Override
-    public List<ResultadosDTO> listarTodoPorFiltro(String filtro) throws PersistenciaException {
+    public List<ResultadosDTO> listarTodoPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException {
         filtro = filtro.toLowerCase();
         List<ResultadosDTO> resultados = new ArrayList<>();
-        for (ResultadosDTO r : listarTodo()) {
+        for (ResultadosDTO r : listarTodo(generosNoDeseados)) {
             switch(r.getTipo()){
                 case ARTISTA -> {
                     ArtistaDominio artista = (ArtistaDominio) r.getObjeto();
@@ -96,10 +99,10 @@ public class ArtistaDAO implements IArtistaDAO{
     }
 
     @Override
-    public List<ArtistaDominio> listarArtistasPorFiltro(String filtro) throws PersistenciaException {
+    public List<ArtistaDominio> listarArtistasPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException {
         filtro = filtro.toLowerCase();
         List<ArtistaDominio> resultados = new ArrayList<>();
-        for (ArtistaDominio a : listarTodosLosArtistas()) {
+        for (ArtistaDominio a : listarTodosLosArtistas(generosNoDeseados)) {
             if (a.getNombre().toLowerCase().contains(filtro)
                     || a.getGenero().toLowerCase().contains(filtro)) {
                 resultados.add(a);

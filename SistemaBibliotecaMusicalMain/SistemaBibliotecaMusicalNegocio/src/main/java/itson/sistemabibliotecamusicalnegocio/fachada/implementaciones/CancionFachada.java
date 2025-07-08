@@ -27,18 +27,18 @@ public class CancionFachada implements ICancionFachada {
     }
 
     @Override
-    public List<CancionDominio> listarTodasLasCanciones() throws NegocioException {
+    public List<CancionDominio> listarTodasLasCanciones(List<String> generosNoDeseados) throws NegocioException {
         try {
-            return cancionNegocio.listarTodasLasCanciones();
+            return cancionNegocio.listarTodasLasCanciones(generosNoDeseados);
         } catch (NegocioException ex) {
             throw new NegocioException(ex.getMessage());
         }
     }
 
     @Override
-    public List<CancionDominio> listarCancionesPorFiltro(String filtro) throws NegocioException {
+    public List<CancionDominio> listarCancionesPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
-            return cancionNegocio.listarCancionesPorFiltro(filtro);
+            return cancionNegocio.listarCancionesPorFiltro(filtro, generosNoDeseados);
         } catch (NegocioException ex) {
             throw new NegocioException(ex.getMessage());
         }

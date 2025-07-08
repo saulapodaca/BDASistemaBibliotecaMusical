@@ -24,19 +24,19 @@ public class CancionNegocio implements ICancionNegocio {
     }
 
     @Override
-    public List<CancionDominio> listarTodasLasCanciones() throws NegocioException {
+    public List<CancionDominio> listarTodasLasCanciones(List<String> generosNoDeseados) throws NegocioException {
         try {
-            return cancionDAO.listarTodasLasCanciones();
+            return cancionDAO.listarTodasLasCanciones(generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException("Ha ocurrido un error al listar todas las canciones");
         }
     }
 
     @Override
-    public List<CancionDominio> listarCancionesPorFiltro(String filtro) throws NegocioException {
+    public List<CancionDominio> listarCancionesPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
             filtroValido(filtro);
-            return cancionDAO.listarCancionesPorFiltro(filtro);
+            return cancionDAO.listarCancionesPorFiltro(filtro, generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException("Ha ocurrido un error al listar todas las canciones por filtro");
         }

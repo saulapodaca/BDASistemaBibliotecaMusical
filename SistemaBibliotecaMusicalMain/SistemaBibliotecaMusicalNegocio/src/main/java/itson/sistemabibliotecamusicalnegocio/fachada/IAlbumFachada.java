@@ -14,8 +14,8 @@ import java.util.List;
  */
 public interface IAlbumFachada {
 
-    List<AlbumDominio> listarTodosLosAlbumes() throws NegocioException;
+    List<AlbumDominio> listarTodosLosAlbumes(List<String> generosNoDeseados) throws NegocioException;
 
-    List<AlbumDominio> listarAlbumesPorFiltro(String filtro) throws NegocioException;
+    List<AlbumDominio> listarAlbumesPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException;
 
 }
