@@ -11,7 +11,6 @@ import itson.sistemabibliotecamusicaldominio.AlbumDominio;
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
 import itson.sistemabibliotecamusicaldominio.CancionDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
-import itson.sistemabibliotecamusicalpersistencia.ConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IAlbumDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.ArrayList;

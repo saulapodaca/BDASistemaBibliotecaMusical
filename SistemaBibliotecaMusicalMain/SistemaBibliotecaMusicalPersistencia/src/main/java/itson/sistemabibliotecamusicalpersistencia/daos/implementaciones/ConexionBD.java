@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package itson.sistemabibliotecamusicalpersistencia;
+package itson.sistemabibliotecamusicalpersistencia.daos.implementaciones;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;

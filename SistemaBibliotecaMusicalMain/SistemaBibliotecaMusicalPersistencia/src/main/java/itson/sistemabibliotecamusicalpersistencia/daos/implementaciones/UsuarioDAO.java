@@ -2,6 +2,9 @@ package itson.sistemabibliotecamusicalpersistencia.daos.implementaciones;
 
 //@author SAUL ISAAC APODACA BALDENEGRO 00000252020
 
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.ActualizarGenerosUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.ModificarUsuarioDTO;
@@ -17,23 +20,55 @@ public class UsuarioDAO implements IUsuarioDAO{
 
     //falta conexion
     
-    public UsuarioDAO (){
+    public UsuarioDAO() {
         //falta conexion
     }
-    
+
     @Override
-    public UsuarioDominio obtenerUsuarioPorNombre(String nombreUsuario) throws PersistenciaException{
-        return new UsuarioDominio();
+    public UsuarioDominio obtenerUsuarioPorNombre(String nombreUsuario) throws PersistenciaException {
+        try {
+            MongoDatabase bd = new ConexionBD().conexion();
+            MongoCollection<UsuarioDominio> collection = bd.getCollection("usuarios", UsuarioDominio.class);
+
+            return collection.find(eq("nombreUsuario", nombreUsuario)).first();
+        } catch (Exception ex) {
+            throw new PersistenciaException("Error al buscar usuario por nombre: " + ex.getMessage());
+        }
     }
 
     @Override
     public UsuarioDominio obtenerUsuarioPorCorreo(String correo) throws PersistenciaException {
-        return new UsuarioDominio();
+        try {
+            MongoDatabase bd = new ConexionBD().conexion();
+            MongoCollection<UsuarioDominio> collection = bd.getCollection("usuarios", UsuarioDominio.class);
+
+            return collection.find(eq("correo", correo)).first();
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al buscar usuario por correo: " + e.getMessage(), e);
+        }
     }
 
     @Override
     public UsuarioDominio registrarUsuario(RegistrarUsuarioDTO nuevoUsuario) throws PersistenciaException {
-        return new UsuarioDominio();
+        try {
+            MongoDatabase bd = new ConexionBD().conexion();
+            MongoCollection<UsuarioDominio> collection
+                    = bd.getCollection("usuarios", UsuarioDominio.class);
+            UsuarioDominio usuario = new UsuarioDominio();
+            usuario.setId(new ObjectId());
+            usuario.setNombreUsuario(nuevoUsuario.getUsuario());
+            usuario.setCorreo(nuevoUsuario.getCorreo());
+            usuario.setContrasenia(nuevoUsuario.getContraseniaHasheada());
+            usuario.setImagen(nuevoUsuario.getImagen());
+            //listas vacias al crearlo
+            usuario.setFavoritos(new ArrayList<>());
+            usuario.setGenerosNoDeseados(new ArrayList<>());
+
+            collection.insertOne(usuario);
+            return usuario;
+        } catch (Exception ex) {
+            throw new PersistenciaException("Error al registrar el usuario: " + ex.getMessage());
+        }
     }
 
     @Override
