@@ -7,12 +7,14 @@ package itson.sistemabibliotecamusicalnegocio.fachada;
 import itson.sistemabibliotecamusicaldominio.AlbumDominio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author adell
  */
 public interface IAlbumFachada {
+    AlbumDominio buscarPorId(ObjectId id) throws NegocioException;
 
     List<AlbumDominio> listarTodosLosAlbumes(List<String> generosNoDeseados) throws NegocioException;
 

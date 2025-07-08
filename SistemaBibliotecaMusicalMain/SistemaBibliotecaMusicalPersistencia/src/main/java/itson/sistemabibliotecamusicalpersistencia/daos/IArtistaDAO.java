@@ -8,12 +8,15 @@ import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author Camila Zubía
  */
 public interface IArtistaDAO {
+    
+    ArtistaDominio buscarPorId(ObjectId id) throws PersistenciaException;
     
     List<ResultadosDTO> listarTodo(List<String> generosNoDeseados) throws PersistenciaException;
     

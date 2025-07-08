@@ -8,12 +8,14 @@ import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author Camila Zubía
  */
 public interface IArtistaFachada {
+    ArtistaDominio buscarPorId(ObjectId id) throws NegocioException;
     
     List<ResultadosDTO> listarTodo(List<String> generosNoDeseados) throws NegocioException;
     

@@ -13,6 +13,7 @@ import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.ArtistaNegocio
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.ArtistaDAO;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -68,6 +69,15 @@ public class ArtistaFachada implements IArtistaFachada{
         try{
             return artistaNegocio.obtenerTodosLosGeneros();
         }catch(NegocioException ex){
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public ArtistaDominio buscarPorId(ObjectId id) throws NegocioException {
+        try {
+            return artistaNegocio.buscarPorId(id);
+        } catch (NegocioException ex) {
             throw new NegocioException(ex.getMessage());
         }
     }

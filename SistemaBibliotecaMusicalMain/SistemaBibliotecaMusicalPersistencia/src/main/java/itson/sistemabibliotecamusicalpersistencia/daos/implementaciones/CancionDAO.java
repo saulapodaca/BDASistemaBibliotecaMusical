@@ -15,6 +15,7 @@ import itson.sistemabibliotecamusicalpersistencia.daos.ICancionDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -24,43 +25,76 @@ public class CancionDAO implements ICancionDAO {
 
     @Override
     public List<CancionDominio> listarTodasLasCanciones(List<String> generosNoDeseados) throws PersistenciaException {
-        MongoDatabase baseDatos = new ConexionBD().conexion();
+        try{
+            MongoDatabase baseDatos = new ConexionBD().conexion();
 
-        MongoCollection<ArtistaDominio> coleccion
-                = baseDatos.getCollection("artistas", ArtistaDominio.class);
+            MongoCollection<ArtistaDominio> coleccion
+                    = baseDatos.getCollection("artistas", ArtistaDominio.class);
 
-        List<CancionDominio> todo = new ArrayList<>();
+            List<CancionDominio> todo = new ArrayList<>();
 
-        FindIterable<ArtistaDominio> artistas = coleccion.find();
+            FindIterable<ArtistaDominio> artistas = coleccion.find();
 
-        for (ArtistaDominio a : artistas) {
-            if(generosNoDeseados.contains(a.getGenero())) continue;
-            List<AlbumDominio> albumes = a.getAlbumes();
-            for (AlbumDominio album : albumes) {
-                if(generosNoDeseados.contains(album.getGeneroMusical())) continue;
-                List<CancionDominio> canciones = album.getCanciones();
-                for (CancionDominio c : canciones) {
-                    todo.add(c);
+            for (ArtistaDominio a : artistas) {
+                if (generosNoDeseados.contains(a.getGenero())) {
+                    continue;
+                }
+                List<AlbumDominio> albumes = a.getAlbumes();
+                for (AlbumDominio album : albumes) {
+                    if (generosNoDeseados.contains(album.getGeneroMusical())) {
+                        continue;
+                    }
+                    List<CancionDominio> canciones = album.getCanciones();
+                    for (CancionDominio c : canciones) {
+                        todo.add(c);
+                    }
                 }
             }
+            return todo;
+        }catch (Exception e) {
+            throw new PersistenciaException("No se pudo listar las canciones: " + e.getMessage());
         }
-        return todo;
     }
 
     @Override
     public List<CancionDominio> listarCancionesPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException {
-        filtro = filtro.toLowerCase();
+        try{
+            filtro = filtro.toLowerCase();
 
-        List<CancionDominio> resultados = new ArrayList<>();
+            List<CancionDominio> resultados = new ArrayList<>();
 
-        for (CancionDominio cancion : listarTodasLasCanciones(generosNoDeseados)) {
+            for (CancionDominio cancion : listarTodasLasCanciones(generosNoDeseados)) {
 
-            if (cancion.getNombre().toLowerCase().contains(filtro)) {
-                resultados.add(cancion);
+                if (cancion.getNombre().toLowerCase().contains(filtro)) {
+                    resultados.add(cancion);
+                }
             }
+            return resultados;
+        }catch (PersistenciaException e) {
+            throw new PersistenciaException("No se pudo listar las canciones por filtro: " + e.getMessage());
         }
-        return resultados;
+    }
 
+    @Override
+    public CancionDominio buscarPorId(ObjectId id) throws PersistenciaException {
+        try{
+            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoCollection<ArtistaDominio> coleccion
+                    = baseDatos.getCollection("artistas", ArtistaDominio.class);
+            FindIterable<ArtistaDominio> artistas = coleccion.find();
+            for (ArtistaDominio a : artistas) {
+                for (AlbumDominio album : a.getAlbumes()) {
+                    for (CancionDominio c : album.getCanciones()) {
+                        if (c.getId().equals(id)) {
+                            return c;
+                        }
+                    }
+                }
+            }
+            throw new PersistenciaException("No se encontro ninguna cancion con el ID: " + id);
+        }catch (PersistenciaException e) {
+            throw new PersistenciaException("No se pudo buscar la cancion por ID: " + e.getMessage());
+        }
     }
 
 }

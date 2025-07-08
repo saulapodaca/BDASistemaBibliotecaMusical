@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicaldominio;
 
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class ArtistaDominio {
     
-    //private ObjectId id;
+    private ObjectId id;
     private String nombre;
     private String genero;
     private String imagen;
@@ -75,6 +76,14 @@ public class ArtistaDominio {
 
     public void setAlbumes(List<AlbumDominio> albumes) {
         this.albumes = albumes;
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
     }
     
     

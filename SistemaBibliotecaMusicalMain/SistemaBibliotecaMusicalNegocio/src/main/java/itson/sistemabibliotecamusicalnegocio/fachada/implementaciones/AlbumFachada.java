@@ -12,6 +12,7 @@ import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.AlbumNegocio;
 import itson.sistemabibliotecamusicalpersistencia.daos.IAlbumDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.AlbumDAO;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -39,6 +40,15 @@ public class AlbumFachada implements IAlbumFachada{
     public List<AlbumDominio> listarAlbumesPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
             return albumNegocio.listarAlbumesPorFiltro(filtro, generosNoDeseados);
+        } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public AlbumDominio buscarPorId(ObjectId id) throws NegocioException {
+        try {
+            return albumNegocio.buscarPorId(id);
         } catch (NegocioException ex) {
             throw new NegocioException(ex.getMessage());
         }

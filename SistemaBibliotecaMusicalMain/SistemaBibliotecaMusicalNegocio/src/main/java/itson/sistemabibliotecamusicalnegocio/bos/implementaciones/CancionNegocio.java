@@ -10,6 +10,7 @@ import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalpersistencia.daos.ICancionDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -45,6 +46,15 @@ public class CancionNegocio implements ICancionNegocio {
     private void filtroValido(String filtro) throws NegocioException {
         if (filtro == null || filtro.trim().isEmpty()) {
             throw new NegocioException("El filtro no puede estar vacio");
+        }
+    }
+
+    @Override
+    public CancionDominio buscarPorId(ObjectId id) throws NegocioException {
+        try {
+            return cancionDAO.buscarPorId(id);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Ha ocurrido un error al buscar por id");
         }
     }
 }

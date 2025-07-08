@@ -4,13 +4,15 @@
  */
 package itson.sistemabibliotecamusicaldominio;
 
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author Camila Zubía
  */
 public class CancionDominio {
     
-    //private ObjectId id;
+    private ObjectId id;
     private String nombre;
 
     public CancionDominio(String nombre) {
@@ -24,5 +26,14 @@ public class CancionDominio {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+    
     
 }

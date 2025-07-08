@@ -12,6 +12,7 @@ import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.CancionNegocio
 import itson.sistemabibliotecamusicalpersistencia.daos.ICancionDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.CancionDAO;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -39,6 +40,15 @@ public class CancionFachada implements ICancionFachada {
     public List<CancionDominio> listarCancionesPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
             return cancionNegocio.listarCancionesPorFiltro(filtro, generosNoDeseados);
+        } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public CancionDominio buscarPorId(ObjectId id) throws NegocioException {
+        try {
+            return cancionNegocio.buscarPorId(id);
         } catch (NegocioException ex) {
             throw new NegocioException(ex.getMessage());
         }
