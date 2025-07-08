@@ -23,4 +23,5 @@ public interface IArtistaDAO {
     
     List<ArtistaDominio> listarArtistasPorFiltro(String filtro) throws PersistenciaException;
     
+    public List<String> obtenerTodosLosGeneros() throws PersistenciaException;
 }

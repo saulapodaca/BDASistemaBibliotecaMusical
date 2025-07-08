@@ -107,5 +107,16 @@ public class ArtistaDAO implements IArtistaDAO{
         }
         return resultados;
     }
-    
+
+    @Override
+    public List<String> obtenerTodosLosGeneros() throws PersistenciaException {
+        List<String> generos = new ArrayList<>();
+        generos.add("Rock");
+        generos.add("Pop");
+        generos.add("Trap");
+        generos.add("R&B");
+        generos.add("Norteño");
+        return generos;
+    }
+
 }
