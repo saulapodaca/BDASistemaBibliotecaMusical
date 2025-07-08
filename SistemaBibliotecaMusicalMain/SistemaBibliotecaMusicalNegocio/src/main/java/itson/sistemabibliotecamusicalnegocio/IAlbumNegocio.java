@@ -13,7 +13,9 @@ import java.util.List;
  * @author adell
  */
 public interface IAlbumNegocio {
+    
+    List<AlbumDominio> listarTodosLosAlbumes() throws NegocioException;
 
-    List<AlbumDominio> listarPorFiltro(String filtro) throws NegocioException;
+    List<AlbumDominio> listarAlbumesPorFiltro(String filtro) throws NegocioException;
 
 }

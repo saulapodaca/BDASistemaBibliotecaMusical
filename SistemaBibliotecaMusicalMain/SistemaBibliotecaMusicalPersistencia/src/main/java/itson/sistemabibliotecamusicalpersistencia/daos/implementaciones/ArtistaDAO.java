@@ -50,7 +50,14 @@ public class ArtistaDAO implements IArtistaDAO{
 
     @Override
     public List<ArtistaDominio> listarTodosLosArtistas() throws PersistenciaException {
-        return null;
+        MongoDatabase baseDatos = new ConexionBD().conexion();
+        MongoCollection<ArtistaDominio> coleccion
+                = baseDatos.getCollection("personas", ArtistaDominio.class);
+        List<ArtistaDominio> artistas = new ArrayList<>();
+        for (ArtistaDominio a : coleccion.find()) {
+            artistas.add(a);
+        }
+        return artistas;
     }
 
     @Override
@@ -87,8 +94,15 @@ public class ArtistaDAO implements IArtistaDAO{
 
     @Override
     public List<ArtistaDominio> listarArtistasPorFiltro(String filtro) throws PersistenciaException {
-        System.out.println("listar todos los artistas con filtro");
-        return null;
+        filtro = filtro.toLowerCase();
+        List<ArtistaDominio> resultados = new ArrayList<>();
+        for (ArtistaDominio a : listarTodosLosArtistas()) {
+            if (a.getNombre().toLowerCase().contains(filtro)
+                    || a.getGenero().toLowerCase().contains(filtro)) {
+                resultados.add(a);
+            }
+        }
+        return resultados;
     }
     
 }

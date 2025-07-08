@@ -27,8 +27,20 @@ public class CancionFachada implements ICancionFachada {
     }
 
     @Override
-    public List<CancionDominio> listarPorFiltro(String filtro) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<CancionDominio> listarTodasLasCanciones() throws NegocioException {
+        try {
+            return cancionNegocio.listarTodasLasCanciones();
+        } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
     }
 
+    @Override
+    public List<CancionDominio> listarCancionesPorFiltro(String filtro) throws NegocioException {
+        try {
+            return cancionNegocio.listarCancionesPorFiltro(filtro);
+        } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
 }

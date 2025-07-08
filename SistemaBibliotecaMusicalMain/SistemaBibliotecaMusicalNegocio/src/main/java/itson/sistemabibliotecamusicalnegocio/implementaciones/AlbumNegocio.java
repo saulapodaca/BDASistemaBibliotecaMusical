@@ -10,8 +10,6 @@ import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalpersistencia.daos.IAlbumDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -26,13 +24,27 @@ public class AlbumNegocio implements IAlbumNegocio {
     }
 
     @Override
-    public List<AlbumDominio> listarPorFiltro(String filtro) throws NegocioException {
+    public List<AlbumDominio> listarTodosLosAlbumes() throws NegocioException {
         try {
-            return albumDAO.listarPorFiltro(filtro);
+            return albumDAO.listarTodosLosAlbumes();
         } catch (PersistenciaException ex) {
-            Logger.getLogger(AlbumNegocio.class.getName()).log(Level.SEVERE, null, ex);
+            throw new NegocioException("Ha ocurrido un error al listar todos los albumes");
         }
-        return null;
     }
 
+    @Override
+    public List<AlbumDominio> listarAlbumesPorFiltro(String filtro) throws NegocioException {
+        try {
+            filtroValido(filtro);
+            return albumDAO.listarAlbumesPorFiltro(filtro);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Ha ocurrido un error al listar todos los albumes por filtro");
+        }
+    }
+
+    private void filtroValido(String filtro) throws NegocioException {
+        if (filtro == null || filtro.trim().isEmpty()) {
+            throw new NegocioException("El filtro no puede estar vacio");
+        }
+    }
 }

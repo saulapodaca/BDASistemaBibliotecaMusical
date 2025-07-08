@@ -10,8 +10,6 @@ import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalpersistencia.daos.ICancionDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -24,15 +22,29 @@ public class CancionNegocio implements ICancionNegocio {
     public CancionNegocio(ICancionDAO cancionDAO) {
         this.cancionDAO = cancionDAO;
     }
-    
+
     @Override
-    public List<CancionDominio> listarPorFiltro(String filtro) throws NegocioException {
+    public List<CancionDominio> listarTodasLasCanciones() throws NegocioException {
         try {
-            return cancionDAO.listarPorFiltro(filtro);
+            return cancionDAO.listarTodasLasCanciones();
         } catch (PersistenciaException ex) {
-            Logger.getLogger(CancionNegocio.class.getName()).log(Level.SEVERE, null, ex);
+            throw new NegocioException("Ha ocurrido un error al listar todas las canciones");
         }
-        return null;
+    }
+
+    @Override
+    public List<CancionDominio> listarCancionesPorFiltro(String filtro) throws NegocioException {
+        try {
+            filtroValido(filtro);
+            return cancionDAO.listarCancionesPorFiltro(filtro);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Ha ocurrido un error al listar todas las canciones por filtro");
+        }
     }
     
+    private void filtroValido(String filtro) throws NegocioException {
+        if (filtro == null || filtro.trim().isEmpty()) {
+            throw new NegocioException("El filtro no puede estar vacio");
+        }
+    }
 }

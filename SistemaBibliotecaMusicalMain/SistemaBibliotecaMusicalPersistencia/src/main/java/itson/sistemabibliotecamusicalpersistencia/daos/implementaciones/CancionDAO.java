@@ -16,12 +16,13 @@ import java.util.List;
 public class CancionDAO implements ICancionDAO{
 
     @Override
-    public List<CancionDominio> listarPorFiltro(String filtro) throws PersistenciaException {
-        
+    public List<CancionDominio> listarTodasLasCanciones() throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    
     }
-    
-    
+
+    @Override
+    public List<CancionDominio> listarCancionesPorFiltro(String filtro) throws PersistenciaException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

@@ -13,5 +13,8 @@ import java.util.List;
  * @author adell
  */
 public interface IAlbumDAO {
-   List<AlbumDominio> listarPorFiltro(String filtro) throws PersistenciaException; 
+    
+    List<AlbumDominio> listarTodosLosAlbumes() throws PersistenciaException;
+    
+    List<AlbumDominio> listarAlbumesPorFiltro(String filtro) throws PersistenciaException; 
 }

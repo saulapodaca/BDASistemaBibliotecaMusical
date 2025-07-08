@@ -25,11 +25,23 @@ public class AlbumFachada implements IAlbumFachada{
         IAlbumDAO albumDAO = new AlbumDAO();
         this.albumNegocio = new AlbumNegocio(albumDAO);
     }
-    
-    
+
     @Override
-    public List<AlbumDominio> listarPorFiltro(String filtro) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<AlbumDominio> listarTodosLosAlbumes() throws NegocioException {
+        try {
+            return albumNegocio.listarTodosLosAlbumes();
+        } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<AlbumDominio> listarAlbumesPorFiltro(String filtro) throws NegocioException {
+        try {
+            return albumNegocio.listarAlbumesPorFiltro(filtro);
+        } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
     }
     
 }

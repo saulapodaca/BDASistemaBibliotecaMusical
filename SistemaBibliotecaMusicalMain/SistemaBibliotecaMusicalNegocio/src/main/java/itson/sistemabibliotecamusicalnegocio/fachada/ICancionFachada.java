@@ -13,5 +13,9 @@ import java.util.List;
  * @author adell
  */
 public interface ICancionFachada {
-        List<CancionDominio> listarPorFiltro(String filtro) throws NegocioException;
+    
+    List<CancionDominio> listarTodasLasCanciones() throws NegocioException;
+
+    List<CancionDominio> listarCancionesPorFiltro(String filtro) throws NegocioException;
+    
 }

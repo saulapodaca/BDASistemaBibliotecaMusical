@@ -16,7 +16,12 @@ import java.util.List;
 public class AlbumDAO implements IAlbumDAO{
 
     @Override
-    public List<AlbumDominio> listarPorFiltro(String filtro) throws PersistenciaException {
+    public List<AlbumDominio> listarTodosLosAlbumes() throws PersistenciaException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<AlbumDominio> listarAlbumesPorFiltro(String filtro) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
