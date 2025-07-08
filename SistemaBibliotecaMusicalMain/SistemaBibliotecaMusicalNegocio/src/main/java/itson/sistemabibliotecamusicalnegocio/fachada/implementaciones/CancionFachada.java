@@ -21,7 +21,7 @@ public class CancionFachada implements ICancionFachada {
 
     private ICancionNegocio cancionNegocio;
 
-    public CancionFachada(ICancionNegocio cancionNegocio) {
+    public CancionFachada() {
         ICancionDAO cancionDAO = new CancionDAO();
         this.cancionNegocio = new CancionNegocio(cancionDAO);
     }
