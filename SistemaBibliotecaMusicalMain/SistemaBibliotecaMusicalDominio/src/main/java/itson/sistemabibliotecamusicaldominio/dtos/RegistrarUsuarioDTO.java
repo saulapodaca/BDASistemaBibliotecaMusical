@@ -2,7 +2,7 @@ package itson.sistemabibliotecamusicaldominio.dtos;
 
 //@author SAUL ISAAC APODACA BALDENEGRO 00000252020
 
-public class UsuarioRegistradoDTO {
+public class RegistrarUsuarioDTO {
 
     private String usuario;
     private String contraseniaHasheada;
@@ -10,10 +10,10 @@ public class UsuarioRegistradoDTO {
     private String correo;
     private String imagen;
     
-    public UsuarioRegistradoDTO() {
+    public RegistrarUsuarioDTO() {
     }
 
-    public UsuarioRegistradoDTO(String usuario, char[] contrasenia, String correo, String imagen) {
+    public RegistrarUsuarioDTO(String usuario, char[] contrasenia, String correo, String imagen) {
         this.usuario = usuario;
         this.contrasenia = contrasenia;
         this.correo = correo;

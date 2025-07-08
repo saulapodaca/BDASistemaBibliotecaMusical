@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicalnegocio.fachada;
 
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 
@@ -16,5 +17,7 @@ public interface IUsuarioFachada {
     
     //void guardarEnFavoritos(String idUsuario, Object favorito ) throws NegocioException;
     public UsuarioDominio obtenerUsuarioPorNombre(UsuarioInicioSesionDTO usuario) throws NegocioException;
+    
+    public UsuarioDominio registrarUsuario(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException;
     
 }
