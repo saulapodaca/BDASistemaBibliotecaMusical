@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicalnegocio.bos.implementaciones;
 
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.ActualizarGenerosUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.ModificarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
@@ -14,6 +15,7 @@ import itson.sistemabibliotecamusicalpersistencia.daos.IUsuarioDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.io.File;
 import java.util.Arrays;
+import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -164,6 +166,24 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         if(usuarioExistente != null &&
                 !usuarioExistente.getId().equals(usuarioModificado.getId())){
             throw new NegocioException("Ya existe otro usuario con el mismo correo.");
+        }
+    }
+
+    @Override
+    public UsuarioDominio actualizarGenerosNoDeseados(ActualizarGenerosUsuarioDTO usuarioActualizar) throws NegocioException {
+        try{
+            return usuarioDAO.actualizarGenerosNoDeseados(usuarioActualizar);
+        }catch(PersistenciaException ex){
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<String> obtenerGenerosNoDeseados(UsuarioDominio usuarioDominio) throws NegocioException {
+        try{
+            return usuarioDAO.obtenerGenerosNoDeseados(usuarioDominio.getId());
+        }catch(PersistenciaException ex){
+            throw new NegocioException(ex.getMessage());
         }
     }
 }
