@@ -4,17 +4,34 @@
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
+import itson.sistemabibliotecamusicaldominio.dtos.ActualizarGenerosUsuarioDTO;
+import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
+import itson.sistemabibliotecamusicalnegocio.fachada.IArtistaFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.ArtistaFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.UsuarioFachada;
+import itson.sistemabibliotecamusicalpresentacion.utilidades.SesionUsuario;
+import java.util.Collections;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author saula
  */
 public class PanelGestionarGenerosNoDeseados extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelGestionarGenerosNoDeseados
-     */
+    private IArtistaFachada artistaFachada;
+    private IUsuarioFachada usuarioFachada;
+    private DefaultListModel<String> modeloDisponibles = new DefaultListModel<>();
+    private DefaultListModel<String> modeloNoDeseados = new DefaultListModel<>();
+
     public PanelGestionarGenerosNoDeseados() {
         initComponents();
+        this.artistaFachada = new ArtistaFachada();
+        this.usuarioFachada = new UsuarioFachada();
+        inicializarListas();
     }
 
     /**
@@ -31,9 +48,13 @@ public class PanelGestionarGenerosNoDeseados extends javax.swing.JPanel {
         btnGuardarCambios = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         panelGenerosDisp = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstGenerosDisponibles = new javax.swing.JList<>();
         lblGenerosDisp = new javax.swing.JLabel();
         lblGenerosNoDeseados = new javax.swing.JLabel();
         panelGenerosNoDeseados = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstGenerosNoDeseados = new javax.swing.JList<>();
         btnAgregar = new javax.swing.JButton();
         btnQuitar = new javax.swing.JButton();
 
@@ -62,39 +83,61 @@ public class PanelGestionarGenerosNoDeseados extends javax.swing.JPanel {
         panelGenerosDisp.setBackground(new java.awt.Color(215, 161, 220));
         panelGenerosDisp.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        lstGenerosDisponibles.setBackground(new java.awt.Color(215, 161, 220));
+        lstGenerosDisponibles.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        lstGenerosDisponibles.setForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(lstGenerosDisponibles);
+
         javax.swing.GroupLayout panelGenerosDispLayout = new javax.swing.GroupLayout(panelGenerosDisp);
         panelGenerosDisp.setLayout(panelGenerosDispLayout);
         panelGenerosDispLayout.setHorizontalGroup(
             panelGenerosDispLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 437, Short.MAX_VALUE)
+            .addGroup(panelGenerosDispLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelGenerosDispLayout.setVerticalGroup(
             panelGenerosDispLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 367, Short.MAX_VALUE)
+            .addGroup(panelGenerosDispLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         lblGenerosDisp.setBackground(new java.awt.Color(255, 255, 255));
-        lblGenerosDisp.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        lblGenerosDisp.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         lblGenerosDisp.setForeground(new java.awt.Color(75, 28, 113));
         lblGenerosDisp.setText("Géneros disponibles");
 
         lblGenerosNoDeseados.setBackground(new java.awt.Color(255, 255, 255));
-        lblGenerosNoDeseados.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        lblGenerosNoDeseados.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         lblGenerosNoDeseados.setForeground(new java.awt.Color(75, 28, 113));
         lblGenerosNoDeseados.setText("Géneros no deseados");
 
         panelGenerosNoDeseados.setBackground(new java.awt.Color(215, 161, 220));
         panelGenerosNoDeseados.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        lstGenerosNoDeseados.setBackground(new java.awt.Color(215, 161, 220));
+        lstGenerosNoDeseados.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        lstGenerosNoDeseados.setForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane2.setViewportView(lstGenerosNoDeseados);
+
         javax.swing.GroupLayout panelGenerosNoDeseadosLayout = new javax.swing.GroupLayout(panelGenerosNoDeseados);
         panelGenerosNoDeseados.setLayout(panelGenerosNoDeseadosLayout);
         panelGenerosNoDeseadosLayout.setHorizontalGroup(
             panelGenerosNoDeseadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 419, Short.MAX_VALUE)
+            .addGroup(panelGenerosNoDeseadosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelGenerosNoDeseadosLayout.setVerticalGroup(
             panelGenerosNoDeseadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelGenerosNoDeseadosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
 
         btnAgregar.setBackground(new java.awt.Color(75, 28, 113));
@@ -130,21 +173,23 @@ public class PanelGestionarGenerosNoDeseados extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
                         .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(402, 402, 402))))
-            .addGroup(panelContenedorLayout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(lblGenerosDisp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblGenerosNoDeseados)
-                .addGap(106, 106, 106))
-            .addGroup(panelContenedorLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(panelGenerosDisp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
                 .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQuitar, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelGenerosNoDeseados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelContenedorLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(panelGenerosDisp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnQuitar, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(panelContenedorLayout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(lblGenerosDisp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblGenerosNoDeseados)
+                    .addComponent(panelGenerosNoDeseados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43))
         );
         panelContenedorLayout.setVerticalGroup(
@@ -152,11 +197,11 @@ public class PanelGestionarGenerosNoDeseados extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContenedorLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblGenerosNoDeseados)
-                    .addComponent(lblGenerosDisp))
-                .addGap(18, 18, 18)
+                    .addComponent(lblGenerosDisp)
+                    .addComponent(lblGenerosNoDeseados))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelContenedorLayout.createSequentialGroup()
                         .addGroup(panelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -202,25 +247,63 @@ public class PanelGestionarGenerosNoDeseados extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
-
+        List<String> nuevosNoDeseados = Collections.list(modeloNoDeseados.elements());
+        try {
+            ActualizarGenerosUsuarioDTO usuarioActualizar = new ActualizarGenerosUsuarioDTO();
+            usuarioActualizar.setId(SesionUsuario.getUsuario().getId());
+            usuarioActualizar.setGenerosNoDeseados(nuevosNoDeseados);
+            usuarioFachada.actualizarGenerosNoDeseados(usuarioActualizar);
+            JOptionPane.showMessageDialog(this, "Cambios guardados correctamente.");
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnGuardarCambiosActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
+        for (String seleccionado : lstGenerosDisponibles.getSelectedValuesList()) {
+            modeloDisponibles.removeElement(seleccionado);
+            modeloNoDeseados.addElement(seleccionado);
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
-        // TODO add your handling code here:
+        for (String seleccionado : lstGenerosNoDeseados.getSelectedValuesList()) {
+            modeloNoDeseados.removeElement(seleccionado);
+            modeloDisponibles.addElement(seleccionado);
+        }
     }//GEN-LAST:event_btnQuitarActionPerformed
 
+    private void inicializarListas(){
+        try {
+            List<String> generosDisponibles = artistaFachada.obtenerTodosLosGeneros();
+            List<String> generosNoDeseados = usuarioFachada.obtenerGenerosNoDeseados(SesionUsuario.getUsuario());
+
+            for (String genero : generosDisponibles) {
+                if (generosNoDeseados.contains(genero)) {
+                    modeloNoDeseados.addElement(genero);
+                } else {
+                    modeloDisponibles.addElement(genero);
+                }
+            }
+
+            lstGenerosDisponibles.setModel(modeloDisponibles);
+            lstGenerosNoDeseados.setModel(modeloNoDeseados);
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnGuardarCambios;
     private javax.swing.JButton btnQuitar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblGenerosDisp;
     private javax.swing.JLabel lblGenerosNoDeseados;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JList<String> lstGenerosDisponibles;
+    private javax.swing.JList<String> lstGenerosNoDeseados;
     private javax.swing.JPanel panelContenedor;
     private javax.swing.JPanel panelFondo;
     private javax.swing.JPanel panelGenerosDisp;
