@@ -137,11 +137,9 @@ public class PanelBuscar extends javax.swing.JPanel {
         });
 
         jScrollPane1.setBackground(new java.awt.Color(219, 182, 238));
-        jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         panelListar.setBackground(new java.awt.Color(219, 182, 238));
-        panelListar.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout panelListarLayout = new javax.swing.GroupLayout(panelListar);
         panelListar.setLayout(panelListarLayout);
@@ -183,9 +181,9 @@ public class PanelBuscar extends javax.swing.JPanel {
                     .addComponent(btnCanciones)
                     .addComponent(btnAlbumes)
                     .addComponent(btnArtistas))
-                .addGap(33, 33, 33)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         btnBuscar.setBackground(new java.awt.Color(127, 76, 165));
@@ -199,8 +197,6 @@ public class PanelBuscar extends javax.swing.JPanel {
             }
         });
 
-        txtFieldBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        txtFieldBuscar.setForeground(new java.awt.Color(0, 0, 0));
         txtFieldBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtFieldBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
