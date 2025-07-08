@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package itson.sistemabibliotecamusicalnegocio;
+package itson.sistemabibliotecamusicalnegocio.bos;
 
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 
@@ -15,4 +16,6 @@ import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 public interface IUsuarioNegocio {
     
     public UsuarioDominio obtenerUsuarioPorNombre(UsuarioInicioSesionDTO usuario) throws NegocioException;
+    
+    public UsuarioDominio registrarUsuario(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException;
 }

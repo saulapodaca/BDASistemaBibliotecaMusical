@@ -5,11 +5,12 @@
 package itson.sistemabibliotecamusicalnegocio.fachada.implementaciones;
 
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
-import itson.sistemabibliotecamusicalnegocio.IUsuarioNegocio;
+import itson.sistemabibliotecamusicalnegocio.bos.IUsuarioNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
-import itson.sistemabibliotecamusicalnegocio.implementaciones.UsuarioNegocio;
+import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.UsuarioNegocio;
 import itson.sistemabibliotecamusicalpersistencia.daos.IUsuarioDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.UsuarioDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
@@ -40,5 +41,14 @@ public class UsuarioFachada implements IUsuarioFachada{
     }
     
     //boolean guardarEnFavoritos(ArtistaDTO artista) throws NegocioException;
+
+    @Override
+    public UsuarioDominio registrarUsuario(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException {
+        try{
+            return usuarioNegocio.registrarUsuario(nuevoUsuario);
+        }catch(NegocioException ex){
+            throw new NegocioException(ex.getMessage());
+        }
+    }
     
 }
