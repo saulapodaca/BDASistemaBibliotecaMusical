@@ -14,23 +14,28 @@ public class UsuarioDominio {
     private String contrasenia;
     private String correo;
     private String imagen;
-    private List<ArtistaDominio> artistasFavoritos;
-    private List<AlbumDominio> albumesFavoritos;
-    private List<CancionDominio> cancionesFavoritos;
+    private List<FavoritoDominio> favoritos;
     private List<String> generosNoDeseados;
 
     public UsuarioDominio() {
     }
 
-    public UsuarioDominio(ObjectId id, String nombreUsuario, String contrasenia, String correo, String imagen) {
+    public UsuarioDominio(ObjectId id, String nombreUsuario, String contrasenia, String correo, String imagen, List<FavoritoDominio> favoritos, List<String> generosNoDeseados) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
         this.correo = correo;
         this.imagen = imagen;
-        this.artistasFavoritos = new ArrayList<>();
-        this.albumesFavoritos = new ArrayList<>();
-        this.cancionesFavoritos = new ArrayList<>();
+        this.favoritos = favoritos;
+        this.generosNoDeseados = generosNoDeseados;
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     public String getNombreUsuario() {
@@ -65,28 +70,12 @@ public class UsuarioDominio {
         this.imagen = imagen;
     }
 
-    public List<ArtistaDominio> getArtistasFavoritos() {
-        return artistasFavoritos;
+    public List<FavoritoDominio> getFavoritos() {
+        return favoritos;
     }
 
-    public void setArtistasFavoritos(List<ArtistaDominio> artistasFavoritos) {
-        this.artistasFavoritos = artistasFavoritos;
-    }
-
-    public List<AlbumDominio> getAlbumesFavoritos() {
-        return albumesFavoritos;
-    }
-
-    public void setAlbumesFavoritos(List<AlbumDominio> albumesFavoritos) {
-        this.albumesFavoritos = albumesFavoritos;
-    }
-
-    public List<CancionDominio> getCancionesFavoritos() {
-        return cancionesFavoritos;
-    }
-
-    public void setCancionesFavoritos(List<CancionDominio> cancionesFavoritos) {
-        this.cancionesFavoritos = cancionesFavoritos;
+    public void setFavoritos(List<FavoritoDominio> favoritos) {
+        this.favoritos = favoritos;
     }
 
     public List<String> getGenerosNoDeseados() {
@@ -95,14 +84,6 @@ public class UsuarioDominio {
 
     public void setGenerosNoDeseados(List<String> generosNoDeseados) {
         this.generosNoDeseados = generosNoDeseados;
-    }
-
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
     }
     
 }
