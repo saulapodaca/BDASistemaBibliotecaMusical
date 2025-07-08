@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicalnegocio.bos.implementaciones;
 
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.ModificarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
 import itson.sistemabibliotecamusicalnegocio.bos.IUsuarioNegocio;
@@ -44,7 +45,7 @@ public class UsuarioNegocio implements IUsuarioNegocio {
 
     }
 
-    
+    //TODO:FALTA PONERLE LA IMAGEN DEFAULT Y HACER EL RESIZE PERO CREO QUE ESO ES AL MOSTRAR
     @Override
     public UsuarioDominio registrarUsuario(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException {
         try{
@@ -59,24 +60,30 @@ public class UsuarioNegocio implements IUsuarioNegocio {
             throw new NegocioException("Ocurrió un error al registrar al usuario.");
         }
     }
+    
+    @Override
+    public UsuarioDominio modificarUsuario(ModificarUsuarioDTO usuarioModificado) throws NegocioException {
+        try{
+            validarModificarUsuario(usuarioModificado);
+            return usuarioDAO.modificarUsuario(usuarioModificado);
+        }catch(PersistenciaException ex){
+            throw new NegocioException("Error al modificar el usuario");
+        }
+    }
 
     private String encriptarContrasena(String textoPlano) throws NegocioException {
-        try {
-            String hash = BCrypt.hashpw(textoPlano, BCrypt.gensalt());
-            return hash;
-        } catch (Exception ex) {
-            throw new NegocioException("Error al encriptar la contraseña.");
-        }
+        String hash = BCrypt.hashpw(textoPlano, BCrypt.gensalt());
+        return hash;
     }
     
     private void validarNuevoUsuario(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException, PersistenciaException{
-        validarNombreUsuarioNoVacio(nuevoUsuario);
-        validarCorreoNoVacio(nuevoUsuario);
-        validarFormatoCorreo(nuevoUsuario);
+        validarNombreUsuarioNoVacio(nuevoUsuario.getUsuario());
+        validarCorreoNoVacio(nuevoUsuario.getCorreo());
+        validarFormatoCorreo(nuevoUsuario.getCorreo());
         validarNombreUsuarioNoDuplicado(nuevoUsuario);
         validarCorreoNoDuplicado(nuevoUsuario);
         validarContrasenia(nuevoUsuario);
-        validarFotoPerfil(nuevoUsuario);
+        validarFotoPerfil(nuevoUsuario.getImagen());
     }
 
     private void validarNombreUsuarioNoDuplicado(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException, PersistenciaException {
@@ -104,32 +111,59 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
 
-    private void validarNombreUsuarioNoVacio(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException {
-        if (nuevoUsuario.getUsuario() == null || nuevoUsuario.getUsuario().isBlank()) {
+    private void validarNombreUsuarioNoVacio(String nombre) throws NegocioException {
+        if (nombre == null || nombre.isBlank()) {
             throw new NegocioException("El nombre de usuario no puede estar vacío.");
         }
     }
 
-    private void validarCorreoNoVacio(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException {
-        if (nuevoUsuario.getCorreo() == null || nuevoUsuario.getCorreo().isBlank()) {
+    private void validarCorreoNoVacio(String correo) throws NegocioException {
+        if (correo == null || correo.isBlank()) {
             throw new NegocioException("El correo electrónico no puede estar vacío.");
         }
     }
   
-    private void validarFormatoCorreo(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException {
-        if (!nuevoUsuario.getCorreo().matches(PATRON_CORREO)) {
+    private void validarFormatoCorreo(String correo) throws NegocioException {
+        if (!correo.matches(PATRON_CORREO)) {
             throw new NegocioException("El correo electrónico no tiene un formato válido.");
         }
     }
     
-    private void validarFotoPerfil(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException {
-        if (nuevoUsuario.getImagen() == null || nuevoUsuario.getImagen().trim().isEmpty()) {
+    private void validarFotoPerfil(String imagen) throws NegocioException {
+        if (imagen == null || imagen.trim().isEmpty()) {
             return;
         } else {
-            File archivo = new File(nuevoUsuario.getImagen().trim());
+            File archivo = new File(imagen.trim());
             if (!archivo.exists()) {
                 throw new NegocioException("La imagen seleccionada no existe");
             }
+        }
+    }
+
+    private void validarModificarUsuario(ModificarUsuarioDTO usuarioModificado) throws NegocioException, PersistenciaException{
+        validarNombreUsuarioNoVacio(usuarioModificado.getNombre());
+        validarCorreoNoVacio(usuarioModificado.getCorreo());
+        validarFormatoCorreo(usuarioModificado.getCorreo());
+        validarFotoPerfil(usuarioModificado.getImagen());
+        validarNuevoNombre(usuarioModificado);
+        validarNuevoCorreo(usuarioModificado);
+    }
+    
+    
+    private void validarNuevoNombre(ModificarUsuarioDTO usuarioModificado) throws PersistenciaException, NegocioException{
+        UsuarioDominio usuarioExistente = usuarioDAO.obtenerUsuarioPorNombre(
+                usuarioModificado.getNombre());
+        if(usuarioExistente != null && 
+                !usuarioExistente.getId().equals(usuarioModificado.getId())){
+            throw new NegocioException("Ya existe otro usuario con ese nombre.");
+        }
+    }
+    
+    private void validarNuevoCorreo(ModificarUsuarioDTO usuarioModificado) throws NegocioException, PersistenciaException{
+        UsuarioDominio usuarioExistente = usuarioDAO.obtenerUsuarioPorCorreo(usuarioModificado.getCorreo());
+        if(usuarioExistente != null &&
+                !usuarioExistente.getId().equals(usuarioModificado.getId())){
+            throw new NegocioException("Ya existe otro usuario con el mismo correo.");
         }
     }
 }

@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicalnegocio.fachada.implementaciones;
 
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.ModificarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
 import itson.sistemabibliotecamusicalnegocio.bos.IUsuarioNegocio;
@@ -47,6 +48,15 @@ public class UsuarioFachada implements IUsuarioFachada{
         try{
             return usuarioNegocio.registrarUsuario(nuevoUsuario);
         }catch(NegocioException ex){
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public UsuarioDominio modificarUsuario(ModificarUsuarioDTO usuarioModificado) throws NegocioException {
+        try{
+            return usuarioNegocio.modificarUsuario(usuarioModificado);
+        }catch (NegocioException ex){
             throw new NegocioException(ex.getMessage());
         }
     }
