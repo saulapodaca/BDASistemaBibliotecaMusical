@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package itson.sistemabibliotecamusicalnegocio.implementaciones;
+package itson.sistemabibliotecamusicalnegocio.bos.implementaciones;
 
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
-import itson.sistemabibliotecamusicalnegocio.IArtistaNegocio;
+import itson.sistemabibliotecamusicalnegocio.bos.IArtistaNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
@@ -65,6 +65,15 @@ public class ArtistaNegocio implements IArtistaNegocio{
     private void filtroValido(String filtro) throws NegocioException {
         if (filtro == null || filtro.trim().isEmpty()) {
             throw new NegocioException("El filtro no puede estar vacio");
+        }
+    }
+
+    @Override
+    public List<String> obtenerTodosLosGeneros() throws NegocioException {
+        try{
+            return artistaDAO.obtenerTodosLosGeneros();
+        }catch(PersistenciaException ex){
+            throw new NegocioException(ex.getMessage());
         }
     }
     

@@ -23,5 +23,5 @@ public interface IArtistaFachada {
 
     List<ArtistaDominio> listarArtistasPorFiltro(String filtro) throws NegocioException;
 
-    
+    public List<String> obtenerTodosLosGeneros() throws NegocioException;
 }

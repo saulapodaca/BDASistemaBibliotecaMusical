@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicalnegocio.fachada.implementaciones;
 
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.ActualizarGenerosUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.ModificarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
@@ -14,7 +15,7 @@ import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
 import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.UsuarioNegocio;
 import itson.sistemabibliotecamusicalpersistencia.daos.IUsuarioDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.UsuarioDAO;
-import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
+import java.util.List;
 
 /**
  *
@@ -60,5 +61,23 @@ public class UsuarioFachada implements IUsuarioFachada{
             throw new NegocioException(ex.getMessage());
         }
     }
-    
+
+    @Override
+    public UsuarioDominio actualizarGenerosNoDeseados(ActualizarGenerosUsuarioDTO usuarioActualizar) throws NegocioException {
+        try{
+            return usuarioNegocio.actualizarGenerosNoDeseados(usuarioActualizar);
+        }catch(NegocioException ex){
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<String> obtenerGenerosNoDeseados(UsuarioDominio usuarioDominio) throws NegocioException {
+        try {
+            return usuarioNegocio.obtenerGenerosNoDeseados(usuarioDominio);
+        } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
 }

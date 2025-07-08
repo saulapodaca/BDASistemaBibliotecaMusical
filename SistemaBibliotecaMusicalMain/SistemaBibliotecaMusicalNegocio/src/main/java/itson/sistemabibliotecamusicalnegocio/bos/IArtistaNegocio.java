@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package itson.sistemabibliotecamusicalnegocio;
+package itson.sistemabibliotecamusicalnegocio.bos;
 
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
@@ -22,4 +22,6 @@ public interface IArtistaNegocio {
     List<ArtistaDominio> listarTodosLosArtistas() throws NegocioException;
 
     List<ArtistaDominio> listarArtistasPorFiltro(String filtro) throws NegocioException;
+    
+    public List<String> obtenerTodosLosGeneros() throws NegocioException;
 }

@@ -6,10 +6,10 @@ package itson.sistemabibliotecamusicalnegocio.fachada.implementaciones;
 
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
-import itson.sistemabibliotecamusicalnegocio.IArtistaNegocio;
+import itson.sistemabibliotecamusicalnegocio.bos.IArtistaNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IArtistaFachada;
-import itson.sistemabibliotecamusicalnegocio.implementaciones.ArtistaNegocio;
+import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.ArtistaNegocio;
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.ArtistaDAO;
 import java.util.List;
@@ -59,6 +59,15 @@ public class ArtistaFachada implements IArtistaFachada{
         try {
             return artistaNegocio.listarArtistasPorFiltro(filtro);
         } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<String> obtenerTodosLosGeneros() throws NegocioException {
+        try{
+            return artistaNegocio.obtenerTodosLosGeneros();
+        }catch(NegocioException ex){
             throw new NegocioException(ex.getMessage());
         }
     }
