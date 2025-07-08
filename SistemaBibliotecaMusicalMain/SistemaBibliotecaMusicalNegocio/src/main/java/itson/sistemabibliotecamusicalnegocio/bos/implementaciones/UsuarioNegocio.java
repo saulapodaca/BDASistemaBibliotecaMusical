@@ -38,8 +38,10 @@ public class UsuarioNegocio implements IUsuarioNegocio {
             if (usuarioRegistrado == null) {
                 return null;
             }
+            String contraseñaPlano = new String (usuario.getContrasenia());
             boolean contrasenaValida = BCrypt.checkpw(
-                    usuario.getContrasenia().toString(), usuarioRegistrado.getContrasenia());
+                    contraseñaPlano, usuarioRegistrado.getContrasenia());
+            System.out.println(contrasenaValida);
             return contrasenaValida ? usuarioRegistrado : null;
         } catch (PersistenciaException ex) {
             throw new NegocioException(ex.getMessage());
@@ -52,8 +54,9 @@ public class UsuarioNegocio implements IUsuarioNegocio {
     public UsuarioDominio registrarUsuario(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException {
         try{
             validarNuevoUsuario(nuevoUsuario);
+            String contraseñaPlano = new String (nuevoUsuario.getContrasenia());
             nuevoUsuario.setContraseniaHasheada(
-                    encriptarContrasena(nuevoUsuario.getContrasenia().toString()));
+                    encriptarContrasena(contraseñaPlano));
             if (nuevoUsuario.getContrasenia() != null) {
                 Arrays.fill(nuevoUsuario.getContrasenia(), '\0');
             }
