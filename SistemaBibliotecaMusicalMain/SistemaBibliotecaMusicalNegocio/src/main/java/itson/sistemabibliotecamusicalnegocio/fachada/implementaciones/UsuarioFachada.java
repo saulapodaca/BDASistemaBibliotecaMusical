@@ -16,7 +16,7 @@ import itson.sistemabibliotecamusicalnegocio.bos.IUsuarioNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
 import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.UsuarioNegocio;
-import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
+import itson.sistemabibliotecamusicalpersistencia.daos.IConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IUsuarioDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.ConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.UsuarioDAO;

@@ -16,15 +16,20 @@ import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.UsuarioFac
 import itson.sistemabibliotecamusicalpresentacion.utilidades.SesionUsuario;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -290,8 +295,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
             List<ResultadosDTO> todo = usuarioFachada.listarFavoritos(usuario.getGenerosNoDeseados());
             cargarFavoritos(todo);
         } catch (NegocioException ex) {
-            JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "No se pudo filtrar por todo");
         }
     }//GEN-LAST:event_btnTodoActionPerformed
 
@@ -300,7 +304,6 @@ public class PanelFavoritos extends javax.swing.JPanel {
              buscarConParametros();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No se pudo realizar la busqueda");
-            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -317,7 +320,6 @@ public class PanelFavoritos extends javax.swing.JPanel {
             cargarFavoritos(canciones);
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
-            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnCancionesActionPerformed
 
@@ -330,7 +332,6 @@ public class PanelFavoritos extends javax.swing.JPanel {
             cargarFavoritos(albumes);
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por albumes");
-            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnAlbumesActionPerformed
 
@@ -343,17 +344,11 @@ public class PanelFavoritos extends javax.swing.JPanel {
             cargarFavoritos(artistas);
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por artistas");
-            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnArtistasActionPerformed
 
     private void buscarConParametros() {
         String texto = txtFieldBuscar.getText().trim();
-
-        if (texto.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor introduce un texto para buscar.");
-            return;
-        }
 
         try {
             switch (tipoFiltroSeleccionado) {
@@ -376,7 +371,6 @@ public class PanelFavoritos extends javax.swing.JPanel {
             }
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo realizar la busqueda");
-            ex.printStackTrace();
         }
     }
     
@@ -398,24 +392,33 @@ public class PanelFavoritos extends javax.swing.JPanel {
         try {
             JPanel panelInterno = new JPanel();
             panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
+            panelInterno.setPreferredSize(new Dimension(750, registros.size() * 50));
 
             for (Object o : registros) {
-                JPanel panelElemento = new JPanel(new BorderLayout());
-                panelElemento.setMaximumSize(new Dimension(700, 40));
-                panelElemento.setBackground(Color.getHSBColor(219, 182, 238));
+                
+                JPanel panelElemento = new JPanel();
+                panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
+                panelElemento.setPreferredSize(new Dimension(700, 50));
+                panelElemento.setMaximumSize(new Dimension(700, 50));
+                panelElemento.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+                panelElemento.setBackground(new Color(219, 182, 238));
 
                 JButton btnInfo = new JButton();
-                JButton btnFavorito = new JButton("☆");
-
                 btnInfo.setFont(new Font("Arial", Font.PLAIN, 14));
-                panelElemento.add(btnInfo, BorderLayout.WEST);
+                btnInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
+                btnInfo.setHorizontalAlignment(SwingConstants.LEFT);
+                btnInfo.setPreferredSize(new Dimension(600, 40));
+                btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
 
+                JButton btnFavorito = new JButton("☆");
                 btnFavorito.setFocusPainted(false);
                 btnFavorito.setForeground(Color.GRAY);
+                btnFavorito.setPreferredSize(new Dimension(50, 40));
+                btnFavorito.setMaximumSize(new Dimension(50, 40));
 
                 switch (o) {
                     case ArtistaDominio artista -> {
-                        btnInfo.setText(artista.getImagen() + artista.getNombre() + " - " + artista.getGenero());
+                        btnInfo.setText(artista.getNombre() + " - " + artista.getGenero());
                         btnInfo.addActionListener(e -> {
                             new ArtistaFrm().setVisible(true);
                             this.setVisible(false);
@@ -441,7 +444,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
                         });
                     }
                     case AlbumDominio album -> {
-                        btnInfo.setText(album.getImagenPortada() + album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
+                        btnInfo.setText(album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
                         btnInfo.addActionListener(e -> {
                             new CancionesFrm().setVisible(true);
                             this.setVisible(false);
@@ -485,16 +488,19 @@ public class PanelFavoritos extends javax.swing.JPanel {
                     }
                 }
 
-                panelElemento.add(btnFavorito, BorderLayout.EAST);
+                panelElemento.add(btnInfo);
+                panelElemento.add(Box.createHorizontalStrut(10));
+                panelElemento.add(btnFavorito);
                 panelInterno.add(panelElemento);
             }
+            JScrollPane scrollPane = new JScrollPane(panelInterno);
             panelListar.removeAll();
-            panelListar.add(panelInterno);
+            panelListar.setLayout(new BorderLayout());
+            panelListar.add(panelInterno, BorderLayout.NORTH);
             panelListar.revalidate();
             panelListar.repaint();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de la biblioteca musical");
-            ex.printStackTrace();
         }
     }
     

@@ -9,7 +9,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import itson.sistemabibliotecamusicaldominio.AlbumDominio;
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
-import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
+import itson.sistemabibliotecamusicalpersistencia.daos.IConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IAlbumDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.ArrayList;

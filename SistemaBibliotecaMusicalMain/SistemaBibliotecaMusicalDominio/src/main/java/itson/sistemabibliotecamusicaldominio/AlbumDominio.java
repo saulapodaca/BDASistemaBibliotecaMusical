@@ -24,6 +24,7 @@ public class AlbumDominio {
     }
 
     public AlbumDominio(String nombre, String fechaLanzamiento, String generoMusical, String imagenPortada, List<CancionDominio> canciones) {
+        this.id = new ObjectId();
         this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
         this.generoMusical = generoMusical;

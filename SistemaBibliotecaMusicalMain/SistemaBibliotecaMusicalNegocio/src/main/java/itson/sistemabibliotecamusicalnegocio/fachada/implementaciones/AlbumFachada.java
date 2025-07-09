@@ -9,7 +9,7 @@ import itson.sistemabibliotecamusicalnegocio.bos.IAlbumNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IAlbumFachada;
 import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.AlbumNegocio;
-import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
+import itson.sistemabibliotecamusicalpersistencia.daos.IConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IAlbumDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.AlbumDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.ConexionBD;

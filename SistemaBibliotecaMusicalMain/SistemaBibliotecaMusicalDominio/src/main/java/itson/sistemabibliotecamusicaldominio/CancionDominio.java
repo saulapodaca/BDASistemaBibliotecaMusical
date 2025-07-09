@@ -19,6 +19,7 @@ public class CancionDominio {
     }
     
     public CancionDominio(String nombre) {
+        this.id = new ObjectId();
         this.nombre = nombre;
     }
 

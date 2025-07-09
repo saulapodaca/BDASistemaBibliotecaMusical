@@ -19,7 +19,7 @@ import itson.sistemabibliotecamusicaldominio.dtos.ActualizarGenerosUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.ModificarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
-import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
+import itson.sistemabibliotecamusicalpersistencia.daos.IConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.IUsuarioDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;

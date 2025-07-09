@@ -282,7 +282,7 @@ public class PanelBuscar extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldBuscarActionPerformed
-
+        
     }//GEN-LAST:event_txtFieldBuscarActionPerformed
 
     private void btnCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancionesActionPerformed
@@ -322,7 +322,7 @@ public class PanelBuscar extends javax.swing.JPanel {
     }//GEN-LAST:event_btnArtistasActionPerformed
 
     private void txtFieldBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFieldBuscarKeyReleased
-
+        buscarConParametros();
     }//GEN-LAST:event_txtFieldBuscarKeyReleased
 
     private void buscarConParametros() {
