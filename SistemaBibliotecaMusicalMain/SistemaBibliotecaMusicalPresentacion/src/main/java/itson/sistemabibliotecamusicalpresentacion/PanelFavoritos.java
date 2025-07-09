@@ -47,6 +47,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
     public PanelFavoritos() {
         this.usuarioFachada = new UsuarioFachada();
         initComponents();
+
     }
 
     /**

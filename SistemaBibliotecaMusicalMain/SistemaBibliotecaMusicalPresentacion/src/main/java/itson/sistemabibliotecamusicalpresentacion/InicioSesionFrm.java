@@ -20,11 +20,14 @@ import javax.swing.JOptionPane;
 public class InicioSesionFrm extends javax.swing.JFrame {
 
     private final IUsuarioFachada usuarioFachada;
+
     /**
      * Creates new form FrameInicioSesion
      */
     public InicioSesionFrm() {
         initComponents();
+        this.setLocationRelativeTo(null);
+
         this.usuarioFachada = new UsuarioFachada();
     }
 
@@ -253,14 +256,16 @@ public class InicioSesionFrm extends javax.swing.JFrame {
         });
     }
 
-    private void validarCampos() throws NegocioException{
-        if(txtUsuario.getText().trim().isEmpty()
-                || txtUsuario.getText().trim().isBlank())
+    private void validarCampos() throws NegocioException {
+        if (txtUsuario.getText().trim().isEmpty()
+                || txtUsuario.getText().trim().isBlank()) {
             throw new NegocioException("Ingrese el usuario.");
-        if(passwordContraseña.getPassword().length<1)
+        }
+        if (passwordContraseña.getPassword().length < 1) {
             throw new NegocioException("Ingrese la contraseña.");
+        }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnRegistrarse;

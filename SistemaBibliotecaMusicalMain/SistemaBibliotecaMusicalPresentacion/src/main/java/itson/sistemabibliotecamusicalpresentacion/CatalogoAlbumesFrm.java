@@ -52,7 +52,6 @@ public class CatalogoAlbumesFrm extends javax.swing.JFrame {
 
         initComponents();
         this.setLocationRelativeTo(null);
-
         cargarBiblioteca();
 
     }

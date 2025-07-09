@@ -15,6 +15,8 @@ public class ArtistaFrm extends javax.swing.JFrame {
      */
     public ArtistaFrm() {
         initComponents();
+        this.setLocationRelativeTo(null);
+
     }
 
     /**

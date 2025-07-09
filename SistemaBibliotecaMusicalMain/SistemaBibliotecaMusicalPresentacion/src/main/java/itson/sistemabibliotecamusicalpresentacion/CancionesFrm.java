@@ -15,6 +15,8 @@ public class CancionesFrm extends javax.swing.JFrame {
      */
     public CancionesFrm() {
         initComponents();
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
