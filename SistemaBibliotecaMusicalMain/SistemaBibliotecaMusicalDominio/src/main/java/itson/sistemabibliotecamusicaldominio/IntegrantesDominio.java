@@ -24,6 +24,7 @@ public class IntegrantesDominio {
     }
 
     public IntegrantesDominio(String nombre, String rol, LocalDate fechaIngreso, boolean activo) {
+        this.id = new ObjectId();
         this.nombre = nombre;
         this.rol = rol;
         this.fechaIngreso = fechaIngreso;

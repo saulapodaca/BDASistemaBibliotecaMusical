@@ -25,6 +25,7 @@ public class ArtistaDominio {
     }
 
     public ArtistaDominio(String nombre, String genero, String imagen, boolean esBanda, List<IntegrantesDominio> integrantes, List<AlbumDominio> albumes) {
+        this.id = new ObjectId();
         this.nombre = nombre;
         this.genero = genero;
         this.imagen = imagen;

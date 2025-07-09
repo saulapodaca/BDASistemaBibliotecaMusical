@@ -13,6 +13,7 @@ public class FavoritoDominio {
     private Date fechaAgregado;
 
     public FavoritoDominio(TipoFavoritoEnum tipo, ObjectId referenciaFavorito) {
+        this.id = new ObjectId();
         this.tipo = tipo;
         this.referenciaFavorito = referenciaFavorito;
         this.fechaAgregado = new Date();
