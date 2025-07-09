@@ -14,6 +14,7 @@ import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalpersistencia.daos.IUsuarioDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.io.File;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
@@ -49,7 +50,6 @@ public class UsuarioNegocio implements IUsuarioNegocio {
 
     }
 
-    //TODO:FALTA PONERLE LA IMAGEN DEFAULT
     @Override
     public UsuarioDominio registrarUsuario(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException {
         try{
@@ -136,7 +136,7 @@ public class UsuarioNegocio implements IUsuarioNegocio {
     
     private String validarFotoPerfil(String imagen) throws NegocioException {
         if (imagen == null || imagen.trim().isEmpty()) {
-            return "C:\\Users\\saula\\OneDrive\\Documentos\\NetBeansProjects\\BDASistemaBibliotecaMusical\\SistemaBibliotecaMusicalMain\\SistemaBibliotecaMusicalPersistencia\\src\\main\\resources\\imagenPerfilDefault.png";
+            return "src\\main\\resources\\imagenPerfilDefault.png";
         } else {
             File archivo = new File(imagen.trim());
             if (!archivo.exists()) {
@@ -190,4 +190,5 @@ public class UsuarioNegocio implements IUsuarioNegocio {
             throw new NegocioException(ex.getMessage());
         }
     }
+
 }
