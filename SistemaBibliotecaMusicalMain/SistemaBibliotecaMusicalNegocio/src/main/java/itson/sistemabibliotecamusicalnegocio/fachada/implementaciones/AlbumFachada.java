@@ -9,8 +9,10 @@ import itson.sistemabibliotecamusicalnegocio.bos.IAlbumNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IAlbumFachada;
 import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.AlbumNegocio;
+import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IAlbumDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.AlbumDAO;
+import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.ConexionBD;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -23,7 +25,8 @@ public class AlbumFachada implements IAlbumFachada{
     private IAlbumNegocio albumNegocio;
 
     public AlbumFachada() {
-        IAlbumDAO albumDAO = new AlbumDAO();
+        IConexionBD conexion = new ConexionBD();
+        IAlbumDAO albumDAO = new AlbumDAO(conexion);
         this.albumNegocio = new AlbumNegocio(albumDAO);
     }
 

@@ -19,6 +19,7 @@ import itson.sistemabibliotecamusicaldominio.dtos.ActualizarGenerosUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.ModificarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
+import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.IUsuarioDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
@@ -33,17 +34,17 @@ import org.bson.types.ObjectId;
 public class UsuarioDAO implements IUsuarioDAO{
 
     private IArtistaDAO artistaDAO;
-    //falta conexion
+    private final IConexionBD conexionBD;
     
-    public UsuarioDAO() {
-        //falta conexion
-        this.artistaDAO = new ArtistaDAO();
+    public UsuarioDAO(IConexionBD conexionBD) {
+        this.conexionBD = conexionBD;
+        this.artistaDAO = new ArtistaDAO(conexionBD);
     }
 
     @Override
     public UsuarioDominio obtenerUsuarioPorNombre(String nombreUsuario) throws PersistenciaException {
         try {
-            MongoDatabase bd = new ConexionBD().conexion();
+            MongoDatabase bd = conexionBD.conexion();
             MongoCollection<UsuarioDominio> collection = bd.getCollection("usuarios", UsuarioDominio.class);
 
             return collection.find(eq("nombreUsuario", nombreUsuario)).first();
@@ -55,7 +56,7 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public UsuarioDominio obtenerUsuarioPorCorreo(String correo) throws PersistenciaException {
         try {
-            MongoDatabase bd = new ConexionBD().conexion();
+            MongoDatabase bd = conexionBD.conexion();
             MongoCollection<UsuarioDominio> collection = bd.getCollection("usuarios", UsuarioDominio.class);
 
             return collection.find(eq("correo", correo)).first();
@@ -67,7 +68,7 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public UsuarioDominio registrarUsuario(RegistrarUsuarioDTO nuevoUsuario) throws PersistenciaException {
         try {
-            MongoDatabase bd = new ConexionBD().conexion();
+            MongoDatabase bd = conexionBD.conexion();
             MongoCollection<UsuarioDominio> collection = 
                     bd.getCollection("usuarios", UsuarioDominio.class);
             UsuarioDominio usuario = new UsuarioDominio();
@@ -90,7 +91,7 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public UsuarioDominio modificarUsuario(ModificarUsuarioDTO usuarioModificado) throws PersistenciaException {
         try{
-            MongoDatabase bd = new ConexionBD().conexion();
+            MongoDatabase bd = conexionBD.conexion();
             MongoCollection<UsuarioDominio> collection = 
                     bd.getCollection("usuarios", UsuarioDominio.class);
             
@@ -111,7 +112,7 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public UsuarioDominio actualizarGenerosNoDeseados(ActualizarGenerosUsuarioDTO usuarioActualizar) throws PersistenciaException {
         try{
-            MongoDatabase bd = new ConexionBD().conexion();
+            MongoDatabase bd = conexionBD.conexion();
             MongoCollection<UsuarioDominio> collection
                     = bd.getCollection("usuarios", UsuarioDominio.class);
             Bson filtro = eq("_id", usuarioActualizar.getId());
@@ -126,7 +127,7 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public List<String> obtenerGenerosNoDeseados(ObjectId id) throws PersistenciaException {
         try{
-            MongoDatabase bd = new ConexionBD().conexion();
+            MongoDatabase bd = conexionBD.conexion();
             MongoCollection<UsuarioDominio> collection
                     = bd.getCollection("usuarios", UsuarioDominio.class);
             Bson filtro = eq("_id", id);
@@ -143,7 +144,7 @@ public class UsuarioDAO implements IUsuarioDAO{
 
     public UsuarioDominio obtenerUsuarioPorId(ObjectId id) throws PersistenciaException {
         try {
-            MongoDatabase bd = new ConexionBD().conexion();
+            MongoDatabase bd = conexionBD.conexion();
             MongoCollection<UsuarioDominio> collection
                     = bd.getCollection("usuarios", UsuarioDominio.class);
             return collection.find(eq("_id", id)).first();
@@ -156,7 +157,7 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public FavoritoDominio agregarFavorito(ObjectId id) throws PersistenciaException {
         try{
-            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoDatabase baseDatos = conexionBD.conexion();
             MongoCollection<FavoritoDominio> coleccion = baseDatos.getCollection("favoritos", FavoritoDominio.class);
 
             if (coleccion.find(Filters.eq("referenciaFavorito", id)).first() != null) {
@@ -204,7 +205,7 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public void eliminarFavorito(ObjectId id) throws PersistenciaException {
         try{
-            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoDatabase baseDatos = conexionBD.conexion();
             MongoCollection<FavoritoDominio> coleccion = baseDatos.getCollection("favoritos", FavoritoDominio.class);
             if (coleccion.find(Filters.eq("referenciaFavorito", id)).first() == null) {
                 throw new PersistenciaException("Este elemento no esta en la lista de favoritos.");
@@ -218,7 +219,7 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public List<ResultadosDTO> listarFavoritos(List<String> generosNoDeseados) throws PersistenciaException {
         try {
-            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoDatabase baseDatos = conexionBD.conexion();
             MongoCollection<FavoritoDominio> coleccion = baseDatos.getCollection("favoritos", FavoritoDominio.class);
 
             Set<ObjectId> idsFavoritos = coleccion.find()
@@ -253,7 +254,7 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public List<ResultadosDTO> listarFavoritosPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException {
         try {
-            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoDatabase baseDatos = conexionBD.conexion();
             MongoCollection<FavoritoDominio> coleccion = baseDatos.getCollection("favoritos", FavoritoDominio.class);
 
             Set<ObjectId> idsFavoritos = coleccion.find()
@@ -291,7 +292,7 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public List<ResultadosDTO> listarFavoritosPorTipoYFiltro(TipoFavoritoEnum tipo, String filtro, List<String> generosNoDeseados) throws PersistenciaException {
         try {
-            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoDatabase baseDatos = conexionBD.conexion();
             MongoCollection<FavoritoDominio> favoritosCol = baseDatos.getCollection("favoritos", FavoritoDominio.class);
 
             Set<ObjectId> idsFavoritos = favoritosCol.find(Filters.eq("tipo", tipo))
@@ -331,7 +332,7 @@ public class UsuarioDAO implements IUsuarioDAO{
 
     @Override
     public boolean esFavorito(ObjectId id) throws PersistenciaException {
-        MongoDatabase baseDatos = new ConexionBD().conexion();
+        MongoDatabase baseDatos = conexionBD.conexion();
         MongoCollection<FavoritoDominio> col = baseDatos.getCollection("favoritos", FavoritoDominio.class);
         return col.find(Filters.eq("referenciaFavorito", id)).first() != null;
     }

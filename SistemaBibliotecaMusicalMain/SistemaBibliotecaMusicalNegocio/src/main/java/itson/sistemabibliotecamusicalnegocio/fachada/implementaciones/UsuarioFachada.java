@@ -16,7 +16,9 @@ import itson.sistemabibliotecamusicalnegocio.bos.IUsuarioNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
 import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.UsuarioNegocio;
+import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IUsuarioDAO;
+import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.ConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.UsuarioDAO;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -31,9 +33,8 @@ public class UsuarioFachada implements IUsuarioFachada{
     private IUsuarioDAO usuarioDAO;
     
     public UsuarioFachada(){
-        //creo conexion
-        //creo dao y mando conexion
-        this.usuarioDAO = new UsuarioDAO();
+        IConexionBD conexion = new ConexionBD();
+        this.usuarioDAO = new UsuarioDAO(conexion);
         this.usuarioNegocio = new UsuarioNegocio(usuarioDAO);
     }
     
@@ -46,7 +47,6 @@ public class UsuarioFachada implements IUsuarioFachada{
         }
     }
     
-    //boolean guardarEnFavoritos(ArtistaDTO artista) throws NegocioException;
 
     @Override
     public UsuarioDominio registrarUsuario(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException {

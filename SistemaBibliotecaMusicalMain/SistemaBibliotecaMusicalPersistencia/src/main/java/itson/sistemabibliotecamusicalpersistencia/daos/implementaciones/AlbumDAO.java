@@ -9,6 +9,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import itson.sistemabibliotecamusicaldominio.AlbumDominio;
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
+import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IAlbumDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.ArrayList;
@@ -20,11 +21,17 @@ import org.bson.types.ObjectId;
  * @author adell
  */
 public class AlbumDAO implements IAlbumDAO {
+    
+    private final IConexionBD conexionBD;
+
+    public AlbumDAO(IConexionBD conexionBD) {
+        this.conexionBD = conexionBD;
+    }
 
     @Override
     public List<AlbumDominio> listarTodosLosAlbumes(List<String> generosNoDeseados) throws PersistenciaException {
         try{
-            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoDatabase baseDatos = conexionBD.conexion();
             MongoCollection<ArtistaDominio> coleccion
                     = baseDatos.getCollection("artistas", ArtistaDominio.class);
 
@@ -72,7 +79,7 @@ public class AlbumDAO implements IAlbumDAO {
     @Override
     public AlbumDominio buscarPorId(ObjectId id) throws PersistenciaException {
         try{
-            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoDatabase baseDatos = conexionBD.conexion();
             MongoCollection<ArtistaDominio> coleccion
                     = baseDatos.getCollection("artistas", ArtistaDominio.class);
 

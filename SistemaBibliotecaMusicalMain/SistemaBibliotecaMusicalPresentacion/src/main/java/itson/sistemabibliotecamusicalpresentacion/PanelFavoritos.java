@@ -4,8 +4,27 @@
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
+import itson.sistemabibliotecamusicaldominio.AlbumDominio;
+import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
+import itson.sistemabibliotecamusicaldominio.CancionDominio;
+import itson.sistemabibliotecamusicaldominio.TipoFavoritoEnum;
+import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
+import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
+import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.UsuarioFachada;
+import itson.sistemabibliotecamusicalpresentacion.utilidades.SesionUsuario;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -13,10 +32,15 @@ import javax.swing.JOptionPane;
  */
 public class PanelFavoritos extends javax.swing.JPanel {
 
+    IUsuarioFachada usuarioFachada;
+    UsuarioDominio usuario = SesionUsuario.getUsuario();
+    private String tipoFiltroSeleccionado = "todo";
+    
     /**
      * Creates new form PanelPerfil
      */
     public PanelFavoritos() {
+        this.usuarioFachada = new UsuarioFachada();
         initComponents();
     }
 
@@ -125,9 +149,11 @@ public class PanelFavoritos extends javax.swing.JPanel {
 
         jScrollPane1.setBackground(new java.awt.Color(219, 182, 238));
         jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         panelListar.setBackground(new java.awt.Color(219, 182, 238));
         panelListar.setForeground(new java.awt.Color(0, 0, 0));
+        panelListar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout panelListarLayout = new javax.swing.GroupLayout(panelListar);
         panelListar.setLayout(panelListarLayout);
@@ -259,16 +285,18 @@ public class PanelFavoritos extends javax.swing.JPanel {
 
     private void btnTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodoActionPerformed
         try {
-            //FiltroDTO filtro = new FiltroDTO;
-            //filtro.getFiltro.clear();
-        } catch (Exception ex) {
+            tipoFiltroSeleccionado = "todo";
+            actualizarBotonesFiltro(btnTodo);
+            List<ResultadosDTO> todo = usuarioFachada.listarFavoritos(usuario.getGenerosNoDeseados());
+            cargarFavoritos(todo);
+        } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
         }
     }//GEN-LAST:event_btnTodoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
-            cargarFavoritos();
+             buscarConParametros();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No se pudo realizar la busqueda");
         }
@@ -280,43 +308,185 @@ public class PanelFavoritos extends javax.swing.JPanel {
 
     private void btnCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancionesActionPerformed
         try {
-            //FiltroDTO filtro = new FiltroDTO;
-            //filtro.setFiltro("canciones");
-        } catch (Exception ex) {
+            tipoFiltroSeleccionado = "canciones";
+            actualizarBotonesFiltro(btnCanciones);
+
+            List<ResultadosDTO> canciones = usuarioFachada.listarFavoritosPorTipoYFiltro(TipoFavoritoEnum.CANCION, "", usuario.getGenerosNoDeseados());
+            cargarFavoritos(canciones);
+        } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
         }
     }//GEN-LAST:event_btnCancionesActionPerformed
 
     private void btnAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumesActionPerformed
         try {
-            //FiltroDTO filtro = new FiltroDTO;
-            //filtro.setFiltro("albumes");
-        } catch (Exception ex) {
+            tipoFiltroSeleccionado = "albumes";
+            actualizarBotonesFiltro(btnCanciones);
+
+            List<ResultadosDTO> albumes = usuarioFachada.listarFavoritosPorTipoYFiltro(TipoFavoritoEnum.ALBUM, "", usuario.getGenerosNoDeseados());
+            cargarFavoritos(albumes);
+        } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por albumes");
         }
     }//GEN-LAST:event_btnAlbumesActionPerformed
 
     private void btnArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArtistasActionPerformed
         try {
-            //FiltroDTO filtro = new FiltroDTO;
-            //filtro.setFiltro("artistas");
-        } catch (Exception ex) {
+            tipoFiltroSeleccionado = "artistas";
+            actualizarBotonesFiltro(btnCanciones);
+
+            List<ResultadosDTO> artistas = usuarioFachada.listarFavoritosPorTipoYFiltro(TipoFavoritoEnum.ARTISTA, "", usuario.getGenerosNoDeseados());
+            cargarFavoritos(artistas);
+        } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por artistas");
         }
     }//GEN-LAST:event_btnArtistasActionPerformed
 
-    private void cargarFavoritos() {
-        try {
-            String busqueda = txtFieldBuscar.getText().trim();
-            //List<ArtistaDTO> favoritos = usuarioFachada.listarFavoritos();
-            panelListar.removeAll();
-            panelListar.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-            //for(ArtistaDTO a : artistas) 
-            {
+    private void buscarConParametros() {
+        String texto = txtFieldBuscar.getText().trim();
 
+        if (texto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor introduce un texto para buscar.");
+            return;
+        }
+
+        try {
+            switch (tipoFiltroSeleccionado) {
+                case "artistas" -> {
+                    List<ResultadosDTO> artistas = usuarioFachada.listarFavoritosPorTipoYFiltro(TipoFavoritoEnum.ARTISTA, texto, usuario.getGenerosNoDeseados());
+                    cargarFavoritos(artistas);
+                }
+                case "albumes" -> {
+                    List<ResultadosDTO> albumes = usuarioFachada.listarFavoritosPorTipoYFiltro(TipoFavoritoEnum.ALBUM, texto, usuario.getGenerosNoDeseados());
+                    cargarFavoritos(albumes);
+                }
+                case "canciones" -> {
+                    List<ResultadosDTO> canciones = usuarioFachada.listarFavoritosPorTipoYFiltro(TipoFavoritoEnum.CANCION, texto, usuario.getGenerosNoDeseados());
+                    cargarFavoritos(canciones);
+                }
+                default -> {
+                    List<ResultadosDTO> todo = usuarioFachada.listarFavoritosPorFiltro(texto, usuario.getGenerosNoDeseados());
+                    cargarFavoritos(todo);
+                }
             }
+        } catch (NegocioException e) {
+            JOptionPane.showMessageDialog(this, "No se pudo realizar la busqueda");
+        }
+    }
+    
+    private void actualizarBotonesFiltro(javax.swing.JButton botonSeleccionado) {
+        JButton[] botones = {btnTodo, btnArtistas, btnAlbumes, btnCanciones};
+
+        for (JButton boton : botones) {
+            if (boton == botonSeleccionado) {
+                boton.setBackground(new Color(75, 28, 113));
+                boton.setForeground(Color.WHITE);
+            } else {
+                boton.setBackground(new Color(127, 76, 165));
+                boton.setForeground(Color.WHITE);
+            }
+        }
+    }
+    
+    private void cargarFavoritos(List<?> registros) {
+        try {
+            panelListar.removeAll();
+            panelListar.setLayout(new BoxLayout(panelListar, BoxLayout.Y_AXIS));
+
+            for (Object o : registros) {
+                JPanel panelElemento = new JPanel(new BorderLayout());
+                panelElemento.setMaximumSize(new Dimension(700, 40));
+                panelElemento.setBackground(Color.getHSBColor(219, 182, 238));
+
+                JButton btnInfo = new JButton();
+                JButton btnFavorito = new JButton("☆");
+
+                btnInfo.setFont(new Font("Arial", Font.PLAIN, 14));
+                panelElemento.add(btnInfo, BorderLayout.WEST);
+
+                btnFavorito.setFocusPainted(false);
+                btnFavorito.setForeground(Color.GRAY);
+
+                switch (o) {
+                    case ArtistaDominio artista -> {
+                        btnInfo.setText(artista.getImagen() + artista.getNombre() + " - " + artista.getGenero());
+                        btnInfo.addActionListener(e -> {
+                            new ArtistaFrm().setVisible(true);
+                            this.setVisible(false);
+                        });
+                        btnFavorito.addActionListener(e -> {
+                            try {
+                                if (usuarioFachada.esFavorito(artista.getId())) {
+                                    usuarioFachada.eliminarFavorito(artista.getId());
+                                    btnFavorito.setText("☆");
+                                    btnFavorito.setForeground(Color.GRAY);
+                                } else {
+                                    try {
+                                        usuarioFachada.agregarFavorito(artista.getId());
+                                    } catch (NegocioException ex) {
+                                        Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    btnFavorito.setText("★️");
+                                    btnFavorito.setForeground(Color.BLACK);
+                                }
+                            } catch (NegocioException ex) {
+                                Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                    }
+                    case AlbumDominio album -> {
+                        btnInfo.setText(album.getImagenPortada() + album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
+                        btnInfo.addActionListener(e -> {
+                            new CancionesFrm().setVisible(true);
+                            this.setVisible(false);
+                        });
+                        btnFavorito.addActionListener(e -> {
+                            try {
+                                if (usuarioFachada.esFavorito(album.getId())) {
+                                    usuarioFachada.eliminarFavorito(album.getId());
+                                    btnFavorito.setText("☆");
+                                    btnFavorito.setForeground(Color.GRAY);
+                                } else {
+                                    usuarioFachada.agregarFavorito(album.getId());
+                                    btnFavorito.setText("★️");
+                                    btnFavorito.setForeground(Color.BLACK);
+                                }
+                            } catch (NegocioException ex) {
+                                Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                    }
+                    case CancionDominio cancion -> {
+                        btnInfo.setText(cancion.getNombre());
+                        btnFavorito.addActionListener(e -> {
+                            try {
+                                if (usuarioFachada.esFavorito(cancion.getId())) {
+                                    usuarioFachada.eliminarFavorito(cancion.getId());
+                                    btnFavorito.setText("☆");
+                                    btnFavorito.setForeground(Color.GRAY);
+                                } else {
+                                    usuarioFachada.agregarFavorito(cancion.getId());
+                                    btnFavorito.setText("★️");
+                                    btnFavorito.setForeground(Color.BLACK);
+                                }
+                            } catch (NegocioException ex) {
+                                Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                    }
+                    default -> {
+                        continue;
+                    }
+                }
+
+                panelElemento.add(btnFavorito, BorderLayout.EAST);
+                panelListar.add(panelElemento);
+            }
+
+            panelListar.revalidate();
+            panelListar.repaint();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de tus favoritos");
+            JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de la biblioteca musical");
         }
     }
     

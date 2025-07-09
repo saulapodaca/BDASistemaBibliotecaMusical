@@ -13,18 +13,21 @@ import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IAlbumFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.IArtistaFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.ICancionFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.AlbumFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.ArtistaFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.CancionFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.UsuarioFachada;
 import itson.sistemabibliotecamusicalpresentacion.utilidades.SesionUsuario;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -37,6 +40,7 @@ public class PanelBuscar extends javax.swing.JPanel {
     IArtistaFachada artistaFachada;
     IAlbumFachada albumFachada;
     ICancionFachada cancionFachada;
+    IUsuarioFachada usuarioFachada;
     UsuarioDominio usuario = SesionUsuario.getUsuario();
     private String tipoFiltroSeleccionado = "todo";
     
@@ -47,6 +51,7 @@ public class PanelBuscar extends javax.swing.JPanel {
         this.artistaFachada = new ArtistaFachada();
         this.albumFachada = new AlbumFachada();
         this.cancionFachada = new CancionFachada();
+        this.usuarioFachada = new UsuarioFachada();
         initComponents();
     }
     
@@ -267,14 +272,14 @@ public class PanelBuscar extends javax.swing.JPanel {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
-            
+             buscarConParametros();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No se pudo realizar la busqueda");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtFieldBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldBuscarActionPerformed
-        buscarConParametros();
+
     }//GEN-LAST:event_txtFieldBuscarActionPerformed
 
     private void btnCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancionesActionPerformed
@@ -366,43 +371,93 @@ public class PanelBuscar extends javax.swing.JPanel {
     private void cargarBiblioteca(List<?> registros){
         try {
             panelListar.removeAll();
-            panelListar.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+            panelListar.setLayout(new BoxLayout(panelListar, BoxLayout.Y_AXIS));
+            
             for(Object o : registros){
                 JPanel panelElemento = new JPanel(new BorderLayout());
                 panelElemento.setMaximumSize(new Dimension(700, 40));
                 panelElemento.setBackground(Color.getHSBColor(219,182,238));
 
-                JLabel lblInfo = new JLabel();
+                JButton btnInfo = new JButton();
                 JButton btnFavorito = new JButton("☆");
                 
+                btnInfo.setFont(new Font("Arial", Font.PLAIN, 14));
+                panelElemento.add(btnInfo, BorderLayout.WEST);
+
+                btnFavorito.setFocusPainted(false);
+                btnFavorito.setForeground(Color.GRAY);
+                
                 switch (o) {
-                    case ArtistaDominio artista -> lblInfo.setText(artista.getImagen() + artista.getNombre() + " - " + artista.getGenero());
-                    case AlbumDominio album -> lblInfo.setText(album.getImagenPortada() + album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
-                    case CancionDominio cancion -> lblInfo.setText(cancion.getNombre());
+                    case ArtistaDominio artista -> {
+                        btnInfo.setText(artista.getImagen() + artista.getNombre() + " - " + artista.getGenero());
+                        btnInfo.addActionListener(e -> {
+                            new ArtistaFrm().setVisible(true);
+                            this.setVisible(false);
+                        });
+                        btnFavorito.addActionListener(e -> {
+                            try {
+                                if (usuarioFachada.esFavorito(artista.getId())) {
+                                    usuarioFachada.eliminarFavorito(artista.getId());
+                                    btnFavorito.setText("☆");
+                                    btnFavorito.setForeground(Color.GRAY);
+                                }else {
+                                    try {
+                                        usuarioFachada.agregarFavorito(artista.getId());
+                                    } catch (NegocioException ex) {
+                                        Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    btnFavorito.setText("★️");
+                                    btnFavorito.setForeground(Color.BLACK);
+                                }
+                            } catch (NegocioException ex) {
+                                Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                    }
+                    case AlbumDominio album ->{
+                        btnInfo.setText(album.getImagenPortada() + album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
+                        btnInfo.addActionListener(e -> {
+                            new CancionesFrm().setVisible(true);
+                            this.setVisible(false);
+                        });
+                        btnFavorito.addActionListener(e -> {
+                            try {
+                                if (usuarioFachada.esFavorito(album.getId())) {
+                                    usuarioFachada.eliminarFavorito(album.getId());
+                                    btnFavorito.setText("☆");
+                                    btnFavorito.setForeground(Color.GRAY);
+                                } else {
+                                    usuarioFachada.agregarFavorito(album.getId());
+                                    btnFavorito.setText("★️");
+                                    btnFavorito.setForeground(Color.BLACK);
+                                }
+                            } catch (NegocioException ex) {
+                                Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                    }
+                    case CancionDominio cancion -> {
+                        btnInfo.setText(cancion.getNombre());
+                        btnFavorito.addActionListener(e -> {
+                            try {
+                                if (usuarioFachada.esFavorito(cancion.getId())) {
+                                    usuarioFachada.eliminarFavorito(cancion.getId());
+                                    btnFavorito.setText("☆");
+                                    btnFavorito.setForeground(Color.GRAY);
+                                } else {
+                                    usuarioFachada.agregarFavorito(cancion.getId());
+                                    btnFavorito.setText("★️");
+                                    btnFavorito.setForeground(Color.BLACK);
+                                }
+                            } catch (NegocioException ex) {
+                                Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                    }
                     default -> {
                         continue;
                     }
                 }
-
-                lblInfo.setFont(new Font("Arial", Font.PLAIN, 14));
-                panelElemento.add(lblInfo, BorderLayout.WEST);
-                
-                btnFavorito.setFocusPainted(false);
-                btnFavorito.setForeground(Color.GRAY);
-
-                btnFavorito.addActionListener(e -> {
-                    /**
-                    if (favoritos.contains(obj)) {
-                        favoritos.remove(obj);
-                        btnFavorito.setText("☆");
-                        btnFavorito.setForeground(Color.GRAY);
-                    } else {
-                        favoritos.add(obj);
-                        btnFavorito.setText("★️");
-                        btnFavorito.setForeground(Color.);
-                    }
-                    **/
-                });
 
                 panelElemento.add(btnFavorito, BorderLayout.EAST);
                 panelListar.add(panelElemento);

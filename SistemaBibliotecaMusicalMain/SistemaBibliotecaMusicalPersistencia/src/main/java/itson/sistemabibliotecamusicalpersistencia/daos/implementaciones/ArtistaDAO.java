@@ -14,6 +14,7 @@ import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
 import itson.sistemabibliotecamusicaldominio.CancionDominio;
 import itson.sistemabibliotecamusicaldominio.TipoFavoritoEnum;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
+import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.ArrayList;
@@ -26,11 +27,16 @@ import org.bson.types.ObjectId;
  */
 public class ArtistaDAO implements IArtistaDAO{
     
+    private final IConexionBD conexionBD;
+
+    public ArtistaDAO(IConexionBD conexionBD) {
+        this.conexionBD = conexionBD;
+    }
 
     @Override
     public List<ResultadosDTO> listarTodo(List<String> generosNoDeseados) throws PersistenciaException {
         try{
-            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoDatabase baseDatos = conexionBD.conexion();
             MongoCollection<ArtistaDominio> coleccion
                     = baseDatos.getCollection("artistas", ArtistaDominio.class);
             List<ResultadosDTO> todo = new ArrayList<>();
@@ -64,7 +70,7 @@ public class ArtistaDAO implements IArtistaDAO{
     @Override
     public List<ArtistaDominio> listarTodosLosArtistas(List<String> generosNoDeseados) throws PersistenciaException {
         try{
-            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoDatabase baseDatos = conexionBD.conexion();
             MongoCollection<ArtistaDominio> coleccion
                     = baseDatos.getCollection("artistas", ArtistaDominio.class);
 
@@ -138,7 +144,7 @@ public class ArtistaDAO implements IArtistaDAO{
     @Override
     public List<String> obtenerTodosLosGeneros() throws PersistenciaException {
         try{
-            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoDatabase baseDatos = conexionBD.conexion();
             MongoCollection<ArtistaDominio> coleccion = baseDatos.getCollection("artistas", ArtistaDominio.class);
             List<String> generos = new ArrayList<>();
             MongoIterable<String> generosDistintos = coleccion.distinct("genero", String.class);
@@ -154,7 +160,7 @@ public class ArtistaDAO implements IArtistaDAO{
     @Override
     public ArtistaDominio buscarPorId(ObjectId id) throws PersistenciaException {
         try {
-            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoDatabase baseDatos = conexionBD.conexion();
             MongoCollection<ArtistaDominio> coleccion = baseDatos.getCollection("artistas", ArtistaDominio.class);
             return coleccion.find(Filters.eq("_id", id)).first();
         } catch (Exception e) {

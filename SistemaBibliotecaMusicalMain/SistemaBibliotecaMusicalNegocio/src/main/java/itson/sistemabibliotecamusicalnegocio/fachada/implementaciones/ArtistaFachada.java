@@ -10,8 +10,10 @@ import itson.sistemabibliotecamusicalnegocio.bos.IArtistaNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IArtistaFachada;
 import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.ArtistaNegocio;
+import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.ArtistaDAO;
+import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.ConexionBD;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -24,7 +26,8 @@ public class ArtistaFachada implements IArtistaFachada{
     private IArtistaNegocio artistaNegocio;
 
     public ArtistaFachada() {
-        IArtistaDAO artistaDAO = new ArtistaDAO();
+        IConexionBD conexion = new ConexionBD();
+        IArtistaDAO artistaDAO = new ArtistaDAO(conexion);
         this.artistaNegocio = new ArtistaNegocio(artistaDAO);
     }
 

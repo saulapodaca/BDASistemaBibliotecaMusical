@@ -9,6 +9,7 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
+import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
@@ -19,8 +20,9 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  *
  * @author Camila Zubía
  */
-public class ConexionBD {
+public class ConexionBD implements IConexionBD{
     
+    @Override
     public MongoDatabase conexion() {
         // Configura el proveedor de códecs para trabajar con objetos Java y MongoDB
         CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
