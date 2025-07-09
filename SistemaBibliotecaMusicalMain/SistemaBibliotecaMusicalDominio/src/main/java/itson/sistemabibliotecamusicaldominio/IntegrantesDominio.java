@@ -23,11 +23,12 @@ public class IntegrantesDominio {
     public IntegrantesDominio() {
     }
 
-    public IntegrantesDominio(String nombre, String rol, LocalDate fechaIngreso, boolean activo) {
+    public IntegrantesDominio(String nombre, String rol, LocalDate fechaIngreso, LocalDate fechaSalida, boolean activo) {
         this.id = new ObjectId();
         this.nombre = nombre;
         this.rol = rol;
         this.fechaIngreso = fechaIngreso;
+        this.fechaSalida = fechaSalida;
         this.activo = activo;
     }
 
