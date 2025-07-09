@@ -49,7 +49,7 @@ public class UsuarioNegocio implements IUsuarioNegocio {
 
     }
 
-    //TODO:FALTA PONERLE LA IMAGEN DEFAULT Y HACER EL RESIZE PERO CREO QUE ESO ES AL MOSTRAR
+    //TODO:FALTA PONERLE LA IMAGEN DEFAULT
     @Override
     public UsuarioDominio registrarUsuario(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException {
         try{
@@ -88,7 +88,7 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         validarNombreUsuarioNoDuplicado(nuevoUsuario);
         validarCorreoNoDuplicado(nuevoUsuario);
         validarContrasenia(nuevoUsuario);
-        validarFotoPerfil(nuevoUsuario.getImagen());
+        nuevoUsuario.setImagen(validarFotoPerfil(nuevoUsuario.getImagen()));
     }
 
     private void validarNombreUsuarioNoDuplicado(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException, PersistenciaException {
@@ -134,14 +134,15 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
     
-    private void validarFotoPerfil(String imagen) throws NegocioException {
+    private String validarFotoPerfil(String imagen) throws NegocioException {
         if (imagen == null || imagen.trim().isEmpty()) {
-            return;
+            return "C:\\Users\\saula\\OneDrive\\Documentos\\NetBeansProjects\\BDASistemaBibliotecaMusical\\SistemaBibliotecaMusicalMain\\SistemaBibliotecaMusicalPersistencia\\src\\main\\resources\\imagenPerfilDefault.png";
         } else {
             File archivo = new File(imagen.trim());
             if (!archivo.exists()) {
                 throw new NegocioException("La imagen seleccionada no existe");
             }
+            return imagen.trim();
         }
     }
 
@@ -149,7 +150,7 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         validarNombreUsuarioNoVacio(usuarioModificado.getNombre());
         validarCorreoNoVacio(usuarioModificado.getCorreo());
         validarFormatoCorreo(usuarioModificado.getCorreo());
-        validarFotoPerfil(usuarioModificado.getImagen());
+        usuarioModificado.setImagen(validarFotoPerfil(usuarioModificado.getImagen()));
         validarNuevoNombre(usuarioModificado);
         validarNuevoCorreo(usuarioModificado);
     }
