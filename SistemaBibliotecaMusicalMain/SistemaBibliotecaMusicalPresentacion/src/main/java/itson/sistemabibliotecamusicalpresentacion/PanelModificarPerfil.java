@@ -248,6 +248,7 @@ public class PanelModificarPerfil extends javax.swing.JPanel {
 
     private void cargarUsuario(){
         UsuarioDominio usuario = SesionUsuario.getUsuario();
+        txtFieldImagen.setColumns(20);
         if(usuario != null){
             txtFieldNombreUsuario.setText(usuario.getNombreUsuario());
             txtFieldCorreo.setText(usuario.getCorreo());
