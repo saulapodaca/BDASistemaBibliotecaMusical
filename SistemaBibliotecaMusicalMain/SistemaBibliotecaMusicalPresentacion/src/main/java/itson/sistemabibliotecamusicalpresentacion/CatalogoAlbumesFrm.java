@@ -6,14 +6,20 @@ package itson.sistemabibliotecamusicalpresentacion;
 
 import itson.sistemabibliotecamusicaldominio.AlbumDominio;
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IAlbumFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.AlbumFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.UsuarioFachada;
 import itson.sistemabibliotecamusicalpresentacion.utilidades.SesionUsuario;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -27,22 +33,25 @@ import javax.swing.JPanel;
 public class CatalogoAlbumesFrm extends javax.swing.JFrame {
 
     IAlbumFachada albumFachada;
+    IUsuarioFachada usuarioFachada;
     UsuarioDominio usuario = SesionUsuario.getUsuario();
+
     /**
      * Creates new form CatalogoAlbumesFrm
      */
     public CatalogoAlbumesFrm() {
         this.albumFachada = new AlbumFachada();
-        cargarBiblioteca();
+        this.usuarioFachada = new UsuarioFachada();
+        
         initComponents();
+        cargarBiblioteca();
+        
     }
 
-    
     private void cargarBiblioteca() {
         try {
-            
-            List <AlbumDominio> albumes = albumFachada.listarTodosLosAlbumes(usuario.getGenerosNoDeseados());
-            
+            List<AlbumDominio> albumes = albumFachada.listarTodosLosAlbumes(usuario.getGenerosNoDeseados());
+
             infoAlbumesPnl.removeAll();
             infoAlbumesPnl.setLayout(new BoxLayout(infoAlbumesPnl, BoxLayout.Y_AXIS));
 
@@ -52,25 +61,71 @@ public class CatalogoAlbumesFrm extends javax.swing.JFrame {
                 }
 
                 JPanel panelElemento = new JPanel(new BorderLayout());
-                panelElemento.setMaximumSize(new Dimension(700, 40));
-                panelElemento.setBackground(Color.getHSBColor(219, 182, 238));
+                panelElemento.setPreferredSize(new Dimension(700, 60));
+                panelElemento.setBackground(new Color(219, 182, 238));
 
-                JLabel lblInfo = new JLabel();
-                lblInfo.setText(album.getImagenPortada() + " " + album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
+                JLabel lblInfo = new JLabel(album.getImagenPortada() + " "
+                        + album.getNombre() + " - "
+                        + album.getGeneroMusical()+ " ("
+                        + album.getFechaLanzamiento() + ")");
                 lblInfo.setFont(new Font("Arial", Font.PLAIN, 14));
-
-                JButton btnFavorito = new JButton("☆");
+                
+                
+                JButton btnInfo = new JButton("Ver Canciones");
+                JButton btnFavorito = new JButton();
                 btnFavorito.setFocusPainted(false);
-                btnFavorito.setForeground(Color.GRAY);
+
+                try {
+                    if (usuarioFachada.esFavorito(album.getId())) {
+                        btnFavorito.setText("★️");
+                        btnFavorito.setForeground(Color.BLACK);
+                        btnFavorito.setToolTipText("Eliminar de favoritos");
+                    } else {
+                        btnFavorito.setText("☆");
+                        btnFavorito.setForeground(Color.BLACK);
+                        btnFavorito.setToolTipText("Agregar a favoritos");
+                    }
+                } catch (NegocioException ex) {
+                    Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                btnFavorito.addActionListener(e -> {
+                    try {
+                        if (usuarioFachada.esFavorito(album.getId())) {
+                            usuarioFachada.eliminarFavorito(album.getId());
+                            btnFavorito.setText("☆");
+                            btnFavorito.setForeground(Color.GRAY);
+                            btnFavorito.setToolTipText("Agregar a favoritos");
+                        } else {
+                            usuarioFachada.agregarFavorito(album.getId());
+                            btnFavorito.setText("★️");
+                            btnFavorito.setForeground(Color.BLACK);
+                            btnFavorito.setToolTipText("Eliminar de favoritos");
+                        }
+                    } catch (NegocioException ex) {
+                        Logger.getLogger(CatalogoAlbumesFrm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+
+                btnInfo.addActionListener(e -> {
+                    new CancionesFrm().setVisible(true);
+                    this.setVisible(false);
+                });
+
+                JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+                panelBotones.add(btnInfo);
+                panelBotones.add(btnFavorito);
 
                 panelElemento.add(lblInfo, BorderLayout.WEST);
-                panelElemento.add(btnFavorito, BorderLayout.EAST);
+                panelElemento.add(panelBotones, BorderLayout.EAST);
+
                 infoAlbumesPnl.add(panelElemento);
             }
 
             infoAlbumesPnl.revalidate();
             infoAlbumesPnl.repaint();
         } catch (Exception ex) {
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de álbumes.");
         }
     }
