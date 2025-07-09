@@ -27,7 +27,7 @@ import org.bson.types.ObjectId;
  */
 public class ArtistaDAO implements IArtistaDAO{
     
-    private final IConexionBD conexionBD;
+    private IConexionBD conexionBD;
 
     public ArtistaDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
@@ -106,7 +106,7 @@ public class ArtistaDAO implements IArtistaDAO{
                         AlbumDominio album = (AlbumDominio) r.getObjeto();
                         if (album.getNombre().toLowerCase().contains(filtro)
                                 || album.getGeneroMusical().toLowerCase().contains(filtro)
-                                || album.getFechaLanzamiento().toString().contains(filtro)) {
+                                || album.getFechaLanzamiento().contains(filtro)) {
                             resultados.add(r);
                         }
                     }

@@ -23,7 +23,7 @@ import org.bson.types.ObjectId;
  */
 public class CancionDAO implements ICancionDAO {
     
-    private final IConexionBD conexionBD;
+    private IConexionBD conexionBD;
 
     public CancionDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;

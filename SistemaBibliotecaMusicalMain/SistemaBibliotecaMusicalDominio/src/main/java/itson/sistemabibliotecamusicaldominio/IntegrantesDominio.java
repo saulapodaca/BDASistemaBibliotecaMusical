@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicaldominio;
 
 import java.time.LocalDate;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -12,12 +13,15 @@ import java.time.LocalDate;
  */
 public class IntegrantesDominio {
     
-    //private ObjectId id;
+    private ObjectId id;
     private String nombre;
     private String rol;
     private LocalDate fechaIngreso;
     private LocalDate fechaSalida;
     private boolean activo;
+
+    public IntegrantesDominio() {
+    }
 
     public IntegrantesDominio(String nombre, String rol, LocalDate fechaIngreso, boolean activo) {
         this.nombre = nombre;
@@ -65,7 +69,13 @@ public class IntegrantesDominio {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
-    
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
     
 }

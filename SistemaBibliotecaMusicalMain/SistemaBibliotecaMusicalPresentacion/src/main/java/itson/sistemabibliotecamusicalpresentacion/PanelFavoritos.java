@@ -291,6 +291,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
             cargarFavoritos(todo);
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnTodoActionPerformed
 
@@ -299,6 +300,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
              buscarConParametros();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No se pudo realizar la busqueda");
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -315,6 +317,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
             cargarFavoritos(canciones);
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por canciones");
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnCancionesActionPerformed
 
@@ -327,6 +330,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
             cargarFavoritos(albumes);
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por albumes");
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnAlbumesActionPerformed
 
@@ -339,6 +343,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
             cargarFavoritos(artistas);
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo filtrar por artistas");
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnArtistasActionPerformed
 
@@ -369,8 +374,9 @@ public class PanelFavoritos extends javax.swing.JPanel {
                     cargarFavoritos(todo);
                 }
             }
-        } catch (NegocioException e) {
+        } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo realizar la busqueda");
+            ex.printStackTrace();
         }
     }
     
@@ -488,6 +494,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
             panelListar.repaint();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de la biblioteca musical");
+            ex.printStackTrace();
         }
     }
     

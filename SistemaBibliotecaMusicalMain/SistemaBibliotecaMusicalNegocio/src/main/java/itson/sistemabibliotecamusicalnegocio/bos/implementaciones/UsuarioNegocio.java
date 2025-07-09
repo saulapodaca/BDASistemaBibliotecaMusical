@@ -234,7 +234,6 @@ public class UsuarioNegocio implements IUsuarioNegocio {
     @Override
     public List<ResultadosDTO> listarFavoritosPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
-            this.filtroValido(filtro);
             return usuarioDAO.listarFavoritosPorFiltro(filtro, generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException(ex.getMessage());
@@ -244,16 +243,9 @@ public class UsuarioNegocio implements IUsuarioNegocio {
     @Override
     public List<ResultadosDTO> listarFavoritosPorTipoYFiltro(TipoFavoritoEnum tipo, String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
-            this.filtroValido(filtro);
             return usuarioDAO.listarFavoritosPorFiltro(filtro, generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException(ex.getMessage());
-        }
-    }
-    
-    private void filtroValido(String filtro) throws NegocioException {
-        if (filtro == null || filtro.trim().isEmpty()) {
-            throw new NegocioException("El filtro no puede estar vacio");
         }
     }
 }

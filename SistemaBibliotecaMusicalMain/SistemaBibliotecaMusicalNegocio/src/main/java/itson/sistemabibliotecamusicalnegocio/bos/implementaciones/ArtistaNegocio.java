@@ -46,7 +46,6 @@ public class ArtistaNegocio implements IArtistaNegocio{
     @Override
     public List<ResultadosDTO> listarTodoPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
-            this.filtroValido(filtro);
             return artistaDAO.listarTodoPorFiltro(filtro, generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException("Ha ocurrido un error al listar todo por filtro");
@@ -56,16 +55,9 @@ public class ArtistaNegocio implements IArtistaNegocio{
     @Override
     public List<ArtistaDominio> listarArtistasPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
-            this.filtroValido(filtro);
             return artistaDAO.listarArtistasPorFiltro(filtro, generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException("Ha ocurrido un error al listar todos los artistas por filtro");
-        }
-    }
-    
-    private void filtroValido(String filtro) throws NegocioException {
-        if (filtro == null || filtro.trim().isEmpty()) {
-            throw new NegocioException("El filtro no puede estar vacio");
         }
     }
 

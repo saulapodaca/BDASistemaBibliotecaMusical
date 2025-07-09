@@ -15,6 +15,9 @@ public class ResultadosDTO {
     private TipoFavoritoEnum tipo;
     private Object objeto;
 
+    public ResultadosDTO() {
+    }
+    
     public ResultadosDTO(TipoFavoritoEnum tipo, Object objeto) {
         this.tipo = tipo;
         this.objeto = objeto;

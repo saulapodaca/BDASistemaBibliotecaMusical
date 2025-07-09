@@ -22,7 +22,7 @@ import org.bson.types.ObjectId;
  */
 public class AlbumDAO implements IAlbumDAO {
     
-    private final IConexionBD conexionBD;
+    private IConexionBD conexionBD;
 
     public AlbumDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
@@ -66,7 +66,7 @@ public class AlbumDAO implements IAlbumDAO {
             for (AlbumDominio album : listarTodosLosAlbumes(generosNoDeseados)) {
                 if (album.getNombre().toLowerCase().contains(filtro)
                         || album.getGeneroMusical().toLowerCase().contains(filtro)
-                        || album.getFechaLanzamiento().toString().contains(filtro)) {
+                        || album.getFechaLanzamiento().contains(filtro)) {
                     resultados.add(album);
                 }
             }

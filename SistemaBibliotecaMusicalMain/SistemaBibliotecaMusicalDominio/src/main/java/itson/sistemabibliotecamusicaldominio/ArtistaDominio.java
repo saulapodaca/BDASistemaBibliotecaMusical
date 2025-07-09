@@ -21,6 +21,9 @@ public class ArtistaDominio {
     private List<IntegrantesDominio> integrantes;
     private List<AlbumDominio> albumes;
 
+    public ArtistaDominio() {
+    }
+
     public ArtistaDominio(String nombre, String genero, String imagen, boolean esBanda, List<IntegrantesDominio> integrantes, List<AlbumDominio> albumes) {
         this.nombre = nombre;
         this.genero = genero;

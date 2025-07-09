@@ -36,16 +36,9 @@ public class AlbumNegocio implements IAlbumNegocio {
     @Override
     public List<AlbumDominio> listarAlbumesPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
-            filtroValido(filtro);
             return albumDAO.listarAlbumesPorFiltro(filtro,generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException("Ha ocurrido un error al listar todos los albumes por filtro");
-        }
-    }
-
-    private void filtroValido(String filtro) throws NegocioException {
-        if (filtro == null || filtro.trim().isEmpty()) {
-            throw new NegocioException("El filtro no puede estar vacio");
         }
     }
 
