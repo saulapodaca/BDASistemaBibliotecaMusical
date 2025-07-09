@@ -10,16 +10,15 @@ import java.time.LocalDate;
  *
  * @author Camila Zubía
  */
-public class IntegrantesDominio {
+public class IntegranteDominio {
     
-    //private ObjectId id;
     private String nombre;
     private String rol;
     private LocalDate fechaIngreso;
     private LocalDate fechaSalida;
     private boolean activo;
 
-    public IntegrantesDominio(String nombre, String rol, LocalDate fechaIngreso, boolean activo) {
+    public IntegranteDominio(String nombre, String rol, LocalDate fechaIngreso, boolean activo) {
         this.nombre = nombre;
         this.rol = rol;
         this.fechaIngreso = fechaIngreso;

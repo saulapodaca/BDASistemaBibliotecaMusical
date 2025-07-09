@@ -21,12 +21,24 @@ public class AlbumDominio {
     private String imagenPortada;
     private List<CancionDominio> canciones;
 
-    public AlbumDominio(String nombre, LocalDate fechaLanzamiento, String generoMusical, String imagenPortada, List<CancionDominio> canciones) {
+    public AlbumDominio() {
+    }
+
+    public AlbumDominio(ObjectId id, String nombre, LocalDate fechaLanzamiento, String generoMusical, String imagenPortada, List<CancionDominio> canciones) {
+        this.id = id;
         this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
         this.generoMusical = generoMusical;
         this.imagenPortada = imagenPortada;
         this.canciones = canciones;
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -69,11 +81,4 @@ public class AlbumDominio {
         this.canciones = canciones;
     }
 
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-        }
 }

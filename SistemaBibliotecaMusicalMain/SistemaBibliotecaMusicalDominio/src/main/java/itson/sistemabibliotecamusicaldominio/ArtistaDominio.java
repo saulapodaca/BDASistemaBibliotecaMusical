@@ -18,16 +18,28 @@ public class ArtistaDominio {
     private String genero;
     private String imagen;
     private boolean esBanda;
-    private List<IntegrantesDominio> integrantes;
+    private List<IntegranteDominio> integrantes;
     private List<AlbumDominio> albumes;
 
-    public ArtistaDominio(String nombre, String genero, String imagen, boolean esBanda, List<IntegrantesDominio> integrantes, List<AlbumDominio> albumes) {
+    public ArtistaDominio() {
+    }
+
+    public ArtistaDominio(ObjectId id, String nombre, String genero, String imagen, boolean esBanda, List<IntegranteDominio> integrantes, List<AlbumDominio> albumes) {
+        this.id = id;
         this.nombre = nombre;
         this.genero = genero;
         this.imagen = imagen;
         this.esBanda = esBanda;
         this.integrantes = integrantes;
         this.albumes = albumes;
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -62,11 +74,11 @@ public class ArtistaDominio {
         this.esBanda = esBanda;
     }
 
-    public List<IntegrantesDominio> getIntegrantes() {
+    public List<IntegranteDominio> getIntegrantes() {
         return integrantes;
     }
 
-    public void setIntegrantes(List<IntegrantesDominio> integrantes) {
+    public void setIntegrantes(List<IntegranteDominio> integrantes) {
         this.integrantes = integrantes;
     }
 
@@ -77,14 +89,5 @@ public class ArtistaDominio {
     public void setAlbumes(List<AlbumDominio> albumes) {
         this.albumes = albumes;
     }
-
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-    
     
 }

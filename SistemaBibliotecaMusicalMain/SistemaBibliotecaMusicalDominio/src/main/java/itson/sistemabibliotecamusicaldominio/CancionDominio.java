@@ -14,9 +14,23 @@ public class CancionDominio {
     
     private ObjectId id;
     private String nombre;
+    private String imagenCancion;
 
-    public CancionDominio(String nombre) {
+    public CancionDominio() {
+    }
+
+    public CancionDominio(ObjectId id, String nombre, String imagenCancion) {
+        this.id = id;
         this.nombre = nombre;
+        this.imagenCancion = imagenCancion;
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -27,13 +41,12 @@ public class CancionDominio {
         this.nombre = nombre;
     }
 
-    public ObjectId getId() {
-        return id;
+    public String getImagenCancion() {
+        return imagenCancion;
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-    
+    public void setImagenCancion(String imagenCancion) {
+        this.imagenCancion = imagenCancion;
+    }    
     
 }
