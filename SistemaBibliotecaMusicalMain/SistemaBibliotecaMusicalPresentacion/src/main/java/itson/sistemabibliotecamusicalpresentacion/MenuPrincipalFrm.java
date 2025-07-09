@@ -4,7 +4,10 @@
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
+import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import java.awt.BorderLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -355,7 +358,11 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFieldBuscarActionPerformed
 
     private void btnAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumesActionPerformed
-        new CatalogoAlbumesFrm().setVisible(true);
+        try {
+            new CatalogoAlbumesFrm().setVisible(true);
+        } catch (NegocioException ex) {
+            Logger.getLogger(MenuPrincipalFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setVisible(false);
     }//GEN-LAST:event_btnAlbumesActionPerformed
 
