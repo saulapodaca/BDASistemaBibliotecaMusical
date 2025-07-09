@@ -37,6 +37,8 @@ public class CatalogoCancionesFrm extends javax.swing.JFrame {
         this.cancionFachada = new CancionFachada();
 
         initComponents();
+        this.setLocationRelativeTo(null);
+
     }
 
     private void cargarBiblioteca() {
