@@ -4,10 +4,13 @@
  */
 package itson.sistemabibliotecamusicalnegocio.bos.implementaciones;
 
+import itson.sistemabibliotecamusicaldominio.FavoritoDominio;
+import itson.sistemabibliotecamusicaldominio.TipoFavoritoEnum;
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.ActualizarGenerosUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.ModificarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
+import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
 import itson.sistemabibliotecamusicalnegocio.bos.IUsuarioNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
@@ -16,6 +19,7 @@ import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaExcept
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import org.bson.types.ObjectId;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -187,6 +191,68 @@ public class UsuarioNegocio implements IUsuarioNegocio {
             return usuarioDAO.obtenerGenerosNoDeseados(usuarioDominio.getId());
         }catch(PersistenciaException ex){
             throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public FavoritoDominio agregarFavorito(ObjectId id) throws NegocioException {
+        try {
+            return usuarioDAO.agregarFavorito(id);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void eliminarFavorito(ObjectId id) throws NegocioException {
+        try {
+            usuarioDAO.eliminarFavorito(id);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public boolean esFavorito(ObjectId id) throws NegocioException {
+        try {
+            return usuarioDAO.esFavorito(id);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<ResultadosDTO> listarFavoritos(List<String> generosNoDeseados) throws NegocioException {
+        try {
+            return usuarioDAO.listarFavoritos(generosNoDeseados);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<ResultadosDTO> listarFavoritosPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
+        try {
+            this.filtroValido(filtro);
+            return usuarioDAO.listarFavoritosPorFiltro(filtro, generosNoDeseados);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<ResultadosDTO> listarFavoritosPorTipoYFiltro(TipoFavoritoEnum tipo, String filtro, List<String> generosNoDeseados) throws NegocioException {
+        try {
+            this.filtroValido(filtro);
+            return usuarioDAO.listarFavoritosPorFiltro(filtro, generosNoDeseados);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+    
+    private void filtroValido(String filtro) throws NegocioException {
+        if (filtro == null || filtro.trim().isEmpty()) {
+            throw new NegocioException("El filtro no puede estar vacio");
         }
     }
 }

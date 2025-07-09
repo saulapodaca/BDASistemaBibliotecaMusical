@@ -4,13 +4,17 @@
  */
 package itson.sistemabibliotecamusicalnegocio.bos;
 
+import itson.sistemabibliotecamusicaldominio.FavoritoDominio;
+import itson.sistemabibliotecamusicaldominio.TipoFavoritoEnum;
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.ActualizarGenerosUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.ModificarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
+import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -28,5 +32,15 @@ public interface IUsuarioNegocio {
     
     public List<String> obtenerGenerosNoDeseados(UsuarioDominio usuarioDominio) throws NegocioException;
     
-    
+    public FavoritoDominio agregarFavorito(ObjectId id) throws NegocioException;
+
+    public void eliminarFavorito(ObjectId id) throws NegocioException;
+
+    public boolean esFavorito(ObjectId id) throws NegocioException;
+
+    public List<ResultadosDTO> listarFavoritos(List<String> generosNoDeseados) throws NegocioException;
+
+    public List<ResultadosDTO> listarFavoritosPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException;
+
+    public List<ResultadosDTO> listarFavoritosPorTipoYFiltro(TipoFavoritoEnum tipo, String filtro, List<String> generosNoDeseados) throws NegocioException;
 }

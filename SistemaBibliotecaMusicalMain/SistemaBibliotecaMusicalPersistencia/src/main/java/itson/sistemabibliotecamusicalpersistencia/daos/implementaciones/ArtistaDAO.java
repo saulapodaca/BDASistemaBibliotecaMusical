@@ -12,11 +12,8 @@ import com.mongodb.client.model.Filters;
 import itson.sistemabibliotecamusicaldominio.AlbumDominio;
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
 import itson.sistemabibliotecamusicaldominio.CancionDominio;
+import itson.sistemabibliotecamusicaldominio.TipoFavoritoEnum;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
-import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO.Tipo;
-import static itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO.Tipo.ALBUM;
-import static itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO.Tipo.ARTISTA;
-import static itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO.Tipo.CANCION;
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.ArrayList;
@@ -28,6 +25,7 @@ import org.bson.types.ObjectId;
  * @author Camila Zubía
  */
 public class ArtistaDAO implements IArtistaDAO{
+    
 
     @Override
     public List<ResultadosDTO> listarTodo(List<String> generosNoDeseados) throws PersistenciaException {
@@ -41,18 +39,18 @@ public class ArtistaDAO implements IArtistaDAO{
                 if (generosNoDeseados.contains(a.getGenero())) {
                     continue;
                 }
-                ResultadosDTO registro = new ResultadosDTO(Tipo.ARTISTA, a);
+                ResultadosDTO registro = new ResultadosDTO(TipoFavoritoEnum.ARTISTA, a);
                 todo.add(registro);
                 List<AlbumDominio> albumes = a.getAlbumes();
                 for (AlbumDominio album : albumes) {
                     if (generosNoDeseados.contains(album.getGeneroMusical())) {
                         continue;
                     }
-                    ResultadosDTO registro2 = new ResultadosDTO(Tipo.ALBUM, album);
+                    ResultadosDTO registro2 = new ResultadosDTO(TipoFavoritoEnum.ALBUM, album);
                     todo.add(registro2);
                     List<CancionDominio> canciones = album.getCanciones();
                     for (CancionDominio c : canciones) {
-                        ResultadosDTO registro3 = new ResultadosDTO(Tipo.CANCION, c);
+                        ResultadosDTO registro3 = new ResultadosDTO(TipoFavoritoEnum.CANCION, c);
                         todo.add(registro3);
                     }
                 }

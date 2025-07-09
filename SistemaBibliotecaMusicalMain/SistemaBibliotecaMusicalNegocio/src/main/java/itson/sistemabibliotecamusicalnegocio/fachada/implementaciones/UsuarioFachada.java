@@ -4,10 +4,13 @@
  */
 package itson.sistemabibliotecamusicalnegocio.fachada.implementaciones;
 
+import itson.sistemabibliotecamusicaldominio.FavoritoDominio;
+import itson.sistemabibliotecamusicaldominio.TipoFavoritoEnum;
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.ActualizarGenerosUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.ModificarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
+import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
 import itson.sistemabibliotecamusicalnegocio.bos.IUsuarioNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
@@ -16,6 +19,7 @@ import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.UsuarioNegocio
 import itson.sistemabibliotecamusicalpersistencia.daos.IUsuarioDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.UsuarioDAO;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -75,6 +79,60 @@ public class UsuarioFachada implements IUsuarioFachada{
     public List<String> obtenerGenerosNoDeseados(UsuarioDominio usuarioDominio) throws NegocioException {
         try {
             return usuarioNegocio.obtenerGenerosNoDeseados(usuarioDominio);
+        } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public FavoritoDominio agregarFavorito(ObjectId id) throws NegocioException {
+        try {
+            return usuarioNegocio.agregarFavorito(id);
+        } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void eliminarFavorito(ObjectId id) throws NegocioException {
+        try {
+            usuarioNegocio.eliminarFavorito(id);
+        } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public boolean esFavorito(ObjectId id) throws NegocioException {
+        try {
+            return usuarioNegocio.esFavorito(id);
+        } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<ResultadosDTO> listarFavoritos(List<String> generosNoDeseados) throws NegocioException {
+        try {
+            return usuarioNegocio.listarFavoritos(generosNoDeseados);
+        } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<ResultadosDTO> listarFavoritosPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
+        try {
+            return usuarioNegocio.listarFavoritosPorFiltro(filtro, generosNoDeseados);
+        } catch (NegocioException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<ResultadosDTO> listarFavoritosPorTipoYFiltro(TipoFavoritoEnum tipo, String filtro, List<String> generosNoDeseados) throws NegocioException {
+        try {
+            return usuarioNegocio.listarFavoritosPorTipoYFiltro(tipo, filtro, generosNoDeseados);
         } catch (NegocioException ex) {
             throw new NegocioException(ex.getMessage());
         }

@@ -4,28 +4,40 @@ package itson.sistemabibliotecamusicalpersistencia.daos.implementaciones;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
 import com.mongodb.client.model.Updates;
 import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
+import itson.sistemabibliotecamusicaldominio.AlbumDominio;
+import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
+import itson.sistemabibliotecamusicaldominio.CancionDominio;
+import itson.sistemabibliotecamusicaldominio.FavoritoDominio;
+import itson.sistemabibliotecamusicaldominio.TipoFavoritoEnum;
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.ActualizarGenerosUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.ModificarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
+import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
+import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.IUsuarioDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 
 public class UsuarioDAO implements IUsuarioDAO{
 
+    private IArtistaDAO artistaDAO;
     //falta conexion
     
     public UsuarioDAO() {
         //falta conexion
+        this.artistaDAO = new ArtistaDAO();
     }
 
     @Override
@@ -106,7 +118,7 @@ public class UsuarioDAO implements IUsuarioDAO{
             Bson actualizacion = Updates.push("generosNoDeseados", usuarioActualizar.getGenerosNoDeseados());
             collection.updateOne(filtro, actualizacion);
             return obtenerUsuarioPorId(usuarioActualizar.getId());
-        }catch(Exception ex){
+        }catch(PersistenciaException ex){
             throw new PersistenciaException("Error al actualizar géneros no deseados: " + ex.getMessage());
         }
     }
@@ -139,6 +151,189 @@ public class UsuarioDAO implements IUsuarioDAO{
             throw new PersistenciaException("Error al obtener usuario por ID: " + ex.getMessage());
         }
 
+    }
+
+    @Override
+    public FavoritoDominio agregarFavorito(ObjectId id) throws PersistenciaException {
+        try{
+            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoCollection<FavoritoDominio> coleccion = baseDatos.getCollection("favoritos", FavoritoDominio.class);
+
+            if (coleccion.find(Filters.eq("referenciaFavorito", id)).first() != null) {
+                throw new PersistenciaException("Este elemento ya esta en la lista de favoritos.");
+            }
+
+            List<ResultadosDTO> resultados = artistaDAO.listarTodo(List.of());
+            FavoritoDominio nuevoFavorito = null;
+
+            for (ResultadosDTO r : resultados) {
+                switch (r.getTipo()) {
+                    case ARTISTA -> {
+                        ArtistaDominio a = (ArtistaDominio) r.getObjeto();
+                        if (a.getId().equals(id)) {
+                            nuevoFavorito = new FavoritoDominio(TipoFavoritoEnum.ARTISTA, a.getId());
+                        }
+                    }
+                    case ALBUM -> {
+                        AlbumDominio album = (AlbumDominio) r.getObjeto();
+                        if (album.getId().equals(id)) {
+                            nuevoFavorito = new FavoritoDominio(TipoFavoritoEnum.ALBUM, album.getId());
+                        }
+                    }
+                    case CANCION -> {
+                        CancionDominio cancion = (CancionDominio) r.getObjeto();
+                        if (cancion.getId().equals(id)) {
+                            nuevoFavorito = new FavoritoDominio(TipoFavoritoEnum.CANCION, cancion.getId());
+                        }
+                    }
+                }
+
+                if (nuevoFavorito != null) {
+                    coleccion.insertOne(nuevoFavorito);
+                    return nuevoFavorito;
+                }
+            }
+
+            throw new PersistenciaException("No se encontró ningún elemento con el ID proporcionado.");
+        }catch (PersistenciaException e) {
+            throw new PersistenciaException("No se pudo agregar a favoritos: " + e.getMessage());
+        }
+    }
+
+
+    @Override
+    public void eliminarFavorito(ObjectId id) throws PersistenciaException {
+        try{
+            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoCollection<FavoritoDominio> coleccion = baseDatos.getCollection("favoritos", FavoritoDominio.class);
+            if (coleccion.find(Filters.eq("referenciaFavorito", id)).first() == null) {
+                throw new PersistenciaException("Este elemento no esta en la lista de favoritos.");
+            }
+            coleccion.deleteOne(Filters.eq("referenciaFavorito", id));
+        }catch (PersistenciaException e) {
+            throw new PersistenciaException("No se pudo eliminar de favoritos: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ResultadosDTO> listarFavoritos(List<String> generosNoDeseados) throws PersistenciaException {
+        try {
+            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoCollection<FavoritoDominio> coleccion = baseDatos.getCollection("favoritos", FavoritoDominio.class);
+
+            Set<ObjectId> idsFavoritos = coleccion.find()
+                    .map(FavoritoDominio::getReferenciaFavorito)
+                    .into(new ArrayList<>())
+                    .stream()
+                    .collect(Collectors.toSet());
+            
+            List<ResultadosDTO> resultadosTotales = artistaDAO.listarTodo(generosNoDeseados);
+            List<ResultadosDTO> resultadosFavoritos = new ArrayList<>();
+
+            for (ResultadosDTO r : resultadosTotales) {
+                ObjectId id = switch (r.getTipo()) {
+                    case ARTISTA ->
+                        ((ArtistaDominio) r.getObjeto()).getId();
+                    case ALBUM ->
+                        ((AlbumDominio) r.getObjeto()).getId();
+                    case CANCION ->
+                        ((CancionDominio) r.getObjeto()).getId();
+                };
+
+                if (idsFavoritos.contains(id)) {
+                    resultadosFavoritos.add(r);
+                }
+            }
+            return resultadosFavoritos;
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException("No se pudo listar los favoritos: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ResultadosDTO> listarFavoritosPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException {
+        try {
+            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoCollection<FavoritoDominio> coleccion = baseDatos.getCollection("favoritos", FavoritoDominio.class);
+
+            Set<ObjectId> idsFavoritos = coleccion.find()
+                    .map(FavoritoDominio::getReferenciaFavorito)
+                    .into(new ArrayList<>())
+                    .stream()
+                    .collect(Collectors.toSet());
+
+            List<ResultadosDTO> filtrados = artistaDAO.listarTodoPorFiltro(filtro, generosNoDeseados);
+            List<ResultadosDTO> resultadosFavoritos = new ArrayList<>();
+
+            for (ResultadosDTO r : filtrados) {
+                ObjectId id = switch (r.getTipo()) {
+                    case ARTISTA ->
+                        ((ArtistaDominio) r.getObjeto()).getId();
+                    case ALBUM ->
+                        ((AlbumDominio) r.getObjeto()).getId();
+                    case CANCION ->
+                        ((CancionDominio) r.getObjeto()).getId();
+                };
+
+                if (idsFavoritos.contains(id)) {
+                    resultadosFavoritos.add(r);
+                }
+            }
+
+            return resultadosFavoritos;
+
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException("No se pudo listar los favoritos filtrados: " + e.getMessage());
+        }
+    }
+
+
+    @Override
+    public List<ResultadosDTO> listarFavoritosPorTipoYFiltro(TipoFavoritoEnum tipo, String filtro, List<String> generosNoDeseados) throws PersistenciaException {
+        try {
+            MongoDatabase baseDatos = new ConexionBD().conexion();
+            MongoCollection<FavoritoDominio> favoritosCol = baseDatos.getCollection("favoritos", FavoritoDominio.class);
+
+            Set<ObjectId> idsFavoritos = favoritosCol.find(Filters.eq("tipo", tipo))
+                    .map(FavoritoDominio::getReferenciaFavorito)
+                    .into(new ArrayList<>())
+                    .stream()
+                    .collect(Collectors.toSet());
+
+            List<ResultadosDTO> filtrados = artistaDAO.listarTodoPorFiltro(filtro, generosNoDeseados);
+            List<ResultadosDTO> favoritosFiltrados = new ArrayList<>();
+            
+            for (ResultadosDTO r : filtrados) {
+                if (r.getTipo().equals(tipo)) {
+                    continue;
+                }
+
+                ObjectId id = switch (r.getTipo()) {
+                    case ARTISTA ->
+                        ((ArtistaDominio) r.getObjeto()).getId();
+                    case ALBUM ->
+                        ((AlbumDominio) r.getObjeto()).getId();
+                    case CANCION ->
+                        ((CancionDominio) r.getObjeto()).getId();
+                };
+
+                if (idsFavoritos.contains(id)) {
+                    favoritosFiltrados.add(r);
+                }
+            }
+
+            return favoritosFiltrados;
+
+        } catch (PersistenciaException e) {
+            throw new PersistenciaException("No se pudo listar los favoritos por tipo y filtro: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean esFavorito(ObjectId id) throws PersistenciaException {
+        MongoDatabase baseDatos = new ConexionBD().conexion();
+        MongoCollection<FavoritoDominio> col = baseDatos.getCollection("favoritos", FavoritoDominio.class);
+        return col.find(Filters.eq("referenciaFavorito", id)).first() != null;
     }
 
 }

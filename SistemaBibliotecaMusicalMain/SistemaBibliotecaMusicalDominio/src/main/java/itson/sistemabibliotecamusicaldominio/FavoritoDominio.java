@@ -7,14 +7,15 @@ import org.bson.types.ObjectId;
 
 
 public class FavoritoDominio {
+    private ObjectId id;
     private TipoFavoritoEnum tipo;
     private ObjectId referenciaFavorito;
     private Date fechaAgregado;
 
-    public FavoritoDominio(TipoFavoritoEnum tipo, ObjectId referenciaFavorito, Date fechaAgregado) {
+    public FavoritoDominio(TipoFavoritoEnum tipo, ObjectId referenciaFavorito) {
         this.tipo = tipo;
         this.referenciaFavorito = referenciaFavorito;
-        this.fechaAgregado = fechaAgregado;
+        this.fechaAgregado = new Date();
     }
 
     public FavoritoDominio() {
@@ -43,5 +44,12 @@ public class FavoritoDominio {
     public void setFechaAgregado(Date fechaAgregado) {
         this.fechaAgregado = fechaAgregado;
     }
-    
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
 }
