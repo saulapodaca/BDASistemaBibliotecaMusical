@@ -23,8 +23,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -411,8 +413,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
                     case ArtistaDominio artista -> {
                         btnInfo.setText(artista.getImagen() + artista.getNombre() + " - " + artista.getGenero());
                         btnInfo.addActionListener(e -> {
-                            new ArtistaFrm().setVisible(true);
-                            this.setVisible(false);
+                            abrirPanelArtista();
                         });
                         btnFavorito.addActionListener(e -> {
                             try {
@@ -489,6 +490,16 @@ public class PanelFavoritos extends javax.swing.JPanel {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de la biblioteca musical");
         }
+    }
+    
+    private void abrirPanelArtista(){
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        PanelArtista panel = new PanelArtista();
+        
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        frame.revalidate();
+        frame.repaint();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
