@@ -390,8 +390,8 @@ public class PanelFavoritos extends javax.swing.JPanel {
     
     private void cargarFavoritos(List<?> registros) {
         try {
-            panelListar.removeAll();
-            panelListar.setLayout(new BoxLayout(panelListar, BoxLayout.Y_AXIS));
+            JPanel panelInterno = new JPanel();
+            panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
 
             for (Object o : registros) {
                 JPanel panelElemento = new JPanel(new BorderLayout());
@@ -480,9 +480,10 @@ public class PanelFavoritos extends javax.swing.JPanel {
                 }
 
                 panelElemento.add(btnFavorito, BorderLayout.EAST);
-                panelListar.add(panelElemento);
+                panelInterno.add(panelElemento);
             }
-
+            panelListar.removeAll();
+            panelListar.add(panelInterno);
             panelListar.revalidate();
             panelListar.repaint();
         } catch (Exception ex) {
