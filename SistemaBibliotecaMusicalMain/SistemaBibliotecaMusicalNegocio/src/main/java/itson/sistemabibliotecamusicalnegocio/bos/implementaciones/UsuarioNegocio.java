@@ -286,7 +286,6 @@ public class UsuarioNegocio implements IUsuarioNegocio {
      * deseados de un usuario
      *
      * @param usuarioDominio
-     * @param id
      * @return
      * @throws NegocioException
      */

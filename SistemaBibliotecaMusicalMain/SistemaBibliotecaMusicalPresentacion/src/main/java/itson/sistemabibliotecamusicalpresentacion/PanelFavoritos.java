@@ -525,7 +525,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
         frame.repaint();
     }
     
-     private void abrirPanelAlbum(AlbumDominio album) {
+    private void abrirPanelAlbum(AlbumDominio album) {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         PanelAlbum panel = new PanelAlbum(album);
 

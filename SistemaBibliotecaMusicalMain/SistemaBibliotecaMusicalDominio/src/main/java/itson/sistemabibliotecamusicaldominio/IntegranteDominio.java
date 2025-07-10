@@ -85,11 +85,4 @@ public class IntegranteDominio {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-
-    public String getInstrumento() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    
-    
 }

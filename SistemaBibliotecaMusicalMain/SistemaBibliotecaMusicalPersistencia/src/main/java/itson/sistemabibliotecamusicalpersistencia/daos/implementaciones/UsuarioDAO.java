@@ -382,32 +382,26 @@ public class UsuarioDAO implements IUsuarioDAO{
     public List<ResultadosDTO> listarFavoritosPorTipoYFiltro(TipoFavoritoEnum tipo, String filtro, List<String> generosNoDeseados) throws PersistenciaException {
         try {
             MongoDatabase baseDatos = conexionBD.conexion();
-            MongoCollection<FavoritoDominio> favoritosCol = baseDatos.getCollection("favoritos", FavoritoDominio.class);
-
-            Set<ObjectId> idsFavoritos = favoritosCol.find(Filters.eq("tipo", tipo))
-                    .map(FavoritoDominio::getReferenciaFavorito)
-                    .into(new ArrayList<>())
-                    .stream()
-                    .collect(Collectors.toSet());
 
             List<ResultadosDTO> filtrados = artistaDAO.listarTodoPorFiltro(filtro, generosNoDeseados);
+
             List<ResultadosDTO> favoritosFiltrados = new ArrayList<>();
-            
+
             for (ResultadosDTO r : filtrados) {
-                if (!r.getTipo().equals(tipo)) {
+                ObjectId id = null;
+                TipoFavoritoEnum t = r.getTipo();
+                
+                if (t != tipo) {
                     continue;
                 }
-
-                ObjectId id = switch (r.getTipo()) {
-                    case ARTISTA ->
-                        ((ArtistaDominio) r.getObjeto()).getId();
-                    case ALBUM ->
-                        ((AlbumDominio) r.getObjeto()).getId();
-                    case CANCION ->
-                        ((CancionDominio) r.getObjeto()).getId();
+                
+                switch (t) {
+                    case ARTISTA -> id = ((ArtistaDominio) r.getObjeto()).getId();
+                    case ALBUM -> id = ((AlbumDominio) r.getObjeto()).getId();
+                    case CANCION -> id = ((CancionDominio) r.getObjeto()).getId();
                 };
 
-                if (idsFavoritos.contains(id)) {
+                if (esFavorito(id)) {
                     favoritosFiltrados.add(r);
                 }
             }
