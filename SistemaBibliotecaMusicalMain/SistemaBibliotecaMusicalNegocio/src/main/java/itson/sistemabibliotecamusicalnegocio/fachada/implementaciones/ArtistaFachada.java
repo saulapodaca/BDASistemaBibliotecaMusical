@@ -10,7 +10,7 @@ import itson.sistemabibliotecamusicalnegocio.bos.IArtistaNegocio;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IArtistaFachada;
 import itson.sistemabibliotecamusicalnegocio.bos.implementaciones.ArtistaNegocio;
-import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
+import itson.sistemabibliotecamusicalpersistencia.daos.IConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.ArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.implementaciones.ConexionBD;

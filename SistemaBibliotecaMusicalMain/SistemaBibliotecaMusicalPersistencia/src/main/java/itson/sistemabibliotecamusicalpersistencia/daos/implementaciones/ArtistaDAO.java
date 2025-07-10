@@ -14,7 +14,7 @@ import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
 import itson.sistemabibliotecamusicaldominio.CancionDominio;
 import itson.sistemabibliotecamusicaldominio.TipoFavoritoEnum;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
-import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
+import itson.sistemabibliotecamusicalpersistencia.daos.IConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ import org.bson.types.ObjectId;
  */
 public class ArtistaDAO implements IArtistaDAO{
     
-    private final IConexionBD conexionBD;
+    private IConexionBD conexionBD;
 
     public ArtistaDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
@@ -106,7 +106,7 @@ public class ArtistaDAO implements IArtistaDAO{
                         AlbumDominio album = (AlbumDominio) r.getObjeto();
                         if (album.getNombre().toLowerCase().contains(filtro)
                                 || album.getGeneroMusical().toLowerCase().contains(filtro)
-                                || album.getFechaLanzamiento().toString().contains(filtro)) {
+                                || album.getFechaLanzamiento().contains(filtro)) {
                             resultados.add(r);
                         }
                     }

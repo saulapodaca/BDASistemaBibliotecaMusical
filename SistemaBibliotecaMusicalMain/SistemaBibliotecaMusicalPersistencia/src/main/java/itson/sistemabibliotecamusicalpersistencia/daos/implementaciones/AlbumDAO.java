@@ -9,7 +9,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import itson.sistemabibliotecamusicaldominio.AlbumDominio;
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
-import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
+import itson.sistemabibliotecamusicalpersistencia.daos.IConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IAlbumDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import org.bson.types.ObjectId;
  */
 public class AlbumDAO implements IAlbumDAO {
     
-    private final IConexionBD conexionBD;
+    private IConexionBD conexionBD;
 
     public AlbumDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
@@ -66,7 +66,7 @@ public class AlbumDAO implements IAlbumDAO {
             for (AlbumDominio album : listarTodosLosAlbumes(generosNoDeseados)) {
                 if (album.getNombre().toLowerCase().contains(filtro)
                         || album.getGeneroMusical().toLowerCase().contains(filtro)
-                        || album.getFechaLanzamiento().toString().contains(filtro)) {
+                        || album.getFechaLanzamiento().contains(filtro)) {
                     resultados.add(album);
                 }
             }

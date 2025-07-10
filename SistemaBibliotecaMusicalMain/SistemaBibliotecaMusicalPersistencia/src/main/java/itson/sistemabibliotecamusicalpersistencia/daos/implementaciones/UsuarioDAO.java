@@ -19,7 +19,7 @@ import itson.sistemabibliotecamusicaldominio.dtos.ActualizarGenerosUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.ModificarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.RegistrarUsuarioDTO;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
-import itson.sistemabibliotecamusicalpersistencia.IConexionBD;
+import itson.sistemabibliotecamusicalpersistencia.daos.IConexionBD;
 import itson.sistemabibliotecamusicalpersistencia.daos.IArtistaDAO;
 import itson.sistemabibliotecamusicalpersistencia.daos.IUsuarioDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
@@ -34,7 +34,7 @@ import org.bson.types.ObjectId;
 public class UsuarioDAO implements IUsuarioDAO{
 
     private IArtistaDAO artistaDAO;
-    private final IConexionBD conexionBD;
+    private IConexionBD conexionBD;
     
     public UsuarioDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
@@ -305,7 +305,7 @@ public class UsuarioDAO implements IUsuarioDAO{
             List<ResultadosDTO> favoritosFiltrados = new ArrayList<>();
             
             for (ResultadosDTO r : filtrados) {
-                if (r.getTipo().equals(tipo)) {
+                if (!r.getTipo().equals(tipo)) {
                     continue;
                 }
 

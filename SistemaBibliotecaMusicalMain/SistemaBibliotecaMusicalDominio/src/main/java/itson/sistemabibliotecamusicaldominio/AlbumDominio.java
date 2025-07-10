@@ -4,7 +4,7 @@
  */
 package itson.sistemabibliotecamusicaldominio;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -16,7 +16,7 @@ public class AlbumDominio {
     
     private ObjectId id;
     private String nombre;
-    private LocalDate fechaLanzamiento;
+    private String fechaLanzamiento;
     private String generoMusical;
     private String imagenPortada;
     private List<CancionDominio> canciones;
@@ -24,7 +24,7 @@ public class AlbumDominio {
     public AlbumDominio() {
     }
 
-    public AlbumDominio(ObjectId id, String nombre, LocalDate fechaLanzamiento, String generoMusical, String imagenPortada, List<CancionDominio> canciones) {
+    public AlbumDominio(ObjectId id, String nombre, String fechaLanzamiento, String generoMusical, String imagenPortada, List<CancionDominio> canciones) {
         this.id = id;
         this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
@@ -49,11 +49,11 @@ public class AlbumDominio {
         this.nombre = nombre;
     }
 
-    public LocalDate getFechaLanzamiento() {
+    public String getFechaLanzamiento() {
         return fechaLanzamiento;
     }
 
-    public void setFechaLanzamiento(LocalDate fechaLanzamiento) {
+    public void setFechaLanzamiento(String fechaLanzamiento) {
         this.fechaLanzamiento = fechaLanzamiento;
     }
 

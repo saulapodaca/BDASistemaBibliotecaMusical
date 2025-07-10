@@ -36,16 +36,9 @@ public class CancionNegocio implements ICancionNegocio {
     @Override
     public List<CancionDominio> listarCancionesPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
-            filtroValido(filtro);
             return cancionDAO.listarCancionesPorFiltro(filtro, generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException("Ha ocurrido un error al listar todas las canciones por filtro");
-        }
-    }
-    
-    private void filtroValido(String filtro) throws NegocioException {
-        if (filtro == null || filtro.trim().isEmpty()) {
-            throw new NegocioException("El filtro no puede estar vacio");
         }
     }
 

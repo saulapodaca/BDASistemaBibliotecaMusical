@@ -4,17 +4,39 @@
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
+import itson.sistemabibliotecamusicaldominio.AlbumDominio;
+import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author saula
  */
 public class PanelArtista extends javax.swing.JPanel {
 
+    private ArtistaDominio artista;
     /**
      * Creates new form PanelArtista
      */
-    public PanelArtista() {
+    public PanelArtista(ArtistaDominio artista) {
         initComponents();
+        this.artista = artista;
+        SwingUtilities.invokeLater(() -> cargarImagenArtista());
+        SwingUtilities.invokeLater(() -> cargarInfoArtista());
+        SwingUtilities.invokeLater(() -> cargarAlbumes());
+        
     }
 
     /**
@@ -135,6 +157,72 @@ public class PanelArtista extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 
+    private void cargarImagenArtista() {
+        panelImagenArtista.removeAll();
+        ImageIcon icono = new ImageIcon(this.artista.getImagen());
+        Image imagenEscalada = icono.getImage().getScaledInstance(
+                panelImagenArtista.getWidth(), panelImagenArtista.getHeight(), Image.SCALE_SMOOTH);
+        JLabel lblImagen = new JLabel(new ImageIcon(imagenEscalada));
+        panelImagenArtista.setLayout(new BorderLayout());
+        panelImagenArtista.add(lblImagen, BorderLayout.CENTER);
+        panelImagenArtista.revalidate();
+        panelImagenArtista.repaint();
+    }
+
+    private void cargarInfoArtista() {
+        panelInfoArtista.removeAll();
+        panelInfoArtista.setLayout(new BoxLayout(panelInfoArtista, BoxLayout.Y_AXIS));
+
+        panelInfoArtista.add(new JLabel("Nombre: " + this.artista.getNombre()));
+        
+        String tipo;
+        if (this.artista.isEsBanda()) tipo = "Banda";
+        else tipo = "Solista";
+
+        panelInfoArtista.add(new JLabel("Tipo: " + tipo));
+        panelInfoArtista.add(new JLabel("Género: " + this.artista.getGenero()));
+
+        panelInfoArtista.revalidate();
+        panelInfoArtista.repaint();
+    }
+    
+    private void cargarAlbumes(){
+        panelAlbumesArtista.removeAll();
+        panelAlbumesArtista.setLayout(new BoxLayout(panelAlbumesArtista, BoxLayout.Y_AXIS));
+        for (AlbumDominio album : this.artista.getAlbumes()){
+            JPanel panelAlbum = new JPanel(new BorderLayout());
+            panelAlbum.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+            panelAlbum.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+
+            // Imagen del álbum
+            ImageIcon icono = new ImageIcon(album.getImagenPortada());
+            Image imagen = icono.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+            JLabel lblImagen = new JLabel(new ImageIcon(imagen));
+            panelAlbum.add(lblImagen, BorderLayout.WEST);
+
+            // Info del álbum
+            JPanel info = new JPanel(new GridLayout(2, 1));
+            info.add(new JLabel("Nombre: " + album.getNombre()));
+            info.add(new JLabel("Fecha: " + album.getFechaLanzamiento()));
+            panelAlbum.add(info, BorderLayout.CENTER);
+
+            // Evento al hacer clic
+            panelAlbum.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    mostrarPanelAlbum(album);
+                }
+            });
+            panelAlbumesArtista.add(panelAlbum);
+        }
+        panelAlbumesArtista.revalidate();
+        panelAlbumesArtista.repaint();
+    }
+
+        private void mostrarPanelAlbum(AlbumDominio album){
+            
+        }
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenedorPnl;
     private javax.swing.JPanel jPanel2;
