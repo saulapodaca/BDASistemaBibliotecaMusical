@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 
-
+/**
+ * representa a un usuario de la biblioteca musical
+ * @author Camila Zubía
+ */
 public class UsuarioDominio {
 
     private ObjectId id;
@@ -17,9 +20,21 @@ public class UsuarioDominio {
     private List<FavoritoDominio> favoritos;
     private List<String> generosNoDeseados;
 
+    /**
+     * constructor vacio
+     */
     public UsuarioDominio() {
     }
 
+    /**
+     * constructor que inicializa todos los atributos, no recibe una lista favoritos
+     * o generos no deseados, crea listas vacias
+     * @param id
+     * @param nombreUsuario
+     * @param contrasenia
+     * @param correo
+     * @param imagen 
+     */
     public UsuarioDominio(ObjectId id, String nombreUsuario, String contrasenia, String correo, String imagen) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
@@ -30,6 +45,16 @@ public class UsuarioDominio {
         this.generosNoDeseados = new ArrayList<>();
     }
 
+    /**
+     * constructor que inicializa todos los atributos
+     * @param id
+     * @param nombreUsuario
+     * @param contrasenia
+     * @param correo
+     * @param imagen
+     * @param favoritos
+     * @param generosNoDeseados 
+     */
     public UsuarioDominio(ObjectId id, String nombreUsuario, String contrasenia, String correo, String imagen, List<FavoritoDominio> favoritos, List<String> generosNoDeseados) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
@@ -40,6 +65,11 @@ public class UsuarioDominio {
         this.generosNoDeseados = generosNoDeseados;
     }
 
+    /**
+     * getters y setters de los atributos
+     * @return
+     */
+    
     public ObjectId getId() {
         return id;
     }

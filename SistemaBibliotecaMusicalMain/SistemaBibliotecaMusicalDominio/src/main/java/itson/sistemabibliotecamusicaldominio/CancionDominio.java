@@ -7,7 +7,7 @@ package itson.sistemabibliotecamusicaldominio;
 import org.bson.types.ObjectId;
 
 /**
- *
+ * representa a una cancion de un album
  * @author Camila Zubía
  */
 public class CancionDominio {
@@ -16,15 +16,29 @@ public class CancionDominio {
     private String nombre;
     private String imagenCancion;
 
+    /**
+     * constructor vacio
+     */
     public CancionDominio() {
     }
 
+    /**
+     * constructor que inicializa todos los atributos
+     * @param id
+     * @param nombre
+     * @param imagenCancion 
+     */
     public CancionDominio(ObjectId id, String nombre, String imagenCancion) {
         this.id = id;
         this.nombre = nombre;
         this.imagenCancion = imagenCancion;
     }
 
+    /**
+     * getters y setters de los atributos
+     * @return 
+     */
+    
     public ObjectId getId() {
         return id;
     }

@@ -4,12 +4,11 @@
  */
 package itson.sistemabibliotecamusicaldominio;
 
-import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
- *
+ *representa un el album de un artista
  * @author Camila Zubía
  */
 public class AlbumDominio {
@@ -21,9 +20,21 @@ public class AlbumDominio {
     private String imagenPortada;
     private List<CancionDominio> canciones;
 
+    /**
+     * constructor vacio
+     */
     public AlbumDominio() {
     }
 
+    /**
+     * constructor que inicializa todos los atributos
+     * @param id
+     * @param nombre
+     * @param fechaLanzamiento
+     * @param generoMusical
+     * @param imagenPortada
+     * @param canciones 
+     */
     public AlbumDominio(ObjectId id, String nombre, String fechaLanzamiento, String generoMusical, String imagenPortada, List<CancionDominio> canciones) {
         this.id = id;
         this.nombre = nombre;
@@ -33,6 +44,11 @@ public class AlbumDominio {
         this.canciones = canciones;
     }
 
+    /**
+     * getters y setters de los atributos
+     * @return 
+     */
+    
     public ObjectId getId() {
         return id;
     }
