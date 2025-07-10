@@ -24,10 +24,13 @@ import javax.swing.JOptionPane;
 public class InicioSesionFrm extends javax.swing.JFrame {
 
     private final IUsuarioFachada usuarioFachada;
-    private final IInsertMasivoFachada insertFachada; 
+    private final IInsertMasivoFachada insertFachada;
+
     /**
      * Creates new form FrameInicioSesion
-     * @throws itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException
+     *
+     * @throws
+     * itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException
      */
     public InicioSesionFrm() throws NegocioException {
         initComponents();
@@ -219,6 +222,10 @@ public class InicioSesionFrm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "¡Bienvenido, " + usuarioSesion.getNombreUsuario() + "!");
                 new MenuPrincipalFrm().setVisible(true);
                 this.dispose();
+            } else {
+
+                JOptionPane.showMessageDialog(this, "Datos incorrectos!");
+
             }
 
         } catch (NegocioException | HeadlessException ex) {
