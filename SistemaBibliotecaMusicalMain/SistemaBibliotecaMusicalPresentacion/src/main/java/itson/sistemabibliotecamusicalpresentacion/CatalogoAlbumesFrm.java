@@ -19,12 +19,15 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.HeadlessException;
+import java.awt.Image;
+import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -58,13 +61,19 @@ public class CatalogoAlbumesFrm extends javax.swing.JFrame {
 
     private void cargarBiblioteca() throws NegocioException {
         try {
+
             List<AlbumDominio> albumes = albumFachada.listarTodosLosAlbumes(usuario.getGenerosNoDeseados());
 
             JPanel panelInterno = new JPanel();
             panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
-            panelInterno.setPreferredSize(new Dimension(700, albumes.size() * 60));
+            panelInterno.setPreferredSize(new Dimension(750, albumes.size() * 60));
             panelInterno.setBackground(new Color(219, 182, 238));
+            
             for (AlbumDominio album : albumes) {
+
+                File imagen = null;
+                imagen = new File(album.getImagenPortada().trim());
+
                 JPanel panelElemento = new JPanel();
                 panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
                 panelElemento.setPreferredSize(new Dimension(700, 50));
@@ -85,7 +94,6 @@ public class CatalogoAlbumesFrm extends javax.swing.JFrame {
                 btnFavorito.setPreferredSize(new Dimension(50, 40));
                 btnFavorito.setMaximumSize(new Dimension(50, 40));
 
-                System.out.println(album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
                 btnInfo.setText(album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
                 btnInfo.addActionListener(e -> {
                     new CancionesFrm().setVisible(true);
@@ -107,6 +115,13 @@ public class CatalogoAlbumesFrm extends javax.swing.JFrame {
                         Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 });
+
+                ImageIcon icono = new ImageIcon(imagen.getAbsolutePath());
+                Image imagenEscalada = icono.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+                JLabel lblImagen = new JLabel(new ImageIcon(imagenEscalada));
+                lblImagen.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+                panelElemento.add(lblImagen);
 
                 panelElemento.add(btnInfo);
                 panelElemento.add(Box.createHorizontalStrut(10));
