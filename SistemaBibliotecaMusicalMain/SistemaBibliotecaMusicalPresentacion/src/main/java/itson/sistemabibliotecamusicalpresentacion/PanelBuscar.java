@@ -33,8 +33,10 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
@@ -421,8 +423,7 @@ public class PanelBuscar extends javax.swing.JPanel {
                         }
                         btnInfo.setText(a.getNombre() + " - " + a.getGenero());
                         btnInfo.addActionListener(e -> {
-                            new ArtistaFrm().setVisible(true);
-                            this.setVisible(false);
+                            abrirPanelArtista(a);
                         });
                         btnFavorito.addActionListener(e -> {
                             try {
@@ -516,6 +517,15 @@ public class PanelBuscar extends javax.swing.JPanel {
         }
     }
 
+    private void abrirPanelArtista(ArtistaDominio artista) {
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        PanelArtista panel = new PanelArtista(artista);
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        frame.revalidate();
+        frame.repaint();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelFondo;
     private javax.swing.JButton btnAlbumes;

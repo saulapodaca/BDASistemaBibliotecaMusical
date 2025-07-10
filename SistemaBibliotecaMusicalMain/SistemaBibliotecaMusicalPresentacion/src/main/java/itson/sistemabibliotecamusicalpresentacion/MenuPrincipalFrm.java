@@ -376,7 +376,11 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnArtistasActionPerformed
 
     private void btnCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancionesActionPerformed
-        new CatalogoCancionesFrm().setVisible(true);
+        try {
+            new CatalogoCancionesFrm().setVisible(true);
+        } catch (NegocioException ex) {
+            Logger.getLogger(MenuPrincipalFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setVisible(false);
     }//GEN-LAST:event_btnCancionesActionPerformed
 
