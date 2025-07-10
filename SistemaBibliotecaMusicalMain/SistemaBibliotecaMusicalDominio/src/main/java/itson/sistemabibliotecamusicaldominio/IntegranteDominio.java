@@ -28,6 +28,7 @@ public class IntegranteDominio {
     
     /**
      * constructor que inicializa todos los atributos
+     * @param id
      * @param nombre
      * @param rol
      * @param fechaIngreso
@@ -85,4 +86,14 @@ public class IntegranteDominio {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+    
 }
