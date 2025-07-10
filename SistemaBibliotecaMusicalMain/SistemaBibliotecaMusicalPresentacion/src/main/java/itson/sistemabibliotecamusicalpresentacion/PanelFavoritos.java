@@ -8,6 +8,7 @@ import itson.sistemabibliotecamusicaldominio.AlbumDominio;
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
 import itson.sistemabibliotecamusicaldominio.CancionDominio;
 import itson.sistemabibliotecamusicaldominio.TipoFavoritoEnum;
+import static itson.sistemabibliotecamusicaldominio.TipoFavoritoEnum.ARTISTA;
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.ResultadosDTO;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
@@ -19,6 +20,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,7 +49,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
     public PanelFavoritos() {
         this.usuarioFachada = new UsuarioFachada();
         initComponents();
-
+        buscarConParametros();
     }
 
     /**
@@ -63,12 +65,9 @@ public class PanelFavoritos extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         btnTodo = new javax.swing.JButton();
-        txtFieldNombreUsuario = new javax.swing.JTextField();
-        txtFieldCorreo = new javax.swing.JTextField();
         btnCanciones = new javax.swing.JButton();
         btnAlbumes = new javax.swing.JButton();
         btnArtistas = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
         panelListar = new javax.swing.JPanel();
         btnBuscar = new javax.swing.JButton();
         txtFieldBuscar = new javax.swing.JTextField();
@@ -103,16 +102,6 @@ public class PanelFavoritos extends javax.swing.JPanel {
                 btnTodoActionPerformed(evt);
             }
         });
-
-        txtFieldNombreUsuario.setEditable(false);
-        txtFieldNombreUsuario.setBackground(new java.awt.Color(219, 182, 238));
-        txtFieldNombreUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        txtFieldNombreUsuario.setBorder(null);
-
-        txtFieldCorreo.setEditable(false);
-        txtFieldCorreo.setBackground(new java.awt.Color(219, 182, 238));
-        txtFieldCorreo.setForeground(new java.awt.Color(0, 0, 0));
-        txtFieldCorreo.setBorder(null);
 
         btnCanciones.setBackground(new java.awt.Color(127, 76, 165));
         btnCanciones.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
@@ -153,10 +142,6 @@ public class PanelFavoritos extends javax.swing.JPanel {
             }
         });
 
-        jScrollPane1.setBackground(new java.awt.Color(219, 182, 238));
-        jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-
         panelListar.setBackground(new java.awt.Color(219, 182, 238));
         panelListar.setForeground(new java.awt.Color(0, 0, 0));
         panelListar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -169,10 +154,8 @@ public class PanelFavoritos extends javax.swing.JPanel {
         );
         panelListarLayout.setVerticalGroup(
             panelListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 323, Short.MAX_VALUE)
+            .addGap(0, 329, Short.MAX_VALUE)
         );
-
-        jScrollPane1.setViewportView(panelListar);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,7 +164,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,39 +173,27 @@ public class PanelFavoritos extends javax.swing.JPanel {
                                 .addComponent(btnCanciones)
                                 .addGap(78, 78, 78)
                                 .addComponent(btnAlbumes, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(79, 79, 79)
                                 .addComponent(btnArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(89, 89, 89)
-                                .addComponent(lblTitulo)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(lblTitulo)))))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCanciones)
-                            .addComponent(btnTodo)
-                            .addComponent(btnArtistas)
-                            .addComponent(btnAlbumes))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(425, 425, 425)
-                        .addComponent(txtFieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(7, 7, 7)
-                .addComponent(txtFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCanciones)
+                    .addComponent(btnTodo)
+                    .addComponent(btnArtistas)
+                    .addComponent(btnAlbumes))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         btnBuscar.setBackground(new java.awt.Color(127, 76, 165));
@@ -244,6 +215,11 @@ public class PanelFavoritos extends javax.swing.JPanel {
                 txtFieldBuscarActionPerformed(evt);
             }
         });
+        txtFieldBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFieldBuscarKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelFondoLayout = new javax.swing.GroupLayout(PanelFondo);
         PanelFondo.setLayout(PanelFondoLayout);
@@ -258,7 +234,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
                         .addComponent(txtFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelFondoLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 972, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
         PanelFondoLayout.setVerticalGroup(
@@ -269,7 +245,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
                     .addComponent(btnBuscar)
                     .addComponent(txtFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -348,6 +324,10 @@ public class PanelFavoritos extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnArtistasActionPerformed
 
+    private void txtFieldBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFieldBuscarKeyReleased
+        buscarConParametros();
+    }//GEN-LAST:event_txtFieldBuscarKeyReleased
+
     private void buscarConParametros() {
         String texto = txtFieldBuscar.getText().trim();
 
@@ -389,13 +369,13 @@ public class PanelFavoritos extends javax.swing.JPanel {
         }
     }
     
-    private void cargarFavoritos(List<?> registros) {
+    private void cargarFavoritos(List<ResultadosDTO> registros) {
         try {
             JPanel panelInterno = new JPanel();
             panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
             panelInterno.setPreferredSize(new Dimension(750, registros.size() * 50));
 
-            for (Object o : registros) {
+            for (ResultadosDTO o : registros) {
                 
                 JPanel panelElemento = new JPanel();
                 panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
@@ -417,22 +397,26 @@ public class PanelFavoritos extends javax.swing.JPanel {
                 btnFavorito.setPreferredSize(new Dimension(50, 40));
                 btnFavorito.setMaximumSize(new Dimension(50, 40));
 
-                switch (o) {
-                    case ArtistaDominio artista -> {
-                        btnInfo.setText(artista.getNombre() + " - " + artista.getGenero());
+                switch (o.getTipo()) {
+                    case ARTISTA -> {
+                        ArtistaDominio a = (ArtistaDominio) o.getObjeto();
+                        if (usuarioFachada.esFavorito(a.getId())) {
+                            btnFavorito.setText("★️");
+                        }
+                        btnInfo.setText(a.getNombre() + " - " + a.getGenero());
                         btnInfo.addActionListener(e -> {
                             new ArtistaFrm().setVisible(true);
                             this.setVisible(false);
                         });
                         btnFavorito.addActionListener(e -> {
                             try {
-                                if (usuarioFachada.esFavorito(artista.getId())) {
-                                    usuarioFachada.eliminarFavorito(artista.getId());
+                                if (usuarioFachada.esFavorito(a.getId())) {
+                                    usuarioFachada.eliminarFavorito(a.getId());
                                     btnFavorito.setText("☆");
                                     btnFavorito.setForeground(Color.GRAY);
                                 } else {
                                     try {
-                                        usuarioFachada.agregarFavorito(artista.getId());
+                                        usuarioFachada.agregarFavorito(a.getId());
                                     } catch (NegocioException ex) {
                                         Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
                                     }
@@ -444,7 +428,11 @@ public class PanelFavoritos extends javax.swing.JPanel {
                             }
                         });
                     }
-                    case AlbumDominio album -> {
+                    case ALBUM -> {
+                        AlbumDominio album = (AlbumDominio) o.getObjeto();
+                        if (usuarioFachada.esFavorito(album.getId())) {
+                            btnFavorito.setText("★️");
+                        }
                         btnInfo.setText(album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
                         btnInfo.addActionListener(e -> {
                             new CancionesFrm().setVisible(true);
@@ -466,7 +454,11 @@ public class PanelFavoritos extends javax.swing.JPanel {
                             }
                         });
                     }
-                    case CancionDominio cancion -> {
+                    case CANCION -> {
+                        CancionDominio cancion = (CancionDominio) o.getObjeto();
+                        if (usuarioFachada.esFavorito(cancion.getId())) {
+                            btnFavorito.setText("★️");
+                        }
                         btnInfo.setText(cancion.getNombre());
                         btnFavorito.addActionListener(e -> {
                             try {
@@ -485,6 +477,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
                         });
                     }
                     default -> {
+                        JOptionPane.showMessageDialog(this, "No hay ningun registro");
                         continue;
                     }
                 }
@@ -495,12 +488,14 @@ public class PanelFavoritos extends javax.swing.JPanel {
                 panelInterno.add(panelElemento);
             }
             JScrollPane scrollPane = new JScrollPane(panelInterno);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane.setPreferredSize(new Dimension(770, 330));
             panelListar.removeAll();
             panelListar.setLayout(new BorderLayout());
             panelListar.add(panelInterno, BorderLayout.NORTH);
             panelListar.revalidate();
             panelListar.repaint();
-        } catch (Exception ex) {
+        } catch (NegocioException | HeadlessException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de la biblioteca musical");
         }
     }
@@ -513,11 +508,8 @@ public class PanelFavoritos extends javax.swing.JPanel {
     private javax.swing.JButton btnCanciones;
     private javax.swing.JButton btnTodo;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelListar;
     private javax.swing.JTextField txtFieldBuscar;
-    private javax.swing.JTextField txtFieldCorreo;
-    private javax.swing.JTextField txtFieldNombreUsuario;
     // End of variables declaration//GEN-END:variables
 }

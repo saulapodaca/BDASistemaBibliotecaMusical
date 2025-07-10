@@ -343,7 +343,11 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemMenuActionPerformed
 
     private void jMenuItemCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCerrarActionPerformed
-         new InicioSesionFrm().setVisible(true);
+        try {
+            new InicioSesionFrm().setVisible(true);
+        } catch (NegocioException ex) {
+            Logger.getLogger(MenuPrincipalFrm.class.getName()).log(Level.SEVERE, null, ex);
+        }
          this.dispose();
     }//GEN-LAST:event_jMenuItemCerrarActionPerformed
 
