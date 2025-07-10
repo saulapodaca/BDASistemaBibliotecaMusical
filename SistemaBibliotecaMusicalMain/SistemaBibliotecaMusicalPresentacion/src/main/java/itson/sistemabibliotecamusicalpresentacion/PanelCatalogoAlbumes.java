@@ -28,11 +28,13 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -92,8 +94,7 @@ public class PanelCatalogoAlbumes extends javax.swing.JPanel {
 
                 btnInfo.setText(album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
                 btnInfo.addActionListener(e -> {
-                    new CancionesFrm().setVisible(true);
-                    this.setVisible(false);
+                     mostrarPanelAlbum(album);
                 });
 
                 btnFavorito.addActionListener(e -> {
@@ -140,6 +141,16 @@ public class PanelCatalogoAlbumes extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de la biblioteca musical");
         }
     }
+    
+    private void mostrarPanelAlbum(AlbumDominio album) {
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        PanelAlbum panel = new PanelAlbum(album);
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        frame.revalidate();
+        frame.repaint();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,6 +166,8 @@ public class PanelCatalogoAlbumes extends javax.swing.JPanel {
         infoArtistaPnl = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         infoAlbumesPnl = new javax.swing.JPanel();
+
+        setPreferredSize(new java.awt.Dimension(1080, 648));
 
         jPanel2.setBackground(new java.awt.Color(75, 28, 113));
 
@@ -251,25 +264,9 @@ public class PanelCatalogoAlbumes extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenedorPnl;
-    private javax.swing.JPanel contenedorPnl1;
-    private javax.swing.JPanel contenedorPnl2;
-    private javax.swing.JPanel contenedorPnl3;
-    private javax.swing.JPanel contenedorPnl4;
     private javax.swing.JPanel infoAlbumesPnl;
     private javax.swing.JPanel infoArtistaPnl;
-    private javax.swing.JPanel infoArtistaPnl1;
-    private javax.swing.JPanel infoArtistaPnl2;
-    private javax.swing.JPanel infoArtistaPnl3;
-    private javax.swing.JPanel infoArtistaPnl4;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     // End of variables declaration//GEN-END:variables
 }

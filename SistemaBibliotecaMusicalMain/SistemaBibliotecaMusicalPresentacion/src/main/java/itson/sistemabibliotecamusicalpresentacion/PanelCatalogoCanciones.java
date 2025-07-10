@@ -90,9 +90,7 @@ public class PanelCatalogoCanciones extends javax.swing.JPanel {
                 btnFavorito.setMaximumSize(new Dimension(50, 40));
 
                 btnInfo.setText(cancion.getNombre());
-                btnInfo.addActionListener(e -> {
-
-                });
+             
 
                 btnFavorito.addActionListener(e -> {
                     try {
@@ -152,6 +150,8 @@ public class PanelCatalogoCanciones extends javax.swing.JPanel {
         infoArtistaPnl = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         infoCancionesPnl = new javax.swing.JPanel();
+
+        setPreferredSize(new java.awt.Dimension(1080, 648));
 
         jPanel2.setBackground(new java.awt.Color(75, 28, 113));
 
@@ -228,7 +228,7 @@ public class PanelCatalogoCanciones extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(contenedorPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -239,7 +239,9 @@ public class PanelCatalogoCanciones extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

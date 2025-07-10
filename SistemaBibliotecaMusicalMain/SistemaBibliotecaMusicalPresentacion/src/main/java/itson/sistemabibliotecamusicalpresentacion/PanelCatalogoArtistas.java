@@ -28,33 +28,36 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author adell
  */
 public class PanelCatalogoArtistas extends javax.swing.JPanel {
-    
+
     IArtistaFachada artistaFachada;
     IUsuarioFachada usuarioFachada;
 
     UsuarioDominio usuario = SesionUsuario.getUsuario();
+
     /**
      * Creates new form PanelCatalogoArtistas
      */
     public PanelCatalogoArtistas() throws NegocioException {
-         this.artistaFachada = new ArtistaFachada();
+        this.artistaFachada = new ArtistaFachada();
         this.usuarioFachada = new UsuarioFachada();
 
         initComponents();
         cargarBiblioteca();
     }
-    
+
     private void cargarBiblioteca() throws NegocioException {
         try {
             List<ArtistaDominio> artistas = artistaFachada.listarTodosLosArtistas(usuario.getGenerosNoDeseados());
@@ -91,8 +94,7 @@ public class PanelCatalogoArtistas extends javax.swing.JPanel {
 
                 btnInfo.setText(artista.getNombre() + " - " + artista.getGenero() + "");
                 btnInfo.addActionListener(e -> {
-                    new CancionesFrm().setVisible(true);
-                    this.setVisible(false);
+                    abrirPanelArtista(artista);
                 });
 
                 btnFavorito.addActionListener(e -> {
@@ -140,6 +142,16 @@ public class PanelCatalogoArtistas extends javax.swing.JPanel {
         }
     }
 
+    private void abrirPanelArtista(ArtistaDominio artista) {
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        PanelArtista panel = new PanelArtista(artista);
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        frame.revalidate();
+        frame.repaint();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -154,6 +166,8 @@ public class PanelCatalogoArtistas extends javax.swing.JPanel {
         infoArtistaPnl = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         infoArtistasPnl = new javax.swing.JPanel();
+
+        setPreferredSize(new java.awt.Dimension(1080, 648));
 
         jPanel2.setBackground(new java.awt.Color(75, 28, 113));
 
