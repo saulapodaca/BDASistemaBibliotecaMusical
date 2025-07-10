@@ -30,6 +30,13 @@ public class AlbumFachada implements IAlbumFachada{
         this.albumNegocio = new AlbumNegocio(albumDAO);
     }
 
+    /**
+     * lista todos los albumes de la base de datos, excluyendo a los que sean de
+     * un genero no deseado
+     * @param generosNoDeseados
+     * @return 
+     * @throws itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException 
+     */
     @Override
     public List<AlbumDominio> listarTodosLosAlbumes(List<String> generosNoDeseados) throws NegocioException {
         try {
@@ -39,6 +46,14 @@ public class AlbumFachada implements IAlbumFachada{
         }
     }
 
+    /**
+     * lista todos los albumes de la base de datos que hayan cumplido con el filtro
+     * , excluyendo a los que sean de un genero no deseado
+     * @param filtro
+     * @param generosNoDeseados
+     * @return
+     * @throws itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException 
+     */
     @Override
     public List<AlbumDominio> listarAlbumesPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
@@ -48,6 +63,12 @@ public class AlbumFachada implements IAlbumFachada{
         }
     }
 
+    /**
+     * busca un album en la base de datos en base a su identificador
+     * @param id
+     * @return 
+     * @throws itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException 
+     */
     @Override
     public AlbumDominio buscarPorId(ObjectId id) throws NegocioException {
         try {

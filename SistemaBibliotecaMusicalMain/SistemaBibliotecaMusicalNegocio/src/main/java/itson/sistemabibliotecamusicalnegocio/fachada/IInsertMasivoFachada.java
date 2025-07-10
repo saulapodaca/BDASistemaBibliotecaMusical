@@ -12,8 +12,19 @@ import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
  */
 public interface IInsertMasivoFachada {
     
+    /**
+     * Metodo para insertar masivamente los datos en la bd
+     *
+     * @throws itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException
+     */
     void insertarDatosMasivos() throws NegocioException;
 
+    /**
+     * metodo para validar la existencia de datos en la bd
+     *
+     * @return
+     * @throws itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException
+     */
     boolean existenDatosIniciales() throws NegocioException;
     
 }

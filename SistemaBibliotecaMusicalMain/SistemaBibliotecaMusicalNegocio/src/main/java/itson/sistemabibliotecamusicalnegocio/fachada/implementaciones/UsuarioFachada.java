@@ -38,6 +38,13 @@ public class UsuarioFachada implements IUsuarioFachada{
         this.usuarioNegocio = new UsuarioNegocio(usuarioDAO);
     }
     
+    /**
+     * obtiene un usuario en base a su nombre
+     *
+     * @param usuario
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public UsuarioDominio obtenerUsuarioPorNombre(UsuarioInicioSesionDTO usuario) throws NegocioException{
         try {
@@ -47,7 +54,13 @@ public class UsuarioFachada implements IUsuarioFachada{
         }
     }
     
-
+    /**
+     * agrega un usuario nuevo a la base de datos
+     *
+     * @param nuevoUsuario
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public UsuarioDominio registrarUsuario(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException {
         try{
@@ -57,6 +70,14 @@ public class UsuarioFachada implements IUsuarioFachada{
         }
     }
 
+    /**
+     * modifica los atributos de un usuario que ya este registrado en una base
+     * de datos
+     *
+     * @param usuarioModificado
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public UsuarioDominio modificarUsuario(ModificarUsuarioDTO usuarioModificado) throws NegocioException {
         try{
@@ -66,6 +87,13 @@ public class UsuarioFachada implements IUsuarioFachada{
         }
     }
 
+    /**
+     * actualiza la lista de generos no deseados de un usuario
+     *
+     * @param usuarioActualizar
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public UsuarioDominio actualizarGenerosNoDeseados(ActualizarGenerosUsuarioDTO usuarioActualizar) throws NegocioException {
         try{
@@ -75,6 +103,14 @@ public class UsuarioFachada implements IUsuarioFachada{
         }
     }
 
+    /**
+     * lista todos los generos no deseados dentro de la lista de generos no
+     * deseados de un usuario
+     *
+     * @param id
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public List<String> obtenerGenerosNoDeseados(UsuarioDominio usuarioDominio) throws NegocioException {
         try {
@@ -84,6 +120,14 @@ public class UsuarioFachada implements IUsuarioFachada{
         }
     }
 
+    /**
+     * agrega un registro(artista, album, cancion) a la lista de favoritos de un
+     * usuario
+     *
+     * @param id
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public FavoritoDominio agregarFavorito(ObjectId id) throws NegocioException {
         try {
@@ -93,6 +137,13 @@ public class UsuarioFachada implements IUsuarioFachada{
         }
     }
 
+    /**
+     * elimina un registro(artista, album, cancion) a la lista de favoritos de
+     * un usuario
+     *
+     * @param id
+     * @throws NegocioException
+     */
     @Override
     public void eliminarFavorito(ObjectId id) throws NegocioException {
         try {
@@ -102,6 +153,14 @@ public class UsuarioFachada implements IUsuarioFachada{
         }
     }
 
+    /**
+     * verifica si un registro(artista, album, cancion) esta dentro de la lista
+     * de favoritos de un usuario
+     *
+     * @param id
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public boolean esFavorito(ObjectId id) throws NegocioException {
         try {
@@ -111,6 +170,14 @@ public class UsuarioFachada implements IUsuarioFachada{
         }
     }
 
+    /**
+     * lista todos los registros que estan dentro de la lista de favoritos de un
+     * usuario
+     *
+     * @param generosNoDeseados
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public List<ResultadosDTO> listarFavoritos(List<String> generosNoDeseados) throws NegocioException {
         try {
@@ -120,6 +187,15 @@ public class UsuarioFachada implements IUsuarioFachada{
         }
     }
 
+    /**
+     * lista todos los registros que estan dentro de la lista de favoritos de un
+     * usuario si cumplen con el filtro
+     *
+     * @param filtro
+     * @param generosNoDeseados
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public List<ResultadosDTO> listarFavoritosPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
@@ -129,6 +205,16 @@ public class UsuarioFachada implements IUsuarioFachada{
         }
     }
 
+    /**
+     * lista todos los registros que estan dentro de la lista de favoritos de un
+     * usuario si cumplen con el filtro y que sean de un tipo especifico
+     *
+     * @param tipo
+     * @param filtro
+     * @param generosNoDeseados
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public List<ResultadosDTO> listarFavoritosPorTipoYFiltro(TipoFavoritoEnum tipo, String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
@@ -138,6 +224,13 @@ public class UsuarioFachada implements IUsuarioFachada{
         }
     }
 
+    /**
+     * obtiene un usuario con base a su identificador
+     *
+     * @param id
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public UsuarioDominio obtenerUsuarioPorId(ObjectId id) throws NegocioException {
         try{

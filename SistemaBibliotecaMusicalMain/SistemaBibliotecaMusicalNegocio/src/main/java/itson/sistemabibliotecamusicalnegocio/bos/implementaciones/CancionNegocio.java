@@ -24,6 +24,13 @@ public class CancionNegocio implements ICancionNegocio {
         this.cancionDAO = cancionDAO;
     }
 
+    /**
+     * lista todos las canciones de la base de datos, excluyendo a los que sean 
+     * de un genero no deseado
+     * @param generosNoDeseados
+     * @return 
+     * @throws itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException 
+     */
     @Override
     public List<CancionDominio> listarTodasLasCanciones(List<String> generosNoDeseados) throws NegocioException {
         try {
@@ -33,6 +40,14 @@ public class CancionNegocio implements ICancionNegocio {
         }
     }
 
+    /**
+     * lista todos lss canciones de la base de datos que hayan cumplido con el
+     * filtro, excluyendo a los que sean de un genero no deseado
+     * @param filtro
+     * @param generosNoDeseados
+     * @return 
+     * @throws itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException 
+     */
     @Override
     public List<CancionDominio> listarCancionesPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
@@ -42,6 +57,12 @@ public class CancionNegocio implements ICancionNegocio {
         }
     }
 
+    /**
+     * busca una cancion en la base de datos en base a su identificador
+     * @param id
+     * @return 
+     * @throws itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException 
+     */
     @Override
     public CancionDominio buscarPorId(ObjectId id) throws NegocioException {
         try {

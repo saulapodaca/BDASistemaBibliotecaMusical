@@ -17,7 +17,6 @@ import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalpersistencia.daos.IUsuarioDAO;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 import java.io.File;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -36,6 +35,13 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         this.usuarioDAO = usuarioDAO;
     }
 
+    /**
+     * obtiene un usuario en base a su nombre
+     *
+     * @param usuario
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public UsuarioDominio obtenerUsuarioPorNombre(UsuarioInicioSesionDTO usuario) throws NegocioException {
         try {
@@ -54,6 +60,13 @@ public class UsuarioNegocio implements IUsuarioNegocio {
 
     }
 
+    /**
+     * agrega un usuario nuevo a la base de datos
+     *
+     * @param nuevoUsuario
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public UsuarioDominio registrarUsuario(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException {
         try{
@@ -70,6 +83,14 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
     
+    /**
+     * modifica los atributos de un usuario que ya este registrado en una base
+     * de datos
+     *
+     * @param usuarioModificado
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public UsuarioDominio modificarUsuario(ModificarUsuarioDTO usuarioModificado) throws NegocioException {
         try{
@@ -80,11 +101,23 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
 
+    /**
+     * metodo que encripta la contraseña del usuario
+     * @param textoPlano
+     * @return
+     * @throws NegocioException 
+     */
     private String encriptarContrasena(String textoPlano) throws NegocioException {
         String hash = BCrypt.hashpw(textoPlano, BCrypt.gensalt());
         return hash;
     }
     
+    /**
+     * metodo que valida que el nuevo usuario tenga datos validos
+     * @param nuevoUsuario
+     * @throws NegocioException
+     * @throws PersistenciaException 
+     */
     private void validarNuevoUsuario(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException, PersistenciaException{
         validarNombreUsuarioNoVacio(nuevoUsuario.getUsuario());
         validarCorreoNoVacio(nuevoUsuario.getCorreo());
@@ -95,18 +128,35 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         nuevoUsuario.setImagen(validarFotoPerfil(nuevoUsuario.getImagen()));
     }
 
+    /**
+     * metodo que valida que el nombre del usuario no se repita
+     * @param nuevoUsuario
+     * @throws NegocioException
+     * @throws PersistenciaException 
+     */
     private void validarNombreUsuarioNoDuplicado(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException, PersistenciaException {
         if (usuarioDAO.obtenerUsuarioPorNombre(nuevoUsuario.getUsuario()) != null) {
             throw new NegocioException("Ya se encuentra un usuario registrado con ese nombre.");
         }
     }
 
+    /**
+     * metodo que valida que el correo del usuario no se repita
+     * @param nuevoUsuario
+     * @throws NegocioException
+     * @throws PersistenciaException 
+     */
     private void validarCorreoNoDuplicado(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException, PersistenciaException {
         if (usuarioDAO.obtenerUsuarioPorCorreo(nuevoUsuario.getCorreo()) != null) {
             throw new NegocioException("Ya se encuentra un usuario con el mismo correo registrado.");
         }
     }
 
+    /**
+     * metodo que valida que la contraseña del usuario sea valida y robusta
+     * @param nuevoUsuario
+     * @throws NegocioException 
+     */
     private void validarContrasenia(RegistrarUsuarioDTO nuevoUsuario) throws NegocioException {
         if (nuevoUsuario.getContrasenia() == null) {
             throw new NegocioException("La contraseña no puede ser nula.");
@@ -120,24 +170,45 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
 
+    /**
+     * metodo que valida que el nombre del usuario no este vacio
+     * @param nombre
+     * @throws NegocioException 
+     */
     private void validarNombreUsuarioNoVacio(String nombre) throws NegocioException {
         if (nombre == null || nombre.isBlank()) {
             throw new NegocioException("El nombre de usuario no puede estar vacío.");
         }
     }
 
+    /**
+     * metodo que valida que el correo no este vacio
+     * @param correo
+     * @throws NegocioException 
+     */
     private void validarCorreoNoVacio(String correo) throws NegocioException {
         if (correo == null || correo.isBlank()) {
             throw new NegocioException("El correo electrónico no puede estar vacío.");
         }
     }
   
+    /**
+     * metodo que valida el formato del correo
+     * @param correo
+     * @throws NegocioException 
+     */
     private void validarFormatoCorreo(String correo) throws NegocioException {
         if (!correo.matches(PATRON_CORREO)) {
             throw new NegocioException("El correo electrónico no tiene un formato válido.");
         }
     }
     
+    /**
+     * metodo que valida que haya foto de perfil ya sea elegida o default
+     * @param imagen
+     * @return
+     * @throws NegocioException 
+     */
     private String validarFotoPerfil(String imagen) throws NegocioException {
         if (imagen == null || imagen.trim().isEmpty()) {
             return "src\\main\\resources\\imagenPerfilDefault.png";
@@ -150,6 +221,12 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
 
+    /**
+     * metodo que valida que las modificaciones al perfil del usuario sea valido
+     * @param usuarioModificado
+     * @throws NegocioException
+     * @throws PersistenciaException 
+     */
     private void validarModificarUsuario(ModificarUsuarioDTO usuarioModificado) throws NegocioException, PersistenciaException{
         validarNombreUsuarioNoVacio(usuarioModificado.getNombre());
         validarCorreoNoVacio(usuarioModificado.getCorreo());
@@ -159,7 +236,12 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         validarNuevoCorreo(usuarioModificado);
     }
     
-    
+    /**
+     * metodo que valida que el nuevo nombre del usuario sea valido
+     * @param usuarioModificado
+     * @throws PersistenciaException
+     * @throws NegocioException 
+     */
     private void validarNuevoNombre(ModificarUsuarioDTO usuarioModificado) throws PersistenciaException, NegocioException{
         UsuarioDominio usuarioExistente = usuarioDAO.obtenerUsuarioPorNombre(
                 usuarioModificado.getNombre());
@@ -169,6 +251,12 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
     
+    /**
+     * metodo que valida que el nuevo correo sea valido
+     * @param usuarioModificado
+     * @throws NegocioException
+     * @throws PersistenciaException 
+     */
     private void validarNuevoCorreo(ModificarUsuarioDTO usuarioModificado) throws NegocioException, PersistenciaException{
         UsuarioDominio usuarioExistente = usuarioDAO.obtenerUsuarioPorCorreo(usuarioModificado.getCorreo());
         if(usuarioExistente != null &&
@@ -177,6 +265,13 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
 
+    /**
+     * actualiza la lista de generos no deseados de un usuario
+     *
+     * @param usuarioActualizar
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public UsuarioDominio actualizarGenerosNoDeseados(ActualizarGenerosUsuarioDTO usuarioActualizar) throws NegocioException {
         try{
@@ -186,6 +281,15 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
 
+    /**
+     * lista todos los generos no deseados dentro de la lista de generos no
+     * deseados de un usuario
+     *
+     * @param usuarioDominio
+     * @param id
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public List<String> obtenerGenerosNoDeseados(UsuarioDominio usuarioDominio) throws NegocioException {
         try{
@@ -195,6 +299,14 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
 
+    /**
+     * agrega un registro(artista, album, cancion) a la lista de favoritos de un
+     * usuario
+     *
+     * @param id
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public FavoritoDominio agregarFavorito(ObjectId id) throws NegocioException {
         try {
@@ -204,6 +316,13 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
 
+    /**
+     * elimina un registro(artista, album, cancion) a la lista de favoritos de
+     * un usuario
+     *
+     * @param id
+     * @throws NegocioException
+     */
     @Override
     public void eliminarFavorito(ObjectId id) throws NegocioException {
         try {
@@ -213,6 +332,14 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
 
+    /**
+     * verifica si un registro(artista, album, cancion) esta dentro de la lista
+     * de favoritos de un usuario
+     *
+     * @param id
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public boolean esFavorito(ObjectId id) throws NegocioException {
         try {
@@ -222,6 +349,14 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
 
+    /**
+     * lista todos los registros que estan dentro de la lista de favoritos de un
+     * usuario
+     *
+     * @param generosNoDeseados
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public List<ResultadosDTO> listarFavoritos(List<String> generosNoDeseados) throws NegocioException {
         try {
@@ -231,6 +366,15 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
 
+    /**
+     * lista todos los registros que estan dentro de la lista de favoritos de un
+     * usuario si cumplen con el filtro
+     *
+     * @param filtro
+     * @param generosNoDeseados
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public List<ResultadosDTO> listarFavoritosPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
@@ -240,6 +384,16 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
 
+    /**
+     * lista todos los registros que estan dentro de la lista de favoritos de un
+     * usuario si cumplen con el filtro y que sean de un tipo especifico
+     *
+     * @param tipo
+     * @param filtro
+     * @param generosNoDeseados
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public List<ResultadosDTO> listarFavoritosPorTipoYFiltro(TipoFavoritoEnum tipo, String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
@@ -249,6 +403,13 @@ public class UsuarioNegocio implements IUsuarioNegocio {
         }
     }
 
+    /**
+     * obtiene un usuario con base a su identificador
+     *
+     * @param id
+     * @return
+     * @throws NegocioException
+     */
     @Override
     public UsuarioDominio obtenerUsuarioPorId(ObjectId id) throws NegocioException {
         try {
@@ -258,4 +419,5 @@ public class UsuarioNegocio implements IUsuarioNegocio {
 
         }
     }
+
 }
