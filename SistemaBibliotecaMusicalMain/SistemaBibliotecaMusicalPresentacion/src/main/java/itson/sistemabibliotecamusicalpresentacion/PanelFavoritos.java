@@ -399,7 +399,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
 
                 JButton btnFavorito = new JButton("☆");
                 btnFavorito.setFocusPainted(false);
-                btnFavorito.setForeground(Color.GRAY);
+                btnFavorito.setForeground(Color.BLACK);
                 btnFavorito.setPreferredSize(new Dimension(50, 40));
                 btnFavorito.setMaximumSize(new Dimension(50, 40));
 
@@ -421,7 +421,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
                                 if (usuarioFachada.esFavorito(a.getId())) {
                                     usuarioFachada.eliminarFavorito(a.getId());
                                     btnFavorito.setText("☆");
-                                    btnFavorito.setForeground(Color.GRAY);
+                                    btnFavorito.setForeground(Color.BLACK);
                                 } else {
                                     try {
                                         usuarioFachada.agregarFavorito(a.getId());
@@ -451,7 +451,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
                                 if (usuarioFachada.esFavorito(album.getId())) {
                                     usuarioFachada.eliminarFavorito(album.getId());
                                     btnFavorito.setText("☆");
-                                    btnFavorito.setForeground(Color.GRAY);
+                                    btnFavorito.setForeground(Color.BLACK);
                                 } else {
                                     usuarioFachada.agregarFavorito(album.getId());
                                     btnFavorito.setText("★️");
@@ -474,7 +474,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
                                 if (usuarioFachada.esFavorito(cancion.getId())) {
                                     usuarioFachada.eliminarFavorito(cancion.getId());
                                     btnFavorito.setText("☆");
-                                    btnFavorito.setForeground(Color.GRAY);
+                                    btnFavorito.setForeground(Color.BLACK);
                                 } else {
                                     usuarioFachada.agregarFavorito(cancion.getId());
                                     btnFavorito.setText("★️");

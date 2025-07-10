@@ -7,7 +7,7 @@ package itson.sistemabibliotecamusicaldominio;
 import java.time.LocalDate;
 
 /**
- *
+ *representa a un integrante de una banda (artista)
  * @author Camila Zubía
  */
 public class IntegranteDominio {
@@ -18,6 +18,19 @@ public class IntegranteDominio {
     private LocalDate fechaSalida;
     private boolean activo;
 
+    /**
+     * constructor vacio
+     */
+    public IntegranteDominio() {
+    }
+    
+    /**
+     * constructor que inicializa todos los atributos
+     * @param nombre
+     * @param rol
+     * @param fechaIngreso
+     * @param activo 
+     */
     public IntegranteDominio(String nombre, String rol, LocalDate fechaIngreso, boolean activo) {
         this.nombre = nombre;
         this.rol = rol;
@@ -25,6 +38,11 @@ public class IntegranteDominio {
         this.activo = activo;
     }
 
+    /**
+     * getters y setters de los atributos
+     * @return
+     */
+    
     public String getNombre() {
         return nombre;
     }

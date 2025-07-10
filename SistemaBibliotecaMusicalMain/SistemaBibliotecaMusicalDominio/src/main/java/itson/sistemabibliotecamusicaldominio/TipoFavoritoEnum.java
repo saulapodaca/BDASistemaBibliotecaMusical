@@ -5,7 +5,7 @@
 package itson.sistemabibliotecamusicaldominio;
 
 /**
- *
+ * identifica el tipo de registro que se ingresa a la lista de favoritos
  * @author saula
  */
 public enum TipoFavoritoEnum {

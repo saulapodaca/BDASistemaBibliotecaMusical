@@ -8,7 +8,7 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
- *
+ *representa a un artista
  * @author Camila Zubía
  */
 public class ArtistaDominio {
@@ -21,9 +21,22 @@ public class ArtistaDominio {
     private List<IntegranteDominio> integrantes;
     private List<AlbumDominio> albumes;
 
+    /**
+     * constructor vacio
+     */
     public ArtistaDominio() {
     }
 
+    /**
+     * constructor que inicializa todos los atributos
+     * @param id
+     * @param nombre
+     * @param genero
+     * @param imagen
+     * @param esBanda
+     * @param integrantes
+     * @param albumes 
+     */
     public ArtistaDominio(ObjectId id, String nombre, String genero, String imagen, boolean esBanda, List<IntegranteDominio> integrantes, List<AlbumDominio> albumes) {
         this.id = id;
         this.nombre = nombre;
@@ -34,6 +47,11 @@ public class ArtistaDominio {
         this.albumes = albumes;
     }
 
+    /**
+     * getters y setters de los atributos
+     * @return 
+     */
+    
     public ObjectId getId() {
         return id;
     }
