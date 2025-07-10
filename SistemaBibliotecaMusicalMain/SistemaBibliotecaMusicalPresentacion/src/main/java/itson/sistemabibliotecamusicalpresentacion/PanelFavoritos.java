@@ -493,7 +493,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
             scrollPane.setPreferredSize(new Dimension(770, 330));
             panelListar.removeAll();
             panelListar.setLayout(new BorderLayout());
-            panelListar.add(panelInterno, BorderLayout.NORTH);
+            panelListar.add(scrollPane, BorderLayout.CENTER);
             panelListar.revalidate();
             panelListar.repaint();
         } catch (NegocioException | HeadlessException ex) {
