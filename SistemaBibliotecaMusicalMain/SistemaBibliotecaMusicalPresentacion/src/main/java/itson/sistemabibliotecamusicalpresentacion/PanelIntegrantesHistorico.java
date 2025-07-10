@@ -10,9 +10,9 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
+import java.time.format.DateTimeFormatter;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -21,11 +21,11 @@ import javax.swing.SwingUtilities;
  *
  * @author saula
  */
-public class PanelInformacionBanda extends javax.swing.JPanel {
+public class PanelIntegrantesHistorico extends javax.swing.JPanel {
 
     private ArtistaDominio artista;
     
-    public PanelInformacionBanda(ArtistaDominio artista) {
+    public PanelIntegrantesHistorico(ArtistaDominio artista) {
         initComponents();
         this.artista = artista;
         SwingUtilities.invokeLater(() -> cargarImagenArtista());
@@ -47,7 +47,6 @@ public class PanelInformacionBanda extends javax.swing.JPanel {
         panelImagenArtista = new javax.swing.JPanel();
         panelInfoArtista = new javax.swing.JPanel();
         panelIntegrantes = new javax.swing.JPanel();
-        btnInformacion = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(75, 28, 113));
 
@@ -96,16 +95,6 @@ public class PanelInformacionBanda extends javax.swing.JPanel {
             .addGap(0, 287, Short.MAX_VALUE)
         );
 
-        btnInformacion.setBackground(new java.awt.Color(75, 28, 113));
-        btnInformacion.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        btnInformacion.setForeground(new java.awt.Color(219, 182, 238));
-        btnInformacion.setText("!");
-        btnInformacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInformacionActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout contenedorPnlLayout = new javax.swing.GroupLayout(contenedorPnl);
         contenedorPnl.setLayout(contenedorPnlLayout);
         contenedorPnlLayout.setHorizontalGroup(
@@ -118,19 +107,15 @@ public class PanelInformacionBanda extends javax.swing.JPanel {
                         .addComponent(panelImagenArtista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(panelInfoArtista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         contenedorPnlLayout.setVerticalGroup(
             contenedorPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorPnlLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(contenedorPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(contenedorPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(panelImagenArtista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(panelInfoArtista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(btnInformacion))
+                .addGroup(contenedorPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelImagenArtista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelInfoArtista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(panelIntegrantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
@@ -165,11 +150,6 @@ public class PanelInformacionBanda extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformacionActionPerformed
-        mostrarPanelIntegrantesHistorico(artista);
-    }//GEN-LAST:event_btnInformacionActionPerformed
-
-    
     private void cargarImagenArtista(){
         panelImagenArtista.removeAll();
         ImageIcon icono = new ImageIcon(this.artista.getImagen());
@@ -201,48 +181,36 @@ public class PanelInformacionBanda extends javax.swing.JPanel {
         panelInfoArtista.revalidate();
         panelInfoArtista.repaint();
     }
-    
-    private void cargarIntegrantes(){
+
+    private void cargarIntegrantes() {
         panelIntegrantes.removeAll();
         panelIntegrantes.setLayout(new BoxLayout(panelIntegrantes, BoxLayout.Y_AXIS));
 
-        JLabel titulo = new JLabel("Integrantes Activos:");
+        JLabel titulo = new JLabel("Histórico de Integrantes:");
         titulo.setFont(new Font("Arial", Font.BOLD, 16));
         panelIntegrantes.add(titulo);
 
-        boolean hayActivos = false;
-
         for (IntegranteDominio integrante : artista.getIntegrantes()) {
-            if (integrante.isActivo()) {
-                hayActivos = true;
-                JPanel panelIntegrante = new JPanel(new FlowLayout(FlowLayout.LEFT));
-                panelIntegrante.add(new JLabel("• " + integrante.getNombre()
-                        + " - " + integrante.getRol()
-                        + " - " + integrante.getFechaIngreso()));
-                panelIntegrantes.add(panelIntegrante);
+            String fechaSalida;
+            if(integrante.getFechaSalida() == null){
+                fechaSalida = "";
+            }else{
+                fechaSalida = integrante.getFechaSalida().format(DateTimeFormatter.ISO_DATE);
             }
-        }
+            JPanel panelIntegrante = new JPanel(new FlowLayout(FlowLayout.LEFT));
+            panelIntegrante.add(new JLabel("• " + integrante.getNombre()
+                    + " - " + integrante.getRol()
+                    + " - " + integrante.getFechaIngreso()
+                    + " - " + fechaSalida));
+            panelIntegrantes.add(panelIntegrante);
 
-        if (!hayActivos) {
-            panelIntegrantes.add(new JLabel("No hay integrantes activos."));
         }
 
         panelIntegrantes.revalidate();
         panelIntegrantes.repaint();
     }
 
-    private void mostrarPanelIntegrantesHistorico(ArtistaDominio artistaDominio){
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        PanelIntegrantesHistorico panel = new PanelIntegrantesHistorico(artista);
-
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(panel, BorderLayout.CENTER);
-        frame.revalidate();
-        frame.repaint();
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnInformacion;
     private javax.swing.JPanel contenedorPnl;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel panelImagenArtista;
