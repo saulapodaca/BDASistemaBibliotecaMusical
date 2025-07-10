@@ -7,10 +7,10 @@ package itson.sistemabibliotecamusicalpersistencia.datos;
 import itson.sistemabibliotecamusicaldominio.AlbumDominio;
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
 import itson.sistemabibliotecamusicaldominio.CancionDominio;
-import itson.sistemabibliotecamusicaldominio.IntegrantesDominio;
-import java.time.LocalDate;
+import itson.sistemabibliotecamusicaldominio.IntegranteDominio;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -22,76 +22,92 @@ public class DatosAInsertar {
 
     public DatosAInsertar() {
         
-        List<CancionDominio> canciones1_1 = List.of(
-                new CancionDominio("Howling"),
-                new CancionDominio("Call your mom"),
-                new CancionDominio("No Complaints"));
-        List<CancionDominio> canciones1_2 = List.of(
-                new CancionDominio("Come Over"),
-                new CancionDominio("Forever"),
-                new CancionDominio("Your Needs, My Needs"));
-        List<AlbumDominio> albumes1 = List.of(
-                new AlbumDominio("Stick Season", "2023", "Folk-pop", "url", canciones1_1),
-                new AlbumDominio("Busyhead", "2019", "Folk-pop", "url", canciones1_2));
-        List<IntegrantesDominio> integrantes1 = new ArrayList<>();
-        ArtistaDominio a1 = new ArtistaDominio("Noah Kahan", "Folk-pop", "url", false, integrantes1, albumes1);
+    List<CancionDominio> canciones1_1 = List.of(
+            new CancionDominio(new ObjectId(), "Howling", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "Call your mom", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "No Complaints", "src\\main\\resources\\imagenCancion.png")
+    );
+    List<CancionDominio> canciones1_2 = List.of(
+            new CancionDominio(new ObjectId(), "Come Over", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "Forever", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "Your Needs, My Needs", "src\\main\\resources\\imagenCancion.png")
+    );
+    List<AlbumDominio> albumes1 = List.of(
+            new AlbumDominio(new ObjectId(),"Stick Season", "2023", "Folk-pop", "src\\main\\resources\\imagenAlbum.png", canciones1_1),
+            new AlbumDominio(new ObjectId(), "Busyhead", "2019", "Folk-pop", "src\\main\\resources\\imagenAlbum.png", canciones1_2)
+    );
+    List<IntegranteDominio> integrantes1 = new ArrayList<>();
+    ArtistaDominio a1 = new ArtistaDominio(new ObjectId(), "Noah Kahan", "Folk-pop", "src\\main\\resources\\imagenArtista.png", false, integrantes1, albumes1);
 
-        List<CancionDominio> canciones2_1 = List.of(
-                new CancionDominio("Dress"),
-                new CancionDominio("King Of My Heart"),
-                new CancionDominio("Call It What You Want"));
-        List<CancionDominio> canciones2_2 = List.of(
-                new CancionDominio("exile"),
-                new CancionDominio("mirrorball"),
-                new CancionDominio("peace"));
-        List<AlbumDominio> albumes2 = List.of(
-                new AlbumDominio("Reputation", "2017", "Pop", "url", canciones2_1),
-                new AlbumDominio("Folklore", "2020", "Pop", "url", canciones2_2));
-        List<IntegrantesDominio> integrantes2 = new ArrayList<>();
-        ArtistaDominio a2 = new ArtistaDominio("Taylor Swift", "Pop", "url", false, integrantes2, albumes2);
+    List<CancionDominio> canciones2_1 = List.of(
+            new CancionDominio(new ObjectId(), "Dress", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "King Of My Heart", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "Call It What You Want", "src\\main\\resources\\imagenCancion.png")
+    );
+    List<CancionDominio> canciones2_2 = List.of(
+            new CancionDominio(new ObjectId(), "exile", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "mirrorball", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "peace", "src\\main\\resources\\imagenCancion.png")
+    );
+    List<AlbumDominio> albumes2 = List.of(
+            new AlbumDominio(new ObjectId(), "Reputation", "2017", "Pop", "src\\main\\resources\\imagenAlbum.png", canciones2_1),
+            new AlbumDominio(new ObjectId(),"Folklore", "2020", "Pop", "src\\main\\resources\\imagenAlbum.png", canciones2_2)
+    );
+    List<IntegranteDominio> integrantes2 = new ArrayList<>();
+    ArtistaDominio a2 = new ArtistaDominio(new ObjectId(), "Taylor Swift", "Pop", "src\\main\\resources\\imagenArtista.png", false, integrantes2, albumes2);
 
-        List<CancionDominio> canciones3_1 = List.of(
-                new CancionDominio("Heartless"),
-                new CancionDominio("After Hours"),
-                new CancionDominio("Alone Again"));
-        List<CancionDominio> canciones3_2 = List.of(
-                new CancionDominio("Sidewalks"),
-                new CancionDominio("Party Monster"),
-                new CancionDominio("Die For You"));
-        List<AlbumDominio> albumes3 = List.of(
-                new AlbumDominio("After Hours", "2020", "R&B", "url", canciones3_1),
-                new AlbumDominio("Starboy", "2016", "R&B", "url", canciones3_2));
-        List<IntegrantesDominio> integrantes3 = new ArrayList<>();
-        ArtistaDominio a3 = new ArtistaDominio("The Weeknd", "R&B", "url", false, integrantes3, albumes3);
+    List<CancionDominio> canciones3_1 = List.of(
+            new CancionDominio(new ObjectId(), "Heartless", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "After Hours", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "Alone Again", "src\\main\\resources\\imagenCancion.png")
+    );
+    List<CancionDominio> canciones3_2 = List.of(
+            new CancionDominio(new ObjectId(), "Sidewalks", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "Party Monster", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "Die For You", "src\\main\\resources\\imagenCancion.png")
+    );
+    List<AlbumDominio> albumes3 = List.of(
+            new AlbumDominio(new ObjectId(), "After Hours", "2020", "R&B", "src\\main\\resources\\imagenAlbum.png", canciones3_1),
+            new AlbumDominio(new ObjectId(), "Starboy", "2016", "R&B", "src\\main\\resources\\imagenAlbum.png", canciones3_2)
+    );
+    List<IntegranteDominio> integrantes3 = new ArrayList<>();
+    ArtistaDominio a3 = new ArtistaDominio(new ObjectId(), "The Weeknd", "R&B", "src\\main\\resources\\imagenArtista.png", false, integrantes3, albumes3);
 
-        List<CancionDominio> canciones4_1 = List.of(
-                new CancionDominio("Bonfire"),
-                new CancionDominio("Heartbeat"),
-                new CancionDominio("Les"));
-        List<CancionDominio> canciones4_2 = List.of(
-                new CancionDominio("Freaks And Geeks"),
-                new CancionDominio("My Shine"),
-                new CancionDominio("Lights Turned On"));
-        List<AlbumDominio> albumes4 = List.of(
-                new AlbumDominio("Camp", "2011", "Rap", "url", canciones4_1),
-                new AlbumDominio("EP", "2018", "Rap", "url", canciones4_2));
-        List<IntegrantesDominio> integrantes4 = new ArrayList<>();
-        ArtistaDominio a4 = new ArtistaDominio("Childish Gambino", "Rap", "url", false, integrantes4, albumes4);
+    List<CancionDominio> canciones4_1 = List.of(
+             new CancionDominio(new ObjectId(), "Bonfire", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "Hearbeat", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "Les", "src\\main\\resources\\imagenCancion.png")
+    );
+    List<CancionDominio> canciones4_2 = List.of(
+            new CancionDominio(new ObjectId(), "Freaks And Geeks", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "My Shine", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "Lights Turned On", "src\\main\\resources\\imagenCancion.png")
+    );
+    List<AlbumDominio> albumes4 = List.of(
+            new AlbumDominio(new ObjectId(), "Camp", "2011", "Rap", "src\\main\\resources\\imagenAlbum.png", canciones4_1),
+            new AlbumDominio(new ObjectId(), "EP", "2018", "Rap", "src\\main\\resources\\imagenAlbum.png", canciones4_2)
+    );
+    List<IntegranteDominio> integrantes4 = new ArrayList<>();
+    ArtistaDominio a4 = new ArtistaDominio(new ObjectId(), "Childish Gambino", "Rap", "src\\main\\resources\\imagenArtista.png", false, integrantes4, albumes4);
 
-        List<CancionDominio> canciones5_1 = List.of(
-                new CancionDominio("Ivy"),
-                new CancionDominio("Nights"),
-                new CancionDominio("White Ferrari"));
-        List<CancionDominio> canciones5_2 = List.of(
-                new CancionDominio("Pyramids"),
-                new CancionDominio("Lost"),
-                new CancionDominio("Pilot Jones"));
-        List<AlbumDominio> albumes5 = List.of(
-                new AlbumDominio("Blonde", "2016", "R&B", "url", canciones5_1),
-                new AlbumDominio("channel ORANGE", "2012", "R&B", "url", canciones5_2));
-        List<IntegrantesDominio> integrantes5 = new ArrayList<>();
-        ArtistaDominio a5 = new ArtistaDominio("Frank Ocean", "R&B", "url", false, integrantes5, albumes5);
-        
+    List<CancionDominio> canciones5_1 = List.of(
+            new CancionDominio(new ObjectId(), "Ivy", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "Nights", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "White Ferrari", "src\\main\\resources\\imagenCancion.png")
+    );
+    List<CancionDominio> canciones5_2 = List.of(
+            new CancionDominio(new ObjectId(), "Pyramids", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "Lost", "src\\main\\resources\\imagenCancion.png"),
+            new CancionDominio(new ObjectId(), "Pilot Jones", "src\\main\\resources\\imagenCancion.png")
+    );
+    List<AlbumDominio> albumes5 = List.of(
+            new AlbumDominio(new ObjectId(), "Blonde", "2016", "R&B", "src\\main\\resources\\imagenAlbum.png", canciones5_1),
+            new AlbumDominio(new ObjectId(), "channel ORANGE", "2012", "R&B", "src\\main\\resources\\imagenAlbum.png", canciones5_2)
+    );
+    List<IntegranteDominio> integrantes5 = new ArrayList<>();
+    ArtistaDominio a5 = new ArtistaDominio(new ObjectId(), "Frank Ocean", "R&B", "src\\main\\resources\\imagenArtista.png", false, integrantes5, albumes5);
+    /////////////////////////////////////
+    /*
         List<CancionDominio> canciones6_1 = List.of(
                 new CancionDominio("El Triste"),
                 new CancionDominio("La Nave del Olvido"),
@@ -518,9 +534,11 @@ public class DatosAInsertar {
         this.artistas = List.of(a1,a2,a3,a4,a5,a6, a7, a8, a9, a10, a11, a12, a13, a14, a15,
         a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30);
     }
+    */
     
+    this.artistas = List.of(a1, a2, a3, a4, a5);
+}
     public List<ArtistaDominio> obtenerDatos(){
         return artistas;
     }
-    
 }

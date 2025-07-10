@@ -21,17 +21,22 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.HeadlessException;
+import java.awt.Image;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -397,16 +402,18 @@ public class PanelFavoritos extends javax.swing.JPanel {
                 btnFavorito.setPreferredSize(new Dimension(50, 40));
                 btnFavorito.setMaximumSize(new Dimension(50, 40));
 
+                String rutaImagen = null;
+                
                 switch (o.getTipo()) {
                     case ARTISTA -> {
                         ArtistaDominio a = (ArtistaDominio) o.getObjeto();
+                        rutaImagen = a.getImagen();
                         if (usuarioFachada.esFavorito(a.getId())) {
                             btnFavorito.setText("★️");
                         }
                         btnInfo.setText(a.getNombre() + " - " + a.getGenero());
                         btnInfo.addActionListener(e -> {
-                            new ArtistaFrm().setVisible(true);
-                            this.setVisible(false);
+                            abrirPanelArtista(a);
                         });
                         btnFavorito.addActionListener(e -> {
                             try {
@@ -430,6 +437,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
                     }
                     case ALBUM -> {
                         AlbumDominio album = (AlbumDominio) o.getObjeto();
+                        rutaImagen = album.getImagenPortada();
                         if (usuarioFachada.esFavorito(album.getId())) {
                             btnFavorito.setText("★️");
                         }
@@ -481,7 +489,13 @@ public class PanelFavoritos extends javax.swing.JPanel {
                         continue;
                     }
                 }
+                
+                ImageIcon icono = new ImageIcon(getClass().getResource(rutaImagen));
+                Image imagenEscalada = icono.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+                JLabel lblImagen = new JLabel(new ImageIcon(imagenEscalada));
+                lblImagen.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+                panelElemento.add(lblImagen);
                 panelElemento.add(btnInfo);
                 panelElemento.add(Box.createHorizontalStrut(10));
                 panelElemento.add(btnFavorito);
@@ -492,12 +506,22 @@ public class PanelFavoritos extends javax.swing.JPanel {
             scrollPane.setPreferredSize(new Dimension(770, 330));
             panelListar.removeAll();
             panelListar.setLayout(new BorderLayout());
-            panelListar.add(panelInterno, BorderLayout.NORTH);
+            panelListar.add(scrollPane, BorderLayout.CENTER);
             panelListar.revalidate();
             panelListar.repaint();
         } catch (NegocioException | HeadlessException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de la biblioteca musical");
         }
+    }
+    
+    private void abrirPanelArtista(ArtistaDominio artista){
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        PanelArtista panel = new PanelArtista(artista);
+        
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        frame.revalidate();
+        frame.repaint();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

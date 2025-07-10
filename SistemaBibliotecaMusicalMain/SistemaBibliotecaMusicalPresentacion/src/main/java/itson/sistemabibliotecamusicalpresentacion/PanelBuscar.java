@@ -26,15 +26,20 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.HeadlessException;
+import java.awt.Image;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
@@ -413,16 +418,18 @@ public class PanelBuscar extends javax.swing.JPanel {
                 btnFavorito.setPreferredSize(new Dimension(50, 40));
                 btnFavorito.setMaximumSize(new Dimension(50, 40));
                 
+                String rutaImagen = null;
+                
                 switch (tipo) {
                     case ARTISTA -> {
                         ArtistaDominio a = (ArtistaDominio) entidad;
+                        rutaImagen = a.getImagen();
                         if (usuarioFachada.esFavorito(a.getId())) {
                             btnFavorito.setText("★️");
                         }
                         btnInfo.setText(a.getNombre() + " - " + a.getGenero());
                         btnInfo.addActionListener(e -> {
-                            new ArtistaFrm().setVisible(true);
-                            this.setVisible(false);
+                            abrirPanelArtista(a);
                         });
                         btnFavorito.addActionListener(e -> {
                             try {
@@ -446,6 +453,7 @@ public class PanelBuscar extends javax.swing.JPanel {
                     }
                     case ALBUM ->{
                         AlbumDominio album = (AlbumDominio) entidad;
+                        rutaImagen = album.getImagenPortada();
                         if (usuarioFachada.esFavorito(album.getId())) {
                             btnFavorito.setText("★️");
                         }
@@ -497,7 +505,13 @@ public class PanelBuscar extends javax.swing.JPanel {
                         continue;
                     }
                 }
+                
+                ImageIcon icono = new ImageIcon(getClass().getResource(rutaImagen));
+                Image imagenEscalada = icono.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+                JLabel lblImagen = new JLabel(new ImageIcon(imagenEscalada));
+                lblImagen.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+                panelElemento.add(lblImagen);
                 panelElemento.add(btnInfo);
                 panelElemento.add(Box.createHorizontalStrut(10));
                 panelElemento.add(btnFavorito);
@@ -508,7 +522,7 @@ public class PanelBuscar extends javax.swing.JPanel {
             scrollPane.setPreferredSize(new Dimension(770, 362));
             panelListar.removeAll();
             panelListar.setLayout(new BorderLayout());
-            panelListar.add(panelInterno, BorderLayout.NORTH);
+            panelListar.add(scrollPane, BorderLayout.CENTER);
             panelListar.revalidate();
             panelListar.repaint();
         } catch (HeadlessException ex) {
@@ -516,6 +530,15 @@ public class PanelBuscar extends javax.swing.JPanel {
         }
     }
 
+    private void abrirPanelArtista(ArtistaDominio artista) {
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        PanelArtista panel = new PanelArtista(artista);
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        frame.revalidate();
+        frame.repaint();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelFondo;
     private javax.swing.JButton btnAlbumes;

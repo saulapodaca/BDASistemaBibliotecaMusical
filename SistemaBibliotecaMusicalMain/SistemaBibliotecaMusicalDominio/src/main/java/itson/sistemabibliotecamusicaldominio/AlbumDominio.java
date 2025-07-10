@@ -4,6 +4,7 @@
  */
 package itson.sistemabibliotecamusicaldominio;
 
+import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -23,13 +24,21 @@ public class AlbumDominio {
     public AlbumDominio() {
     }
 
-    public AlbumDominio(String nombre, String fechaLanzamiento, String generoMusical, String imagenPortada, List<CancionDominio> canciones) {
-        this.id = new ObjectId();
+    public AlbumDominio(ObjectId id, String nombre, String fechaLanzamiento, String generoMusical, String imagenPortada, List<CancionDominio> canciones) {
+        this.id = id;
         this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
         this.generoMusical = generoMusical;
         this.imagenPortada = imagenPortada;
         this.canciones = canciones;
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -72,11 +81,4 @@ public class AlbumDominio {
         this.canciones = canciones;
     }
 
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-        }
 }
