@@ -5,6 +5,7 @@
 package itson.sistemabibliotecamusicaldominio;
 
 import java.time.LocalDate;
+import org.bson.types.ObjectId;
 
 /**
  *representa a un integrante de una banda (artista)
@@ -12,6 +13,7 @@ import java.time.LocalDate;
  */
 public class IntegranteDominio {
     
+    private ObjectId id;
     private String nombre;
     private String rol;
     private LocalDate fechaIngreso;
@@ -31,10 +33,12 @@ public class IntegranteDominio {
      * @param fechaIngreso
      * @param activo 
      */
-    public IntegranteDominio(String nombre, String rol, LocalDate fechaIngreso, boolean activo) {
+    public IntegranteDominio(ObjectId id, String nombre, String rol, LocalDate fechaIngreso, LocalDate fechaSalida, boolean activo) {    
+        this.id = id;
         this.nombre = nombre;
         this.rol = rol;
         this.fechaIngreso = fechaIngreso;
+        this.fechaSalida = fechaSalida;
         this.activo = activo;
     }
 
@@ -42,7 +46,6 @@ public class IntegranteDominio {
      * getters y setters de los atributos
      * @return
      */
-    
     public String getNombre() {
         return nombre;
     }

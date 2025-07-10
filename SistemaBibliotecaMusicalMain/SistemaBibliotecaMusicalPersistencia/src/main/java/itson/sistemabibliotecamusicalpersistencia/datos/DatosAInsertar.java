@@ -8,6 +8,7 @@ import itson.sistemabibliotecamusicaldominio.AlbumDominio;
 import itson.sistemabibliotecamusicaldominio.ArtistaDominio;
 import itson.sistemabibliotecamusicaldominio.CancionDominio;
 import itson.sistemabibliotecamusicaldominio.IntegranteDominio;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -106,438 +107,434 @@ public class DatosAInsertar {
     );
     List<IntegranteDominio> integrantes5 = new ArrayList<>();
     ArtistaDominio a5 = new ArtistaDominio(new ObjectId(), "Frank Ocean", "R&B", "src\\main\\resources\\imagenArtista.png", false, integrantes5, albumes5);
-    /////////////////////////////////////
-    /*
+   
         List<CancionDominio> canciones6_1 = List.of(
-                new CancionDominio("El Triste"),
-                new CancionDominio("La Nave del Olvido"),
-                new CancionDominio("Amar y Querer"));
+                new CancionDominio(new ObjectId(),"El Triste", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"La Nave del Olvido", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Amar y Querer", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones6_2 = List.of(
-                new CancionDominio("40 y 20"),
-                new CancionDominio("Gavilán o Paloma"),
-                new CancionDominio("Lo Pasado, Pasado"));
+                new CancionDominio(new ObjectId(),"40 y 20", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Gavilán o Paloma", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Lo Pasado, Pasado", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes6 = List.of(
-                new AlbumDominio("El Triste", "1970", "Balada", "url", canciones6_1),
-                new AlbumDominio("40 y 20", "1992", "Balada", "url", canciones6_2));
-        List<IntegrantesDominio> integrantes6 = new ArrayList<>();
-        ArtistaDominio a6 = new ArtistaDominio("José José", "Balada", "url", false, integrantes6, albumes6);
+                new AlbumDominio(new ObjectId(),"El Triste", "1970", "Balada", "src\\main\\resources\\imagenAlbum.png", canciones6_1),
+                new AlbumDominio(new ObjectId(),"40 y 20", "1992", "Balada", "src\\main\\resources\\imagenAlbum.png", canciones6_2));
+        List<IntegranteDominio> integrantes6 = new ArrayList<>();
+        ArtistaDominio a6 = new ArtistaDominio(new ObjectId(),"José José", "Balada", "src\\main\\resources\\imagenArtista.png", false, integrantes6, albumes6);
 
         List<CancionDominio> canciones7_1 = List.of(
-                new CancionDominio("Take Me to Church"),
-                new CancionDominio("Angel of Small Death and the Codeine Scene"),
-                new CancionDominio("Cherry Wine"));
+                new CancionDominio(new ObjectId(),"Take Me to Church", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Angel of Small Death and the Codeine Scene", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Cherry Wine", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones7_2 = List.of(
-                new CancionDominio("Eat Your Young"),
-                new CancionDominio("Francesca"),
-                new CancionDominio("Unknown / Nth"));
+                new CancionDominio(new ObjectId(),"Eat Your Young", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Francesca", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Unknown / Nth", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes7 = List.of(
-                new AlbumDominio("Hozier", "2014", "Indie Rock", "url", canciones7_1),
-                new AlbumDominio("Unreal Unearth", "2023", "Indie Rock", "url", canciones7_2));
-        List<IntegrantesDominio> integrantes7 = new ArrayList<>();
-        ArtistaDominio a7 = new ArtistaDominio("Hozier", "Indie Rock", "url", false, integrantes7, albumes7);
+                new AlbumDominio(new ObjectId(),"Hozier", "2014", "Indie Rock", "src\\main\\resources\\imagenAlbum.png", canciones7_1),
+                new AlbumDominio(new ObjectId(),"Unreal Unearth", "2023", "Indie Rock", "src\\main\\resources\\imagenAlbum.png", canciones7_2));
+        List<IntegranteDominio> integrantes7 = new ArrayList<>();
+        ArtistaDominio a7 = new ArtistaDominio(new ObjectId(),"Hozier", "Indie Rock", "src\\main\\resources\\imagenArtista.png", false, integrantes7, albumes7);
 
         List<CancionDominio> canciones8_1 = List.of(
-                new CancionDominio("Grace"),
-                new CancionDominio("Last Goodbye"),
-                new CancionDominio("Lover, You Should’ve Come Over"));
+                new CancionDominio(new ObjectId(),"Grace", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Last Goodbye", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Lover, You Should’ve Come Over", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones8_2 = List.of(
-                new CancionDominio("Hallelujah"),
-                new CancionDominio("Forget Her"),
-                new CancionDominio("Dream Brother"));
+                new CancionDominio(new ObjectId(),"Hallelujah", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Forget Her", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Dream Brother", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes8 = List.of(
-                new AlbumDominio("Grace", "1994", "Alternative Rock", "url", canciones8_1),
-                new AlbumDominio("Sketches for My Sweetheart the Drunk", "1998", "Alternative Rock", "url", canciones8_2));
-        List<IntegrantesDominio> integrantes8 = new ArrayList<>();
-        ArtistaDominio a8 = new ArtistaDominio("Jeff Buckley", "Alternative Rock", "url", false, integrantes8, albumes8);
+                new AlbumDominio(new ObjectId(),"Grace", "1994", "Alternative Rock", "src\\main\\resources\\imagenAlbum.png", canciones8_1),
+                new AlbumDominio(new ObjectId(),"Sketches for My Sweetheart the Drunk", "1998", "Alternative Rock", "src\\main\\resources\\imagenAlbum.png", canciones8_2));
+        List<IntegranteDominio> integrantes8 = new ArrayList<>();
+        ArtistaDominio a8 = new ArtistaDominio(new ObjectId(),"Jeff Buckley", "Alternative Rock", "src\\main\\resources\\imagenArtista.png", false, integrantes8, albumes8);
 
         List<CancionDominio> canciones9_1 = List.of(
-                new CancionDominio("The A Team"),
-                new CancionDominio("Lego House"),
-                new CancionDominio("Give Me Love"));
+                new CancionDominio(new ObjectId(),"The A Team", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Lego House", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Give Me Love", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones9_2 = List.of(
-                new CancionDominio("Shape of You"),
-                new CancionDominio("Perfect"),
-                new CancionDominio("Castle on the Hill"));
+                new CancionDominio(new ObjectId(),"Shape of You", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Perfect", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Castle on the Hill", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes9 = List.of(
-                new AlbumDominio("+ (Plus)", "2011", "Pop", "url", canciones9_1),
-                new AlbumDominio("÷ (Divide)", "2017", "Pop", "url", canciones9_2));
-        List<IntegrantesDominio> integrantes9 = new ArrayList<>();
-        ArtistaDominio a9 = new ArtistaDominio("Ed Sheeran", "Pop", "url", false, integrantes9, albumes9);
+                new AlbumDominio(new ObjectId(),"+ (Plus)", "2011", "Pop", "src\\main\\resources\\imagenAlbum.png", canciones9_1),
+                new AlbumDominio(new ObjectId(),"÷ (Divide)", "2017", "Pop", "src\\main\\resources\\imagenAlbum.png", canciones9_2));
+        List<IntegranteDominio> integrantes9 = new ArrayList<>();
+        ArtistaDominio a9 = new ArtistaDominio(new ObjectId(),"Ed Sheeran", "Pop", "src\\main\\resources\\imagenArtista.png", false, integrantes9, albumes9);
 
         List<CancionDominio> canciones10_1 = List.of(
-                new CancionDominio("Nobody"),
-                new CancionDominio("Geyser"),
-                new CancionDominio("Two Slow Dancers"));
+                new CancionDominio(new ObjectId(),"Nobody", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Geyser", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Two Slow Dancers", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones10_2 = List.of(
-                new CancionDominio("Working for the Knife"),
-                new CancionDominio("Love Me More"),
-                new CancionDominio("Heat Lightning"));
+                new CancionDominio(new ObjectId(),"Working for the Knife", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Love Me More", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Heat Lightning", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes10 = List.of(
-                new AlbumDominio("Be the Cowboy", "2018", "Indie Rock", "url", canciones10_1),
-                new AlbumDominio("Laurel Hell", "2022", "Indie Rock", "url", canciones10_2));
-        List<IntegrantesDominio> integrantes10 = new ArrayList<>();
-        ArtistaDominio a10 = new ArtistaDominio("Mitski", "Indie Rock", "url", false, integrantes10, albumes10);
+                new AlbumDominio(new ObjectId(),"Be the Cowboy", "2018", "Indie Rock", "src\\main\\resources\\imagenAlbum.png", canciones10_1),
+                new AlbumDominio(new ObjectId(),"Laurel Hell", "2022", "Indie Rock", "src\\main\\resources\\imagenAlbum.png", canciones10_2));
+        List<IntegranteDominio> integrantes10 = new ArrayList<>();
+        ArtistaDominio a10 = new ArtistaDominio(new ObjectId(),"Mitski", "Indie Rock", "src\\main\\resources\\imagenArtista.png", false, integrantes10, albumes10);
 
         List<CancionDominio> canciones11_1 = List.of(
-                new CancionDominio("Video Games"),
-                new CancionDominio("Born to Die"),
-                new CancionDominio("Summertime Sadness"));
+                new CancionDominio(new ObjectId(),"Video Games", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Born to Die", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Summertime Sadness", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones11_2 = List.of(
-                new CancionDominio("Norman Fucking Rockwell"),
-                new CancionDominio("Mariners Apartment Complex"),
-                new CancionDominio("Venice Bitch"));
+                new CancionDominio(new ObjectId(),"Norman Fucking Rockwell", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Mariners Apartment Complex", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Venice Bitch", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes11 = List.of(
-                new AlbumDominio("Born to Die", "2012", "Baroque Pop", "url", canciones11_1),
-                new AlbumDominio("Norman Fucking Rockwell!", "2019", "Art Pop", "url", canciones11_2));
-        List<IntegrantesDominio> integrantes11 = new ArrayList<>();
-        ArtistaDominio a11 = new ArtistaDominio("Lana Del Rey", "Art Pop", "url", false, integrantes11, albumes11);
+                new AlbumDominio(new ObjectId(),"Born to Die", "2012", "Baroque Pop", "src\\main\\resources\\imagenAlbum.png", canciones11_1),
+                new AlbumDominio(new ObjectId(),"Norman Fucking Rockwell!", "2019", "Art Pop", "src\\main\\resources\\imagenAlbum.png", canciones11_2));
+        List<IntegranteDominio> integrantes11 = new ArrayList<>();
+        ArtistaDominio a11 = new ArtistaDominio(new ObjectId(),"Lana Del Rey", "Art Pop", "src\\main\\resources\\imagenArtista.png", false, integrantes11, albumes11);
 
         List<CancionDominio> canciones12_1 = List.of(
-                new CancionDominio("Pancakes"),
-                new CancionDominio("You Could Start a Cult"),
-                new CancionDominio("Apple Pie"));
+                new CancionDominio(new ObjectId(),"Pancakes", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"You Could Start a Cult", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Apple Pie", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones12_2 = List.of(
-                new CancionDominio("Ceilings"),
-                new CancionDominio("Erase Me"),
-                new CancionDominio("Nothing Is Ever Wrong"));
+                new CancionDominio(new ObjectId(),"Ceilings", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Erase Me", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Nothing Is Ever Wrong", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes12 = List.of(
-                new AlbumDominio("Give Me a Minute", "2020", "Indie Folk", "url", canciones12_1),
-                new AlbumDominio("Five Seconds Flat", "2022", "Indie Pop", "url", canciones12_2));
-        List<IntegrantesDominio> integrantes12 = new ArrayList<>();
-        ArtistaDominio a12 = new ArtistaDominio("Lizzy McAlpine", "Indie Folk / Indie Pop", "url", false, integrantes12, albumes12);
+                new AlbumDominio(new ObjectId(),"Give Me a Minute", "2020", "Indie Folk", "src\\main\\resources\\imagenAlbum.png", canciones12_1),
+                new AlbumDominio(new ObjectId(),"Five Seconds Flat", "2022", "Indie Pop", "src\\main\\resources\\imagenAlbum.png", canciones12_2));
+        List<IntegranteDominio> integrantes12 = new ArrayList<>();
+        ArtistaDominio a12 = new ArtistaDominio(new ObjectId(),"Lizzy McAlpine", "Indie Folk / Indie Pop", "src\\main\\resources\\imagenArtista.png", false, integrantes12, albumes12);
 
         List<CancionDominio> canciones13_1 = List.of(
-                new CancionDominio("Easy Love"),
-                new CancionDominio("Mojito"),
-                new CancionDominio("Romeo"));
+                new CancionDominio(new ObjectId(),"Easy Love", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Mojito", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Romeo", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones13_2 = List.of(
-                new CancionDominio("No More Runnin'"),
-                new CancionDominio("Drive Me"),
-                new CancionDominio("Cupid"));
+                new CancionDominio(new ObjectId(),"No More Runnin'", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Drive Me", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Cupid", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes13 = List.of(
-                new AlbumDominio("Easy Love", "2021", "R&B", "url", canciones13_1),
-                new AlbumDominio("Drive Me Crazy", "2023", "R&B / Soul", "url", canciones13_2));
-        List<IntegrantesDominio> integrantes13 = new ArrayList<>();
-        ArtistaDominio a13 = new ArtistaDominio("Gigi Perez", "R&B / Soul", "url", false, integrantes13, albumes13);
+                new AlbumDominio(new ObjectId(),"Easy Love", "2021", "R&B", "src\\main\\resources\\imagenAlbum.png", canciones13_1),
+                new AlbumDominio(new ObjectId(),"Drive Me Crazy", "2023", "R&B / Soul", "src\\main\\resources\\imagenAlbum.png", canciones13_2));
+        List<IntegranteDominio> integrantes13 = new ArrayList<>();
+        ArtistaDominio a13 = new ArtistaDominio(new ObjectId(),"Gigi Perez", "R&B / Soul", "src\\main\\resources\\imagenArtista.png", false, integrantes13, albumes13);
 
         List<CancionDominio> canciones14_1 = List.of(
-                new CancionDominio("Love Galore"),
-                new CancionDominio("The Weekend"),
-                new CancionDominio("Supermodel"));
+                new CancionDominio(new ObjectId(),"Love Galore", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"The Weekend", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Supermodel", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones14_2 = List.of(
-                new CancionDominio("Good Days"),
-                new CancionDominio("I Hate U"),
-                new CancionDominio("Kill Bill"));
+                new CancionDominio(new ObjectId(),"Good Days", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"I Hate U", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Kill Bill", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes14 = List.of(
-                new AlbumDominio("Ctrl", "2017", "R&B / Alternative R&B", "url", canciones14_1),
-                new AlbumDominio("SOS", "2022", "R&B / Neo Soul", "url", canciones14_2));
-        List<IntegrantesDominio> integrantes14 = new ArrayList<>();
-        ArtistaDominio a14 = new ArtistaDominio("SZA", "R&B / Neo Soul", "url", false, integrantes14, albumes14);
+                new AlbumDominio(new ObjectId(),"Ctrl", "2017", "R&B / Alternative R&B", "src\\main\\resources\\imagenAlbum.png", canciones14_1),
+                new AlbumDominio(new ObjectId(),"SOS", "2022", "R&B / Neo Soul", "src\\main\\resources\\imagenAlbum.png", canciones14_2));
+        List<IntegranteDominio> integrantes14 = new ArrayList<>();
+        ArtistaDominio a14 = new ArtistaDominio(new ObjectId(),"SZA", "R&B / Neo Soul", "src\\main\\resources\\imagenArtista.png", false, integrantes14, albumes14);
 
         List<CancionDominio> canciones15_1 = List.of(
-                new CancionDominio("Mask Off"),
-                new CancionDominio("March Madness"),
-                new CancionDominio("Where Ya At"));
+                new CancionDominio(new ObjectId(),"Mask Off", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"March Madness", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Where Ya At", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones15_2 = List.of(
-                new CancionDominio("Life Is Good"),
-                new CancionDominio("Low Life"),
-                new CancionDominio("Jumpman"));
+                new CancionDominio(new ObjectId(),"Life Is Good", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Low Life", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Jumpman", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes15 = List.of(
-                new AlbumDominio("Future", "2017", "Hip Hop / Trap", "url", canciones15_1),
-                new AlbumDominio("High Off Life", "2020", "Hip Hop / Trap", "url", canciones15_2));
-        List<IntegrantesDominio> integrantes15 = new ArrayList<>();
-        ArtistaDominio a15 = new ArtistaDominio("Future", "Hip Hop / Trap", "url", false, integrantes15, albumes15);
+                new AlbumDominio(new ObjectId(),"Future", "2017", "Hip Hop / Trap", "src\\main\\resources\\imagenAlbum.png", canciones15_1),
+                new AlbumDominio(new ObjectId(),"High Off Life", "2020", "Hip Hop / Trap", "src\\main\\resources\\imagenAlbum.png", canciones15_2));
+        List<IntegranteDominio> integrantes15 = new ArrayList<>();
+        ArtistaDominio a15 = new ArtistaDominio(new ObjectId(),"Future", "Hip Hop / Trap", "src\\main\\resources\\imagenArtista.png", false, integrantes15, albumes15);
 
         List<CancionDominio> canciones16_1 = List.of(
-                new CancionDominio("Creep"),
-                new CancionDominio("Fake Plastic Trees"),
-                new CancionDominio("High and Dry"));
+                new CancionDominio(new ObjectId(),"Creep", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Fake Plastic Trees", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"High and Dry", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones16_2 = List.of(
-                new CancionDominio("Paranoid Android"),
-                new CancionDominio("Karma Police"),
-                new CancionDominio("No Surprises"));
+                new CancionDominio(new ObjectId(),"Paranoid Android", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Karma Police", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"No Surprises", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes16 = List.of(
-                new AlbumDominio("Pablo Honey", "1993", "Alternative Rock", "url", canciones16_1),
-                new AlbumDominio("OK Computer", "1997", "Alternative Rock", "url", canciones16_2));
-        List<IntegrantesDominio> integrantes16 = List.of(
-                new IntegrantesDominio("Thom Yorke", "Vocalista, guitarra", LocalDate.of(1985, 1, 1), null, true),
-                new IntegrantesDominio("Jonny Greenwood", "Guitarra, teclados", LocalDate.of(1985, 1, 1), null, true),
-                new IntegrantesDominio("Colin Greenwood", "Bajo", LocalDate.of(1985, 1, 1), null, true),
-                new IntegrantesDominio("Ed O'Brien", "Guitarra, coros", LocalDate.of(1985, 1, 1), null, true),
-                new IntegrantesDominio("Philip Selway", "Batería", LocalDate.of(1985, 1, 1), null, true));
-        ArtistaDominio a16 = new ArtistaDominio("Radiohead", "Alternative Rock", "url", true, integrantes16, albumes16);
+                new AlbumDominio(new ObjectId(),"Pablo Honey", "1993", "Alternative Rock", "src\\main\\resources\\imagenAlbum.png", canciones16_1),
+                new AlbumDominio(new ObjectId(),"OK Computer", "1997", "Alternative Rock", "src\\main\\resources\\imagenAlbum.png", canciones16_2));
+        List<IntegranteDominio> integrantes16 = List.of(
+                new IntegranteDominio(new ObjectId(),"Thom Yorke", "Vocalista, guitarra", LocalDate.of(1985, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Jonny Greenwood", "Guitarra, teclados", LocalDate.of(1985, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Colin Greenwood", "Bajo", LocalDate.of(1985, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Ed O'Brien", "Guitarra, coros", LocalDate.of(1985, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Philip Selway", "Batería", LocalDate.of(1985, 1, 1), null, true));
+        ArtistaDominio a16 = new ArtistaDominio(new ObjectId(),"Radiohead", "Alternative Rock", "src\\main\\resources\\imagenArtista.png", true, integrantes16, albumes16);
 
         List<CancionDominio> canciones17_1 = List.of(
-                new CancionDominio("Bohemian Rhapsody"),
-                new CancionDominio("You're My Best Friend"),
-                new CancionDominio("Somebody to Love"));
+                new CancionDominio(new ObjectId(),"Bohemian Rhapsody", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"You're My Best Friend", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Somebody to Love", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones17_2 = List.of(
-                new CancionDominio("We Will Rock You"),
-                new CancionDominio("We Are the Champions"),
-                new CancionDominio("Another One Bites the Dust"));
+                new CancionDominio(new ObjectId(),"We Will Rock You", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"We Are the Champions", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Another One Bites the Dust", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes17 = List.of(
-                new AlbumDominio("A Night at the Opera", "1975", "Rock", "url", canciones17_1),
-                new AlbumDominio("News of the World", "1977", "Rock", "url", canciones17_2));
-        List<IntegrantesDominio> integrantes17 = List.of(
-                new IntegrantesDominio("Freddie Mercury", "Vocalista, piano", LocalDate.of(1970, 1, 1), LocalDate.of(1991, 11, 24), false),
-                new IntegrantesDominio("Brian May", "Guitarra, coros", LocalDate.of(1970, 1, 1), null, true),
-                new IntegrantesDominio("John Deacon", "Bajo", LocalDate.of(1970, 1, 1), LocalDate.of(1997, 1, 1), false),
-                new IntegrantesDominio("Roger Taylor", "Batería, coros", LocalDate.of(1970, 1, 1), null, true));
-        ArtistaDominio a17 = new ArtistaDominio("Queen", "Rock", "url", true, integrantes17, albumes17);
+                new AlbumDominio(new ObjectId(),"A Night at the Opera", "1975", "Rock", "src\\main\\resources\\imagenAlbum.png", canciones17_1),
+                new AlbumDominio(new ObjectId(),"News of the World", "1977", "Rock", "src\\main\\resources\\imagenAlbum.png", canciones17_2));
+        List<IntegranteDominio> integrantes17 = List.of(
+                new IntegranteDominio(new ObjectId(),"Freddie Mercury", "Vocalista, piano", LocalDate.of(1970, 1, 1), LocalDate.of(1991, 11, 24), false),
+                new IntegranteDominio(new ObjectId(),"Brian May", "Guitarra, coros", LocalDate.of(1970, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"John Deacon", "Bajo", LocalDate.of(1970, 1, 1), LocalDate.of(1997, 1, 1), false),
+                new IntegranteDominio(new ObjectId(),"Roger Taylor", "Batería, coros", LocalDate.of(1970, 1, 1), null, true));
+        ArtistaDominio a17 = new ArtistaDominio(new ObjectId(),"Queen", "Rock", "src\\main\\resources\\imagenArtista.png", true, integrantes17, albumes17);
 
         List<CancionDominio> canciones18_1 = List.of(
-                new CancionDominio("This Charming Man"),
-                new CancionDominio("What Difference Does It Make?"),
-                new CancionDominio("Still Ill"));
+                new CancionDominio(new ObjectId(),"This Charming Man", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"What Difference Does It Make?", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Still Ill", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones18_2 = List.of(
-                new CancionDominio("There Is a Light That Never Goes Out"),
-                new CancionDominio("Bigmouth Strikes Again"),
-                new CancionDominio("I Know It's Over"));
+                new CancionDominio(new ObjectId(),"There Is a Light That Never Goes Out", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Bigmouth Strikes Again", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"I Know It's Over", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes18 = List.of(
-                new AlbumDominio("The Smiths", "1984", "Alternative Rock", "url", canciones18_1),
-                new AlbumDominio("The Queen Is Dead", "1986", "Indie Rock", "url", canciones18_2));
-        List<IntegrantesDominio> integrantes18 = List.of(
-                new IntegrantesDominio("Morrissey", "Vocalista", LocalDate.of(1982, 1, 1), LocalDate.of(1987, 1, 1), false),
-                new IntegrantesDominio("Johnny Marr", "Guitarra", LocalDate.of(1982, 1, 1), LocalDate.of(1987, 1, 1), false),
-                new IntegrantesDominio("Andy Rourke", "Bajo", LocalDate.of(1982, 1, 1), LocalDate.of(1987, 1, 1), false),
-                new IntegrantesDominio("Mike Joyce", "Batería", LocalDate.of(1982, 1, 1), LocalDate.of(1987, 1, 1), false));
-        ArtistaDominio a18 = new ArtistaDominio("The Smiths", "Alternative Rock / Indie Rock", "url", false, integrantes18, albumes18);
+                new AlbumDominio(new ObjectId(),"The Smiths", "1984", "Alternative Rock", "src\\main\\resources\\imagenAlbum.png", canciones18_1),
+                new AlbumDominio(new ObjectId(),"The Queen Is Dead", "1986", "Indie Rock", "src\\main\\resources\\imagenAlbum.png", canciones18_2));
+        List<IntegranteDominio> integrantes18 = List.of(
+                new IntegranteDominio(new ObjectId(),"Morrissey", "Vocalista", LocalDate.of(1982, 1, 1), LocalDate.of(1987, 1, 1), false),
+                new IntegranteDominio(new ObjectId(),"Johnny Marr", "Guitarra", LocalDate.of(1982, 1, 1), LocalDate.of(1987, 1, 1), false),
+                new IntegranteDominio(new ObjectId(),"Andy Rourke", "Bajo", LocalDate.of(1982, 1, 1), LocalDate.of(1987, 1, 1), false),
+                new IntegranteDominio(new ObjectId(),"Mike Joyce", "Batería", LocalDate.of(1982, 1, 1), LocalDate.of(1987, 1, 1), false));
+        ArtistaDominio a18 = new ArtistaDominio(new ObjectId(),"The Smiths", "Alternative Rock / Indie Rock", "src\\main\\resources\\imagenArtista.png", false, integrantes18, albumes18);
         
         List<CancionDominio> canciones19_1 = List.of(
-                new CancionDominio("What Makes You Beautiful"),
-                new CancionDominio("One Thing"),
-                new CancionDominio("Little Things"));
+                new CancionDominio(new ObjectId(),"What Makes You Beautiful", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"One Thing", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Little Things", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones19_2 = List.of(
-                new CancionDominio("Story of My Life"),
-                new CancionDominio("Drag Me Down"),
-                new CancionDominio("Night Changes"));
+                new CancionDominio(new ObjectId(),"Story of My Life", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Drag Me Down", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Night Changes", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes19 = List.of(
-                new AlbumDominio("Up All Night", "2011", "Pop", "url", canciones19_1),
-                new AlbumDominio("Four", "2014", "Pop Rock", "url", canciones19_2));
-        List<IntegrantesDominio> integrantes19 = List.of(
-                new IntegrantesDominio("Harry Styles", "Vocalista", LocalDate.of(2010, 7, 1), LocalDate.of(2016, 1, 1), false),
-                new IntegrantesDominio("Liam Payne", "Vocalista", LocalDate.of(2010, 7, 1), LocalDate.of(2016, 1, 1), false),
-                new IntegrantesDominio("Louis Tomlinson", "Vocalista", LocalDate.of(2010, 7, 1), LocalDate.of(2016, 1, 1), false),
-                new IntegrantesDominio("Niall Horan", "Vocalista", LocalDate.of(2010, 7, 1), LocalDate.of(2016, 1, 1), false),
-                new IntegrantesDominio("Zayn Malik", "Vocalista", LocalDate.of(2010, 7, 1), LocalDate.of(2015, 3, 25), false));
-        ArtistaDominio a19 = new ArtistaDominio("One Direction", "Pop / Pop Rock", "url", false, integrantes19, albumes19);
+                new AlbumDominio(new ObjectId(),"Up All Night", "2011", "Pop", "src\\main\\resources\\imagenAlbum.png", canciones19_1),
+                new AlbumDominio(new ObjectId(),"Four", "2014", "Pop Rock", "src\\main\\resources\\imagenAlbum.png", canciones19_2));
+        List<IntegranteDominio> integrantes19 = List.of(
+                new IntegranteDominio(new ObjectId(),"Harry Styles", "Vocalista", LocalDate.of(2010, 7, 1), LocalDate.of(2016, 1, 1), false),
+                new IntegranteDominio(new ObjectId(),"Liam Payne", "Vocalista", LocalDate.of(2010, 7, 1), LocalDate.of(2016, 1, 1), false),
+                new IntegranteDominio(new ObjectId(),"Louis Tomlinson", "Vocalista", LocalDate.of(2010, 7, 1), LocalDate.of(2016, 1, 1), false),
+                new IntegranteDominio(new ObjectId(),"Niall Horan", "Vocalista", LocalDate.of(2010, 7, 1), LocalDate.of(2016, 1, 1), false),
+                new IntegranteDominio(new ObjectId(),"Zayn Malik", "Vocalista", LocalDate.of(2010, 7, 1), LocalDate.of(2015, 3, 25), false));
+        ArtistaDominio a19 = new ArtistaDominio(new ObjectId(),"One Direction", "Pop / Pop Rock", "src\\main\\resources\\imagenArtista.png", false, integrantes19, albumes19);
 
         List<CancionDominio> canciones20_1 = List.of(
-                new CancionDominio("Chocolate"),
-                new CancionDominio("Sex"),
-                new CancionDominio("Robbers"));
+                new CancionDominio(new ObjectId(),"Chocolate", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Sex", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Robbers", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones20_2 = List.of(
-                new CancionDominio("Love It If We Made It"),
-                new CancionDominio("It's Not Living (If It's Not With You)"),
-                new CancionDominio("Somebody Else"));
+                new CancionDominio(new ObjectId(),"Love It If We Made It", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"It's Not Living (If It's Not With You)", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Somebody Else", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes20 = List.of(
-                new AlbumDominio("The 1975", "2013", "Pop Rock / Indie Pop", "url", canciones20_1),
-                new AlbumDominio("A Brief Inquiry into Online Relationships", "2018", "Art Pop / Synth Pop", "url", canciones20_2));
-        List<IntegrantesDominio> integrantes20 = List.of(
-                new IntegrantesDominio("Matty Healy", "Vocalista, guitarra", LocalDate.of(2002, 1, 1), null, true),
-                new IntegrantesDominio("Adam Hann", "Guitarra", LocalDate.of(2002, 1, 1), null, true),
-                new IntegrantesDominio("Ross MacDonald", "Bajo", LocalDate.of(2002, 1, 1), null, true),
-                new IntegrantesDominio("George Daniel", "Batería", LocalDate.of(2002, 1, 1), null, true));
-        ArtistaDominio a20 = new ArtistaDominio("The 1975", "Indie Rock / Pop Rock", "url", false, integrantes20, albumes20);
+                new AlbumDominio(new ObjectId(),"The 1975", "2013", "Pop Rock / Indie Pop", "src\\main\\resources\\imagenAlbum.png", canciones20_1),
+                new AlbumDominio(new ObjectId(),"A Brief Inquiry into Online Relationships", "2018", "Art Pop / Synth Pop", "src\\main\\resources\\imagenAlbum.png", canciones20_2));
+        List<IntegranteDominio> integrantes20 = List.of(
+                new IntegranteDominio(new ObjectId(),"Matty Healy", "Vocalista, guitarra", LocalDate.of(2002, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Adam Hann", "Guitarra", LocalDate.of(2002, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Ross MacDonald", "Bajo", LocalDate.of(2002, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"George Daniel", "Batería", LocalDate.of(2002, 1, 1), null, true));
+        ArtistaDominio a20 = new ArtistaDominio(new ObjectId(),"The 1975", "Indie Rock / Pop Rock", "src\\main\\resources\\imagenArtista.png", false, integrantes20, albumes20);
 
         List<CancionDominio> canciones21_1 = List.of(
-                new CancionDominio("First Class"),
-                new CancionDominio("Seven"),
-                new CancionDominio("Devil Like Me"));
+                new CancionDominio(new ObjectId(),"First Class", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Seven", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Devil Like Me", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones21_2 = List.of(
-                new CancionDominio("It's Called: Freefall"),
-                new CancionDominio("Painkillers"),
-                new CancionDominio("Hide"));
+                new CancionDominio(new ObjectId(),"It's Called: Freefall", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Painkillers", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Hide", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes21 = List.of(
-                new AlbumDominio("RKS", "2015", "Indie Rock", "url", canciones21_1),
-                new AlbumDominio("How to: Friend, Love, Freefall", "2018", "Alternative Rock", "url", canciones21_2));
-        List<IntegrantesDominio> integrantes21 = List.of(
-                new IntegrantesDominio("Ela Melo", "Vocalista", LocalDate.of(2013, 1, 1), null, true),
-                new IntegrantesDominio("Darrick 'Bozzy' Keller", "Guitarra", LocalDate.of(2013, 1, 1), null, true),
-                new IntegrantesDominio("Charlie Holt", "Bajo", LocalDate.of(2013, 1, 1), null, true),
-                new IntegrantesDominio("Jesse Wells", "Teclados, guitarra", LocalDate.of(2013, 1, 1), null, true),
-                new IntegrantesDominio("Caleb Hickman", "Batería", LocalDate.of(2013, 1, 1), null, true));
-        ArtistaDominio a21 = new ArtistaDominio("Rainbow Kitten Surprise", "Indie Rock / Alternative", "url", false, integrantes21, albumes21);
+                new AlbumDominio(new ObjectId(),"RKS", "2015", "Indie Rock", "src\\main\\resources\\imagenAlbum.png", canciones21_1),
+                new AlbumDominio(new ObjectId(),"How to: Friend, Love, Freefall", "2018", "Alternative Rock", "src\\main\\resources\\imagenAlbum.png", canciones21_2));
+        List<IntegranteDominio> integrantes21 = List.of(
+                new IntegranteDominio(new ObjectId(),"Ela Melo", "Vocalista", LocalDate.of(2013, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Darrick 'Bozzy' Keller", "Guitarra", LocalDate.of(2013, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Charlie Holt", "Bajo", LocalDate.of(2013, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Jesse Wells", "Teclados, guitarra", LocalDate.of(2013, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Caleb Hickman", "Batería", LocalDate.of(2013, 1, 1), null, true));
+        ArtistaDominio a21 = new ArtistaDominio(new ObjectId(),"Rainbow Kitten Surprise", "Indie Rock / Alternative", "src\\main\\resources\\imagenArtista.png", false, integrantes21, albumes21);
 
         List<CancionDominio> canciones22_1 = List.of(
-                new CancionDominio("Push"),
-                new CancionDominio("3AM"),
-                new CancionDominio("Real World"));
+                new CancionDominio(new ObjectId(),"Push", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"3AM", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Real World", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones22_2 = List.of(
-                new CancionDominio("Unwell"),
-                new CancionDominio("If You're Gone"),
-                new CancionDominio("Bent"));
+                new CancionDominio(new ObjectId(),"Unwell", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"If You're Gone", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Bent", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes22 = List.of(
-                new AlbumDominio("Yourself or Someone Like You", "1996", "Alternative Rock", "url", canciones22_1),
-                new AlbumDominio("Mad Season", "2000", "Pop Rock / Alternative", "url", canciones22_2));
-        List<IntegrantesDominio> integrantes22 = List.of(
-                new IntegrantesDominio("Rob Thomas", "Vocalista, piano", LocalDate.of(1995, 1, 1), null, true),
-                new IntegrantesDominio("Brian Yale", "Bajo", LocalDate.of(1995, 1, 1), null, true),
-                new IntegrantesDominio("Paul Doucette", "Batería / guitarra rítmica", LocalDate.of(1995, 1, 1), null, true),
-                new IntegrantesDominio("Kyle Cook", "Guitarra líder, coros", LocalDate.of(1995, 1, 1), null, true),
-                new IntegrantesDominio("Adam Gaynor", "Guitarra rítmica, coros", LocalDate.of(1995, 1, 1), LocalDate.of(2005, 1, 1), false));
-        ArtistaDominio a22 = new ArtistaDominio("Matchbox Twenty", "Pop Rock / Alternative Rock", "url", false, integrantes22, albumes22);
+                new AlbumDominio(new ObjectId(),"Yourself or Someone Like You", "1996", "Alternative Rock", "src\\main\\resources\\imagenAlbum.png", canciones22_1),
+                new AlbumDominio(new ObjectId(),"Mad Season", "2000", "Pop Rock / Alternative", "src\\main\\resources\\imagenAlbum.png", canciones22_2));
+        List<IntegranteDominio> integrantes22 = List.of(
+                new IntegranteDominio(new ObjectId(),"Rob Thomas", "Vocalista, piano", LocalDate.of(1995, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Brian Yale", "Bajo", LocalDate.of(1995, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Paul Doucette", "Batería / guitarra rítmica", LocalDate.of(1995, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Kyle Cook", "Guitarra líder, coros", LocalDate.of(1995, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Adam Gaynor", "Guitarra rítmica, coros", LocalDate.of(1995, 1, 1), LocalDate.of(2005, 1, 1), false));
+        ArtistaDominio a22 = new ArtistaDominio(new ObjectId(),"Matchbox Twenty", "Pop Rock / Alternative Rock", "src\\main\\resources\\imagenArtista.png", false, integrantes22, albumes22);
 
         List<CancionDominio> canciones23_1 = List.of(
-                new CancionDominio("Rhiannon"),
-                new CancionDominio("Landslide"),
-                new CancionDominio("Say You Love Me"));
+                new CancionDominio(new ObjectId(),"Rhiannon", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Landslide", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Say You Love Me", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones23_2 = List.of(
-                new CancionDominio("Dreams"),
-                new CancionDominio("Go Your Own Way"),
-                new CancionDominio("The Chain"));
+                new CancionDominio(new ObjectId(),"Dreams", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Go Your Own Way", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"The Chain", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes23 = List.of(
-                new AlbumDominio("Fleetwood Mac", "1975", "Soft Rock", "url", canciones23_1),
-                new AlbumDominio("Rumours", "1977", "Pop Rock / Classic Rock", "url", canciones23_2));
-        List<IntegrantesDominio> integrantes23 = List.of(
-                new IntegrantesDominio("Mick Fleetwood", "Batería", LocalDate.of(1967, 7, 1), null, true),
-                new IntegrantesDominio("John McVie", "Bajo", LocalDate.of(1967, 7, 1), null, true),
-                new IntegrantesDominio("Stevie Nicks", "Voz", LocalDate.of(1975, 1, 1), LocalDate.of(2023, 1, 1), false),
-                new IntegrantesDominio("Lindsey Buckingham", "Guitarra, voz", LocalDate.of(1975, 1, 1), LocalDate.of(2018, 4, 1), false),
-                new IntegrantesDominio("Christine McVie", "Teclado, voz", LocalDate.of(1970, 1, 1), LocalDate.of(2022, 11, 30), false));
-        ArtistaDominio a23 = new ArtistaDominio("Fleetwood Mac", "Rock / Soft Rock / Pop Rock", "url", false, integrantes23, albumes23);
+                new AlbumDominio(new ObjectId(),"Fleetwood Mac", "1975", "Soft Rock", "src\\main\\resources\\imagenAlbum.png", canciones23_1),
+                new AlbumDominio(new ObjectId(),"Rumours", "1977", "Pop Rock / Classic Rock", "src\\main\\resources\\imagenAlbum.png", canciones23_2));
+        List<IntegranteDominio> integrantes23 = List.of(
+                new IntegranteDominio(new ObjectId(),"Mick Fleetwood", "Batería", LocalDate.of(1967, 7, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"John McVie", "Bajo", LocalDate.of(1967, 7, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Stevie Nicks", "Voz", LocalDate.of(1975, 1, 1), LocalDate.of(2023, 1, 1), false),
+                new IntegranteDominio(new ObjectId(),"Lindsey Buckingham", "Guitarra, voz", LocalDate.of(1975, 1, 1), LocalDate.of(2018, 4, 1), false),
+                new IntegranteDominio(new ObjectId(),"Christine McVie", "Teclado, voz", LocalDate.of(1970, 1, 1), LocalDate.of(2022, 11, 30), false));
+        ArtistaDominio a23 = new ArtistaDominio(new ObjectId(),"Fleetwood Mac", "Rock / Soft Rock / Pop Rock", "src\\main\\resources\\imagenArtista.png", false, integrantes23, albumes23);
 
         List<CancionDominio> canciones24_1 = List.of(
-                new CancionDominio("Drops of Jupiter"),
-                new CancionDominio("Meet Virginia"),
-                new CancionDominio("Calling All Angels"));
+                new CancionDominio(new ObjectId(),"Drops of Jupiter", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Meet Virginia", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Calling All Angels", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones24_2 = List.of(
-                new CancionDominio("Hey, Soul Sister"),
-                new CancionDominio("Marry Me"),
-                new CancionDominio("If It's Love"));
+                new CancionDominio(new ObjectId(),"Hey, Soul Sister", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Marry Me", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"If It's Love", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes24 = List.of(
-                new AlbumDominio("Drops of Jupiter", "2001", "Alternative Rock", "url", canciones24_1),
-                new AlbumDominio("Save Me, San Francisco", "2009", "Pop Rock", "url", canciones24_2));
-        List<IntegrantesDominio> integrantes24 = List.of(
-                new IntegrantesDominio("Pat Monahan", "Vocalista", LocalDate.of(1993, 1, 1), null, true),
-                new IntegrantesDominio("Luis Maldonado", "Guitarra", LocalDate.of(2014, 1, 1), null, true),
-                new IntegrantesDominio("Hector Maldonado", "Bajo", LocalDate.of(2009, 1, 1), null, true),
-                new IntegrantesDominio("Jerry Becker", "Teclado, guitarra", LocalDate.of(2008, 1, 1), null, true),
-                new IntegrantesDominio("Drew Shoals", "Batería", LocalDate.of(2014, 1, 1), LocalDate.of(2022, 1, 1), false));
-        ArtistaDominio a24 = new ArtistaDominio("Train", "Pop Rock / Alternative Rock", "url", false, integrantes24, albumes24);
+                new AlbumDominio(new ObjectId(),"Drops of Jupiter", "2001", "Alternative Rock", "src\\main\\resources\\imagenAlbum.png", canciones24_1),
+                new AlbumDominio(new ObjectId(),"Save Me, San Francisco", "2009", "Pop Rock", "src\\main\\resources\\imagenAlbum.png", canciones24_2));
+        List<IntegranteDominio> integrantes24 = List.of(
+                new IntegranteDominio(new ObjectId(),"Pat Monahan", "Vocalista", LocalDate.of(1993, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Luis Maldonado", "Guitarra", LocalDate.of(2014, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Hector Maldonado", "Bajo", LocalDate.of(2009, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Jerry Becker", "Teclado, guitarra", LocalDate.of(2008, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Drew Shoals", "Batería", LocalDate.of(2014, 1, 1), LocalDate.of(2022, 1, 1), false));
+        ArtistaDominio a24 = new ArtistaDominio(new ObjectId(),"Train", "Pop Rock / Alternative Rock", "src\\main\\resources\\imagenArtista.png", false, integrantes24, albumes24);
 
         List<CancionDominio> canciones25_1 = List.of(
-                new CancionDominio("I Bet You Look Good on the Dancefloor"),
-                new CancionDominio("Mardy Bum"),
-                new CancionDominio("When the Sun Goes Down"));
+                new CancionDominio(new ObjectId(),"I Bet You Look Good on the Dancefloor", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Mardy Bum", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"When the Sun Goes Down", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones25_2 = List.of(
-                new CancionDominio("Do I Wanna Know?"),
-                new CancionDominio("R U Mine?"),
-                new CancionDominio("Why'd You Only Call Me When You're High?"));
+                new CancionDominio(new ObjectId(),"Do I Wanna Know?", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"R U Mine?", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Why'd You Only Call Me When You're High?", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes25 = List.of(
-                new AlbumDominio("Whatever People Say I Am, That's What I'm Not", "2006", "Garage Rock / Indie Rock", "url", canciones25_1),
-                new AlbumDominio("AM", "2013", "Indie Rock / Psychedelic Rock", "url", canciones25_2));
-        List<IntegrantesDominio> integrantes25 = List.of(
-                new IntegrantesDominio("Alex Turner", "Vocalista, guitarra", LocalDate.of(2002, 1, 1), null, true),
-                new IntegrantesDominio("Matt Helders", "Batería, coros", LocalDate.of(2002, 1, 1), null, true),
-                new IntegrantesDominio("Jamie Cook", "Guitarra", LocalDate.of(2002, 1, 1), null, true),
-                new IntegrantesDominio("Nick O'Malley", "Bajo", LocalDate.of(2006, 6, 1), null, true),
-                new IntegrantesDominio("Andy Nicholson", "Bajo", LocalDate.of(2002, 1, 1), LocalDate.of(2006, 5, 1), false));
-        ArtistaDominio a25 = new ArtistaDominio("Arctic Monkeys", "Indie Rock / Garage Rock", "url", false, integrantes25, albumes25);
+                new AlbumDominio(new ObjectId(),"Whatever People Say I Am, That's What I'm Not", "2006", "Garage Rock / Indie Rock", "src\\main\\resources\\imagenAlbum.png", canciones25_1),
+                new AlbumDominio(new ObjectId(),"AM", "2013", "Indie Rock / Psychedelic Rock", "src\\main\\resources\\imagenAlbum.png", canciones25_2));
+        List<IntegranteDominio> integrantes25 = List.of(
+                new IntegranteDominio(new ObjectId(),"Alex Turner", "Vocalista, guitarra", LocalDate.of(2002, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Matt Helders", "Batería, coros", LocalDate.of(2002, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Jamie Cook", "Guitarra", LocalDate.of(2002, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Nick O'Malley", "Bajo", LocalDate.of(2006, 6, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Andy Nicholson", "Bajo", LocalDate.of(2002, 1, 1), LocalDate.of(2006, 5, 1), false));
+        ArtistaDominio a25 = new ArtistaDominio(new ObjectId(),"Arctic Monkeys", "Indie Rock / Garage Rock", "src\\main\\resources\\imagenArtista.png", false, integrantes25, albumes25);
 
         List<CancionDominio> canciones26_1 = List.of(
-                new CancionDominio("Yellow"),
-                new CancionDominio("Trouble"),
-                new CancionDominio("Shiver"));
+                new CancionDominio(new ObjectId(),"Yellow", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Trouble", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Shiver", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones26_2 = List.of(
-                new CancionDominio("Viva La Vida"),
-                new CancionDominio("Violet Hill"),
-                new CancionDominio("Lost!"));
+                new CancionDominio(new ObjectId(),"Viva La Vida", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Violet Hill", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Lost!", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes26 = List.of(
-                new AlbumDominio("Parachutes", "2000", "Alternative Rock / Britpop", "url", canciones26_1),
-                new AlbumDominio("Viva la Vida or Death and All His Friends", "2008", "Art Rock / Baroque Pop", "url", canciones26_2));
-        List<IntegrantesDominio> integrantes26 = List.of(
-                new IntegrantesDominio("Chris Martin", "Vocalista, piano, guitarra", LocalDate.of(1996, 1, 1), null, true),
-                new IntegrantesDominio("Jonny Buckland", "Guitarra líder", LocalDate.of(1996, 1, 1), null, true),
-                new IntegrantesDominio("Guy Berryman", "Bajo", LocalDate.of(1996, 1, 1), null, true),
-                new IntegrantesDominio("Will Champion", "Batería, coros", LocalDate.of(1997, 1, 1), null, true),
-                new IntegrantesDominio("Phil Harvey", "Director creativo / ex-mánager", LocalDate.of(1996, 1, 1), null, true));
-        ArtistaDominio a26 = new ArtistaDominio("Coldplay", "Alternative Rock / Pop Rock", "url", false, integrantes26, albumes26);
+                new AlbumDominio(new ObjectId(),"Parachutes", "2000", "Alternative Rock / Britpop", "src\\main\\resources\\imagenAlbum.png", canciones26_1),
+                new AlbumDominio(new ObjectId(),"Viva la Vida or Death and All His Friends", "2008", "Art Rock / Baroque Pop", "src\\main\\resources\\imagenAlbum.png", canciones26_2));
+        List<IntegranteDominio> integrantes26 = List.of(
+                new IntegranteDominio(new ObjectId(),"Chris Martin", "Vocalista, piano, guitarra", LocalDate.of(1996, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Jonny Buckland", "Guitarra líder", LocalDate.of(1996, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Guy Berryman", "Bajo", LocalDate.of(1996, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Will Champion", "Batería, coros", LocalDate.of(1997, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Phil Harvey", "Director creativo / ex-mánager", LocalDate.of(1996, 1, 1), null, true));
+        ArtistaDominio a26 = new ArtistaDominio(new ObjectId(),"Coldplay", "Alternative Rock / Pop Rock", "src\\main\\resources\\imagenArtista.png", false, integrantes26, albumes26);
 
         List<CancionDominio> canciones27_1 = List.of(
-                new CancionDominio("This Love"),
-                new CancionDominio("She Will Be Loved"),
-                new CancionDominio("Harder to Breathe"));
+                new CancionDominio(new ObjectId(),"This Love", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"She Will Be Loved", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Harder to Breathe", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones27_2 = List.of(
-                new CancionDominio("Sugar"),
-                new CancionDominio("Animals"),
-                new CancionDominio("Maps"));
+                new CancionDominio(new ObjectId(),"Sugar", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Animals", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Maps", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes27 = List.of(
-                new AlbumDominio("Songs About Jane", "2002", "Pop Rock / Funk Rock", "url", canciones27_1),
-                new AlbumDominio("V", "2014", "Pop / Pop Rock", "url", canciones27_2));
-        List<IntegrantesDominio> integrantes27 = List.of(
-                new IntegrantesDominio("Adam Levine", "Vocalista", LocalDate.of(2001, 1, 1), null, true),
-                new IntegrantesDominio("Jesse Carmichael", "Teclado, guitarra rítmica", LocalDate.of(2001, 1, 1), null, true),
-                new IntegrantesDominio("James Valentine", "Guitarra líder", LocalDate.of(2001, 1, 1), null, true),
-                new IntegrantesDominio("Mickey Madden", "Bajo", LocalDate.of(2001, 1, 1), LocalDate.of(2020, 7, 1), false),
-                new IntegrantesDominio("Matt Flynn", "Batería", LocalDate.of(2006, 1, 1), null, true),
-                new IntegrantesDominio("PJ Morton", "Teclado", LocalDate.of(2012, 1, 1), null, true),
-                new IntegrantesDominio("Sam Farrar", "Multiinstrumentista", LocalDate.of(2016, 1, 1), null, true));
-        ArtistaDominio a27 = new ArtistaDominio("Maroon 5", "Pop Rock / Funk Pop", "url", false, integrantes27, albumes27);
+                new AlbumDominio(new ObjectId(),"Songs About Jane", "2002", "Pop Rock / Funk Rock", "src\\main\\resources\\imagenAlbum.png", canciones27_1),
+                new AlbumDominio(new ObjectId(),"V", "2014", "Pop / Pop Rock", "src\\main\\resources\\imagenAlbum.png", canciones27_2));
+        List<IntegranteDominio> integrantes27 = List.of(
+                new IntegranteDominio(new ObjectId(),"Adam Levine", "Vocalista", LocalDate.of(2001, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Jesse Carmichael", "Teclado, guitarra rítmica", LocalDate.of(2001, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"James Valentine", "Guitarra líder", LocalDate.of(2001, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Mickey Madden", "Bajo", LocalDate.of(2001, 1, 1), LocalDate.of(2020, 7, 1), false),
+                new IntegranteDominio(new ObjectId(),"Matt Flynn", "Batería", LocalDate.of(2006, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"PJ Morton", "Teclado", LocalDate.of(2012, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Sam Farrar", "Multiinstrumentista", LocalDate.of(2016, 1, 1), null, true));
+        ArtistaDominio a27 = new ArtistaDominio(new ObjectId(),"Maroon 5", "Pop Rock / Funk Pop", "src\\main\\resources\\imagenArtista.png", false, integrantes27, albumes27);
 
         
         List<CancionDominio> canciones28_1 = List.of(
-                new CancionDominio("Mr. Brightside"),
-                new CancionDominio("Somebody Told Me"),
-                new CancionDominio("All These Things That I've Done"));
+                new CancionDominio(new ObjectId(),"Mr. Brightside", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Somebody Told Me", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"All These Things That I've Done", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones28_2 = List.of(
-                new CancionDominio("Human"),
-                new CancionDominio("Spaceman"),
-                new CancionDominio("A Dustland Fairytale"));
+                new CancionDominio(new ObjectId(),"Human", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Spaceman", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"A Dustland Fairytale", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes28 = List.of(
-                new AlbumDominio("Hot Fuss", "2004", "Alternative Rock / Post-Punk Revival", "url", canciones28_1),
-                new AlbumDominio("Day & Age", "2008", "Synthpop / New Wave", "url", canciones28_2));
-        List<IntegrantesDominio> integrantes28 = List.of(
-                new IntegrantesDominio("Brandon Flowers", "Vocalista, teclado", LocalDate.of(2001, 1, 1), null, true),
-                new IntegrantesDominio("Dave Keuning", "Guitarra", LocalDate.of(2001, 1, 1), null, true),
-                new IntegrantesDominio("Mark Stoermer", "Bajo", LocalDate.of(2002, 1, 1), null, true),
-                new IntegrantesDominio("Ronnie Vannucci Jr.", "Batería", LocalDate.of(2002, 1, 1), null, true));
-        ArtistaDominio a28 = new ArtistaDominio("The Killers", "Alternative Rock / Indie Rock / Synthpop", "url", false, integrantes28, albumes28);
+                new AlbumDominio(new ObjectId(),"Hot Fuss", "2004", "Alternative Rock / Post-Punk Revival", "src\\main\\resources\\imagenAlbum.png", canciones28_1),
+                new AlbumDominio(new ObjectId(),"Day & Age", "2008", "Synthpop / New Wave", "src\\main\\resources\\imagenAlbum.png", canciones28_2));
+        List<IntegranteDominio> integrantes28 = List.of(
+                new IntegranteDominio(new ObjectId(),"Brandon Flowers", "Vocalista, teclado", LocalDate.of(2001, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Dave Keuning", "Guitarra", LocalDate.of(2001, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Mark Stoermer", "Bajo", LocalDate.of(2002, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Ronnie Vannucci Jr.", "Batería", LocalDate.of(2002, 1, 1), null, true));
+        ArtistaDominio a28 = new ArtistaDominio(new ObjectId(),"The Killers", "Alternative Rock / Indie Rock / Synthpop", "src\\main\\resources\\imagenArtista.png", false, integrantes28, albumes28);
 
         List<CancionDominio> canciones29_1 = List.of(
-                new CancionDominio("Sweater Weather"),
-                new CancionDominio("Afraid"),
-                new CancionDominio("Female Robbery"));
+                new CancionDominio(new ObjectId(),"Sweater Weather", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Afraid", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Female Robbery", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones29_2 = List.of(
-                new CancionDominio("Daddy Issues"),
-                new CancionDominio("Cry Baby"),
-                new CancionDominio("The Beach"));
+                new CancionDominio(new ObjectId(),"Daddy Issues", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Cry Baby", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"The Beach", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes29 = List.of(
-                new AlbumDominio("I Love You.", "2013", "Indie Rock / Alternative R&B", "url", canciones29_1),
-                new AlbumDominio("Wiped Out!", "2015", "Alternative Rock / Dream Pop", "url", canciones29_2));
-        List<IntegrantesDominio> integrantes29 = List.of(
-                new IntegrantesDominio("Jesse Rutherford", "Vocalista", LocalDate.of(2011, 1, 1), LocalDate.of(2022, 10, 1), false),
-                new IntegrantesDominio("Zach Abels", "Guitarra", LocalDate.of(2011, 1, 1), null, true),
-                new IntegrantesDominio("Jeremy Freedman", "Guitarra rítmica", LocalDate.of(2011, 1, 1), null, true),
-                new IntegrantesDominio("Mikey Margott", "Bajo", LocalDate.of(2011, 1, 1), null, true),
-                new IntegrantesDominio("Brandon Fried", "Batería", LocalDate.of(2014, 1, 1), LocalDate.of(2022, 11, 1), false));
-        ArtistaDominio a29 = new ArtistaDominio("The Neighbourhood", "Indie Rock / Alternative R&B", "url", false, integrantes29, albumes29);
+                new AlbumDominio(new ObjectId(),"I Love You.", "2013", "Indie Rock / Alternative R&B", "src\\main\\resources\\imagenAlbum.png", canciones29_1),
+                new AlbumDominio(new ObjectId(),"Wiped Out!", "2015", "Alternative Rock / Dream Pop", "src\\main\\resources\\imagenAlbum.png", canciones29_2));
+        List<IntegranteDominio> integrantes29 = List.of(
+                new IntegranteDominio(new ObjectId(),"Jesse Rutherford", "Vocalista", LocalDate.of(2011, 1, 1), LocalDate.of(2022, 10, 1), false),
+                new IntegranteDominio(new ObjectId(),"Zach Abels", "Guitarra", LocalDate.of(2011, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Jeremy Freedman", "Guitarra rítmica", LocalDate.of(2011, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Mikey Margott", "Bajo", LocalDate.of(2011, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Brandon Fried", "Batería", LocalDate.of(2014, 1, 1), LocalDate.of(2022, 11, 1), false));
+        ArtistaDominio a29 = new ArtistaDominio(new ObjectId(),"The Neighbourhood", "Indie Rock / Alternative R&B", "src\\main\\resources\\imagenArtista.png", false, integrantes29, albumes29);
 
         List<CancionDominio> canciones30_1 = List.of(
-                new CancionDominio("Ho Hey"),
-                new CancionDominio("Stubborn Love"),
-                new CancionDominio("Submarines"));
+                new CancionDominio(new ObjectId(),"Ho Hey", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Stubborn Love", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Submarines", "src\\main\\resources\\imagenCancion.png"));
         List<CancionDominio> canciones30_2 = List.of(
-                new CancionDominio("Ophelia"),
-                new CancionDominio("Angela"),
-                new CancionDominio("Sleep on the Floor"));
+                new CancionDominio(new ObjectId(),"Ophelia", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Angela", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(),"Sleep on the Floor", "src\\main\\resources\\imagenCancion.png"));
         List<AlbumDominio> albumes30 = List.of(
-                new AlbumDominio("The Lumineers", "2012", "Folk Rock / Americana", "url", canciones30_1),
-                new AlbumDominio("Cleopatra", "2016", "Folk Rock / Indie Folk", "url", canciones30_2));
-        List<IntegrantesDominio> integrantes30 = List.of(
-                new IntegrantesDominio("Wesley Schultz", "Vocalista y guitarra", LocalDate.of(2005, 1, 1), null, true),
-                new IntegrantesDominio("Jeremy Fraites", "Batería y percusión", LocalDate.of(2005, 1, 1), null, true),
-                new IntegrantesDominio("Neyla Pekarek", "Cello y coros", LocalDate.of(2009, 1, 1), LocalDate.of(2018, 1, 1), false));
-        ArtistaDominio a30 = new ArtistaDominio("The Lumineers", "Folk Rock / Americana", "url", false, integrantes30, albumes30);
+                new AlbumDominio(new ObjectId(),"The Lumineers", "2012", "Folk Rock / Americana", "src\\main\\resources\\imagenAlbum.png", canciones30_1),
+                new AlbumDominio(new ObjectId(),"Cleopatra", "2016", "Folk Rock / Indie Folk", "src\\main\\resources\\imagenAlbum.png", canciones30_2));
+        List<IntegranteDominio> integrantes30 = List.of(
+                new IntegranteDominio(new ObjectId(),"Wesley Schultz", "Vocalista y guitarra", LocalDate.of(2005, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Jeremy Fraites", "Batería y percusión", LocalDate.of(2005, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(),"Neyla Pekarek", "Cello y coros", LocalDate.of(2009, 1, 1), LocalDate.of(2018, 1, 1), false));
+        ArtistaDominio a30 = new ArtistaDominio(new ObjectId(),"The Lumineers", "Folk Rock / Americana", "src\\main\\resources\\imagenArtista.png", false, integrantes30, albumes30);
 
         
         this.artistas = List.of(a1,a2,a3,a4,a5,a6, a7, a8, a9, a10, a11, a12, a13, a14, a15,
         a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30);
     }
-    */
     
-    this.artistas = List.of(a1, a2, a3, a4, a5);
-}
     public List<ArtistaDominio> obtenerDatos(){
         return artistas;
     }
