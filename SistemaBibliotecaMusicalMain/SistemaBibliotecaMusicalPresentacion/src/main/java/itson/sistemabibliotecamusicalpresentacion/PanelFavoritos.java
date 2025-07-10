@@ -444,8 +444,7 @@ public class PanelFavoritos extends javax.swing.JPanel {
                         }
                         btnInfo.setText(album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
                         btnInfo.addActionListener(e -> {
-                            new CancionesFrm().setVisible(true);
-                            this.setVisible(false);
+                            abrirPanelAlbum(album);
                         });
                         btnFavorito.addActionListener(e -> {
                             try {
@@ -520,6 +519,16 @@ public class PanelFavoritos extends javax.swing.JPanel {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         PanelArtista panel = new PanelArtista(artista);
         
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        frame.revalidate();
+        frame.repaint();
+    }
+    
+     private void abrirPanelAlbum(AlbumDominio album) {
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        PanelAlbum panel = new PanelAlbum(album);
+
         frame.getContentPane().removeAll();
         frame.getContentPane().add(panel, BorderLayout.CENTER);
         frame.revalidate();

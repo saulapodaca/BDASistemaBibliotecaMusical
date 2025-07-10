@@ -348,7 +348,7 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
         } catch (NegocioException ex) {
             Logger.getLogger(MenuPrincipalFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-         this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jMenuItemCerrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -363,29 +363,32 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
 
     private void btnAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumesActionPerformed
         try {
-            new CatalogoAlbumesFrm().setVisible(true);
+            PanelCatalogoAlbumes panel = new PanelCatalogoAlbumes();
+            configurarPanel(panel);
         } catch (NegocioException ex) {
             Logger.getLogger(MenuPrincipalFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(false);
     }//GEN-LAST:event_btnAlbumesActionPerformed
 
     private void btnArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArtistasActionPerformed
-        try {
-            new CatalogoArtistasFrm().setVisible(true);
+       try {
+            PanelCatalogoArtistas panel = new PanelCatalogoArtistas();
+            configurarPanel(panel);
         } catch (NegocioException ex) {
             Logger.getLogger(MenuPrincipalFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(false);
     }//GEN-LAST:event_btnArtistasActionPerformed
 
     private void btnCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancionesActionPerformed
+
         try {
-            new CatalogoCancionesFrm().setVisible(true);
+            PanelCatalogoCanciones panel = new PanelCatalogoCanciones();
+            configurarPanel(panel);
         } catch (NegocioException ex) {
             Logger.getLogger(MenuPrincipalFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(false);
+
+
     }//GEN-LAST:event_btnCancionesActionPerformed
 
     private void configurarPanel(JPanel panel) {

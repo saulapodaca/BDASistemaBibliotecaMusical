@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package itson.sistemabibliotecamusicalpresentacion;
 
@@ -16,7 +16,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.Image;
@@ -29,36 +28,35 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author adell
  */
-public class CatalogoAlbumesFrm extends javax.swing.JFrame {
-
-    IAlbumFachada albumFachada;
+public class PanelCatalogoAlbumes extends javax.swing.JPanel {
+    
+       IAlbumFachada albumFachada;
     IUsuarioFachada usuarioFachada;
     UsuarioDominio usuario = SesionUsuario.getUsuario();
-
     /**
-     * Creates new form CatalogoAlbumesFrm
+     * Creates new form PanelCatalogoAlbumes
      */
-    public CatalogoAlbumesFrm() throws NegocioException {
-
+    public PanelCatalogoAlbumes() throws NegocioException {
+        
         this.albumFachada = new AlbumFachada();
         this.usuarioFachada = new UsuarioFachada();
 
         initComponents();
-        this.setLocationRelativeTo(null);
         cargarBiblioteca();
-
     }
-
+    
     private void cargarBiblioteca() throws NegocioException {
         try {
 
@@ -96,8 +94,7 @@ public class CatalogoAlbumesFrm extends javax.swing.JFrame {
 
                 btnInfo.setText(album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
                 btnInfo.addActionListener(e -> {
-                    new CancionesFrm().setVisible(true);
-                    this.setVisible(false);
+                     mostrarPanelAlbum(album);
                 });
 
                 btnFavorito.addActionListener(e -> {
@@ -144,6 +141,16 @@ public class CatalogoAlbumesFrm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de la biblioteca musical");
         }
     }
+    
+    private void mostrarPanelAlbum(AlbumDominio album) {
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        PanelAlbum panel = new PanelAlbum(album);
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        frame.revalidate();
+        frame.repaint();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -160,11 +167,7 @@ public class CatalogoAlbumesFrm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         infoAlbumesPnl = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setLocationByPlatform(true);
         setPreferredSize(new java.awt.Dimension(1080, 648));
-        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(75, 28, 113));
 
@@ -246,8 +249,8 @@ public class CatalogoAlbumesFrm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -256,9 +259,8 @@ public class CatalogoAlbumesFrm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenedorPnl;
