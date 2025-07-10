@@ -508,7 +508,7 @@ public class PanelBuscar extends javax.swing.JPanel {
             scrollPane.setPreferredSize(new Dimension(770, 362));
             panelListar.removeAll();
             panelListar.setLayout(new BorderLayout());
-            panelListar.add(panelInterno, BorderLayout.NORTH);
+            panelListar.add(scrollPane, BorderLayout.CENTER);
             panelListar.revalidate();
             panelListar.repaint();
         } catch (HeadlessException ex) {
