@@ -2,6 +2,10 @@ package itson.sistemabibliotecamusicaldominio.dtos;
 
 //@author SAUL ISAAC APODACA BALDENEGRO 00000252020
 
+/**
+ * DTO que se utiliza para registrar un usuario nuevo a la biblioteca musical
+ * @author Camila Zubía
+ */
 public class RegistrarUsuarioDTO {
 
     private String usuario;
@@ -10,9 +14,19 @@ public class RegistrarUsuarioDTO {
     private String correo;
     private String imagen;
     
+    /**
+     * constructor vacio
+     */
     public RegistrarUsuarioDTO() {
     }
 
+    /**
+     * constructor que inicializa todos los atributos
+     * @param usuario
+     * @param contrasenia
+     * @param correo
+     * @param imagen 
+     */
     public RegistrarUsuarioDTO(String usuario, char[] contrasenia, String correo, String imagen) {
         this.usuario = usuario;
         this.contrasenia = contrasenia;
@@ -20,6 +34,11 @@ public class RegistrarUsuarioDTO {
         this.imagen = imagen;
     }
 
+    /**
+     * getters y setters
+     * @return 
+     */
+    
     public String getUsuario() {
         return usuario;
     }
