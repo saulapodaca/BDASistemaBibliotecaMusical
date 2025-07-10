@@ -396,7 +396,7 @@ public class UsuarioNegocio implements IUsuarioNegocio {
     @Override
     public List<ResultadosDTO> listarFavoritosPorTipoYFiltro(TipoFavoritoEnum tipo, String filtro, List<String> generosNoDeseados) throws NegocioException {
         try {
-            return usuarioDAO.listarFavoritosPorFiltro(filtro, generosNoDeseados);
+            return usuarioDAO.listarFavoritosPorTipoYFiltro(tipo, filtro, generosNoDeseados);
         } catch (PersistenciaException ex) {
             throw new NegocioException(ex.getMessage());
         }
