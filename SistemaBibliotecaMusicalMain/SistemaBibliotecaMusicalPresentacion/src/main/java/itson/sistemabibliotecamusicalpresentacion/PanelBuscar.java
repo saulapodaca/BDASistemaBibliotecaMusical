@@ -157,11 +157,11 @@ public class PanelBuscar extends javax.swing.JPanel {
         panelListar.setLayout(panelListarLayout);
         panelListarLayout.setHorizontalGroup(
             panelListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 768, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         panelListarLayout.setVerticalGroup(
             panelListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 356, Short.MAX_VALUE)
+            .addGap(0, 362, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -170,8 +170,8 @@ public class PanelBuscar extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(77, 77, 77)
@@ -191,7 +191,7 @@ public class PanelBuscar extends javax.swing.JPanel {
                     .addComponent(btnCanciones)
                     .addComponent(btnAlbumes)
                     .addComponent(btnArtistas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
@@ -368,7 +368,7 @@ public class PanelBuscar extends javax.swing.JPanel {
         }
     }
     
-    private void cargarBiblioteca(List<?> registros){
+    private void cargarBiblioteca(List<?> registros) throws NegocioException{
         try {
             JPanel panelInterno = new JPanel();
             panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
@@ -418,7 +418,9 @@ public class PanelBuscar extends javax.swing.JPanel {
                 switch (tipo) {
                     case ARTISTA -> {
                         ArtistaDominio a = (ArtistaDominio) entidad;
-                        System.out.println(a.getNombre() + " - " + a.getGenero());
+                        if (usuarioFachada.esFavorito(a.getId())) {
+                            btnFavorito.setText("★️");
+                        }
                         btnInfo.setText(a.getNombre() + " - " + a.getGenero());
                         btnInfo.addActionListener(e -> {
                             abrirPanelArtista(a);
@@ -445,7 +447,9 @@ public class PanelBuscar extends javax.swing.JPanel {
                     }
                     case ALBUM ->{
                         AlbumDominio album = (AlbumDominio) entidad;
-                        System.out.println(album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
+                        if (usuarioFachada.esFavorito(album.getId())) {
+                            btnFavorito.setText("★️");
+                        }
                         btnInfo.setText(album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
                         btnInfo.addActionListener(e -> {
                             new CancionesFrm().setVisible(true);
@@ -469,7 +473,9 @@ public class PanelBuscar extends javax.swing.JPanel {
                     }
                     case CANCION-> {
                         CancionDominio cancion = (CancionDominio) entidad;
-                        System.out.println(cancion.getNombre());
+                        if (usuarioFachada.esFavorito(cancion.getId())) {
+                            btnFavorito.setText("★️");
+                        }
                         btnInfo.setText(cancion.getNombre());
                         btnFavorito.addActionListener(e -> {
                             try {
@@ -499,6 +505,8 @@ public class PanelBuscar extends javax.swing.JPanel {
                 panelInterno.add(panelElemento);
             }
             JScrollPane scrollPane = new JScrollPane(panelInterno);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane.setPreferredSize(new Dimension(770, 362));
             panelListar.removeAll();
             panelListar.setLayout(new BorderLayout());
             panelListar.add(panelInterno, BorderLayout.NORTH);

@@ -40,6 +40,8 @@ public class CatalogoArtistasFrm extends javax.swing.JFrame {
         this.artistaFachada = new ArtistaFachada();
         cargarBiblioteca();
         initComponents();
+        this.setLocationRelativeTo(null);
+
     }
 
     private void cargarBiblioteca() {

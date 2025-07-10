@@ -7,10 +7,14 @@ package itson.sistemabibliotecamusicalpresentacion;
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
 import itson.sistemabibliotecamusicaldominio.dtos.UsuarioInicioSesionDTO;
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
+import itson.sistemabibliotecamusicalnegocio.fachada.IInsertMasivoFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.InsertMasivoFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.UsuarioFachada;
 import itson.sistemabibliotecamusicalpresentacion.utilidades.SesionUsuario;
 import java.awt.HeadlessException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,12 +24,18 @@ import javax.swing.JOptionPane;
 public class InicioSesionFrm extends javax.swing.JFrame {
 
     private final IUsuarioFachada usuarioFachada;
+    private final IInsertMasivoFachada insertFachada; 
     /**
      * Creates new form FrameInicioSesion
+     * @throws itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException
      */
-    public InicioSesionFrm() {
+    public InicioSesionFrm() throws NegocioException {
         initComponents();
+        this.setLocationRelativeTo(null);
+
         this.usuarioFachada = new UsuarioFachada();
+        this.insertFachada = new InsertMasivoFachada();
+        insertFachada.insertarDatosMasivos();
     }
 
     /**
@@ -249,18 +259,24 @@ public class InicioSesionFrm extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new InicioSesionFrm().setVisible(true);
+            try {
+                new InicioSesionFrm().setVisible(true);
+            } catch (NegocioException ex) {
+                Logger.getLogger(InicioSesionFrm.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 
-    private void validarCampos() throws NegocioException{
-        if(txtUsuario.getText().trim().isEmpty()
-                || txtUsuario.getText().trim().isBlank())
+    private void validarCampos() throws NegocioException {
+        if (txtUsuario.getText().trim().isEmpty()
+                || txtUsuario.getText().trim().isBlank()) {
             throw new NegocioException("Ingrese el usuario.");
-        if(passwordContraseña.getPassword().length<1)
+        }
+        if (passwordContraseña.getPassword().length < 1) {
             throw new NegocioException("Ingrese la contraseña.");
+        }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnRegistrarse;

@@ -6,19 +6,31 @@ package itson.sistemabibliotecamusicalpresentacion;
 
 import itson.sistemabibliotecamusicaldominio.AlbumDominio;
 import itson.sistemabibliotecamusicaldominio.UsuarioDominio;
+import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import itson.sistemabibliotecamusicalnegocio.fachada.IAlbumFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.IUsuarioFachada;
 import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.AlbumFachada;
+import itson.sistemabibliotecamusicalnegocio.fachada.implementaciones.UsuarioFachada;
 import itson.sistemabibliotecamusicalpresentacion.utilidades.SesionUsuario;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -27,51 +39,94 @@ import javax.swing.JPanel;
 public class CatalogoAlbumesFrm extends javax.swing.JFrame {
 
     IAlbumFachada albumFachada;
+    IUsuarioFachada usuarioFachada;
     UsuarioDominio usuario = SesionUsuario.getUsuario();
+
     /**
      * Creates new form CatalogoAlbumesFrm
      */
-    public CatalogoAlbumesFrm() {
+    public CatalogoAlbumesFrm() throws NegocioException {
+
         this.albumFachada = new AlbumFachada();
-        cargarBiblioteca();
+        this.usuarioFachada = new UsuarioFachada();
+
         initComponents();
+        this.setLocationRelativeTo(null);
+        cargarBiblioteca();
+
     }
 
-    
-    private void cargarBiblioteca() {
+    private void cargarBiblioteca() throws NegocioException {
         try {
-            
-            List <AlbumDominio> albumes = albumFachada.listarTodosLosAlbumes(usuario.getGenerosNoDeseados());
-            
-            infoAlbumesPnl.removeAll();
-            infoAlbumesPnl.setLayout(new BoxLayout(infoAlbumesPnl, BoxLayout.Y_AXIS));
+            List<AlbumDominio> albumes = albumFachada.listarTodosLosAlbumes(usuario.getGenerosNoDeseados());
 
-            for (Object o : albumes) {
-                if (!(o instanceof AlbumDominio album)) {
-                    continue;
-                }
+            JPanel panelInterno = new JPanel();
+            panelInterno.setLayout(new BoxLayout(panelInterno, BoxLayout.Y_AXIS));
+            panelInterno.setPreferredSize(new Dimension(700, albumes.size() * 60));
+            panelInterno.setBackground(new Color(219, 182, 238));
+            for (AlbumDominio album : albumes) {
+                JPanel panelElemento = new JPanel();
+                panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
+                panelElemento.setPreferredSize(new Dimension(700, 50));
+                panelElemento.setMaximumSize(new Dimension(700, 50));
+                panelElemento.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+                panelElemento.setBackground(new Color(219, 182, 238));
 
-                JPanel panelElemento = new JPanel(new BorderLayout());
-                panelElemento.setMaximumSize(new Dimension(700, 40));
-                panelElemento.setBackground(Color.getHSBColor(219, 182, 238));
-
-                JLabel lblInfo = new JLabel();
-                lblInfo.setText(album.getImagenPortada() + " " + album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
-                lblInfo.setFont(new Font("Arial", Font.PLAIN, 14));
+                JButton btnInfo = new JButton();
+                btnInfo.setFont(new Font("Arial", Font.PLAIN, 14));
+                btnInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
+                btnInfo.setHorizontalAlignment(SwingConstants.LEFT);
+                btnInfo.setPreferredSize(new Dimension(600, 40));
+                btnInfo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
 
                 JButton btnFavorito = new JButton("☆");
                 btnFavorito.setFocusPainted(false);
                 btnFavorito.setForeground(Color.GRAY);
+                btnFavorito.setPreferredSize(new Dimension(50, 40));
+                btnFavorito.setMaximumSize(new Dimension(50, 40));
 
-                panelElemento.add(lblInfo, BorderLayout.WEST);
-                panelElemento.add(btnFavorito, BorderLayout.EAST);
-                infoAlbumesPnl.add(panelElemento);
+                System.out.println(album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
+                btnInfo.setText(album.getNombre() + " - " + album.getGeneroMusical() + " (" + album.getFechaLanzamiento() + ")");
+                btnInfo.addActionListener(e -> {
+                    new CancionesFrm().setVisible(true);
+                    this.setVisible(false);
+                });
+
+                btnFavorito.addActionListener(e -> {
+                    try {
+                        if (usuarioFachada.esFavorito(album.getId())) {
+                            usuarioFachada.eliminarFavorito(album.getId());
+                            btnFavorito.setText("☆");
+                            btnFavorito.setForeground(Color.GRAY);
+                        } else {
+                            usuarioFachada.agregarFavorito(album.getId());
+                            btnFavorito.setText("★️");
+                            btnFavorito.setForeground(Color.BLACK);
+                        }
+                    } catch (NegocioException ex) {
+                        Logger.getLogger(PanelBuscar.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+
+                panelElemento.add(btnInfo);
+                panelElemento.add(Box.createHorizontalStrut(10));
+                panelElemento.add(btnFavorito);
+                panelInterno.add(panelElemento);
             }
 
+            JScrollPane scrollPane = new JScrollPane(panelInterno);
+            scrollPane.setPreferredSize(new Dimension(750, 400));
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+            infoAlbumesPnl.removeAll();
+            infoAlbumesPnl.setLayout(new BorderLayout());
+            infoAlbumesPnl.add(scrollPane, BorderLayout.CENTER);
             infoAlbumesPnl.revalidate();
             infoAlbumesPnl.repaint();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de álbumes.");
+
+        } catch (HeadlessException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "No se pudo cargar el contenido de la biblioteca musical");
         }
     }
 
@@ -91,6 +146,8 @@ public class CatalogoAlbumesFrm extends javax.swing.JFrame {
         infoAlbumesPnl = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setLocationByPlatform(true);
         setPreferredSize(new java.awt.Dimension(1080, 648));
         setResizable(false);
 
@@ -98,6 +155,8 @@ public class CatalogoAlbumesFrm extends javax.swing.JFrame {
 
         contenedorPnl.setBackground(new java.awt.Color(219, 182, 238));
         contenedorPnl.setPreferredSize(new java.awt.Dimension(980, 548));
+
+        infoArtistaPnl.setBackground(new java.awt.Color(181, 107, 181));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel2.setText("ALBUMES");
@@ -119,11 +178,13 @@ public class CatalogoAlbumesFrm extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        infoAlbumesPnl.setPreferredSize(new java.awt.Dimension(750, 356));
+
         javax.swing.GroupLayout infoAlbumesPnlLayout = new javax.swing.GroupLayout(infoAlbumesPnl);
         infoAlbumesPnl.setLayout(infoAlbumesPnlLayout);
         infoAlbumesPnlLayout.setHorizontalGroup(
             infoAlbumesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 852, Short.MAX_VALUE)
+            .addGap(0, 750, Short.MAX_VALUE)
         );
         infoAlbumesPnlLayout.setVerticalGroup(
             infoAlbumesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,22 +196,22 @@ public class CatalogoAlbumesFrm extends javax.swing.JFrame {
         contenedorPnlLayout.setHorizontalGroup(
             contenedorPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorPnlLayout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
+                .addContainerGap(91, Short.MAX_VALUE)
                 .addComponent(infoArtistaPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorPnlLayout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(infoAlbumesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addGap(90, 90, 90))
         );
         contenedorPnlLayout.setVerticalGroup(
             contenedorPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorPnlLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(infoArtistaPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
                 .addComponent(infoAlbumesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
