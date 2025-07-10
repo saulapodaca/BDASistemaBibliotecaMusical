@@ -253,6 +253,7 @@ public class PanelGestionarGenerosNoDeseados extends javax.swing.JPanel {
             usuarioActualizar.setId(SesionUsuario.getUsuario().getId());
             usuarioActualizar.setGenerosNoDeseados(nuevosNoDeseados);
             usuarioFachada.actualizarGenerosNoDeseados(usuarioActualizar);
+            SesionUsuario.iniciarSesion(usuarioFachada.obtenerUsuarioPorId(SesionUsuario.getUsuario().getId()));
             JOptionPane.showMessageDialog(this, "Cambios guardados correctamente.");
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
