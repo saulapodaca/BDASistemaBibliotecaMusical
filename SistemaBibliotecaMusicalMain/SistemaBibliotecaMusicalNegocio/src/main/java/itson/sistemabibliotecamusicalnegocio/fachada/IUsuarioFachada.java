@@ -43,4 +43,7 @@ public interface IUsuarioFachada {
     public List<ResultadosDTO> listarFavoritosPorFiltro(String filtro, List<String> generosNoDeseados) throws NegocioException;
 
     public List<ResultadosDTO> listarFavoritosPorTipoYFiltro(TipoFavoritoEnum tipo, String filtro, List<String> generosNoDeseados) throws NegocioException;
+    
+    public UsuarioDominio obtenerUsuarioPorId(ObjectId id) throws NegocioException;
+
 }

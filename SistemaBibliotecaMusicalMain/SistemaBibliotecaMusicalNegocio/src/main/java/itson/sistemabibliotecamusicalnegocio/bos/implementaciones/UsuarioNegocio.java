@@ -248,4 +248,14 @@ public class UsuarioNegocio implements IUsuarioNegocio {
             throw new NegocioException(ex.getMessage());
         }
     }
+
+    @Override
+    public UsuarioDominio obtenerUsuarioPorId(ObjectId id) throws NegocioException {
+        try {
+            return usuarioDAO.obtenerUsuarioPorId(id);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException(ex.getMessage());
+
+        }
+    }
 }

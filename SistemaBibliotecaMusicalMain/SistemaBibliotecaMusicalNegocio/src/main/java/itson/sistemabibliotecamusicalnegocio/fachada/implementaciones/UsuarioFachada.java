@@ -138,4 +138,13 @@ public class UsuarioFachada implements IUsuarioFachada{
         }
     }
 
+    @Override
+    public UsuarioDominio obtenerUsuarioPorId(ObjectId id) throws NegocioException {
+        try{
+            return usuarioNegocio.obtenerUsuarioPorId(id);
+        } catch (NegocioException ex){
+            throw new NegocioException(ex.getMessage());
+        }
+    }
+
 }
