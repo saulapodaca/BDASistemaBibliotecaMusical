@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -219,9 +220,15 @@ public class PanelArtista extends javax.swing.JPanel {
         panelAlbumesArtista.repaint();
     }
 
-        private void mostrarPanelAlbum(AlbumDominio album){
-            
-        }
+    private void mostrarPanelAlbum(AlbumDominio album) {
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        PanelAlbum panel = new PanelAlbum(album);
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        frame.revalidate();
+        frame.repaint();
+    }
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenedorPnl;
