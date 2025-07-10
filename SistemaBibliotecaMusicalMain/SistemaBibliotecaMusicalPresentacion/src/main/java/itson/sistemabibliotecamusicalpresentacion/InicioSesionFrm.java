@@ -35,7 +35,9 @@ public class InicioSesionFrm extends javax.swing.JFrame {
 
         this.usuarioFachada = new UsuarioFachada();
         this.insertFachada = new InsertMasivoFachada();
-        insertFachada.insertarDatosMasivos();
+        if (!insertFachada.existenDatosIniciales()) {
+            insertFachada.insertarDatosMasivos();
+        }
     }
 
     /**

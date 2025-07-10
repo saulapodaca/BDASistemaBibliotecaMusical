@@ -27,6 +27,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.Image;
+import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -418,12 +419,12 @@ public class PanelBuscar extends javax.swing.JPanel {
                 btnFavorito.setPreferredSize(new Dimension(50, 40));
                 btnFavorito.setMaximumSize(new Dimension(50, 40));
                 
-                String rutaImagen = null;
+                File imagen = null;
                 
                 switch (tipo) {
                     case ARTISTA -> {
                         ArtistaDominio a = (ArtistaDominio) entidad;
-                        rutaImagen = a.getImagen();
+                        imagen = new File(a.getImagen().trim());
                         if (usuarioFachada.esFavorito(a.getId())) {
                             btnFavorito.setText("★️");
                         }
@@ -453,7 +454,7 @@ public class PanelBuscar extends javax.swing.JPanel {
                     }
                     case ALBUM ->{
                         AlbumDominio album = (AlbumDominio) entidad;
-                        rutaImagen = album.getImagenPortada();
+                        imagen = new File(album.getImagenPortada().trim());
                         if (usuarioFachada.esFavorito(album.getId())) {
                             btnFavorito.setText("★️");
                         }
@@ -480,6 +481,7 @@ public class PanelBuscar extends javax.swing.JPanel {
                     }
                     case CANCION-> {
                         CancionDominio cancion = (CancionDominio) entidad;
+                        imagen = new File(cancion.getImagenCancion().trim());
                         if (usuarioFachada.esFavorito(cancion.getId())) {
                             btnFavorito.setText("★️");
                         }
@@ -506,8 +508,8 @@ public class PanelBuscar extends javax.swing.JPanel {
                     }
                 }
                 
-                ImageIcon icono = new ImageIcon(getClass().getResource(rutaImagen));
-                Image imagenEscalada = icono.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+                ImageIcon icono = new ImageIcon(imagen.getAbsolutePath());
+                Image imagenEscalada = icono.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
                 JLabel lblImagen = new JLabel(new ImageIcon(imagenEscalada));
                 lblImagen.setAlignmentX(Component.CENTER_ALIGNMENT);
 

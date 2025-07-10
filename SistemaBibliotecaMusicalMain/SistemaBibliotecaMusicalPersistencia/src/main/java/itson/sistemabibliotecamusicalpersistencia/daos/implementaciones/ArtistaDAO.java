@@ -41,8 +41,13 @@ public class ArtistaDAO implements IArtistaDAO{
                     = baseDatos.getCollection("artistas", ArtistaDominio.class);
             List<ResultadosDTO> todo = new ArrayList<>();
             FindIterable<ArtistaDominio> artistas = coleccion.find();
+            
+            List<String> generosNormalizados = generosNoDeseados.stream()
+                    .map(g -> g.toLowerCase().trim())
+                    .toList();
+            
             for (ArtistaDominio a : artistas) {
-                if (generosNoDeseados.contains(a.getGenero())) {
+                if (generosNormalizados.contains(a.getGenero().toLowerCase().trim())) {
                     continue;
                 }
                 ResultadosDTO registro = new ResultadosDTO(TipoFavoritoEnum.ARTISTA, a);

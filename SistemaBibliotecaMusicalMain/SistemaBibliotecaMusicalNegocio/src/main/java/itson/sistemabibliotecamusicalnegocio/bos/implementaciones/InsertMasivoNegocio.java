@@ -38,16 +38,4 @@ public class InsertMasivoNegocio implements IInsertMasivoNegocio {
             throw new NegocioException("Ha ocurrido un error al verificar datos iniciales: " + ex.getMessage(), ex);
         }
     }
-
-    /**
-     * Método que valida si existen datos iniciales antes de hacer la inserción
-     * masiva.Lanza excepción si ya existen datos para evitar duplicados.
-     * @throws itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException
-     */
-    public void insertarSiNoExistenDatos() throws NegocioException {
-        if (existenDatosIniciales()) {
-            throw new NegocioException("Los datos iniciales ya existen, no se puede realizar insert masivo");
-        }
-        insertarDatosMasivos();
-    }
 }

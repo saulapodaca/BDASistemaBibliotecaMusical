@@ -111,15 +111,15 @@ public class UsuarioDAO implements IUsuarioDAO{
 
     @Override
     public UsuarioDominio actualizarGenerosNoDeseados(ActualizarGenerosUsuarioDTO usuarioActualizar) throws PersistenciaException {
-        try{
+        try {
             MongoDatabase bd = conexionBD.conexion();
             MongoCollection<UsuarioDominio> collection
                     = bd.getCollection("usuarios", UsuarioDominio.class);
             Bson filtro = eq("_id", usuarioActualizar.getId());
-            Bson actualizacion = Updates.push("generosNoDeseados", usuarioActualizar.getGenerosNoDeseados());
+            Bson actualizacion = Updates.pushEach("generosNoDeseados", usuarioActualizar.getGenerosNoDeseados());
             collection.updateOne(filtro, actualizacion);
             return obtenerUsuarioPorId(usuarioActualizar.getId());
-        }catch(PersistenciaException ex){
+        } catch (PersistenciaException ex) {
             throw new PersistenciaException("Error al actualizar géneros no deseados: " + ex.getMessage());
         }
     }
@@ -130,9 +130,8 @@ public class UsuarioDAO implements IUsuarioDAO{
             MongoDatabase bd = conexionBD.conexion();
             MongoCollection<UsuarioDominio> collection
                     = bd.getCollection("usuarios", UsuarioDominio.class);
-            Bson filtro = eq("_id", id);
             
-            UsuarioDominio usuario = collection.find(filtro).first();
+            UsuarioDominio usuario = collection.find(Filters.eq("_id", id)).first();
             return (usuario != null && usuario.getGenerosNoDeseados() != null)
                 ? usuario.getGenerosNoDeseados()
                 : new ArrayList<>();
