@@ -21,7 +21,7 @@ public class UsuarioDominio {
     }
 
     public UsuarioDominio(ObjectId id, String nombreUsuario, String contrasenia, String correo, String imagen, List<FavoritoDominio> favoritos, List<String> generosNoDeseados) {
-        this.id = new ObjectId();
+        this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
         this.correo = correo;
