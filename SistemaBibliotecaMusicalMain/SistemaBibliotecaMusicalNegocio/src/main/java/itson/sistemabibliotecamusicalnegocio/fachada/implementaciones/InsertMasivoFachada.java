@@ -27,7 +27,11 @@ public class InsertMasivoFachada implements IInsertMasivoFachada{
         this.insertNegocio = new InsertMasivoNegocio(insertDAO);
     }
 
-
+    /**
+     * Metodo para insertar masivamente los datos en la bd
+     *
+     * @throws itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException
+     */
     @Override
     public void insertarDatosMasivos() throws NegocioException {
         try {
@@ -37,6 +41,11 @@ public class InsertMasivoFachada implements IInsertMasivoFachada{
         }
     }
 
+    /**
+     * Metodo para insertar masivamente los datos en la bd
+     *
+     * @throws itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException
+     */
     @Override
     public boolean existenDatosIniciales() throws NegocioException {
         try {
