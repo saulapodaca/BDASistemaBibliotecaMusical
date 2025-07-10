@@ -14,6 +14,9 @@ public class UsuarioInicioSesionDTO {
     private String contraseniaHasheada;
     private char[] contrasenia;
 
+    public UsuarioInicioSesionDTO() {
+    }
+    
     public UsuarioInicioSesionDTO(String usuario, char[] contrasenia) {
         this.usuario = usuario;
         this.contrasenia = contrasenia;

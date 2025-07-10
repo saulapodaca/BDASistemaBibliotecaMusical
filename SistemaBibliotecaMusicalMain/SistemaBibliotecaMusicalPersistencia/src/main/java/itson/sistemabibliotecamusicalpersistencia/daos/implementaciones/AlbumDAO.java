@@ -38,14 +38,18 @@ public class AlbumDAO implements IAlbumDAO {
             List<AlbumDominio> todo = new ArrayList<>();
             FindIterable<ArtistaDominio> artistas = coleccion.find();
 
+            List<String> generosNormalizados = generosNoDeseados.stream()
+                    .map(g -> g.toLowerCase().trim())
+                    .toList();
+            
             for (ArtistaDominio a : artistas) {
-                if (generosNoDeseados.contains(a.getGenero())) {
+                if (generosNormalizados.contains(a.getGenero().toLowerCase().trim())) {
                     continue;
                 }
                 List<AlbumDominio> albumes = a.getAlbumes();
 
                 for (AlbumDominio album : albumes) {
-                    if (generosNoDeseados.contains(album.getGeneroMusical())) {
+                    if (generosNormalizados.contains(album.getGeneroMusical().toLowerCase().trim())) {
                         continue;
                     }
                     todo.add(album);
