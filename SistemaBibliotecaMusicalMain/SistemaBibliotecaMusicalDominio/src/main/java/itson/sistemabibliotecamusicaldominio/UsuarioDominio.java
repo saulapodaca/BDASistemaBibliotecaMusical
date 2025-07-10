@@ -20,7 +20,7 @@ public class UsuarioDominio {
     public UsuarioDominio() {
     }
 
-    public UsuarioDominio(ObjectId id, String nombreUsuario, String contrasenia, String correo, String imagen, List<FavoritoDominio> favoritos, List<String> generosNoDeseados) {
+    public UsuarioDominio(ObjectId id, String nombreUsuario, String contrasenia, String correo, String imagen) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
@@ -28,6 +28,16 @@ public class UsuarioDominio {
         this.imagen = imagen;
         this.favoritos = new ArrayList<>();
         this.generosNoDeseados = new ArrayList<>();
+    }
+
+    public UsuarioDominio(ObjectId id, String nombreUsuario, String contrasenia, String correo, String imagen, List<FavoritoDominio> favoritos, List<String> generosNoDeseados) {
+        this.id = id;
+        this.nombreUsuario = nombreUsuario;
+        this.contrasenia = contrasenia;
+        this.correo = correo;
+        this.imagen = imagen;
+        this.favoritos = favoritos;
+        this.generosNoDeseados = generosNoDeseados;
     }
 
     public ObjectId getId() {
