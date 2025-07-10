@@ -11,12 +11,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -196,29 +193,13 @@ private void cargarImagenAlbum() {
             JPanel info = new JPanel(new GridLayout(2, 1));
             info.add(new JLabel("Nombre: " + cancion.getNombre()));
             panelCancion.add(info, BorderLayout.CENTER);
-
-            // Evento al hacer clic
-            panelCancion.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    mostrarPanelCancion(cancion);
-                }
-            });
+            
             panelCanciones.add(panelCancion);
         }
         panelCanciones.revalidate();
         panelCanciones.repaint();
     }
-    
-    private void mostrarPanelCancion(CancionDominio cancion){
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        PanelCancion panel = new PanelCancion(cancion);
 
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(panel, BorderLayout.CENTER);
-        frame.revalidate();
-        frame.repaint();
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenedorPnl;
     private javax.swing.JPanel jPanel2;
