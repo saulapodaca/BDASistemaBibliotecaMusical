@@ -26,14 +26,17 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.HeadlessException;
+import java.awt.Image;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -415,9 +418,12 @@ public class PanelBuscar extends javax.swing.JPanel {
                 btnFavorito.setPreferredSize(new Dimension(50, 40));
                 btnFavorito.setMaximumSize(new Dimension(50, 40));
                 
+                String rutaImagen = null;
+                
                 switch (tipo) {
                     case ARTISTA -> {
                         ArtistaDominio a = (ArtistaDominio) entidad;
+                        rutaImagen = a.getImagen();
                         if (usuarioFachada.esFavorito(a.getId())) {
                             btnFavorito.setText("★️");
                         }
@@ -447,6 +453,7 @@ public class PanelBuscar extends javax.swing.JPanel {
                     }
                     case ALBUM ->{
                         AlbumDominio album = (AlbumDominio) entidad;
+                        rutaImagen = album.getImagenPortada();
                         if (usuarioFachada.esFavorito(album.getId())) {
                             btnFavorito.setText("★️");
                         }
@@ -498,7 +505,13 @@ public class PanelBuscar extends javax.swing.JPanel {
                         continue;
                     }
                 }
+                
+                ImageIcon icono = new ImageIcon(getClass().getResource(rutaImagen));
+                Image imagenEscalada = icono.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+                JLabel lblImagen = new JLabel(new ImageIcon(imagenEscalada));
+                lblImagen.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+                panelElemento.add(lblImagen);
                 panelElemento.add(btnInfo);
                 panelElemento.add(Box.createHorizontalStrut(10));
                 panelElemento.add(btnFavorito);
