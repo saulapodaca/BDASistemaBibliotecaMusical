@@ -41,5 +41,7 @@ public interface IUsuarioDAO {
     public List<ResultadosDTO> listarFavoritosPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException;
     
     public List<ResultadosDTO> listarFavoritosPorTipoYFiltro(TipoFavoritoEnum tipo, String filtro, List<String> generosNoDeseados) throws PersistenciaException;
+    
+    public UsuarioDominio obtenerUsuarioPorId(ObjectId id) throws PersistenciaException;
 
 }

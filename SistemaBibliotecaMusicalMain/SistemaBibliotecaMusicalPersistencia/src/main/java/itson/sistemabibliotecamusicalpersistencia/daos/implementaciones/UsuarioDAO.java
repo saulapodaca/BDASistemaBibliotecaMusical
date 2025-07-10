@@ -142,6 +142,7 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
+    @Override
     public UsuarioDominio obtenerUsuarioPorId(ObjectId id) throws PersistenciaException {
         try {
             MongoDatabase bd = conexionBD.conexion();
