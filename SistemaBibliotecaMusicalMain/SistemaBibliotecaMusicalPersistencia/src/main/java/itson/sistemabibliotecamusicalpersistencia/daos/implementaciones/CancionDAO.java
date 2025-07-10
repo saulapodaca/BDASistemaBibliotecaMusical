@@ -18,17 +18,31 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
- *
+ *clase que implementa una interfaz y permite acceso a las canciones de la base
+ * de datos
  * @author adell
  */
 public class CancionDAO implements ICancionDAO {
     
+    /**
+     * conexion a la base de datos
+     */
     private IConexionBD conexionBD;
 
+    /**
+     * constructor que recibe la conexion a la base de datos 
+     * @param conexionBD 
+     */
     public CancionDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
     }
 
+    /**
+     * metodo que lista todas la canciones que no sean de un genero no deseado
+     * @param generosNoDeseados
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<CancionDominio> listarTodasLasCanciones(List<String> generosNoDeseados) throws PersistenciaException {
         try{
@@ -62,6 +76,14 @@ public class CancionDAO implements ICancionDAO {
         }
     }
 
+    /**
+     * metodo que lista todas las canciones que cumplan con el filtro y no sean
+     * de un genero no deseado
+     * @param filtro
+     * @param generosNoDeseados
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<CancionDominio> listarCancionesPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException {
         try{
@@ -81,6 +103,12 @@ public class CancionDAO implements ICancionDAO {
         }
     }
 
+    /**
+     * metodo que recupera una cancion por su id
+     * @param id
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public CancionDominio buscarPorId(ObjectId id) throws PersistenciaException {
         try{

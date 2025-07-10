@@ -22,17 +22,32 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
- *
+ *clase que implementa una interfaz y permite acceso a los artistas de la base 
+ * de datos
  * @author Camila Zubía
  */
 public class ArtistaDAO implements IArtistaDAO{
     
+    /**
+     * conexion a la base de datos
+     */
     private IConexionBD conexionBD;
 
+    /**
+     * constructor que recibe la conexion a la base de datos 
+     * @param conexionBD 
+     */
     public ArtistaDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
     }
 
+    /**
+     * metodo que lista todos los registros de la base de datos excepto los que 
+     * sean de un genero no deseado
+     * @param generosNoDeseados
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<ResultadosDTO> listarTodo(List<String> generosNoDeseados) throws PersistenciaException {
         try{
@@ -72,6 +87,13 @@ public class ArtistaDAO implements IArtistaDAO{
         }
     }
 
+    /**
+     * metodo que lista todos los artistas de la base de datos excepto los que 
+     * sean de un genero no deseado
+     * @param generosNoDeseados
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<ArtistaDominio> listarTodosLosArtistas(List<String> generosNoDeseados) throws PersistenciaException {
         try{
@@ -93,6 +115,14 @@ public class ArtistaDAO implements IArtistaDAO{
         }
     }
 
+    /**
+     * metodo que lista todos los registros de la base de datos que cumplan con 
+     * el filtro y no sean de un genero no deseado
+     * @param filtro
+     * @param generosNoDeseados
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<ResultadosDTO> listarTodoPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException {
         try{
@@ -129,6 +159,14 @@ public class ArtistaDAO implements IArtistaDAO{
         }
     }
 
+    /**
+     * metodo que lista todos los artistas que cumplan con el filtro y no sean
+     * de un genero no deseado
+     * @param filtro
+     * @param generosNoDeseados
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<ArtistaDominio> listarArtistasPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException {
         try{
@@ -146,6 +184,11 @@ public class ArtistaDAO implements IArtistaDAO{
         }
     }
 
+    /**
+     * metodo que recolecta todos los generos distintos de los artistas
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<String> obtenerTodosLosGeneros() throws PersistenciaException {
         try{
@@ -162,6 +205,12 @@ public class ArtistaDAO implements IArtistaDAO{
         }
     }
 
+    /**
+     * metodo que recupera un artista por su id
+     * @param id
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public ArtistaDominio buscarPorId(ObjectId id) throws PersistenciaException {
         try {

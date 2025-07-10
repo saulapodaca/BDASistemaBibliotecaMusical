@@ -13,18 +13,29 @@ import itson.sistemabibliotecamusicalpersistencia.datos.DatosAInsertar;
 import itson.sistemabibliotecamusicalpersistencia.excepciones.PersistenciaException;
 
 /**
- *
+ *clase que inserta a la base de datos un conjunto de registros
  * @author Camila Zubía
  */
 public class InsertMasivoDAO implements IInsertMasivoDAO{
 
+    /**
+     * conexion a la base de datos
+     */
     private IConexionBD conexionBD;
     private DatosAInsertar datos = new DatosAInsertar();
 
+    /**
+     * constructor que recibe la conexion
+     * @param conexionBD 
+     */
     public InsertMasivoDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
     }
     
+    /**
+     * metodo que inserta los registros a la base de datos
+     * @throws PersistenciaException 
+     */
     @Override
     public void insertarDatosMasivos() throws PersistenciaException {
          try{
@@ -37,6 +48,11 @@ public class InsertMasivoDAO implements IInsertMasivoDAO{
         }
     }
 
+    /**
+     * metodo que comprueba si los registros ya fueron cargados a la base de datos
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public boolean existenDatosIniciales() throws PersistenciaException {
         try {

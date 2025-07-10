@@ -22,6 +22,10 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  */
 public class ConexionBD implements IConexionBD{
     
+    /**
+     * metodo que crea una conexion a la base de datos
+     * @return 
+     */
     @Override
     public MongoDatabase conexion() {
         // Configura el proveedor de códecs para trabajar con objetos Java y MongoDB

@@ -30,17 +30,34 @@ import java.util.stream.Collectors;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
-
+/**
+ * clase que implementa una interfaz y permite acceso a los usuarios de la base
+ * de datos
+ * @author Camila Zubía
+ */
 public class UsuarioDAO implements IUsuarioDAO{
 
     private IArtistaDAO artistaDAO;
+    /**
+     * conexion a la base de datos
+     */
     private IConexionBD conexionBD;
     
+    /**
+     * constructor que recibe la conexion
+     * @param conexionBD 
+     */
     public UsuarioDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
         this.artistaDAO = new ArtistaDAO(conexionBD);
     }
 
+    /**
+     * metodo que obtiene un usuario por su nombre
+     * @param nombreUsuario
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public UsuarioDominio obtenerUsuarioPorNombre(String nombreUsuario) throws PersistenciaException {
         try {
@@ -53,6 +70,12 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
+    /**
+     * metodo que obtiene un usuario por su correo
+     * @param correo
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public UsuarioDominio obtenerUsuarioPorCorreo(String correo) throws PersistenciaException {
         try {
@@ -65,6 +88,12 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
+    /**
+     * metodo que registra a un usuario nuevo a la base de datos
+     * @param nuevoUsuario
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public UsuarioDominio registrarUsuario(RegistrarUsuarioDTO nuevoUsuario) throws PersistenciaException {
         try {
@@ -88,6 +117,12 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
+    /**
+     * metodo que modifica los atributos de un usuario ya registrado
+     * @param usuarioModificado
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public UsuarioDominio modificarUsuario(ModificarUsuarioDTO usuarioModificado) throws PersistenciaException {
         try{
@@ -109,6 +144,12 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
+    /**
+     * metodo que actualiza la lista de no deseados de un usuario
+     * @param usuarioActualizar
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public UsuarioDominio actualizarGenerosNoDeseados(ActualizarGenerosUsuarioDTO usuarioActualizar) throws PersistenciaException {
         try {
@@ -124,6 +165,13 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
+    /**
+     * metodo que obtiene la lista de no deseados de un usuario por medio de su
+     * id
+     * @param id
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<String> obtenerGenerosNoDeseados(ObjectId id) throws PersistenciaException {
         try{
@@ -141,6 +189,12 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
+    /**
+     * metodo que obtiene un usuario por su id
+     * @param id
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public UsuarioDominio obtenerUsuarioPorId(ObjectId id) throws PersistenciaException {
         try {
@@ -154,6 +208,13 @@ public class UsuarioDAO implements IUsuarioDAO{
 
     }
 
+    /**
+     * metodo que agrega un registro de artistas a la lista de favoritos de un 
+     * usuario
+     * @param id
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public FavoritoDominio agregarFavorito(ObjectId id) throws PersistenciaException {
         try{
@@ -202,6 +263,11 @@ public class UsuarioDAO implements IUsuarioDAO{
     }
 
 
+    /**
+     * metodo que elimina un registro de la lista de favoritos de un usuario
+     * @param id
+     * @throws PersistenciaException 
+     */
     @Override
     public void eliminarFavorito(ObjectId id) throws PersistenciaException {
         try{
@@ -216,6 +282,13 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
+    /**
+     * metodo que lista todos los registro de la lista de favoritos que no sean 
+     * de un genero no deseado
+     * @param generosNoDeseados
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<ResultadosDTO> listarFavoritos(List<String> generosNoDeseados) throws PersistenciaException {
         try {
@@ -251,6 +324,14 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
+    /**
+     * metodo que lista todos los registros de la lista de favoritos que cumplan 
+     * con el filtro y no sean no deseados
+     * @param filtro
+     * @param generosNoDeseados
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<ResultadosDTO> listarFavoritosPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException {
         try {
@@ -288,7 +369,15 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
-
+    /**
+     * metodo que lista todos los registros de la lista de favoritos que cumplan
+     * con el filtro y el tipo, y que no sean no deseados
+     * @param tipo
+     * @param filtro
+     * @param generosNoDeseados
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<ResultadosDTO> listarFavoritosPorTipoYFiltro(TipoFavoritoEnum tipo, String filtro, List<String> generosNoDeseados) throws PersistenciaException {
         try {
@@ -330,6 +419,12 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
     }
 
+    /**
+     * metodo que comprueba si un registro esta dentro de la lista de favoritos
+     * @param id
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public boolean esFavorito(ObjectId id) throws PersistenciaException {
         MongoDatabase baseDatos = conexionBD.conexion();

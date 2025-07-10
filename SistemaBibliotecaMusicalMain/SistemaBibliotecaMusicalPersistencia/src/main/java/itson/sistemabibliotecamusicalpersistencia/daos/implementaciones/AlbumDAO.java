@@ -17,17 +17,31 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
- *
+ *clase que implementa una interfaz y permite acceso a los albumes de la base de
+ * datos
  * @author adell
  */
 public class AlbumDAO implements IAlbumDAO {
     
+    /**
+     * conexion a la base de datos
+     */
     private IConexionBD conexionBD;
 
+    /**
+     * constructor que recibe la conexion a la base de datos 
+     * @param conexionBD 
+     */
     public AlbumDAO(IConexionBD conexionBD) {
         this.conexionBD = conexionBD;
     }
 
+    /**
+     * metodo que lista todos los albumes excepto los que sean de un genero no deseado
+     * @param generosNoDeseados
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<AlbumDominio> listarTodosLosAlbumes(List<String> generosNoDeseados) throws PersistenciaException {
         try{
@@ -62,6 +76,14 @@ public class AlbumDAO implements IAlbumDAO {
         }
     }
 
+    /**
+     * metodo que lista todos los albumes que cumplan con el filtro y no sean de
+     * un genero no deseado
+     * @param filtro
+     * @param generosNoDeseados
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public List<AlbumDominio> listarAlbumesPorFiltro(String filtro, List<String> generosNoDeseados) throws PersistenciaException {
         try{
@@ -80,6 +102,12 @@ public class AlbumDAO implements IAlbumDAO {
         }
     }
 
+    /**
+     * metodo que busca un usuario por su id
+     * @param id
+     * @return
+     * @throws PersistenciaException 
+     */
     @Override
     public AlbumDominio buscarPorId(ObjectId id) throws PersistenciaException {
         try{
