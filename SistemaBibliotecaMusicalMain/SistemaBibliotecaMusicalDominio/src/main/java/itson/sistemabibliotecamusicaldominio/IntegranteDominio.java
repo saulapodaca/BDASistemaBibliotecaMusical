@@ -28,6 +28,7 @@ public class IntegranteDominio {
     
     /**
      * constructor que inicializa todos los atributos
+     * @param id
      * @param nombre
      * @param rol
      * @param fechaIngreso
@@ -86,10 +87,12 @@ public class IntegranteDominio {
         this.activo = activo;
     }
 
-    public String getInstrumento() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ObjectId getId() {
+        return id;
     }
-    
-    
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
     
 }

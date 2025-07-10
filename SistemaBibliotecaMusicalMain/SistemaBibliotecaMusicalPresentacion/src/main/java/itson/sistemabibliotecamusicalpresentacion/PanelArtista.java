@@ -173,7 +173,7 @@ public class PanelArtista extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformacionActionPerformed
-        // TODO add your handling code here:
+        mostrarPanelIntegrantes(artista);
     }//GEN-LAST:event_btnInformacionActionPerformed
 
 
@@ -247,6 +247,16 @@ public class PanelArtista extends javax.swing.JPanel {
     private void mostrarPanelAlbum(AlbumDominio album) {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         PanelAlbum panel = new PanelAlbum(album);
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        frame.revalidate();
+        frame.repaint();
+    }
+    
+    private void mostrarPanelIntegrantes(ArtistaDominio artista){
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        PanelInformacionBanda panel = new PanelInformacionBanda(artista);
 
         frame.getContentPane().removeAll();
         frame.getContentPane().add(panel, BorderLayout.CENTER);
