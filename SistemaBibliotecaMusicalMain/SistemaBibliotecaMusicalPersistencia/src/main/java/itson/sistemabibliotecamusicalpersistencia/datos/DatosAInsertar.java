@@ -1152,10 +1152,516 @@ public class DatosAInsertar {
         );
         ArtistaDominio a60 = new ArtistaDominio(new ObjectId(), "EVERGLOW", "K-Pop", "src\\main\\resources\\imagenArtista.png", true, integrantes60, albumes60);
 
+        // SAUL
+        List<CancionDominio> canciones61_1 = List.of(
+                new CancionDominio(new ObjectId(), "Leave Her", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Niño Del Hood", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Supposed To Be", "src\\main\\resources\\imagenCancion.png")
+        );
+        List<CancionDominio> canciones61_2 = List.of(
+                new CancionDominio(new ObjectId(), "One", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Never Knew How To Love", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Miss U", "src\\main\\resources\\imagenCancion.png")
+        );
+        List<AlbumDominio> albumes661 = List.of(
+                new AlbumDominio(new ObjectId(), "2016", "2024", "Trap", "src\\main\\resources\\imagenAlbum.png", canciones61_1),
+                new AlbumDominio(new ObjectId(), "Keoland", "2018", "Hip-Hop/Trap", "src\\main\\resources\\imagenAlbum.png", canciones61_2)
+        );
+        List<IntegranteDominio> integrantes661 = new ArrayList<>();
+        ArtistaDominio a61 = new ArtistaDominio(new ObjectId(), "Kidd Keo", "Trap", "src\\main\\resources\\imagenArtista.png", false, integrantes661, albumes661);
+
+        List<CancionDominio> canciones62_1 = List.of(
+                new CancionDominio(new ObjectId(), "LA PRIMERA", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "POST MORTEM", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "AMIGOS NUEVOS", "src\\main\\resources\\imagenCancion.png")
+        );
+        List<CancionDominio> canciones62_2 = List.of(
+                new CancionDominio(new ObjectId(), "Cirugía", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Muñecas", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Ciudad de la Paz", "src\\main\\resources\\imagenCancion.png")
+        );
+        List<AlbumDominio> albumes662 = List.of(
+                new AlbumDominio(new ObjectId(), "POST MORTEM", "2021", "Trap Argentino", "src\\main\\resources\\imagenAlbum.png", canciones62_1),
+                new AlbumDominio(new ObjectId(), "Por Cesárea", "2024", "Trip Hop", "src\\main\\resources\\imagenAlbum.png", canciones62_2)
+        );
+        List<IntegranteDominio> integrantes662 = new ArrayList<>();
+        ArtistaDominio a62 = new ArtistaDominio(new ObjectId(), "Dillom", "Trap Argentino", "src\\main\\resources\\imagenArtista.png", false, integrantes662, albumes662);
+
+        List<CancionDominio> canciones63_1 = List.of(
+                new CancionDominio(new ObjectId(), "Pintao", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Malbec", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Sol", "src\\main\\resources\\imagenCancion.png")
+        );
+        List<CancionDominio> canciones63_2 = List.of(
+                new CancionDominio(new ObjectId(), "Golfista", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "100pre@Límite", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "NO ME ALCANZA", "src\\main\\resources\\imagenCancion.png")
+        );
+        List<AlbumDominio> albumes663 = List.of(
+                new AlbumDominio(new ObjectId(), "Desde el Fin del Mundo", "2021", "Trap Argentino", "src\\main\\resources\\imagenAlbum.png", canciones63_1),
+                new AlbumDominio(new ObjectId(), "5202", "2025", "Trap", "src\\main\\resources\\imagenAlbum.png", canciones63_2)
+        );
+        List<IntegranteDominio> integrantes663 = new ArrayList<>();
+        ArtistaDominio a63 = new ArtistaDominio(new ObjectId(), "Duki", "Trap Argentino", "src\\main\\resources\\imagenArtista.png", false, integrantes663, albumes663);
+
+        List<CancionDominio> canciones64_1 = List.of(
+                new CancionDominio(new ObjectId(), "Todo o Nada", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Seguramente", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "En Definitiva", "src\\main\\resources\\imagenCancion.png")
+        );
+        List<CancionDominio> canciones64_2 = List.of(
+                new CancionDominio(new ObjectId(), "El Malo De Culiacán", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Laberinto", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Y Porque No", "src\\main\\resources\\imagenCancion.png")
+        );
+        List<AlbumDominio> albumes664 = List.of(
+                new AlbumDominio(new ObjectId(), "La Rueda De La Fortuna", "2017", "Regional Mexicano", "src\\main\\resources\\imagenAlbum.png", canciones64_1),
+                new AlbumDominio(new ObjectId(), "Privilegio", "2015", "Regional Mexicano", "src\\main\\resources\\imagenAlbum.png", canciones64_2)
+        );
+        List<IntegranteDominio> integrantes664 = new ArrayList<>();
+        ArtistaDominio a64 = new ArtistaDominio(new ObjectId(), "Alfredo Olivas", "Regional Mexicano", "src\\main\\resources\\imagenArtista.png", false, integrantes664, albumes664);
+
+        List<CancionDominio> canciones65_1 = List.of(
+                new CancionDominio(new ObjectId(), "Dueño de Ti", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "La Mentada", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Musico, Poeta y Loco", "src\\main\\resources\\imagenCancion.png")
+        );
+        List<CancionDominio> canciones65_2 = List.of(
+                new CancionDominio(new ObjectId(), "Quién Es Usted", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Maniaco Y Loco", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "La Número 20", "src\\main\\resources\\imagenCancion.png")
+        );
+        List<AlbumDominio> albumes665 = List.of(
+                new AlbumDominio(new ObjectId(), "Me Gusta Estar Contigo", "2004", "Norteño", "src\\main\\resources\\imagenAlbum.png", canciones65_1),
+                new AlbumDominio(new ObjectId(), "¿Quién Es Usted?", "2009", "Norteño", "src\\main\\resources\\imagenAlbum.png", canciones65_2)
+        );
+        List<IntegranteDominio> integrantes665 = new ArrayList<>();
+        ArtistaDominio a65 = new ArtistaDominio(new ObjectId(), "Sergio Vega 'El Shaka'", "Regional Mexicano", "src\\main\\resources\\imagenArtista.png", false, integrantes665, albumes665);
+
+        List<CancionDominio> canciones66_1 = List.of(
+                new CancionDominio(new ObjectId(), "Love It", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Dime Que No", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Si Me Muero", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones66_2 = List.of(
+                new CancionDominio(new ObjectId(), "La Prisión", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Me Olvidé De Los 2", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Libre Sin Dinero", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes66 = List.of(
+                new AlbumDominio(new ObjectId(), "Flakk Daniel's Lp", "2018", "Hip-Hop/Rap", "src\\main\\resources\\imagenAlbum.png", canciones66_1),
+                new AlbumDominio(new ObjectId(), "LA ISLA LP", "2020", "Hip-Hop/Rap", "src\\main\\resources\\imagenAlbum.png", canciones66_2));
+        List<IntegranteDominio> integrantes66 = new ArrayList<>();
+        ArtistaDominio a66 = new ArtistaDominio(new ObjectId(), "Rels B", "Hip-Hop/Rap", "src\\main\\resources\\imagenArtista.png", false, integrantes66, albumes66);
+
+        List<CancionDominio> canciones67_1 = List.of(
+                new CancionDominio(new ObjectId(), "Quiéreme Así", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Me Da Lo Mismo", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Camina Sola", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones67_2 = List.of(
+                new CancionDominio(new ObjectId(), "Sólo Tú", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Ya Para Qué", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Extrañándote", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes67 = List.of(
+                new AlbumDominio(new ObjectId(), "HECHO M13RD4", "2022", "Hip-Hop/Rap", "src\\main\\resources\\imagenAlbum.png", canciones67_1),
+                new AlbumDominio(new ObjectId(), "Según Nosotros", "2016", "Hip-Hop/Rap", "src\\main\\resources\\imagenAlbum.png", canciones67_2));
+        List<IntegranteDominio> integrantes67 = new ArrayList<>();
+        ArtistaDominio a67 = new ArtistaDominio(new ObjectId(), "Nanpa Básico", "Hip-Hop/Rap", "src\\main\\resources\\imagenArtista.png", false, integrantes67, albumes67);
+
+        List<CancionDominio> canciones68_1 = List.of(
+                new CancionDominio(new ObjectId(), "Hidro", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "El Amanecer", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Linaje", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones68_2 = List.of(
+                new CancionDominio(new ObjectId(), "CUÁNTO VALE HACER EL AMOR?", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "CUÁL?", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "CÓMO CHILLA ELLA", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes68 = List.of(
+                new AlbumDominio(new ObjectId(), "Antezana 247 (Deluxe Editioon)", "2018", "Trap Argentino", "src\\main\\resources\\imagenAlbum.png", canciones68_1),
+                new AlbumDominio(new ObjectId(), "YSYSMO", "2022", "Trap Argentino", "src\\main\\resources\\imagenAlbum.png", canciones68_2));
+        List<IntegranteDominio> integrantes68 = new ArrayList<>();
+        ArtistaDominio a68 = new ArtistaDominio(new ObjectId(), "YSY A", "Trap Argentino", "src\\main\\resources\\imagenArtista.png", false, integrantes68, albumes68);
+
+        List<CancionDominio> canciones69_1 = List.of(
+                new CancionDominio(new ObjectId(), "OJERAS NEGRAS", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "ALMA DINAMITA", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "ALGO DE VACÍO", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones69_2 = List.of(
+                new CancionDominio(new ObjectId(), "MIRÁ MAMÁ", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "CULPA", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "INTRODUCCIÓN AL ÉXTASIS", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes69 = List.of(
+                new AlbumDominio(new ObjectId(), "TRES PUNTOS SUSPENSIVOS", "202", "Hip-Hop/Rap", "src\\main\\resources\\imagenAlbum.png", canciones69_1),
+                new AlbumDominio(new ObjectId(), "OSCURO ÉXTASIS", "2021", "Rap-Rock", "src\\main\\resources\\imagenAlbum.png", canciones69_2));
+        List<IntegranteDominio> integrantes69 = new ArrayList<>();
+        ArtistaDominio a69 = new ArtistaDominio(new ObjectId(), "WOS", "Rap Argentino", "src\\main\\resources\\imagenArtista.png", false, integrantes69, albumes69);
+
+        List<CancionDominio> canciones70_1 = List.of(
+                new CancionDominio(new ObjectId(), "Ruinas", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Ciudad Gris", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Gloria", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones70_2 = List.of(
+                new CancionDominio(new ObjectId(), "Secretos", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "WOW", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Del infierno me escapé", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6610 = List.of(
+                new AlbumDominio(new ObjectId(), "C.R.O. - Rock", "2018", "Rock Alternativo", "src\\main\\resources\\imagenAlbum.png", canciones70_1),
+                new AlbumDominio(new ObjectId(), "Malos Cantores", "2024", "Trap", "src\\main\\resources\\imagenAlbum.png", canciones70_2));
+        List<IntegranteDominio> integrantes6610 = new ArrayList<>();
+        ArtistaDominio a70 = new ArtistaDominio(new ObjectId(), "C.R.O", "Trap Argentino", "src\\main\\resources\\imagenArtista.png", false, integrantes6610, albumes6610);
+
+        List<CancionDominio> canciones71_1 = List.of(
+                new CancionDominio(new ObjectId(), "No Te Deseo el Mal", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Flores en Anónimo", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Me Gustas Natural", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones71_2 = List.of(
+                new CancionDominio(new ObjectId(), "Si La Calle Llama - Remix", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "El Hokage", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Mbappé - Remix", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6611 = List.of(
+                new AlbumDominio(new ObjectId(), "Sauce Boyz 2", "2021", "Trap Latino", "src\\main\\resources\\imagenAlbum.png", canciones71_1),
+                new AlbumDominio(new ObjectId(), "3MEN2 KBRN", "2023", "Rap", "src\\main\\resources\\imagenAlbum.png", canciones71_2));
+        List<IntegranteDominio> integrantes6611 = new ArrayList<>();
+        ArtistaDominio a71 = new ArtistaDominio(new ObjectId(), "Eladio Carrión", "Trap Latino", "src\\main\\resources\\imagenArtista.png", false, integrantes6611, albumes6611);
+
+        List<CancionDominio> canciones72_1 = List.of(
+                new CancionDominio(new ObjectId(), "Sexo Virtual", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Aquel Nap ZzZz", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Cosa Guapa", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones72_2 = List.of(
+                new CancionDominio(new ObjectId(), "Khé?", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Amar De Nuevo", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "2:12 AM", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6612 = List.of(
+                new AlbumDominio(new ObjectId(), "VICE VERSA", "2021", "Reggaetón", "src\\main\\resources\\imagenAlbum.png", canciones72_1),
+                new AlbumDominio(new ObjectId(), "Cosa Nuestra", "2024", "Reggaetón", "src\\main\\resources\\imagenAlbum.png", canciones72_2));
+        List<IntegranteDominio> integrantes6612 = new ArrayList<>();
+        ArtistaDominio a72 = new ArtistaDominio(new ObjectId(), "Rauw Alejandro", "Reggaetón", "src\\main\\resources\\imagenArtista.png", false, integrantes6612, albumes6612);
+
+        List<CancionDominio> canciones73_1 = List.of(
+                new CancionDominio(new ObjectId(), "Chica Paranormal", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Nena Maldición (feat. Lenny Tavárez)", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Y Yo No Sé", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones73_2 = List.of(
+                new CancionDominio(new ObjectId(), "Por Deporte", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Ella", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Necio (feat. LIT killah)", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6613 = List.of(
+                new AlbumDominio(new ObjectId(), "Homerun", "2019", "Trap", "src\\main\\resources\\imagenAlbum.png", canciones73_1),
+                new AlbumDominio(new ObjectId(), "Back To The Game", "2022", "Trap", "src\\main\\resources\\imagenAlbum.png", canciones73_2));
+        List<IntegranteDominio> integrantes6613 = new ArrayList<>();
+        ArtistaDominio a73 = new ArtistaDominio(new ObjectId(), "Paulo Londra", "Trap Argentino", "src\\main\\resources\\imagenArtista.png", false, integrantes6613, albumes6613);
+
+        List<CancionDominio> canciones74_1 = List.of(
+                new CancionDominio(new ObjectId(), "Propuesta Indecente", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "No Tiene la Culpa", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Inocente", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones74_2 = List.of(
+                new CancionDominio(new ObjectId(), "Bella y Sensual", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Imitadora", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Perjurio", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6614 = List.of(
+                new AlbumDominio(new ObjectId(), "Fórmula, Vol.2(Deluxe Edition)", "2014", "Bachata", "src\\main\\resources\\imagenAlbum.png", canciones74_1),
+                new AlbumDominio(new ObjectId(), "Golden", "2017", "Bachata", "src\\main\\resources\\imagenAlbum.png", canciones74_2));
+        List<IntegranteDominio> integrantes6614 = new ArrayList<>();
+        ArtistaDominio a74 = new ArtistaDominio(new ObjectId(), "Romeo Santos", "Bachata", "src\\main\\resources\\imagenArtista.png", false, integrantes6614, albumes6614);
+
+        List<CancionDominio> canciones75_1 = List.of(
+                new CancionDominio(new ObjectId(), "ca$h $hit", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "fukumean", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "go crazy", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones75_2 = List.of(
+                new CancionDominio(new ObjectId(), "one of wun", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "prada dem (feat. Offset)", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "on one tonight", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6615 = List.of(
+                new AlbumDominio(new ObjectId(), "a Gift & a Curse", "2023", "Trap", "src\\main\\resources\\imagenAlbum.png", canciones75_1),
+                new AlbumDominio(new ObjectId(), "One of Wun", "2024", "Trap", "src\\main\\resources\\imagenAlbum.png", canciones75_2));
+        List<IntegranteDominio> integrantes6615 = new ArrayList<>();
+        ArtistaDominio a75 = new ArtistaDominio(new ObjectId(), "Gunna", "Trap", "src\\main\\resources\\imagenArtista.png", false, integrantes6615, albumes6615);
+
+        List<CancionDominio> canciones76_1 = List.of(
+                new CancionDominio(new ObjectId(), "Chicos del barrio", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Tamo Loco", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Sigo", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones76_2 = List.of(
+                new CancionDominio(new ObjectId(), "En la trampa", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Calle", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Me Sueltan Los Ángeles", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6616 = List.of(
+                new AlbumDominio(new ObjectId(), "Pure Drug", "2018", "Trap", "src\\main\\resources\\imagenAlbum.png", canciones76_1),
+                new AlbumDominio(new ObjectId(), "Inmortales", "2020", "Trap", "src\\main\\resources\\imagenAlbum.png", canciones76_2));
+        List<IntegranteDominio> integrantes6616 = List.of(
+                new IntegranteDominio(new ObjectId(), "C.R.O", "Voz, compositor", LocalDate.of(1998, 9, 11), null, true),
+                new IntegranteDominio(new ObjectId(), "Homer El Mero Mero", "Voz, compositor", LocalDate.of(1990, 6, 19), null, true));
+
+        ArtistaDominio a76 = new ArtistaDominio(new ObjectId(), "Bardero$", "Trap", "src\\main\\resources\\imagenArtista.png", true, integrantes6616, albumes6616);
+
+        List<CancionDominio> canciones77_1 = List.of(
+                new CancionDominio(new ObjectId(), "Te Metiste", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Hablemos", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "El Karma", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones77_2 = List.of(
+                new CancionDominio(new ObjectId(), "Rey de Corazones", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "La Vida Ruina", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Debo Entender", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6617 = List.of(
+                new AlbumDominio(new ObjectId(), "El Karma", "2014", "Sierreño", "src\\main\\resources\\imagenAlbum.png", canciones77_1),
+                new AlbumDominio(new ObjectId(), "Hablemos", "2015", "Sierreño", "src\\main\\resources\\imagenAlbum.png", canciones77_2));
+        List<IntegranteDominio> integrantes6617 = List.of(
+                new IntegranteDominio(new ObjectId(), "Ariel Camacho", "Primera voz, requinto", LocalDate.of(2013, 1, 1), LocalDate.of(2015, 2, 25), false),
+                new IntegranteDominio(new ObjectId(), "César Iván Sánchez", "Tuba", LocalDate.of(2013, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Omar Burgos", "Guitarra armonía", LocalDate.of(2013, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Christian Bernal", "Primera voz, requinto", LocalDate.of(2015, 3, 1), null, true));
+
+        ArtistaDominio a77 = new ArtistaDominio(new ObjectId(), "Ariel Camacho y Los Plebes del Rancho", "Sierreño", "src\\main\\resources\\imagenArtista.png", true, integrantes6617, albumes6617);
+
+        List<CancionDominio> canciones78_1 = List.of(
+                new CancionDominio(new ObjectId(), "Contigo", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "A la Antigüita", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Siempre te voy a querer", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones78_2 = List.of(
+                new CancionDominio(new ObjectId(), "El Tierno Se Fue", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Corrido de Juanito", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Javier el de los Llanos", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6618 = List.of(
+                new AlbumDominio(new ObjectId(), "Siempre Contigo", "2015", "Norteño-Banda", "src\\main\\resources\\imagenAlbum.png", canciones78_1),
+                new AlbumDominio(new ObjectId(), "Corridos de Alto Calibre", "2012", "Norteño-Banda", "src\\main\\resources\\imagenAlbum.png", canciones78_2));
+        List<IntegranteDominio> integrantes6618 = List.of(
+                new IntegranteDominio(new ObjectId(), "Edén Muñoz", "Voz principal, acordeón", LocalDate.of(2010, 1, 1), LocalDate.of(2022, 1, 28), false),
+                new IntegranteDominio(new ObjectId(), "Tony Elizondo", "Voz principal, acordeón", LocalDate.of(2022, 2, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Armando Ramos", "Guitarra", LocalDate.of(2010, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Alejandro Gaxiola", "Tuba", LocalDate.of(2010, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Erick García", "Batería", LocalDate.of(2010, 1, 1), null, true));
+
+        ArtistaDominio a78 = new ArtistaDominio(new ObjectId(), "Calibre 50", "Norteño-Banda", "src\\main\\resources\\imagenArtista.png", true, integrantes6618, albumes6618);
+
+        List<CancionDominio> canciones79_1 = List.of(
+                new CancionDominio(new ObjectId(), "Mi Razón de Ser", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Hermosa Experiencia", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "No Me Pidas Perdón", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones79_2 = List.of(
+                new CancionDominio(new ObjectId(), "El Color de Tus Ojos", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Tu Postura", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "La Mejor Versión de Mí", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6619 = List.of(
+                new AlbumDominio(new ObjectId(), "Mi Razón de Ser", "2013", "Banda", "src\\main\\resources\\imagenAlbum.png", canciones79_1),
+                new AlbumDominio(new ObjectId(), "La Mejor Versión de Mí", "2017", "Banda", "src\\main\\resources\\imagenAlbum.png", canciones79_2));
+        List<IntegranteDominio> integrantes6619 = List.of(
+                new IntegranteDominio(new ObjectId(), "Julión Álvarez", "Voz principal", LocalDate.of(2003, 1, 1), LocalDate.of(2007, 1, 1), false),
+                new IntegranteDominio(new ObjectId(), "Alan Ramírez", "Voz principal", LocalDate.of(2007, 1, 2), null, true),
+                new IntegranteDominio(new ObjectId(), "Walo Silvas", "Voz principal", LocalDate.of(2003, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Sergio Lizárraga", "Director, tuba", LocalDate.of(2003, 1, 1), null, true));
+
+        ArtistaDominio a79 = new ArtistaDominio(new ObjectId(), "Banda MS", "Banda", "src\\main\\resources\\imagenArtista.png", true, integrantes6619, albumes6619);
+
+        List<CancionDominio> canciones80_1 = List.of(
+                new CancionDominio(new ObjectId(), "Radicamos en South Central", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Sigo Chambeando", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "En Modesto Sabe", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones80_2 = List.of(
+                new CancionDominio(new ObjectId(), "TQM", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Ch y la Pizza", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "911", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6620 = List.of(
+                new AlbumDominio(new ObjectId(), "Del Barrio Hasta Aquí, Vol. 2", "2023", "Regional Urbano", "src\\main\\resources\\imagenAlbum.png", canciones80_1),
+                new AlbumDominio(new ObjectId(), "Pa Que Hablen", "2022", "Regional Urbano", "src\\main\\resources\\imagenAlbum.png", canciones80_2));
+        List<IntegranteDominio> integrantes6620 = List.of(
+                new IntegranteDominio(new ObjectId(), "Jesús Ortiz Paz", "Voz principal", LocalDate.of(2015, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Samuel Jaimez", "Guitarra", LocalDate.of(2015, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "José García", "Tuba", LocalDate.of(2015, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Kris Nava", "Segunda voz", LocalDate.of(2015, 1, 1), LocalDate.of(2021, 12, 31), false));
+
+        ArtistaDominio a80 = new ArtistaDominio(new ObjectId(), "Fuerza Regida", "Regional Urbano", "src\\main\\resources\\imagenArtista.png", true, integrantes6620, albumes6620);
+
+        List<CancionDominio> canciones81_1 = List.of(
+                new CancionDominio(new ObjectId(), "Y Llegaste Tú", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Te Presumo", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Me Gusta Todo de Ti", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones81_2 = List.of(
+                new CancionDominio(new ObjectId(), "Mi Vicio Más Grande", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Inevitable", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Vale la Pena", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6621 = List.of(
+                new AlbumDominio(new ObjectId(), "Me Gusta Todo de Ti", "2009", "Banda", "src\\main\\resources\\imagenAlbum.png", canciones81_1),
+                new AlbumDominio(new ObjectId(), "Raíces", "2014", "Banda", "src\\main\\resources\\imagenAlbum.png", canciones81_2));
+        List<IntegranteDominio> integrantes6621 = List.of(
+                new IntegranteDominio(new ObjectId(), "Poncho Lizárraga", "Director, clarinete", LocalDate.of(1990, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Ricky Yocupicio", "Voz principal", LocalDate.of(2016, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Geovanni Mondragón", "Voz principal", LocalDate.of(2014, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Carlos Sarabia", "Voz principal", LocalDate.of(2005, 1, 1), LocalDate.of(2014, 1, 1), false));
+
+        ArtistaDominio a81 = new ArtistaDominio(new ObjectId(), "Banda El Recodo", "Banda", "src\\main\\resources\\imagenArtista.png", true, integrantes6621, albumes6621);
+
+        List<CancionDominio> canciones82_1 = List.of(
+                new CancionDominio(new ObjectId(), "Rafa Caro", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Aerolinea Carrillo", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Fire Up", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones82_2 = List.of(
+                new CancionDominio(new ObjectId(), "Jalo y Exhalo", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Del Barrio a la Ciudad", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Mi Mente En Blanco", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6622 = List.of(
+                new AlbumDominio(new ObjectId(), "Underground", "2018", "Regional Urbano", "src\\main\\resources\\imagenAlbum.png", canciones82_1),
+                new AlbumDominio(new ObjectId(), "The Green Trip", "2019", "Regional Urbano", "src\\main\\resources\\imagenAlbum.png", canciones82_2));
+        List<IntegranteDominio> integrantes6622 = List.of(
+                new IntegranteDominio(new ObjectId(), "Kristopher Nava", "Voz principal", LocalDate.of(2016, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Alex Rojas", "Tuba", LocalDate.of(2016, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "José “Magic” García", "Requinto", LocalDate.of(2016, 1, 1), LocalDate.of(2020, 12, 31), false));
+
+        ArtistaDominio a82 = new ArtistaDominio(new ObjectId(), "T3R Elemento", "Regional Urbano", "src\\main\\resources\\imagenArtista.png", true, integrantes6622, albumes6622);
+
+        List<CancionDominio> canciones83_1 = List.of(
+                new CancionDominio(new ObjectId(), "No Quiero Perderte", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Te Extraño", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Quédate Conmigo", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones83_2 = List.of(
+                new CancionDominio(new ObjectId(), "Dame Un Beso", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Mi Todo", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Te Soñé", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6623 = List.of(
+                new AlbumDominio(new ObjectId(), "Amor y Sierreño", "2022", "Sierreño", "src\\main\\resources\\imagenAlbum.png", canciones83_1),
+                new AlbumDominio(new ObjectId(), "Desde el Corazón", "2023", "Sierreño", "src\\main\\resources\\imagenAlbum.png", canciones83_2));
+        List<IntegranteDominio> integrantes6623 = List.of(
+                new IntegranteDominio(new ObjectId(), "Bryan Martínez", "Voz principal", LocalDate.of(2021, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Luis Sánchez", "Guitarra", LocalDate.of(2021, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Carlos Ramírez", "Tuba", LocalDate.of(2021, 1, 1), null, true));
+
+        ArtistaDominio a83 = new ArtistaDominio(new ObjectId(), "Grupo Origen", "Sierreño", "src\\main\\resources\\imagenArtista.png", true, integrantes6623, albumes6623);
+
+        List<CancionDominio> canciones84_1 = List.of(
+                new CancionDominio(new ObjectId(), "Ando Bien Pedo", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Mi Último Deseo", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Hasta Que Salga el Sol", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones84_2 = List.of(
+                new CancionDominio(new ObjectId(), "Me Está Tirando el Rollo", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "La Escuelita", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Mientras Tú Jugabas", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6624 = List.of(
+                new AlbumDominio(new ObjectId(), "Ando Bien Pedo", "2010", "Banda", "src\\main\\resources\\imagenAlbum.png", canciones84_1),
+                new AlbumDominio(new ObjectId(), "Sueño XXX", "2014", "Banda", "src\\main\\resources\\imagenAlbum.png", canciones84_2));
+        List<IntegranteDominio> integrantes6624 = List.of(
+                new IntegranteDominio(new ObjectId(), "Luis Ángel Franco 'El Flaco'", "Voz principal", LocalDate.of(2004, 1, 1), LocalDate.of(2020, 1, 1), false),
+                new IntegranteDominio(new ObjectId(), "Samuel Sarmiento", "Voz principal", LocalDate.of(2008, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Rafael González", "Tuba", LocalDate.of(2005, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Alfonso Lizárraga Jr.", "Clarinete", LocalDate.of(2012, 1, 1), null, true));
+
+        ArtistaDominio a84 = new ArtistaDominio(new ObjectId(), "Banda Los Recoditos", "Banda", "src\\main\\resources\\imagenArtista.png", true, integrantes6624, albumes6624);
+
+        List<CancionDominio> canciones85_1 = List.of(
+                new CancionDominio(new ObjectId(), "El Envidioso", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Vida Ventajosa", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Cabrón y Vago", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones85_2 = List.of(
+                new CancionDominio(new ObjectId(), "Te Vas a Arrepentir", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Al Estilo Rancherón", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "El Borracho", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6625 = List.of(
+                new AlbumDominio(new ObjectId(), "Al Estilo Rancherón", "2020", "Norteño-Sierreño", "src\\main\\resources\\imagenAlbum.png", canciones85_1),
+                new AlbumDominio(new ObjectId(), "Boleros Para Tocar Borracho", "2022", "Norteño-Sierreño", "src\\main\\resources\\imagenAlbum.png", canciones85_2));
+        List<IntegranteDominio> integrantes6625 = List.of(
+                new IntegranteDominio(new ObjectId(), "Poncho Quezada", "Primera voz, bajo quinto", LocalDate.of(2018, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Imaz Quezada", "Segunda voz, acordeón", LocalDate.of(2018, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Armando Hernández", "Batería", LocalDate.of(2019, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Kevin Montemayor", "Bajo eléctrico", LocalDate.of(2019, 1, 1), null, true));
+
+        ArtistaDominio a85 = new ArtistaDominio(new ObjectId(), "Los Dos Carnales", "Norteño-Sierreño", "src\\main\\resources\\imagenArtista.png", true, integrantes6625, albumes6625);
+
+        List<CancionDominio> canciones86_1 = List.of(
+                new CancionDominio(new ObjectId(), "Fuerte No Soy", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Y Todo Para Qué", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Enséñame a Olvidar", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones86_2 = List.of(
+                new CancionDominio(new ObjectId(), "El Perdedor", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Sueña", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Aire", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6626 = List.of(
+                new AlbumDominio(new ObjectId(), "Intimamente", "2004", "Norteño-Tejano", "src\\main\\resources\\imagenAlbum.png", canciones86_1),
+                new AlbumDominio(new ObjectId(), "X", "2005", "Norteño-Tejano", "src\\main\\resources\\imagenAlbum.png", canciones86_2));
+        List<IntegranteDominio> integrantes6626 = List.of(
+                new IntegranteDominio(new ObjectId(), "Ricky Muñoz", "Voz principal, acordeón", LocalDate.of(1993, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "René Martínez", "Batería", LocalDate.of(1993, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Johnny Lee Rosas", "Segunda voz, bajo sexto", LocalDate.of(2003, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Sergio Serna", "Percusiones", LocalDate.of(1993, 1, 1), LocalDate.of(2015, 1, 1), false));
+
+        ArtistaDominio a86 = new ArtistaDominio(new ObjectId(), "Intocable", "Norteño-Tejano", "src\\main\\resources\\imagenArtista.png", true, integrantes6626, albumes6626);
+
+        List<CancionDominio> canciones87_1 = List.of(
+                new CancionDominio(new ObjectId(), "Después de Ti, ¿Quién?", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Te Dirán", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "El Amor de Mi Vida", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones87_2 = List.of(
+                new CancionDominio(new ObjectId(), "Durmiendo en el Lugar Equivocado", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "En Peligro de Extinción", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Ya Solo Eres Mi Ex", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6627 = List.of(
+                new AlbumDominio(new ObjectId(), "Corridos Adictivos", "2015", "Banda", "src\\main\\resources\\imagenAlbum.png", canciones87_1),
+                new AlbumDominio(new ObjectId(), "Durmiendo en el Lugar Equivocado", "2017", "Banda", "src\\main\\resources\\imagenAlbum.png", canciones87_2));
+        List<IntegranteDominio> integrantes6627 = List.of(
+                new IntegranteDominio(new ObjectId(), "Isaac Salas", "Voz principal", LocalDate.of(2021, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Jerry Corrales", "Voz principal", LocalDate.of(2018, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Andrés Valenzuela", "Voz principal", LocalDate.of(2023, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Carlos Sarabia", "Voz principal", LocalDate.of(2010, 1, 1), LocalDate.of(2014, 1, 1), false));
+
+        ArtistaDominio a87 = new ArtistaDominio(new ObjectId(), "La Adictiva", "Banda", "src\\main\\resources\\imagenArtista.png", true, integrantes6627, albumes6627);
+
+        List<CancionDominio> canciones88_1 = List.of(
+                new CancionDominio(new ObjectId(), "Ya Es Muy Tarde", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Sobre Mis Pies", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Niña de Mi Corazón", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones88_2 = List.of(
+                new CancionDominio(new ObjectId(), "Entre Beso y Beso", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "El Final de Nuestra Historia", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Calidad y Cantidad", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6628 = List.of(
+                new AlbumDominio(new ObjectId(), "Ya Es Muy Tarde", "2012", "Banda", "src\\main\\resources\\imagenAlbum.png", canciones88_1),
+                new AlbumDominio(new ObjectId(), "Libre Otra Vez", "2017", "Banda", "src\\main\\resources\\imagenAlbum.png", canciones88_2));
+        List<IntegranteDominio> integrantes6628 = List.of(
+                new IntegranteDominio(new ObjectId(), "Josi Cuen", "Voz principal", LocalDate.of(2008, 1, 1), LocalDate.of(2021, 1, 1), false),
+                new IntegranteDominio(new ObjectId(), "Vinicio Quezada", "Voz principal", LocalDate.of(2022, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Don René Camacho", "Fundador y director", LocalDate.of(1965, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Jorge Medina", "Voz principal", LocalDate.of(1997, 1, 1), LocalDate.of(2016, 1, 1), false));
+
+        ArtistaDominio a88 = new ArtistaDominio(new ObjectId(), "La Arrolladora Banda El Limón", "Banda", "src\\main\\resources\\imagenArtista.png", true, integrantes6628, albumes6628);
+
+        List<CancionDominio> canciones89_1 = List.of(
+                new CancionDominio(new ObjectId(), "Te Hubieras Ido Antes", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Y Así Fue", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Olvídame", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones89_2 = List.of(
+                new CancionDominio(new ObjectId(), "El Amor de Su Vida", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Afuera Está Lloviendo", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Ni Diablo Ni Santo", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6629 = List.of(
+                new AlbumDominio(new ObjectId(), "Soy Lo Que Quiero... Indispensable", "2011", "Banda", "src\\main\\resources\\imagenAlbum.png", canciones89_1),
+                new AlbumDominio(new ObjectId(), "Ni Diablo Ni Santo", "2017", "Banda", "src\\main\\resources\\imagenAlbum.png", canciones89_2));
+        List<IntegranteDominio> integrantes6629 = List.of(
+                new IntegranteDominio(new ObjectId(), "Julión Álvarez", "Voz principal", LocalDate.of(2007, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Ernesto Barajas", "Tuba", LocalDate.of(2007, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Felipe Rodríguez", "Armonía", LocalDate.of(2007, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Arturo Balderas", "Batería", LocalDate.of(2007, 1, 1), null, true));
+
+        ArtistaDominio a89 = new ArtistaDominio(new ObjectId(), "Julión Álvarez y Su Norteña Banda", "Banda", "src\\main\\resources\\imagenArtista.png", true, integrantes6629, albumes6629);
+
+        List<CancionDominio> canciones90_1 = List.of(
+                new CancionDominio(new ObjectId(), "OUKE", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "JALA JALA", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "Ola Mina XD", "src\\main\\resources\\imagenCancion.png"));
+        List<CancionDominio> canciones90_2 = List.of(
+                new CancionDominio(new ObjectId(), "Paga Dios", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "McFly", "src\\main\\resources\\imagenCancion.png"),
+                new CancionDominio(new ObjectId(), "La Moda", "src\\main\\resources\\imagenCancion.png"));
+        List<AlbumDominio> albumes6630 = List.of(
+                new AlbumDominio(new ObjectId(), "En El Fin Del Mundo", "2022", "Funk Trap", "src\\main\\resources\\imagenAlbum.png", canciones90_1),
+                new AlbumDominio(new ObjectId(), "TEMPORADA II", "2023", "Hip Hop Alternativo", "src\\main\\resources\\imagenAlbum.png", canciones90_2));
+        List<IntegranteDominio> integrantes6630 = List.of(
+                new IntegranteDominio(new ObjectId(), "CA7RIEL", "Voz, producción", LocalDate.of(2018, 1, 1), null, true),
+                new IntegranteDominio(new ObjectId(), "Paco Amoroso", "Voz", LocalDate.of(2018, 1, 1), null, true));
+
+        ArtistaDominio a90 = new ArtistaDominio(new ObjectId(), "CA7RIEL y Paco Amoroso", "Funk Trap", "src\\main\\resources\\imagenArtista.png", true, integrantes6630, albumes6630);
+
         this.artistas = List.of(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15,
                 a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31, a32, a33,
-                a34, a35, a36, a37, a38, a39, a40, a41, a42, a43, a44, a45,a46,a47,a48,a49,a50,a51,a52,a53,a54,a55,a56,
-                a57,a58,a59,a60);
+                a34, a35, a36, a37, a38, a39, a40, a41, a42, a43, a44, a45, a46, a47, a48, a49, a50, a51, a52, a53, a54, a55, a56,
+                a57, a58, a59, a60, a61, a62, a63, a64, a65, a66, a67, a68, a69, a70, a71, a72, a73, a74, a75, a76, a77, a78, a79, a80, a81, a82, a83, a84, a85, a86, a87, a88, a89, a90);
     }
 
     public List<ArtistaDominio> obtenerDatos() {
