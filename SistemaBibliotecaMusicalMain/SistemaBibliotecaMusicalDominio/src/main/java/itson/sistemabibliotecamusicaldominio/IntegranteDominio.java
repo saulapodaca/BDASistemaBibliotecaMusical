@@ -87,6 +87,7 @@ public class IntegranteDominio {
         this.activo = activo;
     }
 
+
     public ObjectId getId() {
         return id;
     }
@@ -95,4 +96,5 @@ public class IntegranteDominio {
         this.id = id;
     }
     
+
 }

@@ -6,8 +6,14 @@ package itson.sistemabibliotecamusicalpresentacion;
 
 import itson.sistemabibliotecamusicalnegocio.excepciones.NegocioException;
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.Image;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -21,6 +27,7 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
      */
     public MenuPrincipalFrm() {
         initComponents();
+        ponerimgCancion();
         this.setLocationRelativeTo(null);
     }
 
@@ -371,7 +378,7 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAlbumesActionPerformed
 
     private void btnArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArtistasActionPerformed
-       try {
+        try {
             PanelCatalogoArtistas panel = new PanelCatalogoArtistas();
             configurarPanel(panel);
         } catch (NegocioException ex) {
@@ -390,6 +397,42 @@ public class MenuPrincipalFrm extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnCancionesActionPerformed
+    private void ponerimgCancion() {
+        File imagenC = new File("src\\main\\resources\\imagenCancion.png");
+        pnlCanciones.setLayout(new FlowLayout()); 
+        pnlArtistas.setLayout(new FlowLayout());
+        pnlAlbumes.setLayout(new FlowLayout());
+
+        ImageIcon icono = new ImageIcon(imagenC.getAbsolutePath());
+        Image imagenEscalada = icono.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        JLabel lblImagen = new JLabel(new ImageIcon(imagenEscalada));
+        lblImagen.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        File imagenAl = new File("src\\main\\resources\\imagenAlbum.png");
+        ImageIcon iconoAl = new ImageIcon(imagenAl.getAbsolutePath());
+        Image imagenEscaladaAl = iconoAl.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        JLabel lblImagenAl = new JLabel(new ImageIcon(imagenEscaladaAl));
+        lblImagenAl.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        File imagenA = new File("src\\main\\resources\\imagenArtista.png");
+        ImageIcon iconoA = new ImageIcon(imagenA.getAbsolutePath());
+        Image imagenEscaladaA = iconoA.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        JLabel lblImagenA = new JLabel(new ImageIcon(imagenEscaladaA));
+        lblImagenAl.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        pnlArtistas.add(lblImagenA);
+        pnlArtistas.revalidate();
+        pnlArtistas.repaint();
+
+        pnlAlbumes.add(lblImagenAl);
+        pnlAlbumes.revalidate();
+        pnlAlbumes.repaint();
+
+        pnlCanciones.add(lblImagen);
+        pnlCanciones.revalidate();
+        pnlCanciones.repaint();
+
+    }
 
     private void configurarPanel(JPanel panel) {
         getContentPane().removeAll();
